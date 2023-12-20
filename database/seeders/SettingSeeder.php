@@ -13,12 +13,11 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::create([
-            'user_id' => 1,
             'favicon' => null,
             'logo' => null,
-            'name' => 'Laravel Jarvis',
-            'short_name' => 'Jarvis',
-            'Description' => 'Laravel Jarvis is a starter project made with Laravel Jetstream Inertia Vue and add more additional feature like User, Role & Permission management, Responsive design, Light/Dark Mode, Rich Table with many features. Check the documentation for more installation.',
+            'name' => 'HAMKO Group',
+            'short_name' => 'HAMKO',
+            'Description' => 'HAMKO Group, a household name in Bangladesh, is a diversified conglomerate that began its journey in 1978 with a spark - Abdullah Battery Company Limited. Founded on the principles of quality and customer focus, HAMKO quickly rose to become a leading manufacturer of lead-acid batteries, holding a significant market share in the automotive and solar sectors.',
         ]);
     }
 }
