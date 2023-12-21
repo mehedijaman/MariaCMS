@@ -12,12 +12,26 @@ class Setting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'logo',
         'favicon',
         'name',
         'short_name',
+        'tagline',
         'description',
+        'homepage',
+        'background_color',
+        'additional_css',
+        'header',
+        'footer',
+        'address',
+        'google_map',
+        'contact_no',
+        'email',
+        'facebook',
+        'twitter',
+        'instagram',
+        'youtube',
+        'whatsapp',
     ];
 
     protected $appends = ['full_path_logo', 'full_path_favicon'];

@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use Inertia\Inertia;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
-use App\Models\Menu;
+use App\Http\Requests\Menu\IndexMenuRequest;
 
 class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IndexMenuRequest $request)
     {
-        //
+        $menus = Menu::query();
+        if ($request->has('search')) {
+            $menus->where('name', 'LIKE', '%'.$request->search.'%');
+        }
+        if ($request->has(['field', 'order'])) {
+            $menus->orderBy($request->field, $request->order);
+        }
+        $perPage = $request->has('perPage') ? $request->perPage : 10;
+
+        return Inertia::render('Menu/Index', [
+            'title' => __('app.label.menus'),
+            'filters' => $request->all(['search', 'field', 'order']),
+            'perPage' => (int) $perPage,
+            'menus' => $menus->paginate($perPage)->onEachSide(0),
+            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+        ]);
     }
 
     /**

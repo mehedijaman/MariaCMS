@@ -74,12 +74,26 @@ class SettingController extends Controller
                 $logo = $setting->logo;
             }
             $setting->update([
-                'user_id' => auth()->user()->id,
                 'favicon' => $favicon,
                 'logo' => $logo,
                 'name' => $request->name,
                 'short_name' => $request->short_name,
+                'tagline' => $request->tagline,
                 'description' => $request->description,
+                'homepage' => $request->homepage,
+                'background_color' => $request->background_color,
+                'additional_css' => $request->additional_css,
+                'header' => $request->header,
+                'footer' => $request->footer,
+                'address' => $request->address,
+                'google_map' => $request->google_map,
+                'contact_no' => $request->contact_no,
+                'email' => $request->email,
+                'facebook' => $request->facebook,
+                'twitter' => $request->twitter,
+                'instagram' => $request->instagram,
+                'youtube' => $request->youtube,
+                'whatsapp' => $request->whatsapp,
             ]);
 
             return back();

@@ -8,7 +8,7 @@ const hasActions = computed(() => !!useSlots().actions);
 </script>
 
 <template>
-    <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="grid grid-cols-1 gap-4">
         <SectionTitle>
             <template #title>
                 <slot name="title" />
