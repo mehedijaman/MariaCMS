@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from "@/Layouts/GuestLayout.vue";
+import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 
@@ -8,7 +8,7 @@ const props = defineProps({
 });
 </script>
 <template>
-    <GuestLayout :title="props.title">
+    <WebsiteLayout :title="props.title">
         <section
             class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern"
             id="home"
@@ -35,5 +35,5 @@ const props = defineProps({
                 </div>
             </div>
         </section>
-    </GuestLayout>
+    </WebsiteLayout>
 </template>

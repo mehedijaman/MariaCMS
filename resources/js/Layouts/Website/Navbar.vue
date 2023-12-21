@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import NavbarLink from "@/Components/Guest/NavbarLink.vue";
+import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
 import SwitchLocale from "@/Components/SwitchLocale.vue";
 import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
@@ -79,6 +79,21 @@ onMounted(() => {
                     "
                     :href="route('index')"
                     :label="lang().label.home"
+                />
+
+                <NavbarLink
+                    v-bind:class="
+                        route().current('about') ? 'font-bold text-primary' : ''
+                    "
+                    :href="route('about')"
+                    :label="lang().label.about"
+                />
+                <NavbarLink
+                    v-bind:class="
+                        route().current('contact') ? 'font-bold text-primary' : ''
+                    "
+                    :href="route('about')"
+                    label="Contact"
                 />
                 <NavbarLink
                     v-if="$page.props.auth.user"

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-class GuestController extends Controller
+class WebsiteController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Guest/Index', [
+        return Inertia::render('Website/Index', [
             'title' => 'Home',
         ]);
     }

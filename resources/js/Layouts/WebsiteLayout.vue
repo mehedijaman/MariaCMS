@@ -1,9 +1,9 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
-import BackToTop from "@/Components/BackToTop.vue";
+import BackToTop from "@/Components/Website/BackToTop.vue";
 import Toast from "@/Components/Toast.vue";
-import Navbar from "@/Layouts/Guest/Navbar.vue";
-import Footer from "@/Layouts/Guest/Footer.vue";
+import Navbar from "@/Layouts/Website/Navbar.vue";
+import Footer from "@/Layouts/Website/Footer.vue";
 defineProps({
     title: String,
 });
@@ -17,6 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
+
     <div>
         <Head :title="title" />
         <Toast :flash="$page.props.flash" />

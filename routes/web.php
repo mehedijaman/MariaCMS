@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteController;
 use App\Models\PostCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -29,7 +30,12 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', [GuestController::class, 'index'])->name('index');
+Route::get('/', [WebsiteController::class, 'index'])->name('index');
+Route::get('/about', [WebsiteController::class, 'about'])->name('about');
+Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::get('/blog', [WebsiteController::class, 'blog'])->name('blog');
+
+
 
 Route::get('/set-locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
