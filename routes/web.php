@@ -1,12 +1,20 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostCategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
+use App\Models\PostCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -29,12 +37,20 @@ Route::get('/set-locale/{locale}', function ($locale) {
     return back();
 })->name('set-locale');
 
-Route::prefix('system')->middleware([
+Route::prefix('cp')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('pages', PageController::class);
+    Route::resource('posts', PostController::class);
+    Route::resource('post-categories', PostCategoryController::class);
+    Route::resource('comments', CommentController::class);
+    Route::resource('menus', MenuController::class);
+    // Route::resource('menu-items', MenuItemController::class);
+    Route::resource('galleries', GalleryController::class);
+    Route::resource('sliders', SliderController::class);
 
     Route::group(['prefix' => 'user'], function(){
         Route::resource('/', UserController::class)

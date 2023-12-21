@@ -8,6 +8,12 @@ import {
     CogIcon,
     ChevronDownIcon,
     CubeIcon,
+    ClipboardDocumentListIcon,
+    DocumentIcon,
+    PaperClipIcon,
+    PhotoIcon,
+    RocketLaunchIcon,
+    ComputerDesktopIcon,
 } from "@heroicons/vue/24/solid";
 import { Link } from "@inertiajs/vue3";
 
@@ -58,9 +64,107 @@ function userManagementActive() {
 
                     <Link :href="route('dashboard')"
                         class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
-                    <Squares2X2Icon
+                    <CubeIcon
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
                     <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.dashboard }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-bind:class="route().current('menus')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('menus.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <Squares2X2Icon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.menus }}</span>
+
+                    </Link>
+                </li>
+                <li v-bind:class="route().current('pages')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('pages.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <ClipboardDocumentListIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.pages }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-bind:class="route().current('posts')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('posts.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <RocketLaunchIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.posts }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-bind:class="route().current('galleries')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('post-categories.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <PaperClipIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.post_categories }}</span>
+
+                    </Link>
+                </li>
+
+
+                <li v-bind:class="route().current('galleries')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('galleries.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <PhotoIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.galleries }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-bind:class="route().current('sliders')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('sliders.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <ComputerDesktopIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.sliders }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-show="can(['setting read'])" v-bind:class="route().current('setting.index')
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('setting.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <CogIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.setting }}</span>
 
                     </Link>
                 </li>
@@ -160,19 +264,7 @@ function userManagementActive() {
                     </ul>
                 </li>
 
-                <li v-show="can(['setting read'])" v-bind:class="route().current('setting.index')
-                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
-                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
-                    ">
 
-                    <Link :href="route('setting.index')"
-                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
-                    <CogIcon
-                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
-                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.setting }}</span>
-
-                    </Link>
-                </li>
 
                 <li v-show="can(['app maintenance read'])" class="border-b-[1px] border-gray-200 dark:border-gray-700">
                     <button type="button"

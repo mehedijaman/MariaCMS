@@ -145,6 +145,12 @@ return [
         'home' => 'Home',
         'user_management' => 'User Management',
         'app_maintenance' => 'App Maintenance',
+        'pages' => 'Pages',
+        'menus' => 'Menus',
+        'posts' => 'Posts',
+        'post_categories' => 'Categories',
+        'galleries' => 'Galleries',
+        'sliders' => 'Sliders',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
