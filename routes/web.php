@@ -30,10 +30,9 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', [WebsiteController::class, 'index'])->name('index');
-Route::get('/about', [WebsiteController::class, 'about'])->name('about');
-Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
-Route::get('/blog', [WebsiteController::class, 'blog'])->name('blog');
+Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::get('blog/{slug?}', [WebsiteController::class, 'blog'])->name('blog');
+Route::get('/{slug?}', [WebsiteController::class, 'index'])->name('index');
 
 
 

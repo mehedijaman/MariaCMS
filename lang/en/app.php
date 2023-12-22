@@ -167,6 +167,8 @@ return [
         'instagram' => 'Instagram',
         'youtube' => 'Youtube',
         'whatsapp' => 'Whatsapp',
+        'blog' => 'Blog',
+        'position' => 'Position',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

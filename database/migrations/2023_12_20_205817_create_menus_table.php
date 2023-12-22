@@ -15,26 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('position')->nullable();
-            $table->boolean('status');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('menu_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
-            $table->unsignedBigInteger('parent')->nullable();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('type')->nullable();
-            $table->string('target')->nullable();
-            $table->boolean('status')->default(true);
-
-            $table->foreignId('published_by')->constrained('users')->nullable();
-            $table->foreignId('created_by')->constrained('users')->nullable();
-            $table->foreignId('updated_by')->constrained('users')->nullable();
-            $table->foreignId('deleted_by')->constrained('users')->nullable();
-            $table->timestamp('published_at')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -46,6 +27,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('menus');
-        Schema::dropIfExists('menu_items');
     }
 };

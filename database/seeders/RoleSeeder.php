@@ -18,6 +18,11 @@ class RoleSeeder extends Seeder
         ]);
 
         $superadmin->givePermissionTo([
+            'menu create',
+            'menu read',
+            'menu update',
+            'menu delete',
+
             'user create',
             'user read',
             'user update',

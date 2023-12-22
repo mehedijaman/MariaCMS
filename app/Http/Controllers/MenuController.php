@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Inertia\Inertia;
-use App\Http\Requests\StoreMenuRequest;
-use App\Http\Requests\UpdateMenuRequest;
+use App\Http\Requests\Menu\StoreMenuRequest;
+use App\Http\Requests\Menu\UpdateMenuRequest;
 use App\Http\Requests\Menu\IndexMenuRequest;
+use App\Constants\Menu as MenuConstant;
 
 class MenuController extends Controller
 {
@@ -23,12 +24,13 @@ class MenuController extends Controller
             $menus->orderBy($request->field, $request->order);
         }
         $perPage = $request->has('perPage') ? $request->perPage : 10;
-
+        // return $menus->with('items')->paginate($perPage);
         return Inertia::render('Menu/Index', [
             'title' => __('app.label.menus'),
             'filters' => $request->all(['search', 'field', 'order']),
             'perPage' => (int) $perPage,
-            'menus' => $menus->paginate($perPage)->onEachSide(0),
+            'menus' => $menus->with('items')->paginate($perPage)->onEachSide(0),
+            'positions' => MenuConstant::POSITIONS,
             'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
         ]);
     }
@@ -38,7 +40,11 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Menu/Create', [
+            'title' => __('app.label.menu'),
+            'positions' => MenuConstant::POSITIONS,
+            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+        ]);
     }
 
     /**
@@ -46,7 +52,17 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+        try {
+            $menu = Menu::create([
+                'name' => $request->name,
+                'position' => $request->position,
+                'status' => $request->status,
+            ]);
+            return back()->with('success', __('app.label.created_successfully', ['name' => $menu->name]));
+        } catch (\Throwable $th) {
+
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.menu')]).$th->getMessage());
+        }
     }
 
     /**
@@ -54,7 +70,11 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+        return Inertia::render('Menu/Show', [
+            'title' => __('app.label.menu'),
+            'menu' => $menu,
+            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+        ]);
     }
 
     /**
@@ -62,7 +82,12 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return Inertia::render('Menu/Edit', [
+            'title' => __('app.label.menu'),
+            'menu' => $menu,
+            'positions' => MenuConstant::POSITIONS,
+            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+        ]);
     }
 
     /**
@@ -70,7 +95,16 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+        try {
+            $menu->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'status' => $request->status,
+            ]);
+            return back()->with('success', __('app.label.updated_successfully', ['name' => $menu->name]));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.menu')]).$th->getMessage());
+        }
     }
 
     /**
@@ -78,6 +112,25 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
+    }
+
+    /**
+     * Parmanently delete the specified resource from storage.
+     */
+    public function destroyForce(Menu $menu)
+    {
+        $menu->forceDelete();
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore(Menu $menu)
+    {
+        $menu->restore();
+        return back()->with('success', __('app.label.restored_successfully', ['name' => $menu->name]));
     }
 }

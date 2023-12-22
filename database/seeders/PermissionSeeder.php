@@ -12,6 +12,11 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        Permission::create(['name' => 'menu create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'menu read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'menu update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'menu delete', 'guard_name' => 'web']);
+
         Permission::create(['name' => 'user create', 'guard_name' => 'web']);
         Permission::create(['name' => 'user read', 'guard_name' => 'web']);
         Permission::create(['name' => 'user update', 'guard_name' => 'web']);

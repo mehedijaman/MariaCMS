@@ -10,31 +10,31 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    permissions: Object,
+    items: Object,
 });
 
 const groupedData = [];
 let currentGroup = null;
 
-props.permissions?.forEach((permission) => {
-    const groupName = permission.name.split(" ")[0];
-    const action = permission.name.split(" ")[1];
+// props.items?.forEach((item) => {
+//     const groupName = item.name.split(" ")[0];
+//     const action = item.name.split(" ")[1];
 
-    if (currentGroup !== groupName) {
-        currentGroup = groupName;
-        groupedData.push({
-            group: currentGroup,
-            data: [{ name: action }],
-        });
-    } else {
-        const groupIndex = groupedData.findIndex(
-            (group) => group.group === groupName
-        );
-        if (groupIndex !== -1) {
-            groupedData[groupIndex].data.push({ name: action });
-        }
-    }
-});
+//     if (currentGroup !== groupName) {
+//         currentGroup = groupName;
+//         groupedData.push({
+//             group: currentGroup,
+//             data: [{ name: action }],
+//         });
+//     } else {
+//         const groupIndex = groupedData.findIndex(
+//             (group) => group.group === groupName
+//         );
+//         if (groupIndex !== -1) {
+//             groupedData[groupIndex].data.push({ name: action });
+//         }
+//     }
+// });
 
 const closeModal = () => {
     show.value = false;
@@ -44,7 +44,7 @@ const closeModal = () => {
     <div>
         <div>
             <p
-                v-tooltip="lang().label.show_permission"
+                v-tooltip="lang().label.show_item"
                 class="text-primary underline cursor-pointer w-fit"
                 @click="show = true"
             >
@@ -53,7 +53,7 @@ const closeModal = () => {
         </div>
         <DialogModal :show="show" @close="closeModal" max-width="md">
             <template #title>
-                {{ lang().label.permission }}
+                {{ lang().label.item }}
                 {{ props.caption ? props.caption : props.title }}
             </template>
 
@@ -61,15 +61,15 @@ const closeModal = () => {
                 <div class="space-y-2">
                     <div
                         class="mt-2"
-                        v-for="(permission, index) in groupedData"
+                        v-for="(item, index) in groupedData"
                         :key="index"
                     >
                         <p class="font-bold text-primary capitalize">
-                            {{ permission.group }}
+                            {{ item.group }}
                         </p>
                         <div class="flex flex-wrap gap-4">
                             <p
-                                v-for="(data, index) in permission.data"
+                                v-for="(data, index) in item.data"
                                 :key="index"
                                 v-bind:class="data.name == 'delete' ? 'text-red-500 font-semibold':''"
                                 class="mt-1 mb-4"

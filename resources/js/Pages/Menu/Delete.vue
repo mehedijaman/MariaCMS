@@ -11,13 +11,13 @@ const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    role: Object,
+    menu: Object,
 });
 
 const form = useForm({});
 
 const submit = () => {
-    form.delete(route("role.destroy", props.role?.id), {
+    form.delete(route("menus.destroy", props.menu?.id), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => null,
@@ -44,7 +44,7 @@ const closeModal = () => {
             </template>
 
             <template #content>
-                {{ lang().label.delete_confirm }} {{ props.role?.name }}?
+                {{ lang().label.delete_confirm }} {{ props.menu?.name }}?
             </template>
 
             <template #footer>

@@ -15,8 +15,7 @@ const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    permissions: Object,
-    role: Object,
+    position: String,
 });
 
 const data = reactive({
@@ -25,29 +24,28 @@ const data = reactive({
 
 const form = useForm({
     name: "",
-    guard_name: "web",
-    permissions: [],
+    position: null,
 });
 
-onUpdated(() => {
-    if (show) {
-        form.name = props.role?.name;
-        form.permissions = props.role?.permissions?.map((d) => d.id);
-    }
-    if (
-        props.permissions.reduce(
-            (total, data) => total + data.data.length,
-            0
-        ) == props.role?.permissions.length
-    ) {
-        data.multipleSelect = true;
-    } else {
-        data.multipleSelect = false;
-    }
-});
+// onUpdated(() => {
+//     if (show) {
+//         form.name = props.menu?.name;
+//         form.position = props.menu?.position;
+//     }
+//     if (
+//         props.permissions.reduce(
+//             (total, data) => total + data.data.length,
+//             0
+//         ) == props.menu?.permissions.length
+//     ) {
+//         data.multipleSelect = true;
+//     } else {
+//         data.multipleSelect = false;
+//     }
+// });
 
 const submit = () => {
-    form.put(route("role.update", props.role?.id), {
+    form.put(route("menus.update", props.menu?.id), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => null,
@@ -109,7 +107,7 @@ const select = () => {
                             type="text"
                             class="block w-full"
                             autocomplete="name"
-                            :placeholder="lang().placeholder.role_name"
+                            :placeholder="lang().placeholder.menu_name"
                             :error="form.errors.name"
                         />
                         <InputError :message="form.errors.name" />

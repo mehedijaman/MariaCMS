@@ -21,16 +21,16 @@ return new class extends Migration
             $table->unsignedInteger('hit_count')->nullable();
             $table->boolean('allow_comment')->nullable();
             $table->boolean('is_featured')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(true)->nullable();
 
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
 
-            $table->foreignId('published_by')->constrained('users')->nullable();
-            $table->foreignId('created_by')->constrained('users')->nullable();
-            $table->foreignId('updated_by')->constrained('users')->nullable();
-            $table->foreignId('deleted_by')->constrained('users')->nullable();
+            $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('deleted_by')->references('id')->on('users')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

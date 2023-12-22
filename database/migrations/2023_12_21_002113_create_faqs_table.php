@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('question');
             $table->longText('answer')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(true)->nullable();
 
-            $table->foreignId('published_by')->constrained('users')->nullable();
-            $table->foreignId('created_by')->constrained('users')->nullable();
-            $table->foreignId('updated_by')->constrained('users')->nullable();
-            $table->foreignId('deleted_by')->constrained('users')->nullable();
+            $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('deleted_by')->references('id')->on('users')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

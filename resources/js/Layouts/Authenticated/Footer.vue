@@ -7,22 +7,10 @@
             <div
                 class="flex justify-end items-center px-4 sm:px-6 lg:px-8 py-4"
             >
-                <p class="text-slate-600 dark:text-slate-400">
-                    {{
-                        $page.props.app.setting.name +
-                        " v." +
-                        $page.props.app.version
-                    }}
-                    &copy; 2023-{{ new Date().getFullYear() }}.
-                    {{ lang().label.build_with }}
-                    <span class="text-rose-500">♥️</span> {{ lang().label.by }}
-                    <a
-                        class="text-primary font-semibold"
-                        target="_blank"
-                        href="https://erikwibowo.com"
-                        >Erik Wibowo</a
-                    >
-                </p>
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+                &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
+                Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
+                    href="https://gtechservice.net">gTechService</a></span>
             </div>
         </div>
     </footer>

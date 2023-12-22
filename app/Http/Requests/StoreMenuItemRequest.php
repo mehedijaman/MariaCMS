@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Menu;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMenuRequest extends FormRequest
+class StoreMenuItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,7 @@ class StoreMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'field' => ['in:name,created_at,updated_at'],
-            'order' => ['in:asc,desc'],
-            'perPage' => ['numeric'],
+            //
         ];
     }
 }

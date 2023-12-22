@@ -5,11 +5,11 @@ import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import TablePagination from "@/Components/TablePagination.vue";
 import TextInput from "@/Components/TextInput.vue";
-import Create from "@/Pages/Role/Create.vue";
-import Edit from "@/Pages/Role/Edit.vue";
-import Delete from "@/Pages/Role/Delete.vue";
-import DeleteBulk from "@/Pages/Role/DeleteBulk.vue";
-import Permission from "@/Pages/Role/Permission.vue";
+import Create from "@/Pages/Menu/Create.vue";
+import Edit from "@/Pages/Menu/Edit.vue";
+import Delete from "@/Pages/Menu/Delete.vue";
+import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
+// import Item from "@/Pages/Menu/Item.vue";
 import { reactive, watch } from "vue";
 import pkg from "lodash";
 import { router } from "@inertiajs/vue3";
@@ -21,9 +21,11 @@ const props = defineProps({
     title: String,
     filters: Object,
     menus: Object,
+    positions: Object,
     permissions: Object,
     breadcrumbs: Object,
     perPage: Number,
+
 });
 
 const data = reactive({
@@ -35,7 +37,7 @@ const data = reactive({
     },
     selectedId: [],
     multipleSelect: false,
-    role: null,
+    menu: null,
 });
 
 const order = (field) => {
@@ -47,7 +49,7 @@ watch(
     () => _.cloneDeep(data.params),
     debounce(() => {
         let params = pickBy(data.params);
-        router.get(route("role.index"), params, {
+        router.get(route("menus.index"), params, {
             replace: true,
             preserveState: true,
             preserveScroll: true,
@@ -59,8 +61,8 @@ const selectAll = (event) => {
     if (event.target.checked === false) {
         data.selectedId = [];
     } else {
-        props.menus?.data.forEach((role) => {
-            data.selectedId.push(role.id);
+        props.menus?.data.forEach((menu) => {
+            data.selectedId.push(menu.id);
         });
     }
 };
@@ -91,14 +93,14 @@ const select = () => {
                         <template #table-action>
                             <div class="flex shrink-0 rounded overflow-hidden">
                                 <Create
-                                    v-show="can(['role create'])"
+                                    v-show="can(['menu create'])"
                                     :title="props.title"
                                     :permissions="props.permissions"
                                 />
                                 <DeleteBulk
                                     v-show="
                                         data.selectedId.length != 0 &&
-                                        can(['role delete'])
+                                        can(['menu delete'])
                                     "
                                     :selectedId="data.selectedId"
                                     :title="props.title"
@@ -146,12 +148,23 @@ const select = () => {
                                 </th>
                                 <th
                                     class="p-4 cursor-pointer"
-                                    v-on:click="order('guard_name')"
+                                    v-on:click="order('position')"
                                 >
                                     <div
                                         class="flex justify-between items-center"
                                     >
                                         <span>Position</span>
+                                        <ChevronUpDownIcon class="w-4 h-4" />
+                                    </div>
+                                </th>
+                                <th
+                                    class="p-4 cursor-pointer"
+                                    v-on:click="order('items')"
+                                >
+                                    <div
+                                        class="flex justify-between items-center"
+                                    >
+                                        <span>Items</span>
                                         <ChevronUpDownIcon class="w-4 h-4" />
                                     </div>
                                 </th>
@@ -174,7 +187,7 @@ const select = () => {
                         </template>
                         <template #table-body>
                             <tr
-                                v-for="(role, index) in menus.data"
+                                v-for="(menu, index) in menus.data"
                                 :key="index"
                                 class="border-t border-slate-200 dark:border-slate-700 hover:bg-slate-200/30 hover:dark:bg-slate-900/20"
                             >
@@ -183,7 +196,7 @@ const select = () => {
                                         class="rounded dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-primary dark:text-primary shadow-sm focus:ring-primary/80 dark:focus:ring-primary dark:focus:ring-offset-slate-800 dark:checked:bg-primary dark:checked:border-primary"
                                         type="checkbox"
                                         @change="select"
-                                        :value="role.id"
+                                        :value="menu.id"
                                         v-model="data.selectedId"
                                     />
                                 </td>
@@ -193,43 +206,44 @@ const select = () => {
                                     {{ ++index }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2">
-                                    {{ role.name }}
+                                    {{ menu.name }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2">
-                                    {{ role.guard_name }}
+                                    {{ menu.position }}
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2">
-                                    <div v-if="role.permissions.length != 0">
-                                        <Permission
+                                    <div v-if="menu.items.length != 0">
+                                        <!-- <Item
                                             v-if="
-                                                role.permissions.length ==
-                                                props.permissions.reduce(
+                                                menu.items.length ==
+                                                props.items.reduce(
                                                     (total, data) =>
                                                         total +
                                                         data.data.length,
                                                     0
                                                 )
                                             "
-                                            :permissions="role.permissions"
+                                            :items="menu.items"
                                             :title="lang().label.all_permission"
-                                            :caption="role.name"
-                                        />
-                                        <Permission
-                                            v-else
-                                            :permissions="role.permissions"
+                                            :caption="menu.name"
+                                        /> -->
+                                        <!-- <Item
+
+                                            :items="menu.items"
                                             :title="
-                                                role.permissions.length +
-                                                ' Permissions'
+                                                menu.items.length +
+                                                ' Items'
                                             "
-                                            :caption="role.name"
-                                        />
+                                            :caption="menu.name"
+                                        /> -->
+                                        {{ menu.items.length }} Items
                                     </div>
                                     <p v-else>
-                                        {{ lang().label.no_permission }}
+                                        No Item
                                     </p>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2">
-                                    {{ role.created_at }}
+                                    {{ menu.created_at }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap flex justify-end px-4 py-2 sm:py-3"
@@ -238,17 +252,17 @@ const select = () => {
                                         class="flex w-fit rounded overflow-hidden"
                                     >
                                         <Edit
-                                            v-show="can(['role update'])"
+                                            v-show="can(['menu update'])"
                                             :title="props.title"
-                                            :role="data.role"
-                                            @open="data.role = role"
+                                            :menu="data.menu"
+                                            @open="data.menu = menu"
                                             :permissions="props.permissions"
                                         />
                                         <Delete
-                                            v-show="can(['role delete'])"
+                                            v-show="can(['menu delete'])"
                                             :title="props.title"
-                                            :role="data.role"
-                                            @open="data.role = role"
+                                            :menu="data.menu"
+                                            @open="data.menu = menu"
                                         />
                                     </div>
                                 </td>

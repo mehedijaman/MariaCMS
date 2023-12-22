@@ -83,16 +83,16 @@ onMounted(() => {
 
                 <NavbarLink
                     v-bind:class="
-                        route().current('about') ? 'font-bold text-primary' : ''
+                        route().current('blog') ? 'font-bold text-primary' : ''
                     "
-                    :href="route('about')"
-                    :label="lang().label.about"
+                    :href="route('blog')"
+                    :label="lang().label.blog"
                 />
                 <NavbarLink
                     v-bind:class="
                         route().current('contact') ? 'font-bold text-primary' : ''
                     "
-                    :href="route('about')"
+                    :href="route('contact')"
                     label="Contact"
                 />
                 <NavbarLink
@@ -106,11 +106,11 @@ onMounted(() => {
                         :href="route('login')"
                         label="Login"
                     />
-                    <NavbarLink
+                    <!-- <NavbarLink
                         v-if="route().has('register')"
                         :href="route('register')"
                         label="Register"
-                    />
+                    /> -->
                 </template>
                 <SwitchLocale/>
                 <SwitchDarkMode class="hidden sm:block" />
