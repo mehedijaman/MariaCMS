@@ -5,6 +5,7 @@ import Delete from "@/Pages/Menu/Delete.vue";
 import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
 import { ref, reactive, defineEmits } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
+import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
 import {
     MagnifyingGlassIcon,
@@ -60,12 +61,10 @@ const updateItem = (updatedItem) => {
     // Update the item if found
     if (index !== -1) {
         items[index].name = updatedItem.data.name;
-        console.log(items[index]);
         items[index].position = updatedItem.data.position;
         items[index].status = updatedItem.data.status;
     }
 };
-
 
 const emits = defineEmits([
     'removeItem',
@@ -100,9 +99,13 @@ const emits = defineEmits([
                 <strong>Items: </strong> {{ item.items }}
             </div>
         </template>
+        <template #empty-message>
+            <EmptyAnimation></EmptyAnimation>
+        </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['menu update'])" :title="item.name" :item="item" @open="item = item" @updateItem="updateItem" />
+                <Edit v-show="can(['menu update'])" :title="item.name" :item="item" @open="item = item"
+                    @updateItem="updateItem" />
                 <Delete v-show="can(['menu delete'])" :title="item.name" :item="item" @open="item = item"
                     @removeItem="removeItem" />
             </div>

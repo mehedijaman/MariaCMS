@@ -7,12 +7,12 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref, onUpdated, computed } from "vue";
+import { reactive, ref, onUpdated, defineEmits } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import Checkbox from "@/Components/Checkbox.vue";
 
 
-const emit = defineEmits(["open", "updateItem"]);
+const emit = defineEmits(["open", 'updateItem']);
 const show = ref(false);
 const props = defineProps({
     title: String,
@@ -20,13 +20,13 @@ const props = defineProps({
     position: String,
 });
 
-
-
-const form = useForm({
+const formData = reactive({
     name: props.item?.name,
     position: props.item?.position,
     status: props.item?.status,
 });
+
+const form = useForm(formData);
 
 const submit = () => {
     form.put(route("menus.update", props.item?.id), {
@@ -34,12 +34,8 @@ const submit = () => {
         onSuccess: () => {
             closeModal();
             emit('updateItem', {
-                id: props.item?.id,
-                data: {
-                    name: form.name,
-                    position: form.position,
-                    status: form.status
-                },
+                id : props.item?.id,
+                data : formData
             });
         },
         onError: () => null,
@@ -71,7 +67,7 @@ const closeModal = () => {
                         <InputLabel for="name" :value="lang().label.name" />
                         <TextInput
                             id="name"
-                            v-model="form.name"
+                            v-model="formData.name"
                             type="text"
                             class="block w-full"
                             autocomplete="name"

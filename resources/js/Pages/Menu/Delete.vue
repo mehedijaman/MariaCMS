@@ -4,10 +4,10 @@ import ActionButton from "@/Components/ActionButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(["open"]);
+const emit = defineEmits(["open", "removeItem"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
