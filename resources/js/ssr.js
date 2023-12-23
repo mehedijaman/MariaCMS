@@ -6,7 +6,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import JsonViewer from 'vue-json-viewer/ssr'
 
-const appName = 'Laravel';
+const appName = 'MariaCMS';
 
 createServer((page) =>
     createInertiaApp({

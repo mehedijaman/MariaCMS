@@ -10,7 +10,7 @@ const emit = defineEmits(["close"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    selectedId: Object,
+    itemsSelected: Object,
 });
 
 const form = useForm({
@@ -19,16 +19,22 @@ const form = useForm({
 
 watchEffect(() => {
     if (show) {
-        form.id = props.selectedId;
+        if (props.itemsSelected && props.itemsSelected.length > 0) {
+            form.id = props.itemsSelected.map(item => item.id);
+        } else {
+            // Reset form.id if itemsSelected is empty or not available
+            form.id = [];
+        }
     }
 });
 
 const submit = () => {
-    form.post(route("role.destroy-bulk"), {
+    form.delete(route("menus.destroy.bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
             emit("close");
+            emit('removeBulkItem', form.id);
         },
         onError: () => null,
         onFinish: () => null,
@@ -42,7 +48,6 @@ const closeModal = () => {
 <template>
     <div>
         <DangerButton
-            v-tooltip="lang().label.delete_selected"
             class="rounded-none"
             @click.prevent="show = true"
         >

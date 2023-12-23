@@ -53,6 +53,7 @@ Route::prefix('cp')->middleware([
     Route::resource('post-categories', PostCategoryController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('menus', MenuController::class);
+    Route::delete('menus/destroy/bulk', [MenuController::class, 'destroyBulk'])->name('menus.destroy.bulk');
     // Route::resource('menu-items', MenuItemController::class);
     Route::resource('galleries', GalleryController::class);
     Route::resource('sliders', SliderController::class);

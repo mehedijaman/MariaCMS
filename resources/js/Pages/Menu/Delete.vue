@@ -11,15 +11,18 @@ const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    menu: Object,
+    item: Object,
 });
 
 const form = useForm({});
 
 const submit = () => {
-    form.delete(route("menus.destroy", props.menu?.id), {
+    form.delete(route("menus.destroy", props.item?.id), {
         preserveScroll: true,
-        onSuccess: () => closeModal(),
+        onSuccess: () => {
+            closeModal();
+            emit('removeItem', props.item?.id);
+        },
         onError: () => null,
         onFinish: () => null,
     });
@@ -32,7 +35,6 @@ const closeModal = () => {
 <template>
     <div>
         <ActionButton
-            v-tooltip="lang().label.delete"
             variant="danger"
             @click.prevent="(show = true), emit('open')"
         >
@@ -44,7 +46,7 @@ const closeModal = () => {
             </template>
 
             <template #content>
-                {{ lang().label.delete_confirm }} {{ props.menu?.name }}?
+                {{ lang().label.delete_confirm }} {{ props.item?.name }}?
             </template>
 
             <template #footer>

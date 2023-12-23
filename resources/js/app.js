@@ -1,6 +1,5 @@
 import "./bootstrap";
 import "../css/app.css";
-import "floating-vue/dist/style.css";
 import 'flowbite';
 
 import { createApp, h } from "vue";
@@ -8,10 +7,11 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { usePage } from "@inertiajs/vue3";
-import FloatingVue from "floating-vue";
 import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
-import JsonViewer from 'vue-json-viewer'
+/** Vue3 Easy Data Table */
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -27,9 +27,8 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
-            .use(FloatingVue)
             .use(Vue3Lottie)
-            .use(JsonViewer)
+            .component('EasyDataTable', Vue3EasyDataTable)
             .mixin({
                 methods: {
                     can: function (permissions) {

@@ -7,47 +7,41 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref, onUpdated } from "vue";
+import { reactive, ref, onUpdated, computed } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import Checkbox from "@/Components/Checkbox.vue";
 
-const emit = defineEmits(["open"]);
+
+const emit = defineEmits(["open", "updateItem"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
+    item:Object,
     position: String,
 });
 
-const data = reactive({
-    multipleSelect: false,
-});
+
 
 const form = useForm({
-    name: "",
-    position: null,
+    name: props.item?.name,
+    position: props.item?.position,
+    status: props.item?.status,
 });
 
-// onUpdated(() => {
-//     if (show) {
-//         form.name = props.menu?.name;
-//         form.position = props.menu?.position;
-//     }
-//     if (
-//         props.permissions.reduce(
-//             (total, data) => total + data.data.length,
-//             0
-//         ) == props.menu?.permissions.length
-//     ) {
-//         data.multipleSelect = true;
-//     } else {
-//         data.multipleSelect = false;
-//     }
-// });
-
 const submit = () => {
-    form.put(route("menus.update", props.menu?.id), {
+    form.put(route("menus.update", props.item?.id), {
         preserveScroll: true,
-        onSuccess: () => closeModal(),
+        onSuccess: () => {
+            closeModal();
+            emit('updateItem', {
+                id: props.item?.id,
+                data: {
+                    name: form.name,
+                    position: form.position,
+                    status: form.status
+                },
+            });
+        },
         onError: () => null,
         onFinish: () => null,
     });
@@ -57,37 +51,11 @@ const closeModal = () => {
     show.value = false;
     form.errors = {};
     form.reset();
-    data.multipleSelect = false;
-};
-
-const selectAll = (event) => {
-    if (event.target.checked === false) {
-        form.permissions = [];
-    } else {
-        props.permissions.forEach((permission) => {
-            permission.data.forEach((data) => {
-                form.permissions.push(data.id);
-            });
-        });
-    }
-};
-const select = () => {
-    if (
-        props.permissions.reduce(
-            (total, data) => total + data.data.length,
-            0
-        ) == form.permissions.length
-    ) {
-        data.multipleSelect = true;
-    } else {
-        data.multipleSelect = false;
-    }
 };
 </script>
 <template>
     <div>
         <ActionButton
-            v-tooltip="lang().label.edit"
             @click.prevent="(show = true), emit('open')"
         >
             <PencilIcon class="w-4 h-auto" />
@@ -111,66 +79,6 @@ const select = () => {
                             :error="form.errors.name"
                         />
                         <InputError :message="form.errors.name" />
-                    </div>
-                    <div>
-                        <InputLabel :value="lang().label.permissions" />
-                        <InputError
-                            class="mt-2"
-                            :message="form.errors.permissions"
-                        />
-                        <div
-                            class="flex justify-start items-center space-x-2 mt-2"
-                        >
-                            <Checkbox
-                                id="permission-all"
-                                v-model:checked="data.multipleSelect"
-                                @change="selectAll"
-                            />
-                            <InputLabel
-                                for="permission-all"
-                                :value="lang().label.check_all"
-                            />
-                        </div>
-                        <div
-                            class="mt-2"
-                            v-for="(permission, index) in props.permissions"
-                            :key="index"
-                        >
-                            <p class="font-semibold text-primary capitalize">
-                                {{ permission.group }}
-                            </p>
-                            <div class="flex flex-wrap gap-4 mt-1 mb-4">
-                                <div
-                                    class="flex items-center justify-start space-x-2"
-                                    v-for="(
-                                        permissiondata, index
-                                    ) in permission.data"
-                                    :key="index"
-                                >
-                                    <input
-                                        @change="select"
-                                        class="rounded dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-primary dark:text-primary shadow-sm focus:ring-primary/80 dark:focus:ring-primary dark:focus:ring-offset-slate-800 dark:checked:bg-primary dark:checked:border-primary"
-                                        type="checkbox"
-                                        :id="'permission_' + permissiondata.id"
-                                        :value="permissiondata.id"
-                                        v-model="form.permissions"
-                                    />
-                                    <InputLabel
-                                        :for="'permission_' + permissiondata.id"
-                                    >
-                                        <p
-                                            v-bind:class="
-                                                permissiondata.name == 'delete'
-                                                    ? 'text-red-500 font-semibold'
-                                                    : ''
-                                            "
-                                        >
-                                            {{ permissiondata.name }}
-                                        </p>
-                                    </InputLabel>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </template>
