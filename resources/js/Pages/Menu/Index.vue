@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { ref, reactive, watch } from "vue";
+import { ref, reactive, watch, provide, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { formatDate } from "../../Helpers/dateHelper";
 import Published from "./Published.vue";
@@ -22,9 +22,62 @@ const props = defineProps({
 });
 
 const items = reactive(props.menus);
-const published = reactive(items.filter(item => item.status == true));
-const unpublished = reactive(items.filter(item => item.status == false));
-const draft = reactive(items.filter(item => item.status == null));
+const published = computed(() => items.filter(item => item.status == true));
+const unpublished = computed(() => items.filter(item => item.status == false));
+const draft = computed(() => items.filter(item => item.status == null));
+
+
+// Method to add an item to the array
+const addItem = (newItem) => {
+  items.push(newItem);
+};
+
+// Method to remove an item from the array based on its ID
+const removeItem = (itemId) => {
+    // Find the index of the item in the items array
+    const index = items.findIndex(item => item.id === itemId);
+
+    // Remove the item if found
+    if (index !== -1) {
+        items.splice(index, 1);
+    }
+};
+
+const removeBulkItem = (itemIds) => {
+    // Iterate over the array of item IDs
+    itemIds.forEach(itemId => {
+        // Find the index of the item in the items array
+        const index = items.findIndex(item => item.id === itemId);
+
+        // Remove the item if found
+        if (index !== -1) {
+            items.splice(index, 1);
+        }
+    });
+};
+
+// Method to update an item in the array based on its ID
+const updateItem = (id, updatedData) => {
+    // Find the index of the item in the items array
+    const index = items.findIndex(item => item.id === id);
+    // Update the item if found
+    if (index !== -1) {
+        items[index].name = updatedData.name;
+        items[index].position = updatedData.position;
+        items[index].status = updatedData.status;
+    }
+};
+
+provide('published', published);
+provide('unpublished', unpublished);
+provide('draft', draft);
+
+provide('positions', props.positions);
+
+provide('addItem', addItem);
+provide('removeItem', removeItem);
+provide('removeBulkItem', removeBulkItem);
+provide('updateItem', updateItem);
 </script>
 
 <template>
@@ -90,7 +143,7 @@ const draft = reactive(items.filter(item => item.status == null));
                     <div id="default-tab-content">
                         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="published" role="tabpanel"
                             aria-labelledby="published-tab">
-                            <Published :items="published"></Published>
+                            <Published></Published>
                         </div>
                         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="unpublished" role="tabpanel"
                             aria-labelledby="unpublished-tab">

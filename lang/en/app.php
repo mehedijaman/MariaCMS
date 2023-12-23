@@ -169,6 +169,7 @@ return [
         'whatsapp' => 'Whatsapp',
         'blog' => 'Blog',
         'position' => 'Position',
+        'status' => 'Status',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

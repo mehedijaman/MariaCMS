@@ -7,23 +7,33 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref } from "vue";
+import { reactive, ref , inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
+import { toTitleCase } from "../../Helpers/textHelper";
+
+const positions = inject('positions');
+const addItem = inject('addItem');
 
 const show = ref(false);
-const props = defineProps({
-    title: String,
+
+const formData = reactive({
+    name: '',
+    position:'primary',
+    status:1,
 });
 
-const form = useForm({
-    name: "",
-    position:null,
+let form = useForm(formData);
+watch(formData, (newValues) => {
+    form = useForm(newValues);
 });
 
 const submit = () => {
     form.post(route("menus.store"), {
         preserveScroll: true,
-        onSuccess: () => closeModal(),
+        onSuccess: (response) => {
+            addItem(formData);
+            closeModal();
+        },
         onError: () => null,
         onFinish: () => null,
     });
@@ -35,11 +45,11 @@ const closeModal = () => {
     form.reset();
 };
 
-
-
 </script>
 <template>
     <div>
+
+
         <PrimaryButton
             class="flex rounded-none items-center justify-start gap-2"
             @click.prevent="show = true"
@@ -49,7 +59,7 @@ const closeModal = () => {
         </PrimaryButton>
         <DialogModal :show="show" @close="closeModal" max-width="md">
             <template #title>
-                {{ lang().label.add }} {{ props.title }}
+                {{ lang().label.add }}
             </template>
 
             <template #content>
@@ -58,7 +68,7 @@ const closeModal = () => {
                         <InputLabel for="name" :value="lang().label.name" />
                         <TextInput
                             id="name"
-                            v-model="form.name"
+                            v-model="formData.name"
                             type="text"
                             class="block w-full"
                             autocomplete="name"
@@ -70,16 +80,38 @@ const closeModal = () => {
 
                     <div class="space-y-1">
                         <InputLabel for="position" :value="lang().label.position" />
-                        <TextInput
+                        <select
+                            v-model="formData.position"
                             id="position"
-                            v-model="form.position"
-                            type="text"
+                            name="position"
                             class="block w-full"
-                            autocomplete="position"
-                            :placeholder="lang().placeholder.position"
-                            :error="form.errors.position"
-                        />
+                        >
+                            <!-- Iterate over positions and create options -->
+                            <option
+                                v-for="(position, index) in positions"
+                                :key="index"
+                                :value="position"
+                            >
+                                {{ toTitleCase(position) }}
+                            </option>
+                        </select>
                         <InputError :message="form.errors.position" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="status" :value="lang().label.status" />
+                        <select
+                            v-model="formData.status"
+                            id="status"
+                            name="status"
+                            class="block w-full"
+                        >
+                            <!-- Iterate over statuss and create options -->
+                            <option value="1">Published</option>
+                            <option value="0">Unpublished</option>
+                            <option :value="null">Draft</option>
+                        </select>
+                        <InputError :message="form.errors.status" />
                     </div>
                 </form>
             </template>

@@ -4,10 +4,12 @@ import ActionButton from "@/Components/ActionButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref, defineEmits } from "vue";
+import { ref, defineEmits, inject } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(["open", "removeItem"]);
+const removeItem = inject('removeItem');
+
+const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
@@ -21,7 +23,7 @@ const submit = () => {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
-            emit('removeItem', props.item?.id);
+            removeItem(props.item?.id);
         },
         onError: () => null,
         onFinish: () => null,

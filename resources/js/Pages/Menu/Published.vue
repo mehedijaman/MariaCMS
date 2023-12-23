@@ -3,7 +3,7 @@ import Create from "@/Pages/Menu/Create.vue";
 import Edit from "@/Pages/Menu/Edit.vue";
 import Delete from "@/Pages/Menu/Delete.vue";
 import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
-import { ref, reactive, defineEmits } from "vue";
+import { ref, reactive, inject } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
@@ -11,18 +11,12 @@ import {
     MagnifyingGlassIcon,
 } from "@heroicons/vue/24/outline";
 
+const items = inject('published');
 
-const props = defineProps({
-    items: Object,
-});
-
-
-const items = reactive(props.items);
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
 const searchField = ref('');
 const searchValue = ref('');
-
 
 const headers = [
     { text: "Name", value: "name", sortable: true },
@@ -31,53 +25,13 @@ const headers = [
     { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
     { text: "Action", value: "actions" },
 ];
-
-const removeItem = (itemId) => {
-    // Find the index of the item in the items array
-    const index = items.findIndex(item => item.id === itemId);
-
-    // Remove the item if found
-    if (index !== -1) {
-        items.splice(index, 1);
-    }
-};
-
-const removeBulkItem = (itemIds) => {
-    // Iterate over the array of item IDs
-    itemIds.forEach(itemId => {
-        // Find the index of the item in the items array
-        const index = items.findIndex(item => item.id === itemId);
-
-        // Remove the item if found
-        if (index !== -1) {
-            items.splice(index, 1);
-        }
-    });
-};
-
-const updateItem = (updatedItem) => {
-    // Find the index of the item in the items array
-    const index = items.findIndex(item => item.id === updatedItem.id);
-    // Update the item if found
-    if (index !== -1) {
-        items[index].name = updatedItem.data.name;
-        items[index].position = updatedItem.data.position;
-        items[index].status = updatedItem.data.status;
-    }
-};
-
-const emits = defineEmits([
-    'removeItem',
-    'removeBulkItem',
-    'updateItem',
-]);
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
             <Create v-if="can(['menu create'])" />
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['menu delete'])" :itemsSelected="itemsSelected"
-                title="Items" @removeBulkItem="removeBulkItem" />
+                title="Items" />
         </div>
         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
             <div class="relative ">
@@ -104,10 +58,8 @@ const emits = defineEmits([
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['menu update'])" :title="item.name" :item="item" @open="item = item"
-                    @updateItem="updateItem" />
-                <Delete v-show="can(['menu delete'])" :title="item.name" :item="item" @open="item = item"
-                    @removeItem="removeItem" />
+                <Edit v-show="can(['menu update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['menu delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>

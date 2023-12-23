@@ -7,17 +7,18 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref, onUpdated, defineEmits } from "vue";
+import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
-import Checkbox from "@/Components/Checkbox.vue";
+import { toTitleCase } from "../../Helpers/textHelper";
 
+const updateItem = inject('updateItem');
+const positions = inject('positions');
 
-const emit = defineEmits(["open", 'updateItem']);
+const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
     item:Object,
-    position: String,
 });
 
 const formData = reactive({
@@ -26,17 +27,17 @@ const formData = reactive({
     status: props.item?.status,
 });
 
-const form = useForm(formData);
+let form = useForm(formData);
+watch(formData, (newValues) => {
+    form = useForm(newValues);
+});
 
 const submit = () => {
     form.put(route("menus.update", props.item?.id), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
-            emit('updateItem', {
-                id : props.item?.id,
-                data : formData
-            });
+            updateItem(props.item?.id, formData);
         },
         onError: () => null,
         onFinish: () => null,
@@ -75,6 +76,42 @@ const closeModal = () => {
                             :error="form.errors.name"
                         />
                         <InputError :message="form.errors.name" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="position" :value="lang().label.position" />
+                        <select
+                            v-model="formData.position"
+                            id="position"
+                            name="position"
+                            class="block w-full"
+                        >
+                            <!-- Iterate over positions and create options -->
+                            <option
+                                v-for="(position, index) in positions"
+                                :key="index"
+                                :value="position"
+                            >
+                                {{ toTitleCase(position) }}
+                            </option>
+                        </select>
+                        <InputError :message="form.errors.position" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="status" :value="lang().label.status" />
+                        <select
+                            v-model="formData.status"
+                            id="status"
+                            name="status"
+                            class="block w-full"
+                        >
+                            <!-- Iterate over statuss and create options -->
+                            <option value="1">Published</option>
+                            <option value="0">Unpublished</option>
+                            <option :value="null">Draft</option>
+                        </select>
+                        <InputError :message="form.errors.status" />
                     </div>
                 </form>
             </template>

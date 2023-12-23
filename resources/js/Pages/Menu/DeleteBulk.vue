@@ -3,8 +3,10 @@ import ConfirmationModal from "@/Components/ConfirmationModal.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, inject } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/outline";
+
+const removeBulkItem = inject('removeBulkItem');
 
 const emit = defineEmits(["close"]);
 const show = ref(false);
@@ -34,7 +36,7 @@ const submit = () => {
         onSuccess: () => {
             closeModal();
             emit("close");
-            emit('removeBulkItem', form.id);
+            removeBulkItem(form.id);
         },
         onError: () => null,
         onFinish: () => null,
