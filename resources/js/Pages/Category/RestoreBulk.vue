@@ -31,7 +31,7 @@ watchEffect(() => {
 });
 
 const submit = () => {
-    form.post(route("menus.restore.bulk"), {
+    form.post(route("categories.restore.bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();

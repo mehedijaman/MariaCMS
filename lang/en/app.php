@@ -157,6 +157,7 @@ return [
         'category' => 'Category',
         'posts' => 'Posts',
         'galleries' => 'Galleries',
+        'gallery' => 'Gallery',
         'sliders' => 'Sliders',
         'tagline' => 'Tagline',
         'homepage' => 'Homepage',
@@ -192,6 +193,8 @@ return [
         'role_name' => 'Role Name',
         'tagline' => 'Company tagline here',
         'description' => 'Enter Description',
+        'category_name' => 'Category Name',
+        'gallery_name' => 'Gallery Name',
     ],
     'button' => [
         'login' => 'Log In',

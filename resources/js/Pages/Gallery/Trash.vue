@@ -22,10 +22,10 @@ import {
 
 const props = defineProps({
     title: String,
-    categories: Object,
+    galleries: Object,
     breadcrumbs: Object,
 });
-const items = reactive(props.categories);
+const items = reactive(props.galleries);
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -89,16 +89,16 @@ provide('removeAllItems', removeAllItems);
                         <div class="flex shrink-0 rounded overflow-hidden">
                             <Link
                                 class="inline-flex gap-2 items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 font-semibold text-xs text-white tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 h-8"
-                                :href="route('categories.index')">
+                                :href="route('galleries.index')">
                                 <BackwardIcon class="w-5 h-5 ">
                                 </BackwardIcon>
                                 Back
                             </Link>
                             <RestoreAll></RestoreAll>
                             <DeleteForceAll></DeleteForceAll>
-                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['category delete'])"
+                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
-                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['category delete'])"
+                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
                         </div>
                         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -128,9 +128,9 @@ provide('removeAllItems', removeAllItems);
                         </template>
                         <template #item-actions="item">
                             <div class="flex w-fit rounded overflow-hidden">
-                                <Restore v-show="can(['category update'])" :title="item.name" :item="item"
+                                <Restore v-show="can(['gallery update'])" :title="item.name" :item="item"
                                     @open="item = item" />
-                                <DeleteForce v-show="can(['category delete'])" :title="item.name" :item="item"
+                                <DeleteForce v-show="can(['gallery delete'])" :title="item.name" :item="item"
                                     @open="item = item" />
                             </div>
                         </template>

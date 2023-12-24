@@ -11,7 +11,7 @@ use App\Http\Requests\Category\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
-/**
+    /**
      * Display a listing of the resource.
      */
     public function index(IndexCategoryRequest $request)

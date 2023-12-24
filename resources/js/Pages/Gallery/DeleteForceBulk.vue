@@ -1,29 +1,41 @@
 <script setup>
 import ConfirmationModal from "@/Components/ConfirmationModal.vue";
-import ActionButton from "@/Components/ActionButton.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref, defineEmits, inject } from "vue";
-import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
+import { ref, defineEmits, inject, watchEffect } from "vue";
+import { TrashIcon } from "@heroicons/vue/24/outline";
 
-const removeItem = inject('removeItem');
+const removeBulkItems = inject('removeBulkItems');
 
 const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    item: Object,
+    itemsSelected: Object,
 });
 
-const form = useForm({});
+const form = useForm({
+    id: [],
+});
+
+watchEffect(() => {
+    if (show) {
+        if (props.itemsSelected && props.itemsSelected.length > 0) {
+            form.id = props.itemsSelected.map(item => item.id);
+        } else {
+            // Reset form.id if itemsSelected is empty or not available
+            form.id = [];
+        }
+    }
+});
 
 const submit = () => {
-    form.post(route("categories.restore", props.item?.id), {
+    form.delete(route("galleries.destroy.force.bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
-            removeItem(props.item?.id);
+            removeBulkItems(form.id);
         },
         onError: () => null,
         onFinish: () => null,
@@ -36,19 +48,20 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-        <ActionButton
-            variant="success"
+        <DangerButton
+            class="rounded-none"
             @click.prevent="(show = true), emit('open')"
         >
-            <ArrowUturnLeftIcon class="w-4 h-auto" />
-        </ActionButton>
+            <TrashIcon class="w-4 h-auto" />
+        </DangerButton>
+
         <ConfirmationModal :show="show" @close="closeModal">
             <template #title>
-                {{ lang().label.restore }} {{ props.title }}
+                {{ lang().label.delete }} {{ props.title }}
             </template>
 
             <template #content>
-                {{ lang().label.restore_confirm }} {{ props.item?.name }}?
+                {{ lang().label.delete_confirm }} {{ props.item?.name }}?
             </template>
 
             <template #footer>
@@ -56,15 +69,15 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <PrimaryButton
+                <DangerButton
                     class="ml-3"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="submit"
                 >
-                    {{ lang().button.restore }}
+                    {{ lang().button.delete }}
                     {{ form.processing ? "..." : "" }}
-                </PrimaryButton>
+                </DangerButton>
             </template>
         </ConfirmationModal>
     </div>

@@ -67,6 +67,11 @@ class RoleSeeder extends Seeder
             'category read',
             'category update',
             'category delete',
+
+            'gallery create',
+            'gallery read',
+            'gallery update',
+            'gallery delete',
         ]);
 
         $admin = Role::create([

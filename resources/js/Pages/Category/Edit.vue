@@ -62,7 +62,6 @@ const closeModal = () => {
         <DialogModal :show="show" @close="closeModal" max-width="md">
             <template #title>
                 {{ lang().label.edit }} {{ props.title }}
-                {{ props.item }}
             </template>
 
             <template #content>

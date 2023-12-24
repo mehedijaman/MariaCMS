@@ -17,7 +17,7 @@ const props = defineProps({
 const form = useForm({});
 
 const submit = () => {
-    form.post(route("menus.restore.all"), {
+    form.post(route("categories.restore.all"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
