@@ -2,9 +2,11 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, reactive, watch, provide, computed } from "vue";
 import { router } from "@inertiajs/vue3";
+import { formatDate } from "../../Helpers/dateHelper";
 import Published from "./Published.vue";
 import Unpublished from './Unpublished.vue';
 import Draft from './Draft.vue';
+// import Trash from "./Trash.vue";
 import { Link }  from "@inertiajs/vue3";
 
 import {
@@ -153,6 +155,10 @@ provide('updateItem', updateItem);
                         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="draft" role="tabpanel"
                             aria-labelledby="draft-tab">
                             <Draft></Draft>
+                        </div>
+                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="trash" role="tabpanel"
+                            aria-labelledby="trash-tab">
+                            <!-- <Trash></Trash> -->
                         </div>
                     </div>
 

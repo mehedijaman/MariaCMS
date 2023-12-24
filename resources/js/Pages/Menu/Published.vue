@@ -4,7 +4,7 @@ import Edit from "@/Pages/Menu/Edit.vue";
 import Delete from "@/Pages/Menu/Delete.vue";
 import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
 import { ref, inject } from "vue";
-import { formatDateTime } from "../../Helpers/dateHelper";
+import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
 import {
@@ -18,12 +18,11 @@ const rowsPerPage = ref(10);
 const searchField = ref('');
 const searchValue = ref('');
 
-
 const headers = [
     { text: "Name", value: "name", sortable: true },
     { text: "Position", value: "position", sortable: true },
-    { text: "Created", value: "created_at", sortable: true, format: formatDateTime },
-    { text: "Updated", value: "updated_at", sortable: true, format: formatDateTime },
+    { text: "Created", value: "created_at", sortable: true, format: val => formatDate(new Date(val)) },
+    { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
     { text: "Action", value: "actions" },
 ];
 </script>
