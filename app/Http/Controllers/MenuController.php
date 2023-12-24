@@ -101,12 +101,33 @@ class MenuController extends Controller
         }
     }
 
+    public function trash()
+    {
+        $menus = Menu::with('items')->onlyTrashed()->get();
+
+        return Inertia::render('Menu/Trash', [
+            'title' => __('app.label.menus'),
+            'menus' => $menus,
+            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Menu $menu)
     {
         $menu->delete();
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
+    }
+
+    /**
+     * Parmanently delete the specified resource from storage.
+     */
+    public function destroyForce($menu)
+    {
+        $menu = Menu::where('id', $menu)->withTrashed()->first();
+        $menu->forceDelete();
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
     }
 
@@ -125,21 +146,11 @@ class MenuController extends Controller
         }
     }
 
-    /**
-     * Parmanently delete the specified resource from storage.
-     */
-    public function destroyForce(Menu $menu)
-    {
-        $menu = Menu::where('id', $menu->id)->withTrashed()->first();
-        $menu->forceDelete();
-        return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
-    }
-
     public function destroyForceBulk(Request $request)
     {
         try {
-            $menus = Menu::whereIn('id', $request->id);
-            $menus->restore();
+            $menus = Menu::whereIn('id', $request->id)->withTrashed();
+            $menus->forceDelete();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.menu')]));
         } catch (\Throwable $th) {
@@ -150,15 +161,17 @@ class MenuController extends Controller
     /**
      * Restore the specified resource from storage.
      */
-    public function restore(Menu $menu)
+    public function restore($menu)
     {
+        $menu = Menu::where('id', $menu)->withTrashed()->first();
         $menu->restore();
         return back()->with('success', __('app.label.restored_successfully', ['name' => $menu->name]));
     }
+
     public function restoreBulk(Request $request)
     {
         try {
-            $menus = Menu::whereIn('id', $request->id);
+            $menus = Menu::whereIn('id', $request->id)->withTrashed();
             $menus->restore();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.menu')]));

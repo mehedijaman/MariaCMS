@@ -52,8 +52,15 @@ Route::prefix('cp')->middleware([
     Route::resource('posts', PostController::class);
     Route::resource('post-categories', PostCategoryController::class);
     Route::resource('comments', CommentController::class);
+
+    Route::get('menus/trash', [MenuController::class, 'trash'])->name('menus.trash');
     Route::resource('menus', MenuController::class);
     Route::delete('menus/destroy/bulk', [MenuController::class, 'destroyBulk'])->name('menus.destroy.bulk');
+    Route::delete('menus/{menu}/destroy/force', [MenuController::class, 'destroyForce'])->name('menus.destroy.force');
+    Route::delete('menus/destroy/force/bulk', [MenuController::class, 'destroyForceBulk'])->name('menus.destroy.force.bulk');
+    Route::post('menus/{menu}/restore', [MenuController::class, 'restore'])->name('menus.restore');
+    Route::post('menus/restore/bulk', [MenuController::class, 'restoreBulk'])->name('menus.restore.bulk');
+
     // Route::resource('menu-items', MenuItemController::class);
     Route::resource('galleries', GalleryController::class);
     Route::resource('sliders', SliderController::class);
