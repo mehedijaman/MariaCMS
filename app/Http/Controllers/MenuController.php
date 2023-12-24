@@ -204,6 +204,4 @@ class MenuController extends Controller
             return back()->with('error', __('app.label.restore_error', [__('app.label.menu')]).$th->getMessage());
         }
     }
-
-
 }

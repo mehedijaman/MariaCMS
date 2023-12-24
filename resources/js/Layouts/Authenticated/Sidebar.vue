@@ -112,16 +112,16 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-bind:class="route().current('galleries')
+                <li v-bind:class="(route().current('categories.index') || route().current('categories.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
 
-                    <Link :href="route('post-categories.index')"
+                    <Link :href="route('categories.index')"
                         class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
                     <PaperClipIcon
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
-                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.post_categories }}</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.categories }}</span>
 
                     </Link>
                 </li>

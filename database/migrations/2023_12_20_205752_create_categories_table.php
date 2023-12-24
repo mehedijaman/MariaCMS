@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('parent')->nullable();
             $table->string('name');
@@ -30,7 +30,7 @@ return new class extends Migration
         });
 
         Schema::create('category_post', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained('post_categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
         });
     }
@@ -40,7 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_categories');
+        Schema::dropIfExists('categories');
         Schema::dropIfExists('category_post');
     }
 };

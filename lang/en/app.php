@@ -153,7 +153,7 @@ return [
         'pages' => 'Pages',
         'menus' => 'Menus',
         'posts' => 'Posts',
-        'post_categories' => 'Categories',
+        'categories' => 'Categories',
         'galleries' => 'Galleries',
         'sliders' => 'Sliders',
         'tagline' => 'Tagline',
