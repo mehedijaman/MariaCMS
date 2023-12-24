@@ -1,5 +1,6 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { Link } from '@inertiajs/vue3';
 </script>
 <template>
     <footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
