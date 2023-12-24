@@ -153,6 +153,8 @@ return [
         'app_maintenance' => 'App Maintenance',
         'pages' => 'Pages',
         'menus' => 'Menus',
+        'faqs' => 'FAQs',
+        'faq' => 'FAQ',
         'categories' => 'Categories',
         'category' => 'Category',
         'posts' => 'Posts',
@@ -179,6 +181,8 @@ return [
         'status' => 'Status',
         'restore' => 'Restore',
         'parent' => 'Parent',
+        'question' => 'Question',
+        'answer' => 'Answer',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
@@ -195,6 +199,8 @@ return [
         'description' => 'Enter Description',
         'category_name' => 'Category Name',
         'gallery_name' => 'Gallery Name',
+        'faq_question' => 'FAQ Question',
+        'faq_answer' => 'FAQ Answer',
     ],
     'button' => [
         'login' => 'Log In',

@@ -14,6 +14,7 @@ import {
     PhotoIcon,
     RocketLaunchIcon,
     ComputerDesktopIcon,
+    QuestionMarkCircleIcon,
 } from "@heroicons/vue/24/solid";
 import { Link } from "@inertiajs/vue3";
 
@@ -141,7 +142,21 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-bind:class="route().current('sliders')
+                <li v-bind:class="(route().current('fags.index') || route().current('fags.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('faqs.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <QuestionMarkCircleIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.faqs }}</span>
+
+                    </Link>
+                </li>
+
+                <!-- <li v-bind:class="route().current('sliders')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -153,7 +168,7 @@ function userManagementActive() {
                     <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.sliders }}</span>
 
                     </Link>
-                </li>
+                </li> -->
 
                 <li v-show="can(['setting read'])" v-bind:class="route().current('setting.index')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'

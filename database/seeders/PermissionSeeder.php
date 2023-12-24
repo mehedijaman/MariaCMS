@@ -66,5 +66,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'gallery read', 'guard_name' => 'web']);
         Permission::create(['name' => 'gallery update', 'guard_name' => 'web']);
         Permission::create(['name' => 'gallery delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'faq create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'faq read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'faq update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'faq delete', 'guard_name' => 'web']);
     }
 }

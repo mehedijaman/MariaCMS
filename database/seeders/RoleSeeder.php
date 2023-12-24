@@ -72,6 +72,11 @@ class RoleSeeder extends Seeder
             'gallery read',
             'gallery update',
             'gallery delete',
+
+            'faq create',
+            'faq read',
+            'faq update',
+            'faq delete',
         ]);
 
         $admin = Role::create([

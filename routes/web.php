@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MenuController;
@@ -75,21 +76,27 @@ Route::prefix('cp')->middleware([
     Route::post('categories/restore/bulk', [CategoryController::class, 'restoreBulk'])->name('categories.restore.bulk');
     Route::post('categories/restore/all', [CategoryController::class, 'restoreAll'])->name('categories.restore.all');
 
-     /** Galleries Routes */
-     Route::get('galleries/trash', [GalleryController::class, 'trash'])->name('galleries.trash');
-     Route::resource('galleries', GalleryController::class);
-     Route::delete('galleries/destroy/bulk', [GalleryController::class, 'destroyBulk'])->name('galleries.destroy.bulk');
-     Route::delete('galleries/{menu}/destroy/force', [GalleryController::class, 'destroyForce'])->name('galleries.destroy.force');
-     Route::delete('galleries/destroy/force/bulk', [GalleryController::class, 'destroyForceBulk'])->name('galleries.destroy.force.bulk');
-     Route::delete('galleries/destroy/force/all', [GalleryController::class, 'destroyForceAll'])->name('galleries.destroy.force.all');
-     Route::post('galleries/{menu}/restore', [GalleryController::class, 'restore'])->name('galleries.restore');
-     Route::post('galleries/restore/bulk', [GalleryController::class, 'restoreBulk'])->name('galleries.restore.bulk');
-     Route::post('galleries/restore/all', [GalleryController::class, 'restoreAll'])->name('galleries.restore.all');
-
-
-    // Route::resource('menu-items', MenuItemController::class);
+    /** Galleries Routes */
+    Route::get('galleries/trash', [GalleryController::class, 'trash'])->name('galleries.trash');
     Route::resource('galleries', GalleryController::class);
-    Route::resource('sliders', SliderController::class);
+    Route::delete('galleries/destroy/bulk', [GalleryController::class, 'destroyBulk'])->name('galleries.destroy.bulk');
+    Route::delete('galleries/{menu}/destroy/force', [GalleryController::class, 'destroyForce'])->name('galleries.destroy.force');
+    Route::delete('galleries/destroy/force/bulk', [GalleryController::class, 'destroyForceBulk'])->name('galleries.destroy.force.bulk');
+    Route::delete('galleries/destroy/force/all', [GalleryController::class, 'destroyForceAll'])->name('galleries.destroy.force.all');
+    Route::post('galleries/{menu}/restore', [GalleryController::class, 'restore'])->name('galleries.restore');
+    Route::post('galleries/restore/bulk', [GalleryController::class, 'restoreBulk'])->name('galleries.restore.bulk');
+    Route::post('galleries/restore/all', [GalleryController::class, 'restoreAll'])->name('galleries.restore.all');
+
+    /** Faq Routes */
+    Route::get('faqs/trash', [FaqController::class, 'trash'])->name('faqs.trash');
+    Route::resource('faqs', FaqController::class);
+    Route::delete('faqs/destroy/bulk', [FaqController::class, 'destroyBulk'])->name('faqs.destroy.bulk');
+    Route::delete('faqs/{menu}/destroy/force', [FaqController::class, 'destroyForce'])->name('faqs.destroy.force');
+    Route::delete('faqs/destroy/force/bulk', [FaqController::class, 'destroyForceBulk'])->name('faqs.destroy.force.bulk');
+    Route::delete('faqs/destroy/force/all', [FaqController::class, 'destroyForceAll'])->name('faqs.destroy.force.all');
+    Route::post('faqs/{menu}/restore', [FaqController::class, 'restore'])->name('faqs.restore');
+    Route::post('faqs/restore/bulk', [FaqController::class, 'restoreBulk'])->name('faqs.restore.bulk');
+    Route::post('faqs/restore/all', [FaqController::class, 'restoreAll'])->name('faqs.restore.all');
 
     Route::group(['prefix' => 'user'], function(){
         Route::resource('/', UserController::class)

@@ -1,8 +1,8 @@
 <script setup>
-import Create from "@/Pages/Gallery/Create.vue";
-import Edit from "@/Pages/Gallery/Edit.vue";
-import Delete from "@/Pages/Gallery/Delete.vue";
-import DeleteBulk from "@/Pages/Gallery/DeleteBulk.vue";
+import Create from "@/Pages/Faq/Create.vue";
+import Edit from "@/Pages/Faq/Edit.vue";
+import Delete from "@/Pages/Faq/Delete.vue";
+import DeleteBulk from "@/Pages/Faq/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
@@ -10,7 +10,7 @@ import {
     MagnifyingGlassIcon,
 } from "@heroicons/vue/24/outline";
 
-const items = inject('unpublished');
+const items = inject('draft');
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -18,16 +18,16 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
-    { text: "Name", value: "name", sortable: true },
-    { text: "Slug", value: "slug", sortable: true },
+    { text: "Question", value: "question", sortable: true },
+    { text: "Answer", value: "answer", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['gallery create'])" />
-            <DeleteBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])" :itemsSelected="itemsSelected"
+            <Create v-if="can(['faq create'])" />
+            <DeleteBulk v-if="itemsSelected.length != 0 && can(['faq delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -55,8 +55,8 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['gallery update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-show="can(['gallery delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['faq update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['faq delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>

@@ -73,7 +73,7 @@ const closeModal = () => {
                             type="text"
                             class="block w-full"
                             autocomplete="name"
-                            :placeholder="lang().placeholder.menu_name"
+                            :placeholder="lang().placeholder.gallery_name"
                             :error="form.errors.name"
                         />
                         <InputError :message="form.errors.name" />

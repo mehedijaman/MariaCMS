@@ -1,8 +1,8 @@
 <script setup>
-import Create from "./Create.vue";
-import Edit from "./Edit.vue";
-import Delete from "./Delete.vue";
-import DeleteBulk from "./DeleteBulk.vue";
+import Create from "@/Pages/Gallery/Create.vue";
+import Edit from "@/Pages/Gallery/Edit.vue";
+import Delete from "@/Pages/Gallery/Delete.vue";
+import DeleteBulk from "@/Pages/Gallery/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
