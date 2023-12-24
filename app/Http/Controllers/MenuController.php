@@ -50,6 +50,7 @@ class MenuController extends Controller
                 'position' => $request->position,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('menu', $menu)
                 ->with('success', __('app.label.created_successfully', ['name' => $menu->name]));

@@ -6,7 +6,7 @@ import Restore from "@/Pages/Menu/Restore.vue";
 import RestoreBulk from "@/Pages/Menu/RestoreBulk.vue";
 import RestoreAll from "@/Pages/Menu/RestoreAll.vue";
 import { ref, reactive, defineProps, provide, computed } from "vue";
-import { formatDate } from "../../Helpers/dateHelper";
+import { formatDateTime } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
@@ -35,8 +35,8 @@ const searchValue = ref('');
 const headers = [
     { text: "Name", value: "name", sortable: true },
     { text: "Position", value: "position", sortable: true },
-    { text: "Created", value: "created_at", sortable: true, format: val => formatDate(new Date(val)) },
-    { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
+    { text: "Created", value: "created_at", sortable: true, format: val => formatDateTime(new Date(val)) },
+    { text: "Updated", value: "updated_at", sortable: true, format: val => formatDateTime(new Date(val)) },
     { text: "Action", value: "actions" },
 ];
 

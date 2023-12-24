@@ -30,7 +30,8 @@ watch(formData, (newValues) => {
 const submit = () => {
     form.post(route("menus.store"), {
         preserveScroll: true,
-        onSuccess: (response) => {
+        onSuccess: () => {
+            // const data = @json(session('menu'));
             addItem(formData);
             closeModal();
         },
