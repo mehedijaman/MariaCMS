@@ -126,7 +126,7 @@ class MenuController extends Controller
      */
     public function destroyForce($menu)
     {
-        $menu = Menu::where('id', $menu)->withTrashed()->first();
+        $menu = Menu::where('id', $menu)->onlyTrashed()->first();
         $menu->forceDelete();
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
     }
@@ -149,7 +149,7 @@ class MenuController extends Controller
     public function destroyForceBulk(Request $request)
     {
         try {
-            $menus = Menu::whereIn('id', $request->id)->withTrashed();
+            $menus = Menu::whereIn('id', $request->id)->onlyTrashed();
             $menus->forceDelete();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.menu')]));
@@ -161,7 +161,7 @@ class MenuController extends Controller
     public function destroyForceAll()
     {
         try {
-            $menus = Menu::withTrashed()->get();
+            $menus = Menu::onlyTrashed()->get();
             $count = count($menus);
             $menus->each->forceDelete();
 
@@ -176,7 +176,7 @@ class MenuController extends Controller
      */
     public function restore($menu)
     {
-        $menu = Menu::where('id', $menu)->withTrashed()->first();
+        $menu = Menu::where('id', $menu)->onlyTrashed()->first();
         $menu->restore();
         return back()->with('success', __('app.label.restored_successfully', ['name' => $menu->name]));
     }
@@ -184,7 +184,7 @@ class MenuController extends Controller
     public function restoreBulk(Request $request)
     {
         try {
-            $menus = Menu::whereIn('id', $request->id)->withTrashed();
+            $menus = Menu::whereIn('id', $request->id)->onlyTrashed();
             $menus->restore();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.menu')]));
@@ -196,7 +196,7 @@ class MenuController extends Controller
     public function restoreAll()
     {
         try {
-            $menus = Menu::withTrashed();
+            $menus = Menu::onlyTrashed();
             $menus->restore();
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.menu')]));

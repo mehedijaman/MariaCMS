@@ -1,10 +1,10 @@
 <script setup>
-import DeleteForce from "@/Pages/Menu/DeleteForce.vue";
-import DeleteForceBulk from "@/Pages/Menu/DeleteForceBulk.vue";
-import DeleteForceAll from "@/Pages/Menu/DeleteForceAll.vue";
-import Restore from "@/Pages/Menu/Restore.vue";
-import RestoreBulk from "@/Pages/Menu/RestoreBulk.vue";
-import RestoreAll from "@/Pages/Menu/RestoreAll.vue";
+import DeleteForce from "@/Pages/Category/DeleteForce.vue";
+import DeleteForceBulk from "@/Pages/Category/DeleteForceBulk.vue";
+import DeleteForceAll from "@/Pages/Category/DeleteForceAll.vue";
+import Restore from "@/Pages/Category/Restore.vue";
+import RestoreBulk from "@/Pages/Category/RestoreBulk.vue";
+import RestoreAll from "@/Pages/Category/RestoreAll.vue";
 import { ref, reactive, defineProps, provide, computed } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
@@ -22,10 +22,10 @@ import {
 
 const props = defineProps({
     title: String,
-    menus: Object,
+    categories: Object,
     breadcrumbs: Object,
 });
-const items = reactive(props.menus);
+const items = reactive(props.categories);
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -34,7 +34,6 @@ const searchValue = ref('');
 
 const headers = [
     { text: "Name", value: "name", sortable: true },
-    { text: "Position", value: "position", sortable: true },
     { text: "Created", value: "created_at", sortable: true, format: val => formatDate(new Date(val)) },
     { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
     { text: "Action", value: "actions" },
@@ -88,16 +87,18 @@ provide('removeAllItems', removeAllItems);
                 <div class="bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-2">
                     <div class="flex justify-between">
                         <div class="flex shrink-0 rounded overflow-hidden">
-                            <Link class="inline-flex gap-2 items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 font-semibold text-xs text-white tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 h-8" :href="route('menus.index')">
+                            <Link
+                                class="inline-flex gap-2 items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 font-semibold text-xs text-white tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 h-8"
+                                :href="route('categories.index')">
                                 <BackwardIcon class="w-5 h-5 ">
                                 </BackwardIcon>
                                 Back
                             </Link>
                             <RestoreAll></RestoreAll>
                             <DeleteForceAll></DeleteForceAll>
-                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['menu delete'])"
+                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['category delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
-                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['menu delete'])"
+                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['category delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
                         </div>
                         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -127,9 +128,9 @@ provide('removeAllItems', removeAllItems);
                         </template>
                         <template #item-actions="item">
                             <div class="flex w-fit rounded overflow-hidden">
-                                <Restore v-show="can(['menu update'])" :title="item.name" :item="item"
+                                <Restore v-show="can(['category update'])" :title="item.name" :item="item"
                                     @open="item = item" />
-                                <DeleteForce v-show="can(['menu delete'])" :title="item.name" :item="item"
+                                <DeleteForce v-show="can(['category delete'])" :title="item.name" :item="item"
                                     @open="item = item" />
                             </div>
                         </template>

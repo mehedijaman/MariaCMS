@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Requests\Category\IndexCategoryRequest;
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -16,11 +16,11 @@ class CategoryController extends Controller
      */
     public function index(IndexCategoryRequest $request)
     {
-        $categorys = Category::with('items')->get();
+        $categories = Category::all();
 
         return Inertia::render('Category/Index', [
-            'title' => __('app.label.categorys'),
-            'menus' => $categorys,
+            'title' => __('app.label.categories'),
+            'categories' => $categories,
             'breadcrumbs' => [['label' => __('app.label.category'), 'href' => route('categories.index')]],
         ]);
     }
@@ -30,7 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         return Inertia::render('Category/Create', [
+            'categories' => $categories,
             'title' => __('app.label.category'),
             'breadcrumbs' => [['label' => __('app.label.category'), 'href' => route('categories.index')]],
         ]);
@@ -44,7 +46,9 @@ class CategoryController extends Controller
         try {
             $category = Category::create([
                 'name' => $request->name,
-                'position' => $request->position,
+                'slug' => $request->slug,
+                'parent' => $request->parent,
+                'description' => $request->description,
                 'status' => $request->status,
             ]);
             return back()
@@ -88,22 +92,25 @@ class CategoryController extends Controller
         try {
             $category->update([
                 'name' => $request->name,
-                'position' => $request->position,
+                'slug' => $request->slug,
+                'parent' => $request->parent,
+                'description' => $request->description,
                 'status' => $request->status,
             ]);
             return back()->with('success', __('app.label.updated_successfully', ['name' => $category->name]));
         } catch (\Throwable $th) {
+            return $th->getMessage();
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.category')]).$th->getMessage());
         }
     }
 
     public function trash()
     {
-        $categorys = Category::with('items')->onlyTrashed()->get();
+        $categories = Category::onlyTrashed()->get();
 
         return Inertia::render('Category/Trash', [
-            'title' => __('app.label.categorys'),
-            'menus' => $categorys,
+            'title' => __('app.label.categories'),
+            'categories' => $categories,
             'breadcrumbs' => [['label' => __('app.label.category'), 'href' => route('categories.index')]],
         ]);
     }
@@ -122,7 +129,7 @@ class CategoryController extends Controller
      */
     public function destroyForce($category)
     {
-        $category = Category::where('id', $category)->withTrashed()->first();
+        $category = Category::where('id', $category)->onlyTrashed()->first();
         $category->forceDelete();
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $category->name]));
     }
@@ -133,20 +140,20 @@ class CategoryController extends Controller
     public function destroyBulk(Request $request)
     {
         try {
-            $categorys = Category::whereIn('id', $request->id);
-            $categorys->delete();
+            $categories = Category::whereIn('id', $request->id);
+            $categories->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.categorys')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.categories')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.categorys')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.categories')]).$th->getMessage());
         }
     }
 
     public function destroyForceBulk(Request $request)
     {
         try {
-            $categorys = Category::whereIn('id', $request->id)->withTrashed();
-            $categorys->forceDelete();
+            $categories = Category::whereIn('id', $request->id)->onlyTrashed();
+            $categories->forceDelete();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.category')]));
         } catch (\Throwable $th) {
@@ -157,13 +164,13 @@ class CategoryController extends Controller
     public function destroyForceAll()
     {
         try {
-            $categorys = Category::withTrashed()->get();
-            $count = count($categorys);
-            $categorys->each->forceDelete();
+            $categories = Category::onlyTrashed()->get();
+            $count = count($categories);
+            $categories->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.categorys')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.categories')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.categorys')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.categories')]).$th->getMessage());
         }
     }
 
@@ -172,7 +179,7 @@ class CategoryController extends Controller
      */
     public function restore($category)
     {
-        $category = Category::where('id', $category)->withTrashed()->first();
+        $category = Category::where('id', $category)->onlyTrashed()->first();
         $category->restore();
         return back()->with('success', __('app.label.restored_successfully', ['name' => $category->name]));
     }
@@ -180,8 +187,8 @@ class CategoryController extends Controller
     public function restoreBulk(Request $request)
     {
         try {
-            $categorys = Category::whereIn('id', $request->id)->withTrashed();
-            $categorys->restore();
+            $categories = Category::whereIn('id', $request->id)->onlyTrashed();
+            $categories->restore();
 
             return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.category')]));
         } catch (\Throwable $th) {
@@ -192,8 +199,8 @@ class CategoryController extends Controller
     public function restoreAll()
     {
         try {
-            $categorys = Category::withTrashed();
-            $categorys->restore();
+            $categories = Category::onlyTrashed();
+            $categories->restore();
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.category')]));
         } catch (\Throwable $th) {

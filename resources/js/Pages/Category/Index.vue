@@ -18,16 +18,14 @@ import {
 
 const props = defineProps({
     title: String,
-    menus: Object,
-    positions: Object,
+    categories: Object,
     breadcrumbs: Object,
 });
 
-const items = reactive(props.menus);
+const items = reactive(props.categories);
 const published = computed(() => items.filter(item => (item.status == true && item.deleted_at == null)));
 const unpublished = computed(() => items.filter(item => (item.status == false && item.deleted_at == null)));
 const draft = computed(() => items.filter(item => (item.status == null && item.deleted_at == null)));
-const trash = computed(() => items.filter(item => item.deleted_at != null));
 
 
 // Method to add an item to the array
@@ -66,16 +64,18 @@ const updateItem = (id, updatedData) => {
     // Update the item if found
     if (index !== -1) {
         items[index].name = updatedData.name;
-        items[index].position = updatedData.position;
+        items[index].slug = updatedData.slug;
+        items[index].parent = updatedData.parent;
+        items[index].description = updatedData.description;
         items[index].status = updatedData.status;
     }
 };
 
+provide('categories', items);
+
 provide('published', published);
 provide('unpublished', unpublished);
 provide('draft', draft);
-
-provide('positions', props.positions);
 
 provide('addItem', addItem);
 provide('removeItem', removeItem);
@@ -132,7 +132,7 @@ provide('updateItem', updateItem);
                             </li>
                             <li class="me-2" role="presentation">
                                 <Link
-                                    :href="route('menus.trash')"
+                                    :href="route('categories.trash')"
                                     class="inline-flex gap-2 p-4 border-none rounded-t-lg text-gray-400 hover:text-gray-600 group-hover:text-gray-600  hover:border-gray-300 dark:hover:text-gray-300"
                                     type="button">
                                     <TrashIcon

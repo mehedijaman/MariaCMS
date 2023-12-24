@@ -9,17 +9,25 @@ import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref , inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
-import { toTitleCase } from "../../Helpers/textHelper";
+import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
-const positions = inject('positions');
 const addItem = inject('addItem');
+const categories = inject('categories');
 
 const show = ref(false);
 
 const formData = reactive({
     name: '',
-    position:'primary',
+    parent:null,
+    slug:null,
+    description:null,
     status:1,
+});
+
+// Watch for changes in the 'name' property
+watch(() => formData.name, (newName) => {
+  // Update the 'slug' property based on the new 'name'
+  formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -28,7 +36,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.post(route("menus.store"), {
+    form.post(route("categories.store"), {
         preserveScroll: true,
         onSuccess: (response) => {
             addItem(formData);
@@ -48,8 +56,6 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-
-
         <PrimaryButton
             class="flex rounded-none items-center justify-start gap-2"
             @click.prevent="show = true"
@@ -57,7 +63,7 @@ const closeModal = () => {
             <PlusIcon class="w-4 h-auto" />
             <span class="hidden md:block">{{ lang().label.add }}</span>
         </PrimaryButton>
-        <DialogModal :show="show" @close="closeModal" max-width="md">
+        <DialogModal :show="show" @close="closeModal" max-width="2xl">
             <template #title>
                 {{ lang().label.add }}
             </template>
@@ -72,30 +78,57 @@ const closeModal = () => {
                             type="text"
                             class="block w-full"
                             autocomplete="name"
-                            :placeholder="lang().placeholder.menu_name"
+                            :placeholder="lang().placeholder.category_name"
                             :error="form.errors.name"
                         />
                         <InputError :message="form.errors.name" />
                     </div>
 
                     <div class="space-y-1">
-                        <InputLabel for="position" :value="lang().label.position" />
+                        <InputLabel for="slug" :value="lang().label.slug" />
+                        <TextInput
+                            id="slug"
+                            v-model="formData.slug"
+                            type="text"
+                            class="block w-full"
+                            autocomplete="slug"
+                            :placeholder="lang().placeholder.slug"
+                            :error="form.errors.slug"
+                        />
+                        <InputError :message="form.errors.slug" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="slug" :value="lang().label.description" />
+                        <TextInput
+                            id="slug"
+                            v-model="formData.description"
+                            type="text"
+                            class="block w-full"
+                            autocomplete="description"
+                            :placeholder="lang().placeholder.description"
+                            :error="form.errors.desctiption"
+                        />
+                        <InputError :message="form.errors.description" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="parent" :value="lang().label.parent" />
                         <select
-                            v-model="formData.position"
-                            id="position"
-                            name="position"
+                            v-model="formData.parent"
+                            id="parent"
+                            name="parent"
                             class="block w-full"
                         >
-                            <!-- Iterate over positions and create options -->
                             <option
-                                v-for="(position, index) in positions"
+                                v-for="(category, index) in categories"
                                 :key="index"
-                                :value="position"
+                                :value="category.id"
                             >
-                                {{ toTitleCase(position) }}
+                                {{ toTitleCase(category.name) }}
                             </option>
                         </select>
-                        <InputError :message="form.errors.position" />
+                        <InputError :message="form.errors.parent" />
                     </div>
 
                     <div class="space-y-1">

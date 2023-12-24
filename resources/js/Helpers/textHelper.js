@@ -14,3 +14,10 @@ export function toLowerCase(text) {
       return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
     });
   }
+
+  export function generateSlug(originalText) {
+    return originalText
+      .toLowerCase()
+      .replace(/\s+/g, "-") // Replace spaces with dashes
+      .replace(/[^\w-]+/g, ""); // Remove non-word characters
+  }

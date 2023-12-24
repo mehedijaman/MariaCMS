@@ -31,7 +31,7 @@ watchEffect(() => {
 });
 
 const submit = () => {
-    form.delete(route("menus.destroy.bulk"), {
+    form.delete(route("categories.destroy.bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();

@@ -19,7 +19,7 @@ const props = defineProps({
 const form = useForm({});
 
 const submit = () => {
-    form.delete(route("menus.destroy.force", props.item?.id), {
+    form.delete(route("categories.destroy.force", props.item?.id), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
