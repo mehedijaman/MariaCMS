@@ -158,6 +158,19 @@ class MenuController extends Controller
         }
     }
 
+    public function destroyForceAll()
+    {
+        try {
+            $menus = Menu::withTrashed()->get();
+            $count = count($menus);
+            $menus->each->forceDelete();
+
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.menus')]));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.menus')]).$th->getMessage());
+        }
+    }
+
     /**
      * Restore the specified resource from storage.
      */
@@ -179,4 +192,18 @@ class MenuController extends Controller
             return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.menu')]).$th->getMessage());
         }
     }
+
+    public function restoreAll()
+    {
+        try {
+            $menus = Menu::withTrashed();
+            $menus->restore();
+
+            return back()->with('success', __('app.label.restored_successfully', [__('app.label.menu')]));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.restore_error', [__('app.label.menu')]).$th->getMessage());
+        }
+    }
+
+
 }

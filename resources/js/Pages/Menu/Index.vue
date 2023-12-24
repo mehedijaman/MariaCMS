@@ -46,7 +46,7 @@ const removeItem = (itemId) => {
     }
 };
 
-const removeBulkItem = (itemIds) => {
+const removeBulkItems = (itemIds) => {
     // Iterate over the array of item IDs
     itemIds.forEach(itemId => {
         // Find the index of the item in the items array
@@ -79,7 +79,7 @@ provide('positions', props.positions);
 
 provide('addItem', addItem);
 provide('removeItem', removeItem);
-provide('removeBulkItem', removeBulkItem);
+provide('removeBulkItems', removeBulkItems);
 provide('updateItem', updateItem);
 </script>
 
@@ -130,13 +130,13 @@ provide('updateItem', updateItem);
                                     Draft
                                 </button>
                             </li>
-                            <li class="me-2">
+                            <li class="me-2" role="presentation">
                                 <Link
                                     :href="route('menus.trash')"
-                                    class="inline-flex gap-2 items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group"
+                                    class="inline-flex gap-2 p-4 border-none rounded-t-lg text-gray-400 hover:text-gray-600 group-hover:text-gray-600  hover:border-gray-300 dark:hover:text-gray-300"
                                     type="button">
                                     <TrashIcon
-                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </TrashIcon>
                                     Trash
                                 </Link>

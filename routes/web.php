@@ -58,8 +58,10 @@ Route::prefix('cp')->middleware([
     Route::delete('menus/destroy/bulk', [MenuController::class, 'destroyBulk'])->name('menus.destroy.bulk');
     Route::delete('menus/{menu}/destroy/force', [MenuController::class, 'destroyForce'])->name('menus.destroy.force');
     Route::delete('menus/destroy/force/bulk', [MenuController::class, 'destroyForceBulk'])->name('menus.destroy.force.bulk');
+    Route::delete('menus/destroy/force/all', [MenuController::class, 'destroyForceAll'])->name('menus.destroy.force.all');
     Route::post('menus/{menu}/restore', [MenuController::class, 'restore'])->name('menus.restore');
     Route::post('menus/restore/bulk', [MenuController::class, 'restoreBulk'])->name('menus.restore.bulk');
+    Route::post('menus/restore/all', [MenuController::class, 'restoreAll'])->name('menus.restore.all');
 
     // Route::resource('menu-items', MenuItemController::class);
     Route::resource('galleries', GalleryController::class);

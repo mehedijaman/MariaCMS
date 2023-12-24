@@ -1,8 +1,10 @@
 <script setup>
 import DeleteForce from "@/Pages/Menu/DeleteForce.vue";
 import DeleteForceBulk from "@/Pages/Menu/DeleteForceBulk.vue";
+import DeleteForceAll from "@/Pages/Menu/DeleteForceAll.vue";
 import Restore from "@/Pages/Menu/Restore.vue";
 import RestoreBulk from "@/Pages/Menu/RestoreBulk.vue";
+import RestoreAll from "@/Pages/Menu/RestoreAll.vue";
 import { ref, reactive, defineProps, provide, computed } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
@@ -49,7 +51,7 @@ const removeItem = (itemId) => {
     }
 };
 
-const removeBulkItem = (itemIds) => {
+const removeBulkItems = (itemIds) => {
     // Iterate over the array of item IDs
     itemIds.forEach(itemId => {
         // Find the index of the item in the items array
@@ -62,8 +64,15 @@ const removeBulkItem = (itemIds) => {
     });
 };
 
+
+const removeAllItems = () => {
+    // Remove all items from the items array
+    items.splice(0, items.length);
+};
+
 provide('removeItem', removeItem);
-provide('removeBulkItem', removeBulkItem);
+provide('removeBulkItems', removeBulkItems);
+provide('removeAllItems', removeAllItems);
 </script>
 <template>
     <AppLayout :title="props.title">
@@ -84,6 +93,8 @@ provide('removeBulkItem', removeBulkItem);
                                 </BackwardIcon>
                                 Back
                             </Link>
+                            <RestoreAll></RestoreAll>
+                            <DeleteForceAll></DeleteForceAll>
                             <RestoreBulk v-if="itemsSelected.length != 0 && can(['menu delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
                             <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['menu delete'])"

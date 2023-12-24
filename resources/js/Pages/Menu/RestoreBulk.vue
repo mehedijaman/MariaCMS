@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/vue3";
 import { ref, watchEffect, inject } from "vue";
 import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
 
-const removeBulkItem = inject('removeBulkItem');
+const removeBulkItems = inject('removeBulkItems');
 
 const emit = defineEmits(["close"]);
 const show = ref(false);
@@ -36,7 +36,7 @@ const submit = () => {
         onSuccess: () => {
             closeModal();
             emit("close");
-            removeBulkItem(form.id);
+            removeBulkItems(form.id);
         },
         onError: () => null,
         onFinish: () => null,

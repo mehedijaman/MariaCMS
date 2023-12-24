@@ -132,6 +132,7 @@ return [
         'deleted_successfully' => '<b>:name</b> deleted successfully.',
         'restored_successfully' => '<b>:name</b> Reestored successfully.',
         'deleted_error' => 'Error deleting <b>:name</b>. ',
+        'restore_error' => 'Error Restroring <b>:name</b>. ',
         'set_locale' => 'Change to ID',
         'check_all' => 'Check All',
         'short_name' => 'Short Name',
