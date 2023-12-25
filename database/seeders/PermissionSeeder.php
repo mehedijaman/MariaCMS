@@ -76,5 +76,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'faq read', 'guard_name' => 'web']);
         Permission::create(['name' => 'faq update', 'guard_name' => 'web']);
         Permission::create(['name' => 'faq delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'testimonial create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'testimonial read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'testimonial update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'testimonial delete', 'guard_name' => 'web']);
     }
 }

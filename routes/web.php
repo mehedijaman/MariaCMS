@@ -15,6 +15,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
 use App\Models\PostCategory;
@@ -109,6 +110,18 @@ Route::prefix('cp')->middleware([
     Route::post('sliders/restore/bulk', [SliderController::class, 'restoreBulk'])->name('sliders.restore.bulk');
     Route::post('sliders/restore/all', [SliderController::class, 'restoreAll'])->name('sliders.restore.all');
 
+    /** Testimonial Routes */
+    Route::get('testimonials/trash', [TestimonialController::class, 'trash'])->name('testimonials.trash');
+    Route::resource('testimonials', TestimonialController::class);
+    Route::delete('testimonials/destroy/bulk', [TestimonialController::class, 'destroyBulk'])->name('testimonials.destroy.bulk');
+    Route::delete('testimonials/{slider}/destroy/force', [TestimonialController::class, 'destroyForce'])->name('testimonials.destroy.force');
+    Route::delete('testimonials/destroy/force/bulk', [TestimonialController::class, 'destroyForceBulk'])->name('testimonials.destroy.force.bulk');
+    Route::delete('testimonials/destroy/force/all', [TestimonialController::class, 'destroyForceAll'])->name('testimonials.destroy.force.all');
+    Route::post('testimonials/{slider}/restore', [TestimonialController::class, 'restore'])->name('testimonials.restore');
+    Route::post('testimonials/restore/bulk', [TestimonialController::class, 'restoreBulk'])->name('testimonials.restore.bulk');
+    Route::post('testimonials/restore/all', [TestimonialController::class, 'restoreAll'])->name('testimonials.restore.all');
+
+
     /** Users Routes */
     Route::group(['prefix' => 'user'], function(){
         Route::resource('/', UserController::class)
@@ -134,6 +147,4 @@ Route::prefix('cp')->middleware([
 
 
     Route::resource('setting', SettingController::class)->except('create', 'store', 'show', 'edit', 'destory');
-
-    require __DIR__.'/jarvis.php';
 });

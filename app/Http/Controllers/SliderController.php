@@ -11,7 +11,7 @@ use App\Http\Requests\Slider\UpdateSliderRequest;
 
 class SliderController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index(IndexSliderRequest $request)
