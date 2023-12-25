@@ -1,11 +1,11 @@
 <script setup>
 import ConfirmationModal from "@/Components/ConfirmationModal.vue";
 import ActionButton from "@/Components/ActionButton.vue";
-import DangerButton from "@/Components/DangerButton.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
 import { ref, defineEmits, inject } from "vue";
-import { TrashIcon } from "@heroicons/vue/24/outline";
+import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
 
 const removeItem = inject('removeItem');
 
@@ -19,7 +19,7 @@ const props = defineProps({
 const form = useForm({});
 
 const submit = () => {
-    form.delete(route("sliders.destroy", props.item?.id), {
+    form.post(route("sliders.restore", props.item?.id), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
@@ -37,18 +37,18 @@ const closeModal = () => {
 <template>
     <div>
         <ActionButton
-            variant="danger"
+            variant="success"
             @click.prevent="(show = true), emit('open')"
         >
-            <TrashIcon class="w-4 h-auto" />
+            <ArrowUturnLeftIcon class="w-4 h-auto" />
         </ActionButton>
         <ConfirmationModal :show="show" @close="closeModal">
             <template #title>
-                {{ lang().label.delete }} {{ props.title }}
+                {{ lang().label.restore }} {{ props.title }}
             </template>
 
             <template #content>
-                {{ lang().label.delete_confirm }} {{ props.item?.name }}?
+                {{ lang().label.restore_confirm }} {{ props.item?.name }}?
             </template>
 
             <template #footer>
@@ -56,15 +56,15 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <DangerButton
+                <PrimaryButton
                     class="ml-3"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="submit"
                 >
-                    {{ lang().button.delete }}
+                    {{ lang().button.restore }}
                     {{ form.processing ? "..." : "" }}
-                </DangerButton>
+                </PrimaryButton>
             </template>
         </ConfirmationModal>
     </div>

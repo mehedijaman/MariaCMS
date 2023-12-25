@@ -1,29 +1,42 @@
 <script setup>
 import ConfirmationModal from "@/Components/ConfirmationModal.vue";
-import ActionButton from "@/Components/ActionButton.vue";
-import DangerButton from "@/Components/DangerButton.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref, defineEmits, inject } from "vue";
-import { TrashIcon } from "@heroicons/vue/24/outline";
+import { ref, watchEffect, inject } from "vue";
+import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
 
-const removeItem = inject('removeItem');
+const removeBulkItems = inject('removeBulkItems');
 
-const emit = defineEmits(["open"]);
+const emit = defineEmits(["close"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    item: Object,
+    itemsSelected: Object,
 });
 
-const form = useForm({});
+const form = useForm({
+    id: [],
+});
+
+watchEffect(() => {
+    if (show) {
+        if (props.itemsSelected && props.itemsSelected.length > 0) {
+            form.id = props.itemsSelected.map(item => item.id);
+        } else {
+            // Reset form.id if itemsSelected is empty or not available
+            form.id = [];
+        }
+    }
+});
 
 const submit = () => {
-    form.delete(route("sliders.destroy", props.item?.id), {
+    form.post(route("sliders.restore.bulk"), {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
-            removeItem(props.item?.id);
+            emit("close");
+            removeBulkItems(form.id);
         },
         onError: () => null,
         onFinish: () => null,
@@ -36,19 +49,20 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-        <ActionButton
-            variant="danger"
-            @click.prevent="(show = true), emit('open')"
+        <PrimaryButton
+            class="rounded-none"
+            @click.prevent="show = true"
         >
-            <TrashIcon class="w-4 h-auto" />
-        </ActionButton>
+            <ArrowUturnLeftIcon class="w-4 h-auto" />
+        </PrimaryButton>
         <ConfirmationModal :show="show" @close="closeModal">
             <template #title>
-                {{ lang().label.delete }} {{ props.title }}
+                {{ lang().label.restore_selected }} {{ props.title }}
             </template>
 
             <template #content>
-                {{ lang().label.delete_confirm }} {{ props.item?.name }}?
+                {{ lang().label.restore_confirm }}
+                {{ props.selectedId?.length }} {{ props.title }}?
             </template>
 
             <template #footer>
@@ -56,15 +70,15 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <DangerButton
+                <PrimaryButton
                     class="ml-3"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="submit"
                 >
-                    {{ lang().button.delete }}
+                    {{ lang().button.restore }}
                     {{ form.processing ? "..." : "" }}
-                </DangerButton>
+                </PrimaryButton>
             </template>
         </ConfirmationModal>
     </div>

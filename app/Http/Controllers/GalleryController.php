@@ -47,7 +47,6 @@ class GalleryController extends Controller
             $gallery = Gallery::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
-                'parent' => $request->parent,
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
@@ -93,7 +92,6 @@ class GalleryController extends Controller
             $gallery->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
-                'parent' => $request->parent,
                 'description' => $request->description,
                 'status' => $request->status,
             ]);

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Slider;
 
+use App\Models\Slider;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSliderRequest extends FormRequest
+class StoreSliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,8 @@ class UpdateSliderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:'.Slider::class,
         ];
     }
 }

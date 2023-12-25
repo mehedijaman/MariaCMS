@@ -156,7 +156,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <!-- <li v-bind:class="route().current('sliders')
+                <li v-bind:class="(route().current('sliders.index') || route().current('sliders.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -168,7 +168,7 @@ function userManagementActive() {
                     <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.sliders }}</span>
 
                     </Link>
-                </li> -->
+                </li>
 
                 <li v-show="can(['setting read'])" v-bind:class="route().current('setting.index')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
