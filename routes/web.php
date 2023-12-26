@@ -52,7 +52,6 @@ Route::prefix('cp')->middleware([
     'verified',
 ])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('pages', PageController::class);
     Route::resource('posts', PostController::class);
     Route::resource('comments', CommentController::class);
 
@@ -134,6 +133,16 @@ Route::prefix('cp')->middleware([
     Route::post('testimonials/restore/bulk', [TestimonialController::class, 'restoreBulk'])->name('testimonials.restore.bulk');
     Route::post('testimonials/restore/all', [TestimonialController::class, 'restoreAll'])->name('testimonials.restore.all');
 
+    /** Pages Routes */
+    Route::get('pages/trash', [PageController::class, 'trash'])->name('pages.trash');
+    Route::resource('pages', PageController::class);
+    Route::delete('pages/destroy/bulk', [PageController::class, 'destroyBulk'])->name('pages.destroy.bulk');
+    Route::delete('pages/{menu}/destroy/force', [PageController::class, 'destroyForce'])->name('pages.destroy.force');
+    Route::delete('pages/destroy/force/bulk', [PageController::class, 'destroyForceBulk'])->name('pages.destroy.force.bulk');
+    Route::delete('pages/destroy/force/all', [PageController::class, 'destroyForceAll'])->name('pages.destroy.force.all');
+    Route::post('pages/{menu}/restore', [PageController::class, 'restore'])->name('pages.restore');
+    Route::post('pages/restore/bulk', [PageController::class, 'restoreBulk'])->name('pages.restore.bulk');
+    Route::post('pages/restore/all', [PageController::class, 'restoreAll'])->name('pages.restore.all');
 
     /** Users Routes */
     Route::group(['prefix' => 'user'], function(){

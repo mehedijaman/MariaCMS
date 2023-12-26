@@ -156,10 +156,6 @@ provide('updateItem', updateItem);
                             aria-labelledby="draft-tab">
                             <Draft></Draft>
                         </div>
-                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="trash" role="tabpanel"
-                            aria-labelledby="trash-tab">
-                            <!-- <Trash></Trash> -->
-                        </div>
                     </div>
 
 

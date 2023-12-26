@@ -10,4 +10,17 @@ class Page extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'content',
+        'excerpt',
+        'parent',
+        'password',
+        'status',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
 }

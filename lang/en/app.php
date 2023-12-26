@@ -152,6 +152,10 @@ return [
         'user_management' => 'User Management',
         'app_maintenance' => 'App Maintenance',
 
+        'meta_title' => 'Meta Title',
+        'meta_description' => 'Meta description',
+        'meta_keywords' => 'Meta keywords',
+
         'pages' => 'Pages',
         'page' => 'Page',
         'menus' => 'Menus',
@@ -195,6 +199,9 @@ return [
         'designation' => 'Designation',
         'company' => 'Company',
         'rating' => 'Rating',
+        'content' => 'Content',
+        'contents' => 'Contents',
+        'excerpt' => 'Excerpt',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
@@ -210,6 +217,7 @@ return [
         'tagline' => 'Company tagline here',
         'description' => 'Enter Description',
         'category_name' => 'Category Name',
+        'page_name' => 'Page Name',
         'gallery_name' => 'Gallery Name',
         'testimonial_name' => 'Testimonial Name',
         'slider_name' => 'Slider Name',
@@ -218,6 +226,9 @@ return [
         'designation' => 'Designation',
         'company' => 'Company',
         'rating' => 'Rating',
+        'meta_title' => 'Meta Title',
+        'meta_description' => 'Meta description',
+        'meta_keywords' => 'Meta keywords',
     ],
     'button' => [
         'login' => 'Log In',
