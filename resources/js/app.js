@@ -9,6 +9,7 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { usePage } from "@inertiajs/vue3";
 import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
+import FloatingVue from 'floating-vue'
 /** Vue3 Easy Data Table */
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
@@ -28,6 +29,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .use(Vue3Lottie)
+            .use(FloatingVue)
             .component('EasyDataTable', Vue3EasyDataTable)
             .mixin({
                 methods: {
