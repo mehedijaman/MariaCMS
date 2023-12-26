@@ -202,6 +202,8 @@ return [
         'content' => 'Content',
         'contents' => 'Contents',
         'excerpt' => 'Excerpt',
+        'allow_comment' => 'Allow Comment',
+        'is_featured' => 'Is Featured',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
@@ -218,6 +220,7 @@ return [
         'description' => 'Enter Description',
         'category_name' => 'Category Name',
         'page_name' => 'Page Name',
+        'post_name' => 'Post Name',
         'gallery_name' => 'Gallery Name',
         'testimonial_name' => 'Testimonial Name',
         'slider_name' => 'Slider Name',

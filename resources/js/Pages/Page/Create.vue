@@ -19,7 +19,6 @@ const show = ref(false);
 const formData = reactive({
     name: null,
     slug:null,
-    parent:null,
     content:null,
     excerpt:null,
     parent:null,

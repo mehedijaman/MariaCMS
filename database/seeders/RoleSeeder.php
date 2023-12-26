@@ -97,6 +97,11 @@ class RoleSeeder extends Seeder
             'page read',
             'page update',
             'page delete',
+
+            'post create',
+            'post read',
+            'post update',
+            'post delete',
         ]);
 
         $admin = Role::create([

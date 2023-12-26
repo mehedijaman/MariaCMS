@@ -10,4 +10,19 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'content',
+        'excerpt',
+        'password',
+        'hit_count',
+        'is_featured',
+        'is_featured',
+        'status',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
 }
