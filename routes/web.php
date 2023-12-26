@@ -1,26 +1,27 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PostCategoryController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebsiteController;
 use App\Models\PostCategory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\PostCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,7 @@ Route::prefix('cp')->middleware([
     Route::post('menus/restore/bulk', [MenuController::class, 'restoreBulk'])->name('menus.restore.bulk');
     Route::post('menus/restore/all', [MenuController::class, 'restoreAll'])->name('menus.restore.all');
 
-    /** Categories Routes */
+    /** tags Routes */
     Route::get('categories/trash', [CategoryController::class, 'trash'])->name('categories.trash');
     Route::resource('categories', CategoryController::class);
     Route::delete('categories/destroy/bulk', [CategoryController::class, 'destroyBulk'])->name('categories.destroy.bulk');
@@ -76,6 +77,18 @@ Route::prefix('cp')->middleware([
     Route::post('categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
     Route::post('categories/restore/bulk', [CategoryController::class, 'restoreBulk'])->name('categories.restore.bulk');
     Route::post('categories/restore/all', [CategoryController::class, 'restoreAll'])->name('categories.restore.all');
+
+    /** Categories Routes */
+    Route::get('tags/trash', [TagController::class, 'trash'])->name('tags.trash');
+    Route::resource('tags', TagController::class);
+    Route::delete('tags/destroy/bulk', [TagController::class, 'destroyBulk'])->name('tags.destroy.bulk');
+    Route::delete('tags/{category}/destroy/force', [TagController::class, 'destroyForce'])->name('tags.destroy.force');
+    Route::delete('tags/destroy/force/bulk', [TagController::class, 'destroyForceBulk'])->name('tags.destroy.force.bulk');
+    Route::delete('tags/destroy/force/all', [TagController::class, 'destroyForceAll'])->name('tags.destroy.force.all');
+    Route::post('tags/{category}/restore', [TagController::class, 'restore'])->name('tags.restore');
+    Route::post('tags/restore/bulk', [TagController::class, 'restoreBulk'])->name('tags.restore.bulk');
+    Route::post('tags/restore/all', [TagController::class, 'restoreAll'])->name('tags.restore.all');
+
 
     /** Galleries Routes */
     Route::get('galleries/trash', [GalleryController::class, 'trash'])->name('galleries.trash');

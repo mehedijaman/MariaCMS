@@ -15,6 +15,8 @@ import {
     RocketLaunchIcon,
     ComputerDesktopIcon,
     QuestionMarkCircleIcon,
+    TagIcon,
+    StarIcon,
 } from "@heroicons/vue/24/solid";
 import { Link } from "@inertiajs/vue3";
 
@@ -127,6 +129,20 @@ function userManagementActive() {
                     </Link>
                 </li>
 
+                <li v-bind:class="(route().current('tags.index') || route().current('tags.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('tags.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <TagIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.tags }}</span>
+
+                    </Link>
+                </li>
+
 
                 <li v-bind:class="(route().current('galleries.index') || route().current('galleries.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
@@ -177,7 +193,7 @@ function userManagementActive() {
 
                     <Link :href="route('testimonials.index')"
                         class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
-                    <ComputerDesktopIcon
+                    <StarIcon
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
                     <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.testimonials }}</span>
 
