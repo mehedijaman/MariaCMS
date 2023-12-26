@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Faq;
+namespace App\Http\Requests\Tag;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFaqRequest extends FormRequest
+class IndexTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,12 +17,11 @@ class StoreFaqRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
     {
         return [
-            'question' => 'required|string|max:255',
         ];
     }
 }

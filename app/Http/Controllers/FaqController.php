@@ -43,7 +43,6 @@ class FaqController extends Controller
      */
     public function store(StoreFaqRequest $request)
     {
-        return $request;
         try {
             $faq = Faq::create([
                 'question' => $request->question,

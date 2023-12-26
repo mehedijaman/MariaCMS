@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Faq;
+namespace App\Http\Requests\Tag;
 
+use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFaqRequest extends FormRequest
+class StoreTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,8 @@ class StoreFaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:'.Tag::class,
         ];
     }
 }

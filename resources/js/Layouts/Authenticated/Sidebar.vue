@@ -142,7 +142,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-bind:class="(route().current('fags.index') || route().current('fags.trash'))
+                <li v-bind:class="(route().current('faqs.index') || route().current('faqs.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">

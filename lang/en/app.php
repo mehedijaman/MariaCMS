@@ -160,6 +160,8 @@ return [
         'faq' => 'FAQ',
         'categories' => 'Categories',
         'category' => 'Category',
+        'tags' => 'Tags',
+        'tag' => 'Tag',
         'posts' => 'Posts',
         'testimonials' => 'Testimonials',
         'testimonial' => 'Testimonial',

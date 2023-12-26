@@ -10,11 +10,7 @@ const props = defineProps({
     source: {
         type: String,
         default: "image",
-    },
-    tooltip: {
-        type: String,
-        default: "Click to select/change",
-    },
+    }
 });
 
 const emit = defineEmits(["fileChange"]);
@@ -55,7 +51,6 @@ const toBase64 = (file) =>
     <label
         :for="props.source"
         class="mt-1 text-slate-400 dark:text-slate-600 border-4 border-dashed border-slate-300 dark:border-slate-600 overflow-hidden flex justify-center items-center hover:cursor-pointer rounded"
-        v-tooltip="props.tooltip"
     >
         <div
             v-if="!data.image"

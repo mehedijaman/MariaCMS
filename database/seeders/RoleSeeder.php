@@ -68,6 +68,11 @@ class RoleSeeder extends Seeder
             'category update',
             'category delete',
 
+            'tag create',
+            'tag read',
+            'tag update',
+            'tag delete',
+
             'gallery create',
             'gallery read',
             'gallery update',
