@@ -103,6 +103,7 @@ const submit = () => {
                             <InputError :message="form.errors.content" />
                         </div>
                     </div>
+
                     <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-4">
                         <div class="grid grid-cols-2 gap-2">
                             <!-- <PrimaryButton class="" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
