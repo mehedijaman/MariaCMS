@@ -5,9 +5,11 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PostCard from "./PostCard.vue";
 
 const props = defineProps({
-    // page: Object,
+    posts: Object,
     title: String,
 });
+
+const posts  = props.posts.data;
 </script>
 <template>
     <WebsiteLayout :title="props.title">
@@ -18,12 +20,10 @@ const props = defineProps({
                     <h1 class="text-4xl font-semibold tracking-tight leading-none md:text-5xl xl:text-6xl">{{ props.title }}
                     </h1>
                     <section class="text-gray-600 body-font">
-                        <div class="container px-5 py-24 mx-auto">
-                            <div class="flex flex-wrap -mx-4 -my-8">
-                                <PostCard></PostCard>
-                                <PostCard></PostCard>
-                                <PostCard></PostCard>
-                            </div>
+                        <div class="container px-5 py-24">
+                            <!-- <div class="flex flex-wrap -mx-4 -my-8"> -->
+                                <PostCard v-for="post in posts" :key="post.id" :post="post"> </PostCard>
+                            <!-- </div> -->
                         </div>
                     </section>
                 </div>

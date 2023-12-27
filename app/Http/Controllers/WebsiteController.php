@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Page;
 use App\Models\Menu;
+use App\Models\Page;
+use App\Models\Post;
+use Inertia\Inertia;
 
 class WebsiteController extends Controller
 {
@@ -35,8 +36,18 @@ class WebsiteController extends Controller
 
     public function blog($slug = null)
     {
-        return Inertia::render('Website/Blog', [
-            'title' => 'Blog',
+        if(is_null($slug))
+        {
+            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(10);
+            return Inertia::render('Website/Blog/Posts', [
+                'title' => 'Blog',
+                'posts' => $posts
+            ]);
+        }
+
+        $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
+        return Inertia::render('Website/Blog/Post', [
+            'post' => $post,
         ]);
     }
 }

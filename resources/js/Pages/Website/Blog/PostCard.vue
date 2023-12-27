@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+    post: Object
+});
+
+</script>
 <template>
     <div class="py-8 px-4 lg:w-1/3">
         <div class="h-full flex items-start">
@@ -8,9 +13,8 @@
             </div>
             <div class="flex-grow pl-6">
                 <h2 class="tracking-widest text-xs title-font font-medium text-indigo-500 mb-1">CATEGORY</h2>
-                <h1 class="title-font text-xl font-medium text-gray-900 mb-3">The 400 Blows</h1>
-                <p class="leading-relaxed mb-5">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                    tousled waistcoat.</p>
+                <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ props.post.name }}</h1>
+                <p class="leading-relaxed mb-5">{{ props.post.excerpt }}</p>
                 <a class="inline-flex items-center">
                     <img alt="blog" src="https://dummyimage.com/103x103"
                         class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
