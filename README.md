@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/mehedijaman/MariaCMS/blob/master/MariaCMS.png" width="800" alt="MariaCMS"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/mehedijaman/MariaCMS/blob/main/MariaCMS.png" width="800" alt="MariaCMS"></a></p>
 
 ## MariaCMS: Empowering Digital Experiences with Laravel, Vue, Inertia, and Tailwind CSS
 Introducing MariaCMS, a cutting-edge content management system meticulously crafted with the power of Laravel, Vue.js, Inertia, and Tailwind CSS. Born from the vision of seamlessly blending robust functionality with an intuitive user experience, MariaCMS stands as a formidable alternative to traditional content management solutions.
