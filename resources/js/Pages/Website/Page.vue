@@ -14,7 +14,7 @@ const props = defineProps({
                 class="grid grid-cols-1 text-center gap-4 py-8 max-w-7xl m-auto px-4 sm:px-6 lg:px-8">
                 <div class="place-self-center space-y-6 mt-8 p-4 bg-white dark:bg-slate-800">
                     <h1 class="text-2xl pb-4 font-semibold">{{ props.page.name }}</h1>
-                    <span v-html="props.page.content"></span>
+                    <span v-html="props.page.content" class="text-left"></span>
                 </div>
             </div>
         </section>

@@ -1,30 +1,20 @@
 <script setup>
 import CreateLayout from "@/Layouts/CreateLayout.vue";
-import { router } from "@inertiajs/vue3";
-import { formatDate } from "../../Helpers/dateHelper";
-import Published from "./Published.vue";
-import Unpublished from './Unpublished.vue';
-import Draft from './Draft.vue';
 import { Link } from "@inertiajs/vue3";
-import Checkbox from "@/Components/Checkbox.vue";
-import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
-import { PlusIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
-
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Editor from "@tinymce/tinymce-vue";
 
 import {
     TrashIcon,
     BookmarkSlashIcon,
     BookOpenIcon,
     BriefcaseIcon,
+    PlusIcon,
 } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -95,21 +85,20 @@ const submit = () => {
                         </div>
 
 
-                        <div class="space-y-1">
+                        <!-- <div class="space-y-1">
                             <InputLabel for="slug" :value="lang().label.content" />
                             <TextInput id="slug" v-model="formData.content" type="text" class="block w-full h-screen"
                                 autocomplete="content" :placeholder="lang().placeholder.content"
                                 :error="form.errors.desctiption" />
                             <InputError :message="form.errors.content" />
-                        </div>
+                        </div> -->
+                        <Editor  v-model="formData.content" api-key="2e85a37u1i6ju59dqnawx1dxti4dvtpifirq438rfkm1tdsh" :init="{
+                            plugins: 'lists link image table code help wordcount'
+                        }" />
                     </div>
 
                     <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-4">
                         <div class="grid grid-cols-2 gap-2">
-                            <!-- <PrimaryButton class="" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                                @click="submit">
-                                {{ lang().button.save }} {{ form.processing ? "..." : "" }}
-                            </PrimaryButton> -->
                             <button :disabled="form.processing" @click="submit" type="button"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 col-span-1 w-full">{{
                                     lang().button.save }} {{ form.processing ? "..." : "" }}</button>
