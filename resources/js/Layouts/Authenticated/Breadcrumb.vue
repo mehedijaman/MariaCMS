@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-        <div class="max-w-7xl pt-4 mx-auto sm:px-4 lg:px-8 space-y-4">
+        <div class="max-w-7xl mx-auto sm:px-2 lg:px-4 lg:pt-2">
             <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
                 aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
