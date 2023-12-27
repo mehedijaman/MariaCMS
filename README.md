@@ -1,9 +1,33 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/erikwibowo/Laravel-Jarvis/blob/master/Laravel_Jarvis.png" width="800" alt="Laravel Jarvis"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/mehedijaman/MariaCMS/blob/master/MariaCMS.png" width="800" alt="MariaCMS"></a></p>
 
-## About Jarvis
-Laravel Jarvis is a starter project made with Laravel Jetstream Inertia Vue and add more additional feature like User, Role & Permission management, Responsive design, Light/Dark Mode, Rich Table with many features. Check the documentation for more details.
+## MariaCMS: Empowering Digital Experiences with Laravel, Vue, Inertia, and Tailwind CSS
+Introducing MariaCMS, a cutting-edge content management system meticulously crafted with the power of Laravel, Vue.js, Inertia, and Tailwind CSS. Born from the vision of seamlessly blending robust functionality with an intuitive user experience, MariaCMS stands as a formidable alternative to traditional content management solutions.
 
-## Features
+## Key Features:
+### Laravel Backbone: 
+MariaCMS leverages the strength of Laravel, a PHP framework known for its elegance and efficiency. This forms the solid foundation of the CMS, ensuring scalability, security, and a developer-friendly environment.
+
+### Dynamic User Interfaces with Vue.js: 
+Embracing the dynamic capabilities of Vue.js, MariaCMS delivers a responsive and interactive user interface. Vue.js allows for real-time updates, ensuring a smooth and engaging experience for both content creators and website visitors.
+
+### Effortless Single-Page Applications (SPAs) with Inertia: 
+MariaCMS takes advantage of Inertia.js, a framework for building modern SPAs using server-side routing. This architecture enhances performance by reducing page reloads and providing a more fluid browsing experience.
+
+### Aesthetic Appeal with Tailwind CSS: 
+The visual charm of MariaCMS is powered by Tailwind CSS, a utility-first CSS framework. Tailwind enables a highly customizable and maintainable design, ensuring that every website built with MariaCMS is not just functional but also visually appealing.
+
+### Modular and Extensible: 
+MariaCMS is designed with extensibility in mind, allowing developers to create and integrate custom modules seamlessly. This modularity ensures that the CMS can adapt to diverse needs, making it a versatile solution for a range of projects.
+
+### Community-Driven Development: 
+MariaCMS thrives on a vibrant community of developers and contributors. Regular updates and improvements are driven by feedback from the community, ensuring that the CMS evolves to meet the ever-changing demands of the digital landscape.
+
+### User-Focused Content Management: 
+MariaCMS prioritizes user experience for content creators. The intuitive interface, combined with powerful features, streamlines the content management process, allowing users to focus on creating compelling content rather than wrestling with the platform.
+
+In essence, MariaCMS represents a fusion of technological prowess and user-centric design, bringing together the strengths of Laravel, Vue, Inertia, and Tailwind CSS. Whether you are a developer seeking a robust framework or a content creator aiming for a seamless and enjoyable workflow, MariaCMS stands as a testament to the potential of modern content management systems. Embrace the future of web development with MariaCMS and unlock a world of possibilities for your digital projects.
+
+## Other Features:
 - User Authentication.
 - Role and Permission Management.
 - Localization (Currently, English, Bahasa Indonesia and Bangla).
@@ -29,7 +53,7 @@ Laravel Jarvis is a starter project made with Laravel Jetstream Inertia Vue and 
 ## Installation and Usage
 Clone the git repository
 ``` bash
-git clone https://github.com/erikwibowo/Laravel-Brive.git
+git clone https://github.com/mehedijaman/MariaCMS.git
 ```
 Go to the folder
 ``` bash
@@ -57,7 +81,7 @@ SETTING UP DB CONNECTION IN .env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=brive
+DB_DATABASE=maria_cms
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -77,8 +101,8 @@ php artisan serve
 ## Login With
 ### Superadmin
 ``` bash
-email : superadmin@superadmin.com
-password : superadmin
+email : mail4mjaman@gmail.com
+password : mehedi!@#
 ```
 ### Admin
 ``` bash
@@ -90,23 +114,8 @@ password : admin
 email : operator@operator.com
 password : operator
 ```
-
-# Packages
-- [Vue](https://vuejs.org/)
-- [Inertia](https://inertiajs.com/)
-- [Tailwind](https://tailwindcss.com/)
-- [Spatie](https://spatie.be/docs/laravel-permission/v5/introduction)
-- [Floating Vue](https://floating-vue.starpad.dev/)
-- [VueUse](https://vueuse.org/)
-- [Hero Icons](https://heroicons.com/)
-- [HeadlessUI](https://headlessui.com/)
-
-## Contributors
-- **[Erik Wiboww](https://erikwibowo.com/)**
+## Maintainer
 - **[Mehedi Jaman](https://me.mehedipata.com/)**
-
-## License
-Laravel Jarvis is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 # Built With
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>

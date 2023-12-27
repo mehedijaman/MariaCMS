@@ -15,9 +15,9 @@ class SettingSeeder extends Seeder
         Setting::create([
             'favicon' => null,
             'logo' => null,
-            'name' => 'HAMKO Group',
-            'short_name' => 'HAMKO',
-            'Description' => 'HAMKO Group, a household name in Bangladesh, is a diversified conglomerate that began its journey in 1978 with a spark - Abdullah Battery Company Limited. Founded on the principles of quality and customer focus, HAMKO quickly rose to become a leading manufacturer of lead-acid batteries, holding a significant market share in the automotive and solar sectors.',
+            'name' => 'MariaCMS',
+            'short_name' => 'mCMS',
+            'Description' => 'Introducing MariaCMS, a cutting-edge content management system meticulously crafted with the power of Laravel, Vue.js, Inertia, and Tailwind CSS. Born from the vision of seamlessly blending robust functionality with an intuitive user experience, MariaCMS stands as a formidable alternative to traditional content management solutions.',
         ]);
     }
 }
