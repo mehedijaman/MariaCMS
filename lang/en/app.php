@@ -167,6 +167,7 @@ return [
         'tags' => 'Tags',
         'tag' => 'Tag',
         'posts' => 'Posts',
+        'post' => 'Post',
         'testimonials' => 'Testimonials',
         'testimonial' => 'Testimonial',
         'galleries' => 'Galleries',
@@ -204,6 +205,7 @@ return [
         'excerpt' => 'Excerpt',
         'allow_comment' => 'Allow Comment',
         'is_featured' => 'Is Featured',
+        'trash' => 'Trash',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

@@ -61,6 +61,7 @@ const fileChange = (value) => {
         <template #title>
             <span>{{ props.title }}</span>
         </template>
+        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">

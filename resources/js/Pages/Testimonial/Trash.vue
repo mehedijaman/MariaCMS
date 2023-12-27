@@ -6,10 +6,10 @@ import Restore from "./Restore.vue";
 import RestoreBulk from "./RestoreBulk.vue";
 import RestoreAll from "./RestoreAll.vue";
 import { ref, reactive, defineProps, provide, computed } from "vue";
-import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
+import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     MagnifyingGlassIcon,
@@ -79,9 +79,7 @@ provide('removeAllItems', removeAllItems);
         <template #title>
             <span>{{ props.title }}</span>
         </template>
-        <!-- <template #breadcrumb>
-            <Breadcrumb />
-        </template> -->
+        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
 
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">

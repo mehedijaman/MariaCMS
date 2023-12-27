@@ -5,6 +5,7 @@ import Published from "./Published.vue";
 import Unpublished from './Unpublished.vue';
 import Draft from './Draft.vue';
 import { Link }  from "@inertiajs/vue3";
+import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     TrashIcon,
@@ -82,9 +83,7 @@ provide('updateItem', updateItem);
         <template #title>
             <span>{{ props.title }}</span>
         </template>
-        <!-- <template #breadcrumb>
-            <Breadcrumb />
-        </template> -->
+        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
 
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">

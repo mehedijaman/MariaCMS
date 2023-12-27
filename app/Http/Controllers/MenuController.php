@@ -108,7 +108,10 @@ class MenuController extends Controller
         return Inertia::render('Menu/Trash', [
             'title' => __('app.label.menus'),
             'menus' => $menus,
-            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+            'breadcrumbs' => [
+                ['label' => __('app.label.menu'), 'href' => route('menus.index')],
+                ['label' => __('app.label.trash'), 'href' => route('menus.trash')],
+            ],
         ]);
     }
 
