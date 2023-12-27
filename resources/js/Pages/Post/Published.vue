@@ -5,6 +5,8 @@ import Delete from "@/Pages/Post/Delete.vue";
 import DeleteBulk from "@/Pages/Post/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
+import { PlusIcon } from "@heroicons/vue/24/outline";
+import { Link } from '@inertiajs/vue3';
 
 import {
     MagnifyingGlassIcon,
@@ -26,7 +28,10 @@ const headers = [
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['post create'])" />
+            <Link :href="route('posts.create')" v-if="can(['post create'])" class="text-white flex gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><PlusIcon class="w-4 h-auto" />
+                Create New Post
+            </Link>
+
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['post delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>

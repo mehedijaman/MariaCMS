@@ -21,7 +21,7 @@ class PageController extends Controller
         return Inertia::render('Page/Index', [
             'title' => __('app.label.pages'),
             'pages' => $pages,
-            'breadcrumbs' => [['label' => __('app.label.page'), 'href' => route('pages.index')]],
+            'breadcrumbs' => [['label' => __('app.label.pages'), 'href' => route('pages.index')]],
         ]);
     }
 
@@ -34,7 +34,10 @@ class PageController extends Controller
         return Inertia::render('Page/Create', [
             'pages' => $pages,
             'title' => __('app.label.page'),
-            'breadcrumbs' => [['label' => __('app.label.page'), 'href' => route('pages.index')]],
+            'breadcrumbs' => [
+                ['label' => __('app.label.pages'), 'href' => route('pages.index')],
+                ['label' => __('app.label.create'), 'href' => route('pages.create')]
+            ],
         ]);
     }
 
@@ -121,7 +124,10 @@ class PageController extends Controller
         return Inertia::render('Page/Trash', [
             'title' => __('app.label.pages'),
             'pages' => $pages,
-            'breadcrumbs' => [['label' => __('app.label.page'), 'href' => route('pages.index')]],
+            'breadcrumbs' => [
+                ['label' => __('app.label.pages'), 'href' => route('pages.index')],
+                ['label' => __('app.label.trash'), 'href' => route('pages.trash')],
+            ],
         ]);
     }
 
