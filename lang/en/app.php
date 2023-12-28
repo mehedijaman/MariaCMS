@@ -253,6 +253,7 @@ return [
         'close' => 'CLose',
         'cancel' => 'Cancel',
         'save' => 'Save',
+        'update' => 'Update',
         'delete_account' => 'Delete Account',
         'logout_other_browser_session' => 'Log Out Other Browser Sessions',
         'select_new_photo' => 'Select A New Photo',

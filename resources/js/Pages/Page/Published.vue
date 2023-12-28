@@ -56,7 +56,7 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Link v-show="can(['page update'])" :href="route('pages.edit', { slug: item.slug })" v-if="can(['page update'])" class="inline-flex items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
+                <Link v-show="can(['page update'])" :href="route('pages.edit', { page: item.id })" v-if="can(['page update'])" class="inline-flex items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
                     <PencilIcon class="w-4 h-auto" />
                 </Link>
                 <Delete v-show="can(['page delete'])" :title="item.name" :item="item" @open="item = item" />

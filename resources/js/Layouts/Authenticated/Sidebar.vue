@@ -87,7 +87,7 @@ function userManagementActive() {
 
                     </Link>
                 </li>
-                <li v-bind:class="(route().current('pages.index') || route().current('pages.create') || route().current('pages.trash'))
+                <li v-bind:class="(route().current('pages.index') || route().current('pages.create') || route().current('pages.edit') || route().current('pages.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -101,7 +101,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-bind:class="(route().current('posts.index') || route().current('posts.create') || route().current('posts.trash'))
+                <li v-bind:class="(route().current('posts.index') || route().current('posts.create') || route().current('posts.edit') || route().current('posts.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">

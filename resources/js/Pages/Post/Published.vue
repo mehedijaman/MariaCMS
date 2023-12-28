@@ -10,6 +10,7 @@ import { Link } from '@inertiajs/vue3';
 
 import {
     MagnifyingGlassIcon,
+    PencilIcon,
 } from "@heroicons/vue/24/outline";
 
 const items = inject('published');
@@ -28,8 +29,12 @@ const headers = [
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Link :href="route('posts.create')" v-if="can(['post create'])" class="text-white flex gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><PlusIcon class="w-4 h-auto" />
-                Create New Post
+
+            <Link :href="route('posts.create')" v-if="can(['post create'])"
+                class="text-white flex gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <PlusIcon class="w-4 h-auto" />
+            Create New Post
+
             </Link>
 
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['post delete'])" :itemsSelected="itemsSelected"
@@ -54,9 +59,10 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['post update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-show="can(['post delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Link v-if="can(['post update'])" :href="route('posts.edit', { post: item.id })" class="inline-flex items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
+                    <PencilIcon class="w-4 h-auto" />
+                </Link>
+                <Delete v-if="can(['post delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
-    </EasyDataTable>
-</template>
+</EasyDataTable></template>

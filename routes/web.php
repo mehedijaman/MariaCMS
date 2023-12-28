@@ -134,8 +134,7 @@ Route::prefix('cp')->middleware([
 
     /** Pages Routes */
     Route::get('pages/trash', [PageController::class, 'trash'])->name('pages.trash');
-    Route::get('pages/{slug}/edit', [PageController::class, 'edit'])->name('pages.edit');
-    Route::resource('pages', PageController::class)->except(['edit']);
+    Route::resource('pages', PageController::class);
     Route::delete('pages/destroy/bulk', [PageController::class, 'destroyBulk'])->name('pages.destroy.bulk');
     Route::delete('pages/{menu}/destroy/force', [PageController::class, 'destroyForce'])->name('pages.destroy.force');
     Route::delete('pages/destroy/force/bulk', [PageController::class, 'destroyForceBulk'])->name('pages.destroy.force.bulk');

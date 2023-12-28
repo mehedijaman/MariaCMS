@@ -21,7 +21,7 @@ class PostController extends Controller
         return Inertia::render('Post/Index', [
             'title' => __('app.label.posts'),
             'posts' => $posts,
-            'breadcrumbs' => [['label' => __('app.label.post'), 'href' => route('posts.index')]],
+            'breadcrumbs' => [['label' => __('app.label.posts'), 'href' => route('posts.index')]],
         ]);
     }
 
@@ -33,9 +33,9 @@ class PostController extends Controller
         $posts = Post::all();
         return Inertia::render('Post/Create', [
             'posts' => $posts,
-            'title' => __('app.label.post'),
+            'title' => __('app.label.posts'),
             'breadcrumbs' => [
-                ['label' => __('app.label.post'), 'href' => route('posts.index')],
+                ['label' => __('app.label.posts'), 'href' => route('posts.index')],
                 ['label' => __('app.label.create'), 'href' => route('posts.create')],
             ],
         ]);
@@ -75,9 +75,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return Inertia::render('Post/Show', [
-            'title' => __('app.label.post'),
+            'title' => __('app.label.posts'),
             'page' => $post,
-            'breadcrumbs' => [['label' => __('app.label.post'), 'href' => route('posts.index')]],
+            'breadcrumbs' => [['label' => __('app.label.posts'), 'href' => route('posts.index')]],
         ]);
     }
 
@@ -87,9 +87,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return Inertia::render('Post/Edit', [
-            'title' => __('app.label.post'),
-            'page' => $post,
-            'breadcrumbs' => [['label' => __('app.label.post'), 'href' => route('posts.index')]],
+            'title' => __('app.label.posts'),
+            'post' => $post,
+            'breadcrumbs' => [
+                ['label' => __('app.label.posts'), 'href' => route('posts.index')],
+                ['label' => __('app.label.edit'), 'href' => route('posts.edit', ['post' => $post->id])],
+            ],
         ]);
     }
 
@@ -126,7 +129,7 @@ class PostController extends Controller
         return Inertia::render('Post/Trash', [
             'title' => __('app.label.posts'),
             'posts' => $posts,
-            'breadcrumbs' => [['label' => __('app.label.post'), 'href' => route('posts.index')]],
+            'breadcrumbs' => [['label' => __('app.label.posts'), 'href' => route('posts.index')]],
         ]);
     }
 
