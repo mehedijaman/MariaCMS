@@ -9,6 +9,7 @@ import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
+import Breadcrumb from "../Layouts/Authenticated/Breadcrumb.vue";
 
 const props = defineProps({
     title: String,
@@ -64,7 +65,7 @@ const fileChange = (value) => {
         <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
 
         <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-4">
                 <FormSection>
                     <template #title> {{ lang().label.web_setting }} </template>
 
