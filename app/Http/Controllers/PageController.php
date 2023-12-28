@@ -64,7 +64,7 @@ class PageController extends Controller
                 ->with('success', __('app.label.created_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
 
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.page')]).$th->getMessage());
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.page')]) . $th->getMessage());
         }
     }
 
@@ -83,12 +83,19 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Page $page)
+    public function edit($slug)
     {
+        $page = Page::where('slug', $slug)->firstOrFail();
+        $pages = Page::all();
+
         return Inertia::render('Page/Edit', [
             'title' => __('app.label.page'),
             'page' => $page,
-            'breadcrumbs' => [['label' => __('app.label.page'), 'href' => route('pages.index')]],
+            'pages'=> $pages,
+            'breadcrumbs' => [
+                ['label' => __('app.label.pages'), 'href' => route('pages.index')],
+                ['label' => __('app.label.edit'), 'href' => route('pages.edit', ['slug' => $slug])],
+            ],
         ]);
     }
 
@@ -113,7 +120,7 @@ class PageController extends Controller
             return back()->with('success', __('app.label.updated_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
-            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.page')]).$th->getMessage());
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.page')]) . $th->getMessage());
         }
     }
 
@@ -150,7 +157,7 @@ class PageController extends Controller
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $page->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -159,9 +166,9 @@ class PageController extends Controller
             $pages = Page::whereIn('id', $request->id);
             $pages->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.pages')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.pages')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.pages')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.pages')]) . $th->getMessage());
         }
     }
 
@@ -171,9 +178,9 @@ class PageController extends Controller
             $pages = Page::whereIn('id', $request->id)->onlyTrashed();
             $pages->forceDelete();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.page')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.page')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.page')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.page')]) . $th->getMessage());
         }
     }
 
@@ -184,9 +191,9 @@ class PageController extends Controller
             $count = count($pages);
             $pages->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.pages')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count . ' ' . __('app.label.pages')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.pages')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count . ' ' . __('app.label.pages')]) . $th->getMessage());
         }
     }
 
@@ -206,9 +213,9 @@ class PageController extends Controller
             $pages = Page::whereIn('id', $request->id)->onlyTrashed();
             $pages->restore();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.page')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.page')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.page')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.page')]) . $th->getMessage());
         }
     }
 
@@ -220,7 +227,7 @@ class PageController extends Controller
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.page')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', [__('app.label.page')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', [__('app.label.page')]) . $th->getMessage());
         }
     }
 }

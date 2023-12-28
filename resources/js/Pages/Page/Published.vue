@@ -7,7 +7,8 @@ import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 import { Link } from "@inertiajs/vue3";
 import {
-    PlusIcon
+    PlusIcon,
+    PencilIcon,
 } from "@heroicons/vue/24/outline";
 import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
@@ -55,7 +56,9 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['page update'])" :title="item.name" :item="item" @open="item = item" />
+                <Link v-show="can(['page update'])" :href="route('pages.edit', { slug: item.slug })" v-if="can(['page update'])" class="inline-flex items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
+                    <PencilIcon class="w-4 h-auto" />
+                </Link>
                 <Delete v-show="can(['page delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
