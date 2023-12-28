@@ -1,22 +1,21 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
 import Toast from "@/Components/Toast.vue";
-import Banner from "../Components/Banner.vue";
 import Navbar from "./Authenticated/Navbar.vue";
 import Footer from "./Authenticated/Footer.vue";
-import { ref, reactive } from "vue";
-
+import PageCreateSidebar from "./PageCreateSidebar.vue";
+import { ref } from "vue";
+import Banner from "../Components/Banner.vue";
+const showingSideBar = ref(false);
 defineProps({
     title: String,
 });
+import { initFlowbite } from 'flowbite';
+import { onMounted } from 'vue';
 
-// import { initFlowbite } from 'flowbite';
-// import { onMounted } from 'vue';
-
-// onMounted(() => {
-//     initFlowbite();
-// });
-
+onMounted(() => {
+    initFlowbite();
+});
 </script>
 
 <template>
@@ -27,8 +26,15 @@ defineProps({
         <div
             class="flex relative w-full min-h-screen bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100 overflow-x-hidden text-base"
         >
-            <div class="w-full">
-                <Navbar></Navbar>
+            <PageCreateSidebar :open="showingSideBar" @close="showingSideBar = false" />
+            <div class="pl-0 md:pl-64 w-full">
+                <Navbar
+                    :sidebarShow="showingSideBar"
+                    @open="showingSideBar = true"
+                >
+                    <slot name="title" />
+                    <slot name="breadcrumb" />
+                </Navbar>
                 <!-- Page Content -->
                 <main class="pt-16">
                     <slot />
