@@ -34,7 +34,10 @@ class PostController extends Controller
         return Inertia::render('Post/Create', [
             'posts' => $posts,
             'title' => __('app.label.post'),
-            'breadcrumbs' => [['label' => __('app.label.post'), 'href' => route('posts.index')]],
+            'breadcrumbs' => [
+                ['label' => __('app.label.post'), 'href' => route('posts.index')],
+                ['label' => __('app.label.create'), 'href' => route('posts.create')],
+            ],
         ]);
     }
 

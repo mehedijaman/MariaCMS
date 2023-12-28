@@ -1,5 +1,5 @@
 <script setup>
-import PageCreateLayout from "@/Layouts/PageCreateLayout.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -7,6 +7,7 @@ import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
+import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     TrashIcon,
@@ -62,8 +63,9 @@ const config = ref();
 </script>
 
 <template>
-    <PageCreateLayout :title="props.title">
-        <div class="p-2">
+    <AppLayout :title="props.title">
+        <Breadcrumb :breadcrumbs="props.breadcrumbs" />
+        <div class="p-4">
             <div class="w-full mx-auto">
                 <form @submit.prevent="submit" class="flex flex-col gap-2">
                     <div class="grid grid-cols-5 gap-2">
@@ -172,7 +174,7 @@ const config = ref();
                 </form>
             </div>
         </div>
-    </PageCreateLayout>
+    </AppLayout>
 </template>
 
 <style>
