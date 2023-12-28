@@ -7,7 +7,6 @@ import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
-import Editor from "@tinymce/tinymce-vue";
 
 import {
     TrashIcon,
@@ -58,6 +57,8 @@ const submit = () => {
         onFinish: () => null,
     });
 };
+
+const config = ref();
 </script>
 
 <template>
@@ -84,17 +85,13 @@ const submit = () => {
                             </div>
                         </div>
 
-
-                        <!-- <div class="space-y-1">
+                        <div class="space-y-1">
                             <InputLabel for="slug" :value="lang().label.content" />
-                            <TextInput id="slug" v-model="formData.content" type="text" class="block w-full h-screen"
-                                autocomplete="content" :placeholder="lang().placeholder.content"
-                                :error="form.errors.desctiption" />
                             <InputError :message="form.errors.content" />
-                        </div> -->
-                        <Editor  v-model="formData.content" api-key="2e85a37u1i6ju59dqnawx1dxti4dvtpifirq438rfkm1tdsh" :init="{
-                            plugins: 'lists link image table code help wordcount'
-                        }" />
+                            <froala id="edit" class="block w-full min-h-screen" :tag="'textarea'" :config="config" v-model:value="formData.content"></froala>
+                        </div>
+
+
                     </div>
 
                     <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-4">
