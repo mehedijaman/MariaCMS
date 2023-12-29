@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\PostCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\TagController;
@@ -10,7 +9,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\GuestController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GalleryController;
@@ -22,7 +20,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\PostCategoryController;
 
 /*
 |--------------------------------------------------------------------------
