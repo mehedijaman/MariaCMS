@@ -19,6 +19,7 @@ use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\PostCategoryController;
@@ -56,7 +57,6 @@ Route::prefix('cp')->middleware([
 
     /** Menus Routes */
     Route::get('menus/trash', [MenuController::class, 'trash'])->name('menus.trash');
-    Route::resource('menus', MenuController::class);
     Route::delete('menus/destroy/bulk', [MenuController::class, 'destroyBulk'])->name('menus.destroy.bulk');
     Route::delete('menus/{menu}/destroy/force', [MenuController::class, 'destroyForce'])->name('menus.destroy.force');
     Route::delete('menus/destroy/force/bulk', [MenuController::class, 'destroyForceBulk'])->name('menus.destroy.force.bulk');
@@ -64,10 +64,20 @@ Route::prefix('cp')->middleware([
     Route::post('menus/{menu}/restore', [MenuController::class, 'restore'])->name('menus.restore');
     Route::post('menus/restore/bulk', [MenuController::class, 'restoreBulk'])->name('menus.restore.bulk');
     Route::post('menus/restore/all', [MenuController::class, 'restoreAll'])->name('menus.restore.all');
+    Route::resource('menus/{menu}/items', MenuItemController::class)
+        ->names([
+            'index' => 'menu.items.index',
+            'create' => 'menu.items.create',
+            'store' => 'menu.items.store',
+            'show' => 'menu.items.show',
+            'edit' => 'menu.items.edit',
+            'update' => 'menu.items.update',
+            'destroy' => 'menu.items.destroy',
+        ]);
+    Route::resource('menus', MenuController::class);
 
     /** tags Routes */
     Route::get('categories/trash', [CategoryController::class, 'trash'])->name('categories.trash');
-    Route::resource('categories', CategoryController::class);
     Route::delete('categories/destroy/bulk', [CategoryController::class, 'destroyBulk'])->name('categories.destroy.bulk');
     Route::delete('categories/{category}/destroy/force', [CategoryController::class, 'destroyForce'])->name('categories.destroy.force');
     Route::delete('categories/destroy/force/bulk', [CategoryController::class, 'destroyForceBulk'])->name('categories.destroy.force.bulk');
@@ -75,10 +85,10 @@ Route::prefix('cp')->middleware([
     Route::post('categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
     Route::post('categories/restore/bulk', [CategoryController::class, 'restoreBulk'])->name('categories.restore.bulk');
     Route::post('categories/restore/all', [CategoryController::class, 'restoreAll'])->name('categories.restore.all');
+    Route::resource('categories', CategoryController::class);
 
     /** Categories Routes */
     Route::get('tags/trash', [TagController::class, 'trash'])->name('tags.trash');
-    Route::resource('tags', TagController::class);
     Route::delete('tags/destroy/bulk', [TagController::class, 'destroyBulk'])->name('tags.destroy.bulk');
     Route::delete('tags/{category}/destroy/force', [TagController::class, 'destroyForce'])->name('tags.destroy.force');
     Route::delete('tags/destroy/force/bulk', [TagController::class, 'destroyForceBulk'])->name('tags.destroy.force.bulk');
@@ -86,11 +96,11 @@ Route::prefix('cp')->middleware([
     Route::post('tags/{category}/restore', [TagController::class, 'restore'])->name('tags.restore');
     Route::post('tags/restore/bulk', [TagController::class, 'restoreBulk'])->name('tags.restore.bulk');
     Route::post('tags/restore/all', [TagController::class, 'restoreAll'])->name('tags.restore.all');
+    Route::resource('tags', TagController::class);
 
 
     /** Galleries Routes */
     Route::get('galleries/trash', [GalleryController::class, 'trash'])->name('galleries.trash');
-    Route::resource('galleries', GalleryController::class);
     Route::delete('galleries/destroy/bulk', [GalleryController::class, 'destroyBulk'])->name('galleries.destroy.bulk');
     Route::delete('galleries/{gallery}/destroy/force', [GalleryController::class, 'destroyForce'])->name('galleries.destroy.force');
     Route::delete('galleries/destroy/force/bulk', [GalleryController::class, 'destroyForceBulk'])->name('galleries.destroy.force.bulk');
@@ -98,10 +108,10 @@ Route::prefix('cp')->middleware([
     Route::post('galleries/{gallery}/restore', [GalleryController::class, 'restore'])->name('galleries.restore');
     Route::post('galleries/restore/bulk', [GalleryController::class, 'restoreBulk'])->name('galleries.restore.bulk');
     Route::post('galleries/restore/all', [GalleryController::class, 'restoreAll'])->name('galleries.restore.all');
+    Route::resource('galleries', GalleryController::class);
 
     /** Faq Routes */
     Route::get('faqs/trash', [FaqController::class, 'trash'])->name('faqs.trash');
-    Route::resource('faqs', FaqController::class);
     Route::delete('faqs/destroy/bulk', [FaqController::class, 'destroyBulk'])->name('faqs.destroy.bulk');
     Route::delete('faqs/{faq}/destroy/force', [FaqController::class, 'destroyForce'])->name('faqs.destroy.force');
     Route::delete('faqs/destroy/force/bulk', [FaqController::class, 'destroyForceBulk'])->name('faqs.destroy.force.bulk');
@@ -109,10 +119,10 @@ Route::prefix('cp')->middleware([
     Route::post('faqs/{faq}/restore', [FaqController::class, 'restore'])->name('faqs.restore');
     Route::post('faqs/restore/bulk', [FaqController::class, 'restoreBulk'])->name('faqs.restore.bulk');
     Route::post('faqs/restore/all', [FaqController::class, 'restoreAll'])->name('faqs.restore.all');
+    Route::resource('faqs', FaqController::class);
 
     /** Slider Routes */
     Route::get('sliders/trash', [SliderController::class, 'trash'])->name('sliders.trash');
-    Route::resource('sliders', SliderController::class);
     Route::delete('sliders/destroy/bulk', [SliderController::class, 'destroyBulk'])->name('sliders.destroy.bulk');
     Route::delete('sliders/{slider}/destroy/force', [SliderController::class, 'destroyForce'])->name('sliders.destroy.force');
     Route::delete('sliders/destroy/force/bulk', [SliderController::class, 'destroyForceBulk'])->name('sliders.destroy.force.bulk');
@@ -120,10 +130,10 @@ Route::prefix('cp')->middleware([
     Route::post('sliders/{slider}/restore', [SliderController::class, 'restore'])->name('sliders.restore');
     Route::post('sliders/restore/bulk', [SliderController::class, 'restoreBulk'])->name('sliders.restore.bulk');
     Route::post('sliders/restore/all', [SliderController::class, 'restoreAll'])->name('sliders.restore.all');
+    Route::resource('sliders', SliderController::class);
 
     /** Testimonial Routes */
     Route::get('testimonials/trash', [TestimonialController::class, 'trash'])->name('testimonials.trash');
-    Route::resource('testimonials', TestimonialController::class);
     Route::delete('testimonials/destroy/bulk', [TestimonialController::class, 'destroyBulk'])->name('testimonials.destroy.bulk');
     Route::delete('testimonials/{slider}/destroy/force', [TestimonialController::class, 'destroyForce'])->name('testimonials.destroy.force');
     Route::delete('testimonials/destroy/force/bulk', [TestimonialController::class, 'destroyForceBulk'])->name('testimonials.destroy.force.bulk');
@@ -131,28 +141,29 @@ Route::prefix('cp')->middleware([
     Route::post('testimonials/{slider}/restore', [TestimonialController::class, 'restore'])->name('testimonials.restore');
     Route::post('testimonials/restore/bulk', [TestimonialController::class, 'restoreBulk'])->name('testimonials.restore.bulk');
     Route::post('testimonials/restore/all', [TestimonialController::class, 'restoreAll'])->name('testimonials.restore.all');
+    Route::resource('testimonials', TestimonialController::class);
 
     /** Pages Routes */
     Route::get('pages/trash', [PageController::class, 'trash'])->name('pages.trash');
-    Route::resource('pages', PageController::class);
     Route::delete('pages/destroy/bulk', [PageController::class, 'destroyBulk'])->name('pages.destroy.bulk');
-    Route::delete('pages/{menu}/destroy/force', [PageController::class, 'destroyForce'])->name('pages.destroy.force');
+    Route::delete('pages/{page}/destroy/force', [PageController::class, 'destroyForce'])->name('pages.destroy.force');
     Route::delete('pages/destroy/force/bulk', [PageController::class, 'destroyForceBulk'])->name('pages.destroy.force.bulk');
     Route::delete('pages/destroy/force/all', [PageController::class, 'destroyForceAll'])->name('pages.destroy.force.all');
-    Route::post('pages/{menu}/restore', [PageController::class, 'restore'])->name('pages.restore');
+    Route::post('pages/{page}/restore', [PageController::class, 'restore'])->name('pages.restore');
     Route::post('pages/restore/bulk', [PageController::class, 'restoreBulk'])->name('pages.restore.bulk');
     Route::post('pages/restore/all', [PageController::class, 'restoreAll'])->name('pages.restore.all');
+    Route::resource('pages', PageController::class);
 
     /** Posts Routes */
     Route::get('posts/trash', [PostController::class, 'trash'])->name('posts.trash');
-    Route::resource('posts', PostController::class);
     Route::delete('posts/destroy/bulk', [PostController::class, 'destroyBulk'])->name('posts.destroy.bulk');
-    Route::delete('posts/{menu}/destroy/force', [PostController::class, 'destroyForce'])->name('posts.destroy.force');
+    Route::delete('posts/{post}/destroy/force', [PostController::class, 'destroyForce'])->name('posts.destroy.force');
     Route::delete('posts/destroy/force/bulk', [PostController::class, 'destroyForceBulk'])->name('posts.destroy.force.bulk');
     Route::delete('posts/destroy/force/all', [PostController::class, 'destroyForceAll'])->name('posts.destroy.force.all');
-    Route::post('posts/{menu}/restore', [PostController::class, 'restore'])->name('posts.restore');
+    Route::post('posts/{post}/restore', [PostController::class, 'restore'])->name('posts.restore');
     Route::post('posts/restore/bulk', [PostController::class, 'restoreBulk'])->name('posts.restore.bulk');
     Route::post('posts/restore/all', [PostController::class, 'restoreAll'])->name('posts.restore.all');
+    Route::resource('posts', PostController::class);
 
     /** Users Routes */
     Route::group(['prefix' => 'user'], function(){

@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use Inertia\Inertia;
+use App\Models\MenuItem;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
-use App\Models\MenuItem;
 
 class MenuItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Menu $menu)
     {
-        //
+        $items = MenuItem::where('menu_id', $menu->id)->get();
+        return Inertia::render('MenuItem/Index', [
+            'title' => __('app.label.menu_items'),
+            'menu' => $menu,
+            'items' => $items,
+            'breadcrumbs' => [
+                ['label' => __('app.label.menus'), 'href' => route('menus.index')],
+                ['label' => $menu->name, 'href' => route('menu.items.index', ['menu' => $menu->id])],
+            ]
+        ]);
     }
 
     /**

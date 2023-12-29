@@ -23,7 +23,9 @@ class MenuController extends Controller
             'title' => __('app.label.menus'),
             'menus' => $menus,
             'positions' => MenuConstant::POSITIONS,
-            'breadcrumbs' => [['label' => __('app.label.menu'), 'href' => route('menus.index')]],
+            'breadcrumbs' => [
+                ['label' => __('app.label.menus'), 'href' => route('menus.index')]
+            ],
         ]);
     }
 
@@ -109,7 +111,7 @@ class MenuController extends Controller
             'title' => __('app.label.menus'),
             'menus' => $menus,
             'breadcrumbs' => [
-                ['label' => __('app.label.menu'), 'href' => route('menus.index')],
+                ['label' => __('app.label.menus'), 'href' => route('menus.index')],
                 ['label' => __('app.label.trash'), 'href' => route('menus.trash')],
             ],
         ]);

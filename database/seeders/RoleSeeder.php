@@ -23,6 +23,11 @@ class RoleSeeder extends Seeder
             'menu update',
             'menu delete',
 
+            'menu item create',
+            'menu item read',
+            'menu item update',
+            'menu item delete',
+
             'user create',
             'user read',
             'user update',

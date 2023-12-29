@@ -6,15 +6,12 @@ import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
-import { Link } from "@inertiajs/vue3";
 
 import {
     MagnifyingGlassIcon,
-    PencilIcon,
-    Bars4Icon,
 } from "@heroicons/vue/24/outline";
 
-const items = inject('published');
+const items = inject('unpublished');
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -61,11 +58,8 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Link v-if="can(['menu item create'])" :href="route('menu.items.index', { menu: item.id })" class="inline-flex items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
-                    <Bars4Icon class="w-4 h-auto" />
-                </Link>
-                <Edit v-if="can(['menu update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-if="can(['menu delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['menu update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['menu delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>
