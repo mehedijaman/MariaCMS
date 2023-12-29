@@ -14,6 +14,7 @@ import Breadcrumb from "../Layouts/Authenticated/Breadcrumb.vue";
 const props = defineProps({
     title: String,
     setting: Object,
+    breadcrumbs:Object,
 });
 
 const form = useForm({

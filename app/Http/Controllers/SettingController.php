@@ -18,6 +18,9 @@ class SettingController extends Controller
         return Inertia::render('Setting', [
             'title' => __('app.label.setting'),
             'setting' => Setting::first(),
+            'breadcrumbs' => [
+                ['label' => __('app.label.setting'), 'href' => route('setting.index')],
+            ],
         ]);
     }
 

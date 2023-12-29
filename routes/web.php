@@ -39,8 +39,6 @@ Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::get('blog/{slug?}', [WebsiteController::class, 'blog'])->name('blog');
 Route::get('/{slug?}', [WebsiteController::class, 'index'])->name('index');
 
-
-
 Route::get('/set-locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
 
@@ -52,8 +50,8 @@ Route::prefix('cp')->middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    /** Dashboard Routes */
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('comments', CommentController::class);
 
     /** Menus Routes */
     Route::get('menus/trash', [MenuController::class, 'trash'])->name('menus.trash');
@@ -64,6 +62,9 @@ Route::prefix('cp')->middleware([
     Route::post('menus/{menu}/restore', [MenuController::class, 'restore'])->name('menus.restore');
     Route::post('menus/restore/bulk', [MenuController::class, 'restoreBulk'])->name('menus.restore.bulk');
     Route::post('menus/restore/all', [MenuController::class, 'restoreAll'])->name('menus.restore.all');
+    /** Menu Items Routes */
+    Route::delete('menus/{menu}/items/{item}/destroy/force', [MenuItemController::class, 'destroyForce'])->name('menu.items.destroy.force');
+    Route::delete('menus/{menu}/items/destroy/force/bulk', [MenuItemController::class, 'destroyForceBulk'])->name('menu.items.destroy.force.bulk');
     Route::resource('menus/{menu}/items', MenuItemController::class)
         ->names([
             'index' => 'menu.items.index',
@@ -72,7 +73,6 @@ Route::prefix('cp')->middleware([
             'show' => 'menu.items.show',
             'edit' => 'menu.items.edit',
             'update' => 'menu.items.update',
-            'destroy' => 'menu.items.destroy',
         ]);
     Route::resource('menus', MenuController::class);
 
@@ -165,6 +165,9 @@ Route::prefix('cp')->middleware([
     Route::post('posts/restore/all', [PostController::class, 'restoreAll'])->name('posts.restore.all');
     Route::resource('posts', PostController::class);
 
+    /** Comments Routes */
+    Route::resource('comments', CommentController::class);
+
     /** Users Routes */
     Route::group(['prefix' => 'user'], function(){
         Route::resource('/', UserController::class)
@@ -188,6 +191,6 @@ Route::prefix('cp')->middleware([
     });
 
 
-
+    /** Setting Routes */
     Route::resource('setting', SettingController::class)->except('create', 'store', 'show', 'edit', 'destory');
 });
