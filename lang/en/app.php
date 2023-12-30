@@ -214,6 +214,8 @@ return [
         'allow_comment' => 'Allow Comment',
         'is_featured' => 'Is Featured',
         'trash' => 'Trash',
+        'url' => 'URL',
+        'target' => 'Target',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

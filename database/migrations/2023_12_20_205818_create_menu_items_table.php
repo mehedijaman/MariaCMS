@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
             $table->unsignedBigInteger('parent')->nullable();
+            $table->string('order')->nullable();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable();
+            $table->string('url')->nullable();
             $table->string('type')->nullable();
             $table->string('target')->nullable();
             $table->boolean('status')->default(true)->nullable();

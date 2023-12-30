@@ -10,4 +10,14 @@ class MenuItem extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'menu_id',
+        'parent',
+        'order',
+        'name',
+        'slug',
+        'url',
+        'type',
+    ];
 }

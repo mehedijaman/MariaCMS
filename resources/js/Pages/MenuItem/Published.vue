@@ -1,8 +1,7 @@
 <script setup>
-import Create from "@/Pages/Menu/Create.vue";
-import Edit from "@/Pages/Menu/Edit.vue";
-import Delete from "@/Pages/Menu/Delete.vue";
-import DeleteBulk from "@/Pages/Menu/DeleteBulk.vue";
+import Edit from "@/Pages/MenuItem/Edit.vue";
+import Delete from "@/Pages/MenuItem/Delete.vue";
+import DeleteBulk from "@/Pages/MenuItem/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
@@ -32,7 +31,7 @@ const headers = [
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['menu create'])" />
+
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['menu delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
