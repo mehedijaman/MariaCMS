@@ -6,6 +6,8 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Setting;
+use App\Models\Category;
 
 class WebsiteController extends Controller
 {
@@ -29,18 +31,21 @@ class WebsiteController extends Controller
 
     public function contact()
     {
+        // $setting = Setting::first();
         return Inertia::render('Website/Contact', [
-            'title' => 'Contact',
+            'title' => __('app.label.contact'),
         ]);
     }
 
-    public function blog($slug = null)
+    public function blogPosts($slug = null)
     {
+        $categories = Category::where('status', true)->get();
         if(is_null($slug))
         {
-            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(10);
+            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(1);
             return Inertia::render('Website/Blog/Posts', [
                 'title' => 'Blog',
+                'categories' => $categories,
                 'posts' => $posts
             ]);
         }
@@ -50,4 +55,18 @@ class WebsiteController extends Controller
             'post' => $post,
         ]);
     }
+
+    public function blogCategoryPosts($slug)
+    {
+        $categories = Category::where('status', true)->get();
+        $category = Category::where('slug', $slug)->where('status', true)->firstOrFail();
+        $posts = Post::where('category_id', $category->id)->where('status', true)->orderBy('created_at', 'desc')->paginate(1);
+        return Inertia::render('Website/Blog/Posts', [
+            'title' => $category->name,
+            'category' => $category,
+            'categories' => $categories,
+            'posts' => $posts
+        ]);
+    }
+
 }

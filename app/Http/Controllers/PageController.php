@@ -59,8 +59,7 @@ class PageController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
-            return back()
-                ->with('page', $page)
+            return redirect()->route('pages.edit', ['page' => $page->id])
                 ->with('success', __('app.label.created_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
 

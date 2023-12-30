@@ -192,7 +192,10 @@ return [
         'address' => 'Address',
         'google_map' => 'Google Map',
         'contact_no' => 'Contact No',
+        'contact' => 'Contact',
+        'contact_us' => 'Contact Us',
         'email' => 'Email',
+        'subject' => 'Subject',
         'facebook' => 'Facebook',
         'twitter' => 'Twitter',
         'instagram' => 'Instagram',
@@ -216,6 +219,7 @@ return [
         'trash' => 'Trash',
         'url' => 'URL',
         'target' => 'Target',
+        'message' => 'Message',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

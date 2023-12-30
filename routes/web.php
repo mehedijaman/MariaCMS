@@ -33,7 +33,8 @@ use App\Http\Controllers\TestimonialController;
 */
 
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
-Route::get('blog/{slug?}', [WebsiteController::class, 'blog'])->name('blog');
+Route::get('blog/{slug?}', [WebsiteController::class, 'blogPosts'])->name('blog.posts');
+Route::get('blog/category/{slug?}', [WebsiteController::class, 'blogCategoryPosts'])->name('blog.category.posts');
 Route::get('/{slug?}', [WebsiteController::class, 'index'])->name('index');
 
 Route::get('/set-locale/{locale}', function ($locale) {

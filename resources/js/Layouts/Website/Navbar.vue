@@ -85,7 +85,7 @@ onMounted(() => {
                     v-bind:class="
                         route().current('blog') ? 'font-bold text-primary' : ''
                     "
-                    :href="route('blog')"
+                    :href="route('blog.posts')"
                     :label="lang().label.blog"
                 />
                 <NavbarLink

@@ -19,10 +19,15 @@ class Post extends Model
         'password',
         'hit_count',
         'is_featured',
+        'allow_comment',
         'is_featured',
         'status',
         'meta_title',
         'meta_description',
         'meta_keywords',
     ];
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
 }

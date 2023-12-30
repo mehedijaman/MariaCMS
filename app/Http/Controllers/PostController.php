@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Post\IndexPostRequest;
 use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 
 class PostController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index(IndexPostRequest $request)
@@ -30,10 +32,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $posts = Post::all();
+        $categories = Category::all();
         return Inertia::render('Post/Create', [
-            'posts' => $posts,
             'title' => __('app.label.posts'),
+            'categories' => $categories,
             'breadcrumbs' => [
                 ['label' => __('app.label.posts'), 'href' => route('posts.index')],
                 ['label' => __('app.label.create'), 'href' => route('posts.create')],
@@ -46,6 +48,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        DB::beginTransaction();
         try {
             $post = Post::create([
                 'name' => $request->name,
@@ -60,12 +63,25 @@ class PostController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
-            return back()
-                ->with('page', $post)
+
+            // Conditionally set the excerpt
+            if ($request->excerpt) {
+                $post->excerpt = $request->excerpt;
+            } else {
+                // If $request->excerpt is not present, use the first 20 words from $request->content
+                $post->excerpt = implode(' ', array_slice(str_word_count(strip_tags($request->content), 1), 0, 20));
+            }
+
+            $post->save();
+
+            $post->categories()->sync($request->categories);
+
+            DB::commit();
+            return redirect()->route('posts.edit', ['post' => $post->id])
                 ->with('success', __('app.label.created_successfully', ['name' => $post->name]));
         } catch (\Throwable $th) {
-
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.post')]).$th->getMessage());
+            DB::rollBack();
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.post')]) . $th->getMessage());
         }
     }
 
@@ -86,9 +102,14 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $categories = Category::all();
+
+        $postCategories = $post->categories->pluck('id')->toArray();
         return Inertia::render('Post/Edit', [
             'title' => __('app.label.posts'),
             'post' => $post,
+            'categories' => $categories,
+            'postCategories' => $postCategories,
             'breadcrumbs' => [
                 ['label' => __('app.label.posts'), 'href' => route('posts.index')],
                 ['label' => __('app.label.edit'), 'href' => route('posts.edit', ['post' => $post->id])],
@@ -101,6 +122,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        DB::beginTransaction();
         try {
             $post->update([
                 'name' => $request->name,
@@ -115,10 +137,13 @@ class PostController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
+
+            $post->categories()->sync($request->categories);
+            DB::commit();
             return back()->with('success', __('app.label.updated_successfully', ['name' => $post->name]));
         } catch (\Throwable $th) {
-            return $th->getMessage();
-            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.post')]).$th->getMessage());
+            DB::rollBack();
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.post')]) . $th->getMessage());
         }
     }
 
@@ -152,7 +177,7 @@ class PostController extends Controller
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $post->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -161,9 +186,9 @@ class PostController extends Controller
             $posts = Post::whereIn('id', $request->id);
             $posts->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.posts')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.posts')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.posts')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.posts')]) . $th->getMessage());
         }
     }
 
@@ -173,9 +198,9 @@ class PostController extends Controller
             $posts = Post::whereIn('id', $request->id)->onlyTrashed();
             $posts->forceDelete();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.post')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.post')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.post')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.post')]) . $th->getMessage());
         }
     }
 
@@ -186,9 +211,9 @@ class PostController extends Controller
             $count = count($posts);
             $posts->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.posts')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count . ' ' . __('app.label.posts')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.posts')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count . ' ' . __('app.label.posts')]) . $th->getMessage());
         }
     }
 
@@ -208,9 +233,9 @@ class PostController extends Controller
             $posts = Post::whereIn('id', $request->id)->onlyTrashed();
             $posts->restore();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.post')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.post')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.post')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.post')]) . $th->getMessage());
         }
     }
 
@@ -222,7 +247,7 @@ class PostController extends Controller
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.post')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', [__('app.label.post')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', [__('app.label.post')]) . $th->getMessage());
         }
     }
 }
