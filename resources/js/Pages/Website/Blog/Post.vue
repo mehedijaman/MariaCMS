@@ -1,18 +1,15 @@
 <script setup>
-import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
+import BlogLayout from "./BlogLayout.vue";
 
 const props = defineProps({
     post: Object,
+    categories: Object,
 });
 </script>
 <template>
-    <WebsiteLayout :title="props.post.name">
-        <RouterLink to="/" type="button"
-            class="mb-2 px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Back to List</RouterLink>
-        <div class="w-full bg-gray-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <BlogLayout :categories="props.categories" :title="props.post.name">
+
+        <div class="w-full bg-gray-50 border border-gray-200 rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
                 <!-- <img class="h-[400px] w-full"
                     src="https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
@@ -32,4 +29,5 @@ const props = defineProps({
 
             </div>
         </div>
-</WebsiteLayout></template>
+    </BlogLayout>
+</template>

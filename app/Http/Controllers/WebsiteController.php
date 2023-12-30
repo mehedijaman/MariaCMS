@@ -42,7 +42,7 @@ class WebsiteController extends Controller
         $categories = Category::where('status', true)->get();
         if(is_null($slug))
         {
-            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(1);
+            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(10);
             return Inertia::render('Website/Blog/Posts', [
                 'title' => 'Blog',
                 'categories' => $categories,
@@ -53,6 +53,7 @@ class WebsiteController extends Controller
         $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
         return Inertia::render('Website/Blog/Post', [
             'post' => $post,
+            'categories' => $categories,
         ]);
     }
 
@@ -60,7 +61,7 @@ class WebsiteController extends Controller
     {
         $categories = Category::where('status', true)->get();
         $category = Category::where('slug', $slug)->where('status', true)->firstOrFail();
-        $posts = Post::where('category_id', $category->id)->where('status', true)->orderBy('created_at', 'desc')->paginate(1);
+        $posts = $category->posts()->paginate(10);
         return Inertia::render('Website/Blog/Posts', [
             'title' => $category->name,
             'category' => $category,
