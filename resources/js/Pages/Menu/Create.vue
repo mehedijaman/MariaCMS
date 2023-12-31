@@ -1,5 +1,4 @@
 <script setup>
-import Checkbox from "@/Components/Checkbox.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -48,7 +47,6 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-
 
         <PrimaryButton
             class="flex rounded-none items-center justify-start gap-2"

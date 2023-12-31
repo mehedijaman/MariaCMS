@@ -9,7 +9,7 @@ import { Link } from '@inertiajs/vue3';
 
             <Link :href="route('index')" class="shrink-0 flex w-full justify-center items-center space-x-4">
             <ApplicationLogo class="block h-8 w-auto" />
-            <p class="text-lg font-semibold uppercase tracking-widest">
+            <p class="text-lg font-semibold">
                 {{ $page.props.app.setting.name }}
             </p>
 

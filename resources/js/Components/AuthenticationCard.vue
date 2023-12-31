@@ -22,7 +22,7 @@ onMounted(() => {
                     <div class="flex justify-start items-center space-x-2">
                         <slot name="logo" />
                         <p class="text-slate-600 dark:text-slate-400 text-xl">
-                            {{ $page.props.app.setting.name }}
+                            {{ $page.props.app.setting.short_name }}
                         </p>
                     </div>
                     <div class="flex justify-between items-center gap-1">

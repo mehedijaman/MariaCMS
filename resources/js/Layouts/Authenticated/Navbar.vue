@@ -52,10 +52,10 @@ const logout = () => {
                     <span class="sr-only">Toggle sidebar</span>
                 </button>
 
-                <Link :href="route('dashboard')" class="flex w-full justify-start items-center space-x-4">
+                <Link :href="route('dashboard')" class="flex w-full justify-start items-center space-x-2">
                 <ApplicationLogo class="block h-8 w-auto" />
                 <p class="block text-lg font-bold truncate">
-                    {{ $page.props.app.setting.name }}
+                    {{ $page.props.app.setting.short_name }}
                 </p>
 
                 </Link>

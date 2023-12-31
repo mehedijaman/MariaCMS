@@ -2,6 +2,8 @@
 import { Head } from "@inertiajs/vue3";
 import BackToTop from "@/Components/Website/BackToTop.vue";
 import Toast from "@/Components/Toast.vue";
+import TopBar from "@/Layouts/Website/TopBar.vue";
+import Banner from "@/Layouts/Website/Banner.vue";
 import Navbar from "@/Layouts/Website/Navbar.vue";
 import Footer from "@/Layouts/Website/Footer.vue";
 defineProps({
@@ -25,6 +27,8 @@ onMounted(() => {
             class="flex relative w-full min-h-screen dark:bg-slate-900 text-slate-900 dark:text-slate-200 overflow-x-hidden"
         >
             <div class="w-full">
+                <TopBar></TopBar>
+                <Banner></Banner>
                 <Navbar />
                 <!-- Page Content -->
                 <main class="text-slate-600 dark:text-slate-200">

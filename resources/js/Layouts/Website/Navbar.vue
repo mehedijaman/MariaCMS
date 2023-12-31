@@ -33,10 +33,10 @@ onMounted(() => {
     <header
         v-bind:class="
             data.fixed || data.isOpen
-                ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50'
-                : 'border-none'
+                ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
+                : 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
         "
-        class="w-full fixed text-slate-600 dark:text-slate-200 z-50"
+        class="w-full fixed text-slate-600  dark:text-slate-200 z-50"
     >
         <div
             class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-8 py-2"
@@ -45,13 +45,13 @@ onMounted(() => {
                 <div>
                     <Link
                         :href="route('index')"
-                        class="shrink-0 flex w-full justify-start items-center space-x-4"
+                        class="shrink-0 flex w-full justify-start items-center space-x-2"
                     >
                         <ApplicationLogo class="block h-8 w-auto" />
                         <p
-                            class="text-lg font-semibold uppercase tracking-widest"
+                            class="text-lg font-semibold"
                         >
-                            {{ $page.props.app.setting.name }}
+                            {{ $page.props.app.setting.short_name }}
                         </p>
                     </Link>
                 </div>
