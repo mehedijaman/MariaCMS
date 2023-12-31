@@ -41,7 +41,7 @@ const submit = () => {
 const closeModal = () => {
     show.value = false;
 
-    if (props.update != false) {
+    if (props.update == true) {
         submit();
         form.errors = {};
         form.reset();

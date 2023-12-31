@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Setting;
 use Inertia\Inertia;
+use App\Models\Message;
+use App\Models\Setting;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -35,6 +38,25 @@ class WebsiteController extends Controller
         return Inertia::render('Website/Contact', [
             'title' => __('app.label.contact'),
         ]);
+    }
+
+    public function contactPost(StoreMessageRequest $request)
+    {
+        try {
+            $message = Message::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'ip' => $request->ip,
+            ]);
+            return back()
+                ->with('message', $message)
+                ->with('success', __('app.label.sent_successfully'));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
+        }
     }
 
     public function blogPosts($slug = null)

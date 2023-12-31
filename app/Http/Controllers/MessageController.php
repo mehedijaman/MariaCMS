@@ -53,7 +53,7 @@ class MessageController extends Controller
                 'ip' => $request->ip,
             ]);
             return back()
-                ->with('testimonial', $message)
+                ->with('message', $message)
                 ->with('success', __('app.label.created_successfully', ['name' => $message->name]));
         } catch (\Throwable $th) {
 
@@ -68,7 +68,7 @@ class MessageController extends Controller
     {
         return Inertia::render('Message/Show', [
             'title' => __('app.label.message'),
-            'testimonial' => $message,
+            'message' => $message,
             'breadcrumbs' => [['label' => __('app.label.message'), 'href' => route('messages.index')]],
         ]);
     }
@@ -80,7 +80,7 @@ class MessageController extends Controller
     {
         return Inertia::render('Message/Edit', [
             'title' => __('app.label.message'),
-            'testimonial' => $message,
+            'message' => $message,
             'breadcrumbs' => [['label' => __('app.label.message'), 'href' => route('messages.index')]],
         ]);
     }

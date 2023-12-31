@@ -32,18 +32,23 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/** Website Routes */
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::post('contact', [WebsiteController::class, 'contactPost'])->name('contact.post');
+
 Route::get('blog/{slug?}', [WebsiteController::class, 'blogPosts'])->name('blog.posts');
 Route::get('blog/category/{slug?}', [WebsiteController::class, 'blogCategoryPosts'])->name('blog.category.posts');
 Route::get('/{slug?}', [WebsiteController::class, 'index'])->name('index');
 
+/** Locale Routes */
 Route::get('/set-locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
 
     return back();
 })->name('set-locale');
 
+
+/** Admin Panel Routes */
 Route::prefix('cp')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -75,7 +80,7 @@ Route::prefix('cp')->middleware([
         ]);
     Route::resource('menus', MenuController::class);
 
-    /** tags Routes */
+    /** Tags Routes */
     Route::get('categories/trash', [CategoryController::class, 'trash'])->name('categories.trash');
     Route::delete('categories/destroy/bulk', [CategoryController::class, 'destroyBulk'])->name('categories.destroy.bulk');
     Route::delete('categories/{category}/destroy/force', [CategoryController::class, 'destroyForce'])->name('categories.destroy.force');

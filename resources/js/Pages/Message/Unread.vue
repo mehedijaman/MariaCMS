@@ -56,7 +56,7 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Show v-if="can(['message read'])" :title="item.name" :item="item" />
+                <Show v-if="can(['message read'])" :title="item.name" :item="item" :update="true" />
                 <Edit v-if="can(['message update'])" :title="item.name" :item="item" @open="item = item" />
                 <Delete v-if="can(['message delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
