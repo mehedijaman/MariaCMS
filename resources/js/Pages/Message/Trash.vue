@@ -1,4 +1,5 @@
 <script setup>
+import Show from './Show.vue';
 import DeleteForce from "./DeleteForce.vue";
 import DeleteForceBulk from "./DeleteForceBulk.vue";
 import DeleteForceAll from "./DeleteForceAll.vue";
@@ -51,6 +52,10 @@ const removeItem = (itemId) => {
     }
 };
 
+const updateItem = (id, updatedData) => {
+    // Find the index of the item in the items array
+}
+
 const removeBulkItems = (itemIds) => {
     // Iterate over the array of item IDs
     itemIds.forEach(itemId => {
@@ -70,6 +75,7 @@ const removeAllItems = () => {
     items.splice(0, items.length);
 };
 
+provide('updateItem', updateItem);
 provide('removeItem', removeItem);
 provide('removeBulkItems', removeBulkItems);
 provide('removeAllItems', removeAllItems);
@@ -127,7 +133,7 @@ provide('removeAllItems', removeAllItems);
                         </template>
                         <template #item-actions="item">
                             <div class="flex w-fit rounded overflow-hidden">
-                                <Show v-if="can(['message read'])" :title="item.name" :item="item" @open="item = item" />
+                                <Show v-if="can(['message read'])" :title="item.name" :item="item" @open="item = item" :update="false" />
                                 <Restore v-show="can(['message update'])" :title="item.name" :item="item"
                                     @open="item = item" />
                                 <DeleteForce v-show="can(['message delete'])" :title="item.name" :item="item"

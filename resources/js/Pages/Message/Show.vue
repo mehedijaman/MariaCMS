@@ -18,12 +18,13 @@ const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    item:Object,
+    item: Object,
+    update: Boolean,
 });
 
 const form = useForm({
     id: props.item?.id,
-    status:1,
+    status: 1,
 });
 
 const submit = () => {
@@ -39,17 +40,17 @@ const submit = () => {
 
 const closeModal = () => {
     show.value = false;
-    submit();
-    form.errors = {};
-    form.reset();
+
+    if (props.update != false) {
+        submit();
+        form.errors = {};
+        form.reset();
+    }
 };
 </script>
 <template>
     <div>
-        <ActionButton
-            variant="success"
-            @click.prevent="(show = true), emit('open')"
-        >
+        <ActionButton variant="info" @click.prevent="(show = true), emit('open')">
             <EyeIcon class="w-4 h-auto" />
         </ActionButton>
         <DialogModal :show="show" @close="closeModal" max-width="md">
