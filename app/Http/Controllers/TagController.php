@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
-use App\Http\Requests\UpdateTagRequest;
 use App\Http\Requests\Tag\IndexTagRequest;
 use App\Http\Requests\Tag\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
+use App\Models\Tag;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TagController extends Controller
 {
@@ -31,6 +31,7 @@ class TagController extends Controller
     public function create()
     {
         $tags = Tag::all();
+
         return Inertia::render('Tag/Create', [
             'tags' => $tags,
             'title' => __('app.label.tag'),
@@ -50,6 +51,7 @@ class TagController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('category', $tag)
                 ->with('success', __('app.label.created_successfully', ['name' => $tag->name]));
@@ -95,9 +97,11 @@ class TagController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $tag->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.tag')]).$th->getMessage());
         }
     }
@@ -119,6 +123,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $tag->name]));
     }
 
@@ -129,10 +134,11 @@ class TagController extends Controller
     {
         $tag = Tag::where('id', $tag)->onlyTrashed()->first();
         $tag->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $tag->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -179,6 +185,7 @@ class TagController extends Controller
     {
         $tag = Tag::where('id', $tag)->onlyTrashed()->first();
         $tag->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $tag->name]));
     }
 

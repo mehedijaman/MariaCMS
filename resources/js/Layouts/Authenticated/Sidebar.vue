@@ -17,6 +17,7 @@ import {
     QuestionMarkCircleIcon,
     TagIcon,
     StarIcon,
+    EnvelopeIcon,
 } from "@heroicons/vue/24/solid";
 import { Link } from "@inertiajs/vue3";
 
@@ -185,6 +186,19 @@ function userManagementActive() {
 
                     </Link>
                 </li>
+                <li v-bind:class="(route().current('messages.index') || route().current('messages.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('messages.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <EnvelopeIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">Messages</span>
+
+                    </Link>
+                </li>
 
                 <li v-bind:class="(route().current('testimonials.index') || route().current('testimonials.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
@@ -220,7 +234,9 @@ function userManagementActive() {
                     ? 'bg-gray-200 dark:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700'
                     ">
-                    <button class="flex items-center p-2 w-full font-sans font-semibold text-sm hover:bg-gray-300  text-gray-900 rounded-sm transition duration-75 group dark:text-white  dark:hover:bg-gray-600" type="button" aria-controls="user" data-collapse-toggle="user">
+                    <button
+                        class="flex items-center p-2 w-full font-sans font-semibold text-sm hover:bg-gray-300  text-gray-900 rounded-sm transition duration-75 group dark:text-white  dark:hover:bg-gray-600"
+                        type="button" aria-controls="user" data-collapse-toggle="user">
                         <UserIcon
                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">{{ lang().label.user_management }}</span>
@@ -228,7 +244,7 @@ function userManagementActive() {
                             class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
                         </ChevronDownIcon>
                     </button>
-                    <ul id="user" :class="userManagementActive()? 'space-y-2' : 'hidden space-y-2'">
+                    <ul id="user" :class="userManagementActive() ? 'space-y-2' : 'hidden space-y-2'">
                         <li v-show="can(['user read'])"
                             :class="route().current('user.index') ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-300 dark:hover:bg-gray-700'">
 
@@ -324,7 +340,7 @@ function userManagementActive() {
                     </button>
                     <ul id="application" class="hidden py-2 space-y-2">
 
-                        <li v-show="can(['logs read'])" >
+                        <li v-show="can(['logs read'])">
 
                             <a href="/logs"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700">

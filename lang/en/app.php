@@ -220,6 +220,7 @@ return [
         'url' => 'URL',
         'target' => 'Target',
         'message' => 'Message',
+        'messages' => 'Messages',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

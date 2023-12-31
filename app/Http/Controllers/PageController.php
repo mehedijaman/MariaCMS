@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Requests\Page\IndexPageRequest;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
+use App\Models\Page;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PageController extends Controller
 {
@@ -31,12 +31,13 @@ class PageController extends Controller
     public function create()
     {
         $pages = Page::all();
+
         return Inertia::render('Page/Create', [
             'pages' => $pages,
             'title' => __('app.label.page'),
             'breadcrumbs' => [
                 ['label' => __('app.label.pages'), 'href' => route('pages.index')],
-                ['label' => __('app.label.create'), 'href' => route('pages.create')]
+                ['label' => __('app.label.create'), 'href' => route('pages.create')],
             ],
         ]);
     }
@@ -59,6 +60,7 @@ class PageController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
+
             return redirect()->route('pages.edit', ['page' => $page->id])
                 ->with('success', __('app.label.created_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
@@ -85,13 +87,14 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         $pages = Page::all();
+
         return Inertia::render('Page/Edit', [
             'title' => __('app.label.page'),
             'page' => $page,
             'pages' => $pages,
             'breadcrumbs' => [
                 ['label' => __('app.label.page'), 'href' => route('pages.index')],
-                ['label' => __('app.label.edit'), 'href' => route('pages.edit', ['page' => $page->id])]
+                ['label' => __('app.label.edit'), 'href' => route('pages.edit', ['page' => $page->id])],
             ],
         ]);
     }
@@ -114,9 +117,11 @@ class PageController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.page')]).$th->getMessage());
         }
     }
@@ -141,6 +146,7 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         $page->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $page->name]));
     }
 
@@ -151,10 +157,11 @@ class PageController extends Controller
     {
         $page = Page::where('id', $page)->onlyTrashed()->first();
         $page->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $page->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -201,6 +208,7 @@ class PageController extends Controller
     {
         $page = Page::where('id', $page)->onlyTrashed()->first();
         $page->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $page->name]));
     }
 

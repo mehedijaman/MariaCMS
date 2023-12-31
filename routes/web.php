@@ -1,25 +1,26 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\TagController;
-use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +97,6 @@ Route::prefix('cp')->middleware([
     Route::post('tags/restore/all', [TagController::class, 'restoreAll'])->name('tags.restore.all');
     Route::resource('tags', TagController::class);
 
-
     /** Galleries Routes */
     Route::get('galleries/trash', [GalleryController::class, 'trash'])->name('galleries.trash');
     Route::delete('galleries/destroy/bulk', [GalleryController::class, 'destroyBulk'])->name('galleries.destroy.bulk');
@@ -129,6 +129,17 @@ Route::prefix('cp')->middleware([
     Route::post('sliders/restore/bulk', [SliderController::class, 'restoreBulk'])->name('sliders.restore.bulk');
     Route::post('sliders/restore/all', [SliderController::class, 'restoreAll'])->name('sliders.restore.all');
     Route::resource('sliders', SliderController::class);
+
+    /** Message Routes */
+    Route::get('messages/trash', [MessageController::class, 'trash'])->name('messages.trash');
+    Route::delete('messages/destroy/bulk', [MessageController::class, 'destroyBulk'])->name('messages.destroy.bulk');
+    Route::delete('messages/{slider}/destroy/force', [MessageController::class, 'destroyForce'])->name('messages.destroy.force');
+    Route::delete('messages/destroy/force/bulk', [MessageController::class, 'destroyForceBulk'])->name('messages.destroy.force.bulk');
+    Route::delete('messages/destroy/force/all', [MessageController::class, 'destroyForceAll'])->name('messages.destroy.force.all');
+    Route::post('messages/{slider}/restore', [MessageController::class, 'restore'])->name('messages.restore');
+    Route::post('messages/restore/bulk', [MessageController::class, 'restoreBulk'])->name('messages.restore.bulk');
+    Route::post('messages/restore/all', [MessageController::class, 'restoreAll'])->name('messages.restore.all');
+    Route::resource('messages', MessageController::class);
 
     /** Testimonial Routes */
     Route::get('testimonials/trash', [TestimonialController::class, 'trash'])->name('testimonials.trash');
@@ -167,7 +178,7 @@ Route::prefix('cp')->middleware([
     Route::resource('comments', CommentController::class);
 
     /** Users Routes */
-    Route::group(['prefix' => 'user'], function(){
+    Route::group(['prefix' => 'user'], function () {
         Route::resource('/', UserController::class)
             ->except('create', 'show', 'edit')
             ->names([
@@ -187,7 +198,6 @@ Route::prefix('cp')->middleware([
         Route::resource('activity', ActivityController::class)->except('create', 'show', 'edit', 'store', 'update');
         Route::post('activity/destroy-bulk', [ActivityController::class, 'destroyBulk'])->name('activity.destroy-bulk');
     });
-
 
     /** Setting Routes */
     Route::resource('setting', SettingController::class)->except('create', 'store', 'show', 'edit', 'destory');

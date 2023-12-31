@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Gallery;
-use Illuminate\Http\Request;
 use App\Http\Requests\Gallery\IndexGalleryRequest;
 use App\Http\Requests\Gallery\StoreGalleryRequest;
 use App\Http\Requests\Gallery\UpdateGalleryRequest;
+use App\Models\Gallery;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class GalleryController extends Controller
 {
@@ -31,6 +31,7 @@ class GalleryController extends Controller
     public function create()
     {
         $galleries = Gallery::all();
+
         return Inertia::render('Gallery/Create', [
             'galleries' => $galleries,
             'title' => __('app.label.gallery'),
@@ -50,6 +51,7 @@ class GalleryController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('gallery', $gallery)
                 ->with('success', __('app.label.created_successfully', ['name' => $gallery->name]));
@@ -95,9 +97,11 @@ class GalleryController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $gallery->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.gallery')]).$th->getMessage());
         }
     }
@@ -119,6 +123,7 @@ class GalleryController extends Controller
     public function destroy(Gallery $gallery)
     {
         $gallery->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $gallery->name]));
     }
 
@@ -129,10 +134,11 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::where('id', $gallery)->onlyTrashed()->first();
         $gallery->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $gallery->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -179,6 +185,7 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::where('id', $gallery)->onlyTrashed()->first();
         $gallery->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $gallery->name]));
     }
 

@@ -22,7 +22,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'menu item update', 'guard_name' => 'web']);
         Permission::create(['name' => 'menu item delete', 'guard_name' => 'web']);
 
-
         Permission::create(['name' => 'user create', 'guard_name' => 'web']);
         Permission::create(['name' => 'user read', 'guard_name' => 'web']);
         Permission::create(['name' => 'user update', 'guard_name' => 'web']);
@@ -102,5 +101,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'post read', 'guard_name' => 'web']);
         Permission::create(['name' => 'post update', 'guard_name' => 'web']);
         Permission::create(['name' => 'post delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'message create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'message read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'message update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'message delete', 'guard_name' => 'web']);
     }
 }

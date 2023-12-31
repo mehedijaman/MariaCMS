@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Constants\Menu as MenuConstant;
 use App\Http\Requests\Menu\IndexMenuRequest;
 use App\Http\Requests\Menu\StoreMenuRequest;
 use App\Http\Requests\Menu\UpdateMenuRequest;
+use App\Models\Menu;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MenuController extends Controller
 {
@@ -24,7 +24,7 @@ class MenuController extends Controller
             'menus' => $menus,
             'positions' => MenuConstant::POSITIONS,
             'breadcrumbs' => [
-                ['label' => __('app.label.menus'), 'href' => route('menus.index')]
+                ['label' => __('app.label.menus'), 'href' => route('menus.index')],
             ],
         ]);
     }
@@ -52,6 +52,7 @@ class MenuController extends Controller
                 'position' => $request->position,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('menu', $menu)
                 ->with('success', __('app.label.created_successfully', ['name' => $menu->name]));
@@ -97,6 +98,7 @@ class MenuController extends Controller
                 'position' => $request->position,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $menu->name]));
         } catch (\Throwable $th) {
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.menu')]).$th->getMessage());
@@ -123,6 +125,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
     }
 
@@ -133,10 +136,11 @@ class MenuController extends Controller
     {
         $menu = Menu::where('id', $menu)->onlyTrashed()->first();
         $menu->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -183,6 +187,7 @@ class MenuController extends Controller
     {
         $menu = Menu::where('id', $menu)->onlyTrashed()->first();
         $menu->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $menu->name]));
     }
 

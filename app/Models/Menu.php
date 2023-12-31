@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\MenuItem;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Requests\Category\IndexCategoryRequest;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
@@ -31,6 +31,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return Inertia::render('Category/Create', [
             'categories' => $categories,
             'title' => __('app.label.category'),
@@ -51,6 +52,7 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('category', $category)
                 ->with('success', __('app.label.created_successfully', ['name' => $category->name]));
@@ -97,9 +99,11 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $category->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.category')]).$th->getMessage());
         }
     }
@@ -121,6 +125,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $category->name]));
     }
 
@@ -131,10 +136,11 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $category)->onlyTrashed()->first();
         $category->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $category->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -181,6 +187,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $category)->onlyTrashed()->first();
         $category->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $category->name]));
     }
 

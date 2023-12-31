@@ -97,7 +97,7 @@ provide('updateItem', updateItem);
                                     data-tabs-target="#published" type="button" role="tab" aria-controls="published"
                                     aria-selected="false">
                                     <BookOpenIcon
-                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                        class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BookOpenIcon>
                                     Published
                                 </button>
@@ -108,7 +108,7 @@ provide('updateItem', updateItem);
                                     id="unpublished-tab" data-tabs-target="#unpublished" type="button" role="tab"
                                     aria-controls="unpublished" aria-selected="false">
                                     <BookmarkSlashIcon
-                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                        class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BookmarkSlashIcon>
                                     Unpublished
                                 </button>
@@ -119,7 +119,7 @@ provide('updateItem', updateItem);
                                     id="draft-tab" data-tabs-target="#draft" type="button" role="tab" aria-controls="draft"
                                     aria-selected="false">
                                     <BriefcaseIcon
-                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                        class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BriefcaseIcon>
                                     Draft
                                 </button>
@@ -130,7 +130,7 @@ provide('updateItem', updateItem);
                                     class="inline-flex gap-2 p-4 border-none rounded-t-lg text-gray-400 hover:text-gray-600 group-hover:text-gray-600  hover:border-gray-300 dark:hover:text-gray-300"
                                     type="button">
                                     <TrashIcon
-                                        class="w-5 h-5 me-2 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                        class="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </TrashIcon>
                                     Trash
                                 </Link>

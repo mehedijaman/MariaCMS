@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faq;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Requests\Faq\IndexFaqRequest;
 use App\Http\Requests\Faq\StoreFaqRequest;
 use App\Http\Requests\Faq\UpdateFaqRequest;
+use App\Models\Faq;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FaqController extends Controller
 {
@@ -31,6 +31,7 @@ class FaqController extends Controller
     public function create()
     {
         $faqs = Faq::all();
+
         return Inertia::render('Faq/Create', [
             'faqs' => $faqs,
             'title' => __('app.label.faq'),
@@ -49,6 +50,7 @@ class FaqController extends Controller
                 'answer' => $request->answer,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('faq', $faq)
                 ->with('success', __('app.label.created_successfully', ['name' => $faq->name]));
@@ -93,9 +95,11 @@ class FaqController extends Controller
                 'answer' => $request->answer,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $faq->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.faq')]).$th->getMessage());
         }
     }
@@ -117,6 +121,7 @@ class FaqController extends Controller
     public function destroy(Faq $faq)
     {
         $faq->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $faq->name]));
     }
 
@@ -127,10 +132,11 @@ class FaqController extends Controller
     {
         $faq = Faq::where('id', $faq)->onlyTrashed()->first();
         $faq->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $faq->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -177,6 +183,7 @@ class FaqController extends Controller
     {
         $faq = Faq::where('id', $faq)->onlyTrashed()->first();
         $faq->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $faq->name]));
     }
 

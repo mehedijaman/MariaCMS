@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMenuItemRequest;
+use App\Http\Requests\UpdateMenuItemRequest;
+use App\Models\Category;
 use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Page;
 use App\Models\Post;
 use Inertia\Inertia;
-use App\Models\Category;
-use App\Models\MenuItem;
-use App\Http\Requests\StoreMenuItemRequest;
-use App\Http\Requests\UpdateMenuItemRequest;
 
 class MenuItemController extends Controller
 {
@@ -22,6 +22,7 @@ class MenuItemController extends Controller
         $categories = Category::all();
         $posts = Post::all();
         $items = MenuItem::where('menu_id', $menu->id)->get();
+
         return Inertia::render('MenuItem/Index', [
             'title' => __('app.label.menu_items'),
             'menu' => $menu,
@@ -31,7 +32,7 @@ class MenuItemController extends Controller
             'breadcrumbs' => [
                 ['label' => __('app.label.menus'), 'href' => route('menus.index')],
                 ['label' => $menu->name, 'href' => route('menu.items.index', ['menu' => $menu->id])],
-            ]
+            ],
         ]);
     }
 
@@ -60,6 +61,7 @@ class MenuItemController extends Controller
                 'target' => $request->target,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('item', $item)
                 ->with('success', __('app.label.created_successfully', ['name' => $item->name]));

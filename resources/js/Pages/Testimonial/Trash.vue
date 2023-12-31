@@ -95,9 +95,9 @@ provide('removeAllItems', removeAllItems);
                             </Link>
                             <RestoreAll></RestoreAll>
                             <DeleteForceAll></DeleteForceAll>
-                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])"
+                            <RestoreBulk v-if="itemsSelected.length != 0 && can(['message delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
-                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])"
+                            <DeleteForceBulk v-if="itemsSelected.length != 0 && can(['message delete'])"
                                 :itemsSelected="itemsSelected" title="Items" />
                         </div>
                         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -127,9 +127,9 @@ provide('removeAllItems', removeAllItems);
                         </template>
                         <template #item-actions="item">
                             <div class="flex w-fit rounded overflow-hidden">
-                                <Restore v-show="can(['gallery update'])" :title="item.name" :item="item"
+                                <Restore v-show="can(['message update'])" :title="item.name" :item="item"
                                     @open="item = item" />
-                                <DeleteForce v-show="can(['gallery delete'])" :title="item.name" :item="item"
+                                <DeleteForce v-show="can(['message delete'])" :title="item.name" :item="item"
                                     @open="item = item" />
                             </div>
                         </template>

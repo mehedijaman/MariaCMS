@@ -14,7 +14,7 @@ return [
         'remember_me' => 'আমাকে মনে রাখুন',
         'forgot_your_password' => 'পাসওয়ার্ড ভুলে গেছেন?',
         'register' => 'রেজিস্টার',
-        'register_caption' => "আমাদের সিস্টেমে রেজিস্টার করুন।",
+        'register_caption' => 'আমাদের সিস্টেমে রেজিস্টার করুন।',
         'build_with' => 'Built with',
         'by' => 'by',
         'welcome' => 'স্বাগতম',

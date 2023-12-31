@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PostPolicy
 {
@@ -21,7 +20,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return  true;
+        return true;
     }
 
     /**
@@ -53,7 +52,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        return  true;
+        return true;
     }
 
     /**

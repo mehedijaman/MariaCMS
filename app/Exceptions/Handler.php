@@ -2,10 +2,8 @@
 
 namespace App\Exceptions;
 
-use Throwable;
-use Inertia\Inertia;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {

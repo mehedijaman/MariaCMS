@@ -46,7 +46,7 @@ return [
 
     'back_to_system_url' => env('LOG_VIEWER_BACK_URL', config('app.url', null)),
 
-    'back_to_system_label' => "Back to Dashboard", // Displayed by default: "Back to {{ app.name }}"
+    'back_to_system_label' => 'Back to Dashboard', // Displayed by default: "Back to {{ app.name }}"
 
     /*
     |--------------------------------------------------------------------------

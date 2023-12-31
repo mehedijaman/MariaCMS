@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Slider;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class SliderPolicy
 {
@@ -29,7 +28,7 @@ class SliderPolicy
      */
     public function create(User $user): bool
     {
-        return  true;
+        return true;
     }
 
     /**

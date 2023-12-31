@@ -27,7 +27,8 @@ class Post extends Model
         'meta_keywords',
     ];
 
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
 }

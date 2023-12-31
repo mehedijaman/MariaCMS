@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use Inertia\Inertia;
-use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

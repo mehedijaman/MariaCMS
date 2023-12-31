@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Testimonial;
-use Illuminate\Http\Request;
 use App\Http\Requests\Testimonial\IndexTestimonialRequest;
 use App\Http\Requests\Testimonial\StoreTestimonialRequest;
 use App\Http\Requests\Testimonial\UpdateTestimonialRequest;
+use App\Models\Testimonial;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TestimonialController extends Controller
 {
@@ -31,6 +31,7 @@ class TestimonialController extends Controller
     public function create()
     {
         $testimonials = Testimonial::all();
+
         return Inertia::render('Testimonial/Create', [
             'testimonials' => $testimonials,
             'title' => __('app.label.testimonial'),
@@ -52,6 +53,7 @@ class TestimonialController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('testimonial', $testimonial)
                 ->with('success', __('app.label.created_successfully', ['name' => $testimonial->name]));
@@ -99,9 +101,11 @@ class TestimonialController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $testimonial->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.testimonial')]).$th->getMessage());
         }
     }
@@ -123,6 +127,7 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonial)
     {
         $testimonial->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $testimonial->name]));
     }
 
@@ -133,10 +138,11 @@ class TestimonialController extends Controller
     {
         $testimonial = Testimonial::where('id', $testimonial)->onlyTrashed()->first();
         $testimonial->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $testimonial->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -183,6 +189,7 @@ class TestimonialController extends Controller
     {
         $testimonial = Testimonial::where('id', $testimonial)->onlyTrashed()->first();
         $testimonial->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $testimonial->name]));
     }
 

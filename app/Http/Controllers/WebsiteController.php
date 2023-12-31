@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
-use Inertia\Inertia;
 use App\Models\Setting;
-use App\Models\Category;
+use Inertia\Inertia;
 
 class WebsiteController extends Controller
 {
@@ -15,14 +15,14 @@ class WebsiteController extends Controller
     {
         $menus = Menu::where('status', true)->get();
 
-        if(is_null($slug))
-        {
+        if (is_null($slug)) {
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
             ]);
         }
 
         $page = Page::where('slug', $slug)->where('status', true)->firstOrFail();
+
         return Inertia::render('Website/Page', [
             'page' => $page,
         ]);
@@ -40,17 +40,18 @@ class WebsiteController extends Controller
     public function blogPosts($slug = null)
     {
         $categories = Category::where('status', true)->get();
-        if(is_null($slug))
-        {
+        if (is_null($slug)) {
             $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(10);
+
             return Inertia::render('Website/Blog/Posts', [
                 'title' => 'Blog',
                 'categories' => $categories,
-                'posts' => $posts
+                'posts' => $posts,
             ]);
         }
 
         $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
+
         return Inertia::render('Website/Blog/Post', [
             'post' => $post,
             'categories' => $categories,
@@ -62,12 +63,12 @@ class WebsiteController extends Controller
         $categories = Category::where('status', true)->get();
         $category = Category::where('slug', $slug)->where('status', true)->firstOrFail();
         $posts = $category->posts()->paginate(10);
+
         return Inertia::render('Website/Blog/Posts', [
             'title' => $category->name,
             'category' => $category,
             'categories' => $categories,
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
-
 }

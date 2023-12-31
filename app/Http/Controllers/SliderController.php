@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Slider;
-use Illuminate\Http\Request;
 use App\Http\Requests\Slider\IndexSliderRequest;
 use App\Http\Requests\Slider\StoreSliderRequest;
 use App\Http\Requests\Slider\UpdateSliderRequest;
+use App\Models\Slider;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SliderController extends Controller
 {
@@ -31,6 +31,7 @@ class SliderController extends Controller
     public function create()
     {
         $sliders = Slider::all();
+
         return Inertia::render('Slider/Create', [
             'sliders' => $sliders,
             'title' => __('app.label.slider'),
@@ -50,6 +51,7 @@ class SliderController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()
                 ->with('slider', $slider)
                 ->with('success', __('app.label.created_successfully', ['name' => $slider->name]));
@@ -95,9 +97,11 @@ class SliderController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $slider->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
+
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.slider')]).$th->getMessage());
         }
     }
@@ -119,6 +123,7 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         $slider->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $slider->name]));
     }
 
@@ -129,10 +134,11 @@ class SliderController extends Controller
     {
         $slider = Slider::where('id', $slider)->onlyTrashed()->first();
         $slider->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $slider->name]));
     }
 
-     /**
+    /**
      * Remove the specified resources from storage.
      */
     public function destroyBulk(Request $request)
@@ -179,6 +185,7 @@ class SliderController extends Controller
     {
         $slider = Slider::where('id', $slider)->onlyTrashed()->first();
         $slider->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $slider->name]));
     }
 
