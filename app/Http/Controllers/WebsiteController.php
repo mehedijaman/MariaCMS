@@ -11,6 +11,7 @@ use App\Models\Setting;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Message\StoreMessageRequest;
+use Spatie\Honeypot\Honeypot;
 
 class WebsiteController extends Controller
 {
@@ -32,10 +33,11 @@ class WebsiteController extends Controller
 
     }
 
-    public function contact()
+    public function contact(Honeypot $honeypot)
     {
         // $setting = Setting::first();
         return Inertia::render('Website/Contact', [
+            'honeypot' => $honeypot,
             'title' => __('app.label.contact'),
         ]);
     }

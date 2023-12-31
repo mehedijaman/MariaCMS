@@ -13,6 +13,7 @@ import {
 
 const props = defineProps({
     title: String,
+    honeypot: Object,
 });
 
 const form = useForm({
@@ -21,7 +22,10 @@ const form = useForm({
     phone: null,
     subject: null,
     message: null,
+    [props.honeypot.nameFieldName]: null,
+    [props.honeypot.validFromFieldName]: props.honeypot.encryptedValidFrom,
 });
+
 
 const submit = () => {
     form.post(route("contact.post"), {
@@ -67,12 +71,25 @@ const submit = () => {
                             </div>
 
                         </div>
-                        <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full p-4 mt-8 md:mt-0 rounded-md dark:bg-slate-800 dark:text-white dark:border-slate-700">
-                            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font dark:text-white">{{ lang().label.contact_us }}
+                        <div
+                            class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full p-4 mt-8 md:mt-0 rounded-md dark:bg-slate-800 dark:text-white dark:border-slate-700">
+                            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font dark:text-white">{{
+                                lang().label.contact_us }}
                             </h2>
-                            <p class="leading-relaxed mb-5 text-gray-600 dark:text-gray-400">Reach us to our address or simply submit the
+                            <p class="leading-relaxed mb-5 text-gray-600 dark:text-gray-400">Reach us to our address or
+                                simply submit the
                                 form below</p>
                             <form class="space-y-2" @submit.prevent="submit">
+                                <!-- Honeypot -->
+                                <div class="hidden" v-if="props.honeypot.enabled" :name="`${props.honeypot.nameFieldName}_wrap`">
+                                    <input type="text" v-model="form[props.honeypot.nameFieldName]"
+                                        :name="props.honeypot.nameFieldName" :id="props.honeypot.nameFieldName" />
+                                    <input type="text" v-model="form[props.honeypot.validFromFieldName]"
+                                        :name="props.honeypot.validFromFieldName" />
+                                </div>
+
+                                <!-- /Honeypot -->
+
                                 <div class="space-y-1">
                                     <InputLabel for="name" :value="lang().label.name" />
                                     <TextInput id="name" v-model="form.name" type="text" class="block w-full"
@@ -107,9 +124,8 @@ const submit = () => {
 
                                 <div class="space-y-1">
                                     <InputLabel for="message" :value="lang().label.message" />
-                                    <TextAreaInput id="message" rows="4" v-model="form.message"
-                                        class="block w-full" :placeholder="lang().placeholder.message"
-                                        :error="form.errors.message" />
+                                    <TextAreaInput id="message" rows="4" v-model="form.message" class="block w-full"
+                                        :placeholder="lang().placeholder.message" :error="form.errors.message" />
                                     <InputError :message="form.errors.message" />
                                 </div>
                                 <div class="space-y-1">
@@ -125,5 +141,4 @@ const submit = () => {
                 </section>
             </div>
         </section>
-    </WebsiteLayout>
-</template>
+    </WebsiteLayout></template>
