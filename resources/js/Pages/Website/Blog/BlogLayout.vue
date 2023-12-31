@@ -15,13 +15,15 @@ const props = defineProps({
                 <h1 class="text-4xl mb-4 text-center font-semibold tracking-tight leading-none md:text-5xl xl:text-6xl">{{
                     props.title }}
                 </h1>
-                <div class="grid grid-cols-4 gap-4">
+                <div class="grid grid-cols-4 gap-4 relative">
                     <div class="col-span-3">
-                        <slot/>
+                        <slot />
                     </div>
-                    <div class="col-span-1 border-[1px] border-slate-400">
+                    <div class="col-span-1 border-[1px] border-slate-400 h-fit">
                         <div class="text-2xl font-bold p-2 border-b-2 border-slate-300 bg-slate-200">Categories</div>
-                        <Categories :categories="props.categories"></Categories>
+                        <div class="overflow-auto">
+                            <Categories :categories="props.categories"></Categories>
+                        </div>
                     </div>
                 </div>
             </div>

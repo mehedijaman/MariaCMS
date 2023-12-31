@@ -8,7 +8,6 @@ const props = defineProps({
 </script>
 <template>
     <BlogLayout :categories="props.categories" :title="props.post.name">
-
         <div class="w-full bg-gray-50 border border-gray-200 rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
                 <!-- <img class="h-[400px] w-full"
