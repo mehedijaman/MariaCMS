@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Message;
-use Illuminate\Http\Request;
 use App\Http\Requests\Message\IndexMessageRequest;
 use App\Http\Requests\Message\StoreMessageRequest;
 use App\Http\Requests\Message\UpdateMessageRequest;
+use App\Models\Message;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MessageController extends Controller
 {
@@ -31,6 +31,7 @@ class MessageController extends Controller
     public function create()
     {
         $messages = Message::all();
+
         return Inertia::render('Message/Create', [
             'messages' => $messages,
             'title' => __('app.label.message'),
@@ -52,12 +53,13 @@ class MessageController extends Controller
                 'message' => $request->message,
                 'ip' => $request->ip,
             ]);
+
             return back()
                 ->with('message', $message)
                 ->with('success', __('app.label.created_successfully', ['name' => $message->name]));
         } catch (\Throwable $th) {
 
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.message')]) . $th->getMessage());
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.message')]).$th->getMessage());
         }
     }
 
@@ -94,10 +96,12 @@ class MessageController extends Controller
             $message->update([
                 'status' => $request->status,
             ]);
+
             return back()->with('success', __('app.label.updated_successfully', ['name' => $message->name]));
         } catch (\Throwable $th) {
             return $th->getMessage();
-            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.message')]) . $th->getMessage());
+
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.message')]).$th->getMessage());
         }
     }
 
@@ -118,6 +122,7 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         $message->delete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $message->name]));
     }
 
@@ -128,6 +133,7 @@ class MessageController extends Controller
     {
         $message = Message::where('id', $message)->onlyTrashed()->first();
         $message->forceDelete();
+
         return back()->with('success', __('app.label.deleted_successfully', ['name' => $message->name]));
     }
 
@@ -140,9 +146,9 @@ class MessageController extends Controller
             $messages = Message::whereIn('id', $request->id);
             $messages->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.messages')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.messages')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.messages')]) . $th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.messages')]).$th->getMessage());
         }
     }
 
@@ -152,9 +158,9 @@ class MessageController extends Controller
             $messages = Message::whereIn('id', $request->id)->onlyTrashed();
             $messages->forceDelete();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.message')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.message')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.message')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.message')]).$th->getMessage());
         }
     }
 
@@ -165,9 +171,9 @@ class MessageController extends Controller
             $count = count($messages);
             $messages->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count . ' ' . __('app.label.messages')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.messages')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count . ' ' . __('app.label.messages')]) . $th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.messages')]).$th->getMessage());
         }
     }
 
@@ -178,6 +184,7 @@ class MessageController extends Controller
     {
         $message = Message::where('id', $message)->onlyTrashed()->first();
         $message->restore();
+
         return back()->with('success', __('app.label.restored_successfully', ['name' => $message->name]));
     }
 
@@ -187,9 +194,9 @@ class MessageController extends Controller
             $messages = Message::whereIn('id', $request->id)->onlyTrashed();
             $messages->restore();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.message')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.message')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.message')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.message')]).$th->getMessage());
         }
     }
 
@@ -201,7 +208,7 @@ class MessageController extends Controller
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.message')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', [__('app.label.message')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', [__('app.label.message')]).$th->getMessage());
         }
     }
 }

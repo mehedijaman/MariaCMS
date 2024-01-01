@@ -1,18 +1,16 @@
 <script setup>
-import Create from "@/Pages/Slider/Create.vue";
-import Edit from "@/Pages/Slider/Edit.vue";
-import Delete from "@/Pages/Slider/Delete.vue";
-import DeleteBulk from "@/Pages/Slider/DeleteBulk.vue";
+import Create from "@/Pages/SliderItem/Create.vue";
+import Edit from "@/Pages/SliderItem/Edit.vue";
+import Delete from "@/Pages/SliderItem/Delete.vue";
+import DeleteBulk from "@/Pages/SliderItem/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
-import { Link } from "@inertiajs/vue3";
 
 import {
     MagnifyingGlassIcon,
-    ComputerDesktopIcon,
 } from "@heroicons/vue/24/outline";
 
-const items = inject('published');
+const items = inject('unpublished');
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -20,16 +18,16 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
-    { text: "Name", value: "name", sortable: true },
-    { text: "Slug", value: "slug", sortable: true },
+    { text: "Title", value: "title", sortable: true },
+    { text: "Description", value: "description", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['slider create'])" />
-            <DeleteBulk v-if="itemsSelected.length != 0 && can(['slider delete'])" :itemsSelected="itemsSelected"
+            <Create v-if="can(['slider item create'])" />
+            <DeleteBulk v-if="itemsSelected.length != 0 && can(['slider item delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -49,7 +47,7 @@ const headers = [
 
         <template #expand="item">
             <div>
-                <strong>Description: </strong> {{ item.description }}
+                <strong>Items: </strong> {{ item.items }}
             </div>
         </template>
         <template #empty-message>
@@ -57,11 +55,8 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Link v-if="can(['slider item create'])" :href="route('slider.items.index', { slider: item.id })" class="inline-flex items-center px-3 py-1.5 bg-violet-500 dark:bg-violet-600 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-violet-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
-                    <ComputerDesktopIcon class="w-4 h-auto" />
-                </Link>
-                <Edit v-show="can(['slider update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-show="can(['slider delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['slider item update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['slider item delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>

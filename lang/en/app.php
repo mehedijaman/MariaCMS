@@ -185,6 +185,8 @@ return [
         'gallery' => 'Gallery',
         'sliders' => 'Sliders',
         'slider' => 'Slider',
+        'slider_items' => 'Slider Items',
+        'slider_item' => 'Slider Item',
 
         'tagline' => 'Tagline',
         'homepage' => 'Homepage',
@@ -226,6 +228,9 @@ return [
         'messages' => 'Messages',
         'name' => 'Name',
         'names' => 'Names',
+        'title' => 'Title',
+        'link' => 'Link',
+        'image' => 'Image',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

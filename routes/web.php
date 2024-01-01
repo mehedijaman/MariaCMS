@@ -21,6 +21,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\TestimonialController;
 
 /*
@@ -134,6 +135,25 @@ Route::prefix('cp')->middleware([
     Route::post('sliders/{slider}/restore', [SliderController::class, 'restore'])->name('sliders.restore');
     Route::post('sliders/restore/bulk', [SliderController::class, 'restoreBulk'])->name('sliders.restore.bulk');
     Route::post('sliders/restore/all', [SliderController::class, 'restoreAll'])->name('sliders.restore.all');
+    /** Slider Items Routes */
+    Route::get('sliders/{slider}/items/trash', [SliderItemController::class, 'trash'])->name('slider.items.trash');
+    Route::delete('sliders/{slider}/items/destroy/bulk', [SliderItemController::class, 'destroyBulk'])->name('slider.items.destroy.bulk');
+    Route::delete('sliders/{slider}/items/{item}/destroy/force', [SliderItemController::class, 'destroyForce'])->name('slider.items.destroy.force');
+    Route::delete('sliders/{slider}/items/destroy/force/bulk', [SliderItemController::class, 'destroyForceBulk'])->name('slider.items.destroy.force.bulk');
+    Route::delete('sliders/{slider}/items/destroy/force/all', [SliderItemController::class, 'destroyForceAll'])->name('slider.items.destroy.force.all');
+    Route::post('sliders/{slider}/items/{item}/restore', [SliderItemController::class, 'restore'])->name('slider.items.restore');
+    Route::post('sliders/{slider}/items/restore/bulk', [SliderItemController::class, 'restoreBulk'])->name('slider.items.restore.bulk');
+    Route::post('sliders/{slider}/items/restore/all', [SliderItemController::class, 'restoreAll'])->name('slider.items.restore.all');
+    Route::resource('sliders/{slider}/items', SliderItemController::class)
+    ->names([
+        'index' => 'slider.items.index',
+        'create' => 'slider.items.create',
+        'store' => 'slider.items.store',
+        'show' => 'slider.items.show',
+        'edit' => 'slider.items.edit',
+        'update' => 'slider.items.update',
+        'destroy' => 'slider.items.destroy',
+    ]);
     Route::resource('sliders', SliderController::class);
 
     /** Message Routes */

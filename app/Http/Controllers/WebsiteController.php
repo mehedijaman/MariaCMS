@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Message\StoreMessageRequest;
+use App\Models\Category;
 use App\Models\Menu;
+use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use Inertia\Inertia;
-use App\Models\Message;
 use App\Models\Setting;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\Message\StoreMessageRequest;
+use Inertia\Inertia;
 use Spatie\Honeypot\Honeypot;
 
 class WebsiteController extends Controller
@@ -53,11 +52,12 @@ class WebsiteController extends Controller
                 'message' => $request->message,
                 'ip' => $request->ip,
             ]);
+
             return back()
                 ->with('message', $message)
                 ->with('success', __('app.label.sent_successfully'));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
+            return back()->with('error', __('app.label.sent_error').$th->getMessage());
         }
     }
 

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMenuItemRequest;
-use App\Http\Requests\UpdateMenuItemRequest;
-use App\Models\Category;
 use App\Models\Menu;
-use App\Models\MenuItem;
 use App\Models\Page;
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Category;
+use App\Models\MenuItem;
+use App\Http\Requests\MenuItem\StoreMenuItemRequest;
+use App\Http\Requests\MenuItem\UpdateMenuItemRequest;
 
 class MenuItemController extends Controller
 {

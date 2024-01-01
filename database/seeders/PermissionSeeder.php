@@ -82,6 +82,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'slider update', 'guard_name' => 'web']);
         Permission::create(['name' => 'slider delete', 'guard_name' => 'web']);
 
+        Permission::create(['name' => 'slider item create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'slider item read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'slider item update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'slider item delete', 'guard_name' => 'web']);
+
         Permission::create(['name' => 'faq create', 'guard_name' => 'web']);
         Permission::create(['name' => 'faq read', 'guard_name' => 'web']);
         Permission::create(['name' => 'faq update', 'guard_name' => 'web']);
