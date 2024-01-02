@@ -2,21 +2,27 @@
 import {
     PhoneIcon,
     EnvelopeIcon,
+    MicrophoneIcon,
 } from '@heroicons/vue/24/outline'
 
 </script>
 <template>
     <div class="h-10 bg-indigo-800">
-        <div class="max-w-7xl md:px-4 py-2 mx-auto sm:items-center justify-between sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+        <div class="flex flex-col max-w-7xl px-4 sm:px-8 lg:px-12 py-2 mx-auto sm:items-center sm:justify-between sm:flex-row">
             <div class="flex gap-8 text-slate-100">
                 <div class="flex gap-2">
+                    <MicrophoneIcon class="w-4"></MicrophoneIcon >
+                    <span class="font-semibold">Latest:</span>
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, voluptates.</span>
+                </div>
+                <!-- <div class="flex gap-2">
                     <PhoneIcon class="w-4"></PhoneIcon>
                     <span>{{ $page.props.app.setting.contact_no }}</span>
                 </div>
                 <div class="flex gap-2">
                     <EnvelopeIcon class="w-5"></EnvelopeIcon>
                     <span>{{ $page.props.app.setting.email }}</span>
-                </div>
+                </div> -->
             </div>
             <div class="inline-flex">
                 <a class="text-slate-100" :href="$page.props.app.setting.facebook" target="_blank">

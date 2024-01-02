@@ -39,7 +39,7 @@ onMounted(() => {
         class="w-full fixed text-slate-600  dark:text-slate-200 z-50"
     >
         <div
-            class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-8 py-2"
+            class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-6 py-2"
         >
             <div class="flex items-center justify-between">
                 <div>
@@ -47,7 +47,7 @@ onMounted(() => {
                         :href="route('index')"
                         class="shrink-0 flex w-full justify-start items-center space-x-2"
                     >
-                        <ApplicationLogo class="block h-8 w-auto" />
+                        <ApplicationLogo v-show="data.fixed || data.isOpen" class="block h-8 w-auto" />
                         <p
                             class="text-lg font-semibold"
                         >

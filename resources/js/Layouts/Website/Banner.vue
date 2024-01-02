@@ -1,20 +1,60 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import {
+    PhoneIcon,
+    EnvelopeIcon,
+    EnvelopeOpenIcon
+} from "@heroicons/vue/24/outline";
 </script>
 <template>
-    <div class="min-h-[100px] bg-white dark:bg-slate-900 p-5 max-w-7xl mx-auto">
-        <div>
-            <Link :href="route('index')" class="shrink-0 flex w-full justify-start items-center space-x-4">
-            <ApplicationLogo class="block h-20 w-auto" />
-            <span class="text-3xl font-semibold">
-                {{ $page.props.app.setting.name }}
-            </span>
-            </Link>
-            <span class="text-sm tracking-widest ml-24">
-                {{ $page.props.app.setting.tagline }}
-            </span>
+    <div class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
+        <div class="shrink-0 flex  justify-start items-center space-x-2">
+            <ApplicationLogo class="block h-14 w-auto" />
+
+            <div class="flex flex-col">
+
+                <Link :href="route('index')" class="">
+                <span class="text-3xl font-semibold">
+                    {{ $page.props.app.setting.name }}
+                </span>
+
+                </Link>
+                <span class="text-sm ">
+                    {{ $page.props.app.setting.tagline }}
+                </span>
+            </div>
         </div>
+
+        <div class="shrink-0 flex justify-start items-center space-x-14">
+
+            <div class="shrink-0 flex  justify-start items-center space-x-2">
+                <PhoneIcon class="w-6 h-6" />
+                <div class="flex flex-col">
+                    <span class="text-md font-semibold">
+                        Call now
+                    </span>
+
+                    <span class="text-sm ">
+                        {{ $page.props.app.setting.contact_no }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="shrink-0 flex  justify-start items-center space-x-2">
+                <EnvelopeOpenIcon class="w-6 h-6" />
+                <div class="flex flex-col">
+                    <span class="text-md font-semibold">
+                        Email us
+                    </span>
+
+                    <span class="text-sm ">
+                        {{ $page.props.app.setting.email }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <!-- <img class="" src="https://website.iiustb.ac.bd/public/assets/frontend/images/main_logo_full.png" alt=""> -->
     </div>
 </template>
