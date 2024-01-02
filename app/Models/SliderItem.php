@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\Conversions\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class SliderItem extends Model implements HasMedia
 {
@@ -23,4 +25,12 @@ class SliderItem extends Model implements HasMedia
         'target',
         'status',
     ];
+
+    // public function registerMediaConversions(?Media $media = null): void
+    // {
+    //     $this
+    //         ->addMediaConversion('thumb')
+    //         ->fit(Manipulations::CROP, 100, 100)
+    //         ->nonQueued();
+    // }
 }

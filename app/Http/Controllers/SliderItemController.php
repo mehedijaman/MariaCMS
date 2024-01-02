@@ -17,7 +17,7 @@ class SliderItemController extends Controller
      */
     public function index(IndexSliderItemRequest $request, Slider $slider)
     {
-        $slider_items = SliderItem::where('slider_id', $slider->id)->get();
+        $slider_items = SliderItem::where('slider_id', $slider->id)->with('media')->get();
 
         return Inertia::render('SliderItem/Index', [
             'title' => __('app.label.slider_items'),
@@ -59,6 +59,11 @@ class SliderItemController extends Controller
                 'target' => $request->target,
                 'status' => $request->status,
             ]);
+
+            if($request->hasFile('image'))
+            {
+                $slider_item->addMediaFromRequest('image')->toMediaCollection('slider_item');
+            }
 
             return back()
                 ->with('slider_item', $slider_item)

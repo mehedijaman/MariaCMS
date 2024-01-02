@@ -20,6 +20,7 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
+    { text: "Media", value: "media", sortable: true },
     { text: "Title", value: "title", sortable: true },
     { text: "Description", value: "description", sortable: true },
     { text: "Action", value: "actions" },
@@ -28,7 +29,7 @@ const headers = [
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['slider item create'])"  />
+            <Create v-if="can(['slider item create'])" />
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['slider item delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
@@ -46,6 +47,11 @@ const headers = [
     <EasyDataTable class="mt-2" :rows-per-page="rowsPerPage" show-index alternating border-cell buttons-pagination
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
+        <template #item-media="item">
+
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Slider Image" class="w-14 h-10 rounded-sm">
+
+        </template>
 
         <template #expand="item">
             <div>
