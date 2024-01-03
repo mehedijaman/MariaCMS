@@ -11,7 +11,7 @@ import { reactive, ref , inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
-const addItem = inject('addItem');
+const updateItems = inject('updateItems');
 
 const show = ref(false);
 
@@ -37,7 +37,7 @@ const submit = () => {
     form.post(route("galleries.store"), {
         preserveScroll: true,
         onSuccess: (response) => {
-            addItem(formData);
+            updateItems(response.props.galleries);
             closeModal();
         },
         onError: () => null,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Tag\IndexTagRequest;
 use App\Http\Requests\Tag\StoreTagRequest;
-use App\Http\Requests\UpdateTagRequest;
+use App\Http\Requests\Tag\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

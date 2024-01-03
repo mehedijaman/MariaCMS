@@ -62,10 +62,7 @@ watch(formData, (newValues) => {
 const submit = () => {
     form.post(route("posts.store"), {
         preserveScroll: true,
-        onSuccess: (response) => {
-            addItem(formData);
-            closeModal();
-        },
+        onSuccess: () => null,
         onError: () => null,
         onFinish: () => null,
     });

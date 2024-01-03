@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->boolean('status')->nullable();
-            $table->string('type')->default(true)->nullable();
 
             $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();

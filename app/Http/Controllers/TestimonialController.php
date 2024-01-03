@@ -55,7 +55,6 @@ class TestimonialController extends Controller
             ]);
 
             return back()
-                ->with('testimonial', $testimonial)
                 ->with('success', __('app.label.created_successfully', ['name' => $testimonial->name]));
         } catch (\Throwable $th) {
 

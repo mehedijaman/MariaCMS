@@ -11,7 +11,7 @@ import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
-const updateItem = inject('updateItem');
+const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
 const show = ref(false);
@@ -38,7 +38,7 @@ const submit = () => {
         preserveScroll: true,
         onSuccess: () => {
             closeModal();
-            updateItem(props.item?.id, formData);
+            updateItems(response.props.galleries);
         },
         onError: () => null,
         onFinish: () => null,
