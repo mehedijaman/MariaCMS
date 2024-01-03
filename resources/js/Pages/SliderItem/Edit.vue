@@ -10,7 +10,7 @@ import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 
-const updateItem = inject('updateItem');
+const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
 const show = ref(false);
@@ -29,9 +29,9 @@ watch(formData, (newValues) => {
 const submit = () => {
     form.put(route("slider.items.update",{slider: props.item?.slider_id, item: props.item?.id}), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
-            // updateItem(props.item?.id, formData);
+            updateItems(response.props.slider_items);
         },
         onError: () => null,
         onFinish: () => null,

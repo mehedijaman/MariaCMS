@@ -36,7 +36,7 @@ watch(formData, (newValues) => {
 const submit = () => {
     form.put(route("galleries.update", props.item?.id), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
             updateItems(response.props.galleries);
         },

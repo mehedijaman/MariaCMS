@@ -9,7 +9,7 @@ import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
 
-const addItem = inject('addItem');
+const updateItems = inject('updateItems');
 const slider = inject('slider');
 
 const show = ref(false);
@@ -28,7 +28,7 @@ const submit = () => {
     form.post(route("slider.items.store", { slider: slider.id }), {
         preserveScroll: true,
         onSuccess: (response) => {
-            // addItem(form);
+            updateItems(response.props.slider_items);
             closeModal();
         },
         onError: () => null,
