@@ -26,55 +26,16 @@ const unpublished = computed(() => items.filter(item => (item.status == false &&
 const draft = computed(() => items.filter(item => (item.status == null && item.deleted_at == null)));
 
 
-// Method to add an item to the array
-const addItem = (newItem) => {
-  items.push(newItem);
-};
-
-// Method to remove an item from the array based on its ID
-const removeItem = (itemId) => {
-    // Find the index of the item in the items array
-    const index = items.findIndex(item => item.id === itemId);
-
-    // Remove the item if found
-    if (index !== -1) {
-        items.splice(index, 1);
-    }
-};
-
-const removeBulkItems = (itemIds) => {
-    // Iterate over the array of item IDs
-    itemIds.forEach(itemId => {
-        // Find the index of the item in the items array
-        const index = items.findIndex(item => item.id === itemId);
-
-        // Remove the item if found
-        if (index !== -1) {
-            items.splice(index, 1);
-        }
-    });
-};
-
-// Method to update an item in the array based on its ID
-const updateItem = (id, updatedData) => {
-    // Find the index of the item in the items array
-    const index = items.findIndex(item => item.id === id);
-    // Update the item if found
-    if (index !== -1) {
-        items[index].question = updatedData.question;
-        items[index].answer = updatedData.answer;
-        items[index].status = updatedData.status;
-    }
+const updateItems = (updatedItems) => {
+    items.length = 0;
+    updatedItems.forEach(item => items.push(item));
 };
 
 provide('published', published);
 provide('unpublished', unpublished);
 provide('draft', draft);
 
-provide('addItem', addItem);
-provide('removeItem', removeItem);
-provide('removeBulkItems', removeBulkItems);
-provide('updateItem', updateItem);
+provide('updateItems', updateItems);
 </script>
 
 <template>

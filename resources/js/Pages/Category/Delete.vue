@@ -7,7 +7,7 @@ import { useForm } from "@inertiajs/vue3";
 import { ref, defineEmits, inject } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/outline";
 
-const removeItem = inject('removeItem');
+const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
 const show = ref(false);
@@ -21,9 +21,9 @@ const form = useForm({});
 const submit = () => {
     form.delete(route("categories.destroy", props.item?.id), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
-            removeItem(props.item?.id);
+            updateItems(response.props.categories);
         },
         onError: () => null,
         onFinish: () => null,

@@ -11,7 +11,7 @@ import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase } from "../../Helpers/textHelper";
 
-const updateItem = inject('updateItem');
+const updateItems = inject('updateItems');
 const positions = inject('positions');
 
 const emit = defineEmits(["open"]);
@@ -35,9 +35,9 @@ watch(formData, (newValues) => {
 const submit = () => {
     form.put(route("menus.update", props.item?.id), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
-            updateItem(props.item?.id, formData);
+            updateItems(response.props.menus);
         },
         onError: () => null,
         onFinish: () => null,

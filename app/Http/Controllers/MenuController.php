@@ -54,7 +54,6 @@ class MenuController extends Controller
             ]);
 
             return back()
-                ->with('menu', $menu)
                 ->with('success', __('app.label.created_successfully', ['name' => $menu->name]));
         } catch (\Throwable $th) {
 

@@ -11,13 +11,13 @@ import { PlusIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase } from "../../Helpers/textHelper";
 
 const positions = inject('positions');
-const addItem = inject('addItem');
+const updateItems = inject('updateItems');
 
 const show = ref(false);
 
 const formData = reactive({
     name: '',
-    position:'primary',
+    position: 'primary',
     status:1,
 });
 
@@ -30,7 +30,7 @@ const submit = () => {
     form.post(route("menus.store"), {
         preserveScroll: true,
         onSuccess: (response) => {
-            addItem(formData);
+            updateItems(response.props.menus);
             closeModal();
         },
         onError: () => null,
