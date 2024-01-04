@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Message\StoreMessageRequest;
-use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Menu;
-use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Setting;
 use Inertia\Inertia;
+use App\Models\Message;
+use App\Models\Setting;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -19,8 +21,12 @@ class WebsiteController extends Controller
         $menus = Menu::where('status', true)->get();
 
         if (is_null($slug)) {
+            $faqs = Faq::all();
+            $testimonials = Testimonial::all();
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
+                'faqs' => $faqs,
+                'testimonials' => $testimonials,
             ]);
         }
 

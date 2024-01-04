@@ -9,6 +9,8 @@ import Testimonials from "./Testimonials.vue";
 
 const props = defineProps({
     title: String,
+    faqs: Object,
+    testimonials: Object
 });
 </script>
 <template>
@@ -19,9 +21,9 @@ const props = defineProps({
             <div class="max-w-7xl mx-auto w-full">
 
                 <div class="max-w-3xl">
-                    <FAQ></FAQ>
+                    <FAQ :faqs="props.faqs"></FAQ>
                 </div>
-                <Testimonials></Testimonials>
+                <Testimonials :testimonials="props.testimonials"></Testimonials>
             </div>
 
             <!-- <div data-aos="fade-up" data-aos-duration="1000"

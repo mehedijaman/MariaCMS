@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Slider;
 use App\Models\SliderItem;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Requests\SliderItem\IndexSliderItemRequest;
 use App\Http\Requests\SliderItem\StoreSliderItemRequest;
 use App\Http\Requests\SliderItem\UpdateSliderItemRequest;
@@ -105,7 +106,7 @@ class SliderItemController extends Controller
     {
         try {
             $item->update([
-                'slider_id' => $request->slider_id,
+                'slider_id' => $slider->id,
                 'title' => $request->title,
                 'description' => $request->description,
                 'order' => $request->order,
@@ -113,6 +114,12 @@ class SliderItemController extends Controller
                 'target' => $request->target,
                 'status' => $request->status,
             ]);
+
+            if($request->hasFile('image'))
+            {
+                $item->clearMediaCollection('slider_item');
+                $item->addMediaFromRequest('image')->toMediaCollection('slider_item');
+            }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $item->title]));
         } catch (\Throwable $th) {

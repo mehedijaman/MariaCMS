@@ -5,7 +5,6 @@ import Delete from "@/Pages/SliderItem/Delete.vue";
 import DeleteBulk from "@/Pages/SliderItem/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
-import { Link } from "@inertiajs/vue3";
 
 import {
     MagnifyingGlassIcon,
@@ -49,7 +48,7 @@ const headers = [
         v-model:items-selected="itemsSelected">
         <template #item-media="item">
 
-            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Slider Image" class="w-14 h-10 rounded-sm">
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Slider Image" class="w-18 h-14 rounded-sm">
 
         </template>
 

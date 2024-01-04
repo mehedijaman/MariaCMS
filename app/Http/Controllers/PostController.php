@@ -65,6 +65,11 @@ class PostController extends Controller
                 'meta_keywords' => $request->meta_keywords,
             ]);
 
+            if($request->hasFile('featured_image'))
+            {
+                $post->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
+            }
+
             // Conditionally set the excerpt
             if ($request->excerpt) {
                 $post->excerpt = $request->excerpt;

@@ -42,6 +42,8 @@ const closeModal = () => {
     form.reset();
 };
 
+
+
 </script>
 <template>
     <div>
@@ -51,22 +53,41 @@ const closeModal = () => {
         </PrimaryButton>
         <DialogModal :show="show" @close="closeModal" max-width="2xl">
             <template #title>
-                {{ lang().label.add }}
+                {{ lang().label.add }} <br>
             </template>
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-                    <div class="space-y-1">
-                        <InputLabel for="image" :value="lang().label.image" />
-                        <!-- <TextInput id="image" v-model="form.image" type="file" class="block w-full"
-                            @input="form.image = $event.target.files[0]" autocomplete="image"
-                            :placeholder="lang().placeholder.slider_image" :error="form.errors.image" />
-                        <InputError :message="form.errors.image" /> -->
-                        <input type="file" @input="form.image = $event.target.files[0]"/>
+                    <div id="image-preview"
+                        class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                        <input id="upload" @input="form.image = $event.target.files[0]" type="file" class="hidden" accept="image/*" />
+
+                        <label for="upload" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                            </svg>
+                            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload picture</h5>
+                            <p class="font-normal text-sm text-gray-400 md:px-6">Photo size should be less than <b
+                                    class="text-gray-600">2MB</b></p>
+                            <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
+                                    class="text-gray-600">JPG, JPEG or PNG</b> format.</p>
+                            <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                        </label>
                         <progress v-if="form.progress" :value="form.progress.percentage" max="100">
                             {{ form.progress.percentage }}%
                         </progress>
                     </div>
+                    <!-- <div class="space-y-1">
+                        <InputLabel for="image" :value="lang().label.image" />
+
+                        <input type="file" @input="form.image = $event.target.files[0]" />
+                        <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                            {{ form.progress.percentage }}%
+                        </progress>
+                        <InputError :message="form.errors.image" />
+                    </div> -->
 
                     <div class="space-y-1">
                         <InputLabel for="title" :value="lang().label.title" />
@@ -83,18 +104,23 @@ const closeModal = () => {
                         <InputError :message="form.errors.description" />
                     </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="link" :value="lang().label.link" />
-                        <TextInput id="link" v-model="form.link" type="text" class="block w-full" autocomplete="link"
-                            :placeholder="lang().placeholder.link" :error="form.errors.link" />
-                        <InputError :message="form.errors.link" />
-                    </div>
+                    <div class="grid grid-cols-3 gap-2 ">
+                        <div class="col-span-2">
+                            <InputLabel for="link" :value="lang().label.link" />
+                            <TextInput id="link" v-model="form.link" type="text" class="block w-full" autocomplete="link"
+                                placeholder="https://" :error="form.errors.link" />
+                            <InputError :message="form.errors.link" />
+                        </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="target" :value="lang().label.target" />
-                        <TextInput id="target" v-model="form.target" type="text" class="block w-full" autocomplete="target"
-                            :placeholder="lang().placeholder.target" :error="form.errors.target" />
-                        <InputError :message="form.errors.target" />
+                        <div class="col-span-1">
+                            <InputLabel for="target" :value="lang().label.target" />
+                            <select v-model="form.target" id="target" name="target" class="block w-full"
+                                :error="form.errors.target">
+                                <option :value="null">Self</option>
+                                <option value="_blank">Blank</option>
+                            </select>
+                            <InputError :message="form.errors.target" />
+                        </div>
                     </div>
 
                     <div class="space-y-1">
@@ -117,9 +143,8 @@ const closeModal = () => {
 
                 <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="submit">
-                    {{ lang().button.save }} {{ form.processing ? "..." : "" }}
-                </PrimaryButton>
-            </template>
-        </DialogModal>
-    </div>
-</template>
+                {{ lang().button.save }} {{ form.processing ? "..." : "" }}
+            </PrimaryButton>
+        </template>
+    </DialogModal>
+</div></template>
