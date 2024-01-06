@@ -23,6 +23,7 @@ const props = defineProps({
                 <div class="max-w-3xl">
                     <FAQ :faqs="props.faqs"></FAQ>
                 </div>
+
                 <Testimonials :testimonials="props.testimonials"></Testimonials>
             </div>
 

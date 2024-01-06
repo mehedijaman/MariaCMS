@@ -5,11 +5,13 @@ import FormSection from "@/Components/FormSection.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from '@/Components/DangerButton.vue';
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import Breadcrumb from "../Layouts/Authenticated/Breadcrumb.vue";
+import { ref } from "vue";
 
 import {
     InformationCircleIcon,
@@ -19,18 +21,26 @@ import {
 
 const props = defineProps({
     title: String,
+    pages: Object,
     setting: Object,
+    categories: Object,
+    sliders: Object,
     breadcrumbs: Object,
 });
 
 const form = useForm({
     favicon: null,
     logo: null,
+    banner: null,
+    banner_enabled: props.setting?.banner_enabled,
     name: props.setting?.name,
     short_name: props.setting?.short_name,
     tagline: props.setting?.tagline,
     description: props.setting?.description,
     homepage: props.setting?.homepage,
+    news_category: props.setting?.news_category,
+    event_category: props.setting?.event_category,
+    home_slider: props.setting?.home_slider,
     background_color: props.setting?.background_color,
     additional_css: props.setting?.additional_css,
     header: props.setting?.header,
@@ -60,6 +70,8 @@ const fileChange = (value) => {
         form.favicon = value.file;
     } else if (value.source === "logo") {
         form.logo = value.file;
+    } else if (value.source === "banner") {
+        form.banner = value.file;
     }
 };
 </script>
@@ -70,19 +82,17 @@ const fileChange = (value) => {
             <span>{{ props.title }}</span>
         </template>
         <Breadcrumb :breadcrumbs="props.breadcrumbs" />
-
         <div>
             <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-4">
-
                 <div class="border-b-2 border-slate-300 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center bg-white rounded-sm" id="default-tab"
                         data-tabs-toggle="#default-tab-content" role="tablist">
                         <li class="me-2" role="presentation">
-                            <button class="p-4 border-b-2 rounded-t-lg flex" id="profile-tab"
-                                data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                            <button class="p-4 border-b-2 rounded-t-lg flex" id="site-settings-tab"
+                                data-tabs-target="#site-settings" type="button" role="tab" aria-controls="site-settings"
                                 aria-selected="false">
                                 <InformationCircleIcon class="w-5 h-5 me-2 text-gray-400"></InformationCircleIcon>
-                                Basic Info
+                                Site Settings
                             </button>
                         </li>
                         <li class="me-2" role="presentation">
@@ -106,26 +116,36 @@ const fileChange = (value) => {
                     </ul>
                 </div>
                 <div id="default-tab-content">
-                    <div class="hidden p-4 rounded-sm bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                    <div class="hidden rounded-sm bg-gray-50 dark:bg-gray-800" id="site-settings" role="tabpanel"
+                        aria-labelledby="site-settings-tab">
                         <FormSection>
                             <template #form class="grid grid-cols-6 gap-6 ">
                                 <div class="col-span-6 grid grid-cols-6 gap-4">
-                                    <div class="col-span-6 sm:col-span-1">
-                                        <InputLabel for="favicon" value="Favicon" />
-                                        <ImageInput source="favicon" v-model="form.favicon"
-                                            :image="props.setting.full_path_favicon"
-                                            tooltip="Click to select/change favicon" class="mt-1 block w-14 h-14"
-                                            @fileChange="fileChange" />
-                                        <InputError :message="form.errors.favicon" class="mt-2" />
+                                    <div class="col-span-6 flex justify-center gap-6">
+                                        <div>
+                                            <InputLabel for="favicon" value="Favicon" />
+                                            <ImageInput source="favicon" v-model="form.favicon"
+                                                :image="props.setting.full_path_favicon"
+                                                tooltip="Click to select/change favicon" class="mt-1 block w-24 h-24"
+                                                @fileChange="fileChange" />
+                                            <InputError :message="form.errors.favicon" class="mt-2" />
+                                        </div>
+
+                                        <div>
+                                            <InputLabel for="logo" value="Logo" />
+                                            <ImageInput source="logo" v-model="form.logo"
+                                                :image="props.setting.full_path_logo" tooltip="Click to select/change logo"
+                                                class="mt-1 block w-24 h-24" @fileChange="fileChange" />
+                                            <InputError :message="form.errors.logo" class="mt-2" />
+                                        </div>
                                     </div>
-                                    <div class="col-span-6 sm:col-span-1">
-                                        <InputLabel for="logo" value="Logo" />
-                                        <ImageInput source="logo" v-model="form.logo" :image="props.setting.full_path_logo"
-                                            tooltip="Click to select/change logo" class="mt-1 block w-24 h-24"
-                                            @fileChange="fileChange" />
-                                        <InputError :message="form.errors.logo" class="mt-2" />
-                                    </div>
+                                </div>
+                                <div class="col-span-6 w-full">
+                                    <InputLabel for="banner" value="Banner" />
+                                    <ImageInput source="banner" v-model="form.banner"
+                                        :image="props.setting.full_path_banner" tooltip="Click to select/change banner"
+                                        class="mt-1 block w-full h-24" @fileChange="fileChange" />
+                                    <InputError :message="form.errors.banner" class="mt-2" />
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="name" :value="lang().label.name" />
@@ -159,14 +179,57 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="homepage" :value="lang().label.homepage" />
-                                    <TextInput id="homepage" v-model="form.homepage" type="text" class="mt-1 block w-full"
-                                        :placeholder="lang().placeholder.homepage" :error="form.errors.homepage" />
+                                    <select v-model="form.homepage" id="homepage" name="homepage" class="block w-full">
+                                        <option :value="null">Default</option>
+
+                                        <option v-for="page in props.pages" :key="page.id" :value="page.slug">{{ page.name
+                                        }}</option>
+                                    </select>
                                     <InputError :message="form.errors.homepage" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="banner" :value="lang().label.banner" />
+                                    <select v-model="form.banner_enabled" id="banner" name="banner_enabled" class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.banner" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="news_category" :value="lang().label.news_category" />
+                                    <select v-model="form.news_category" id="news_category" name="news_category" class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="category in props.categories" :key="category.id" :value="category.id">{{ category.name
+                                        }}</option>
+                                    </select>
+                                    <InputError :message="form.errors.news_category" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="event_category" :value="lang().label.event_category" />
+                                    <select v-model="form.event_category" id="event_category" name="event_category" class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="category in props.categories" :key="category.id" :value="category.id">{{ category.name
+                                        }}</option>
+                                    </select>
+                                    <InputError :message="form.errors.event_category" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="home_slider" :value="lang().label.home_slider" />
+                                    <select v-model="form.home_slider" id="home_slider" name="home_slider" class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="slider in props.sliders" :key="slider.id" :value="slider.id">{{ slider.name
+                                        }}</option>
+                                    </select>
+                                    <InputError :message="form.errors.home_slider" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="background_color" :value="lang().label.background_color" />
-                                    <TextInput id="background_color" v-model="form.background_color" type="text"
+                                    <TextInput id="background_color" v-model="form.background_color" type="color"
                                         class="mt-1 block w-full" :placeholder="lang().placeholder.background_color"
                                         :error="form.errors.background_color" />
                                     <InputError :message="form.errors.background_color" class="mt-2" />
@@ -174,14 +237,14 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="header" :value="lang().label.header" />
-                                    <TextInput id="header" v-model="form.header" type="text" class="mt-1 block w-full"
+                                    <TextAreaInput id="header" v-model="form.header" type="text" class="mt-1 block w-full"
                                         :placeholder="lang().placeholder.header" :error="form.errors.header" />
                                     <InputError :message="form.errors.header" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="footer" :value="lang().label.footer" />
-                                    <TextInput id="footer" v-model="form.footer" type="text" class="mt-1 block w-full"
+                                    <TextAreaInput id="footer" v-model="form.footer" type="text" class="mt-1 block w-full"
                                         :placeholder="lang().placeholder.footer" :error="form.errors.footer" />
                                     <InputError :message="form.errors.footer" class="mt-2" />
                                 </div>
@@ -199,80 +262,104 @@ const fileChange = (value) => {
                             </template>
                         </FormSection>
                     </div>
-                    <div class="hidden p-4 rounded-sm bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
+                    <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="dashboard" role="tabpanel"
                         aria-labelledby="dashboard-tab">
                         <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="address" :value="lang().label.address" />
-                            <TextInput id="address" v-model="form.address" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.address" :error="form.errors.address" />
-                            <InputError :message="form.errors.address" class="mt-2" />
-                        </div>
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="google_map" :value="lang().label.google_map" />
-                            <TextInput id="google_map" v-model="form.google_map" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.google_map" :error="form.errors.google_map" />
-                            <InputError :message="form.errors.google_map" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="address" :value="lang().label.address" />
+                                <TextInput id="address" v-model="form.address" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.address" :error="form.errors.address" />
+                                <InputError :message="form.errors.address" class="mt-2" />
+                            </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="google_map" :value="lang().label.google_map" />
+                                <TextInput id="google_map" v-model="form.google_map" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.google_map" :error="form.errors.google_map" />
+                                <InputError :message="form.errors.google_map" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="contact_no" :value="lang().label.contact_no" />
-                            <TextInput id="contact_no" v-model="form.contact_no" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.contact_no" :error="form.errors.contact_no" />
-                            <InputError :message="form.errors.contact_no" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="contact_no" :value="lang().label.contact_no" />
+                                <TextInput id="contact_no" v-model="form.contact_no" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.contact_no" :error="form.errors.contact_no" />
+                                <InputError :message="form.errors.contact_no" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="email" :value="lang().label.email" />
-                            <TextInput id="email" v-model="form.email" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.email" :error="form.errors.email" />
-                            <InputError :message="form.errors.email" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="email" :value="lang().label.email" />
+                                <TextInput id="email" v-model="form.email" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.email" :error="form.errors.email" />
+                                <InputError :message="form.errors.email" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="facebook" :value="lang().label.facebook" />
-                            <TextInput id="facebook" v-model="form.facebook" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.facebook" :error="form.errors.facebook" />
-                            <InputError :message="form.errors.facebook" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="facebook" :value="lang().label.facebook" />
+                                <TextInput id="facebook" v-model="form.facebook" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.facebook" :error="form.errors.facebook" />
+                                <InputError :message="form.errors.facebook" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="twitter" :value="lang().label.twitter" />
-                            <TextInput id="twitter" v-model="form.twitter" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.twitter" :error="form.errors.twitter" />
-                            <InputError :message="form.errors.twitter" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="twitter" :value="lang().label.twitter" />
+                                <TextInput id="twitter" v-model="form.twitter" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.twitter" :error="form.errors.twitter" />
+                                <InputError :message="form.errors.twitter" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="instagram" :value="lang().label.instagram" />
-                            <TextInput id="instagram" v-model="form.instagram" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.instagram" :error="form.errors.instagram" />
-                            <InputError :message="form.errors.instagram" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="instagram" :value="lang().label.instagram" />
+                                <TextInput id="instagram" v-model="form.instagram" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.instagram" :error="form.errors.instagram" />
+                                <InputError :message="form.errors.instagram" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="youtube" :value="lang().label.youtube" />
-                            <TextInput id="youtube" v-model="form.youtube" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.youtube" :error="form.errors.youtube" />
-                            <InputError :message="form.errors.youtube" class="mt-2" />
-                        </div>
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="youtube" :value="lang().label.youtube" />
+                                <TextInput id="youtube" v-model="form.youtube" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.youtube" :error="form.errors.youtube" />
+                                <InputError :message="form.errors.youtube" class="mt-2" />
+                            </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <InputLabel for="whatsapp" :value="lang().label.whatsapp" />
-                            <TextInput id="whatsapp" v-model="form.whatsapp" type="text" class="mt-1 block w-full"
-                                :placeholder="lang().placeholder.whatsapp" :error="form.errors.whatsapp" />
-                            <InputError :message="form.errors.whatsapp" class="mt-2" />
+                            <div class="col-span-1 sm:col-span-1">
+                                <InputLabel for="whatsapp" :value="lang().label.whatsapp" />
+                                <TextInput id="whatsapp" v-model="form.whatsapp" type="text" class="mt-1 block w-full"
+                                    :placeholder="lang().placeholder.whatsapp" :error="form.errors.whatsapp" />
+                                <InputError :message="form.errors.whatsapp" class="mt-2" />
+                            </div>
+
+                        </div>
+                        <div class="my-4 flex justify-end">
+                            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
+                                {{ lang().label.saved }}
+                            </ActionMessage>
+
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                                @click="update">
+                                {{ lang().button.save }}
+                                {{ form.processing ? "..." : "" }}
+                            </PrimaryButton>
                         </div>
                     </div>
-                    </div>
-                    <div class="hidden p-4 rounded-sm bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel"
+                    <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="settings" role="tabpanel"
                         aria-labelledby="settings-tab">
                         <div class="col-span-6 sm:col-span-3">
                             <InputLabel for="additional_css" :value="lang().label.additional_css" />
-                            <TextInput id="additional_css" v-model="form.additional_css" type="text"
+                            <TextAreaInput id="additional_css" v-model="form.additional_css" type="text"
                                 class="mt-1 block w-full" :placeholder="lang().placeholder.additional_css"
                                 :error="form.errors.additional_css" />
                             <InputError :message="form.errors.additional_css" class="mt-2" />
+                        </div>
+
+                        <div class="my-4 flex justify-end">
+                            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
+                                {{ lang().label.saved }}
+                            </ActionMessage>
+
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                                @click="update">
+                                {{ lang().button.save }}
+                                {{ form.processing ? "..." : "" }}
+                            </PrimaryButton>
                         </div>
                     </div>
                 </div>

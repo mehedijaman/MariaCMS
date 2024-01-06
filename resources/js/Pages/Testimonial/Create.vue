@@ -5,9 +5,13 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref , inject, watch } from "vue";
-import { PlusIcon } from "@heroicons/vue/24/outline";
+import { reactive, ref, inject, watch } from "vue";
+import {
+    PlusIcon,
+    StarIcon,
+ } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
 const updateItems = inject('updateItems');
@@ -16,17 +20,17 @@ const show = ref(false);
 
 const formData = reactive({
     name: null,
-    designation:null,
-    company:null,
-    rating:null,
-    description:null,
-    status:1,
+    designation: null,
+    company: null,
+    rating: null,
+    description: null,
+    status: 1,
 });
 
 // Watch for changes in the 'name' property
 watch(() => formData.name, (newName) => {
-  // Update the 'slug' property based on the new 'name'
-  formData.slug = generateSlug(newName);
+    // Update the 'slug' property based on the new 'name'
+    formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -55,10 +59,7 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-        <PrimaryButton
-            class="flex rounded-none items-center justify-start gap-2"
-            @click.prevent="show = true"
-        >
+        <PrimaryButton class="flex rounded-none items-center justify-start gap-2" @click.prevent="show = true">
             <PlusIcon class="w-4 h-auto" />
             <span class="hidden md:block">{{ lang().label.add }}</span>
         </PrimaryButton>
@@ -69,90 +70,62 @@ const closeModal = () => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="space-y-1 w-full">
+                            <InputLabel for="rating" :value="lang().label.rating" />
+                            <select v-model="formData.rating" id="rating" name="rating" class="block w-full">
+                                <option value="5">***** (5) </option>
+                                <option value="4">**** (4) </option>
+                                <option value="3">*** (3) </option>
+                                <option value="2">** (2) </option>
+                                <option value="1">* (1) </option>
+                                <option :value="null">None</option>
+                            </select>
+                            <InputError :message="form.errors.rating" />
+                        </div>
+
+                        <div class="space-y-1 w-full">
+                            <InputLabel for="status" :value="lang().label.status" />
+                            <select v-model="formData.status" id="status" name="status" class="block w-full">
+                                <option value="1">Published</option>
+                                <option value="0">Unpublished</option>
+                                <option :value="null">Draft</option>
+                            </select>
+                            <InputError :message="form.errors.status" />
+                        </div>
+                    </div>
+
                     <div class="space-y-1">
                         <InputLabel for="name" :value="lang().label.name" />
-                        <TextInput
-                            id="name"
-                            v-model="formData.name"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="name"
-                            :placeholder="lang().placeholder.slider_name"
-                            :error="form.errors.name"
-                        />
+                        <TextInput id="name" v-model="formData.name" type="text" class="block w-full" autocomplete="name"
+                            :placeholder="lang().placeholder.name" :error="form.errors.name" />
                         <InputError :message="form.errors.name" />
                     </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="designation" :value="lang().label.designation" />
-                        <TextInput
-                            id="designation"
-                            v-model="formData.designation"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="designation"
-                            :placeholder="lang().placeholder.designation"
-                            :error="form.errors.designation"
-                        />
-                        <InputError :message="form.errors.designation" />
-                    </div>
+                    <div class="flex flex-col md:flex-row md:gap-4">
+                        <div class="space-y-1 w-full">
+                            <InputLabel for="designation" :value="lang().label.designation" />
+                            <TextInput id="designation" v-model="formData.designation" type="text" class="block w-full"
+                                autocomplete="designation" :placeholder="lang().placeholder.designation"
+                                :error="form.errors.designation" />
+                            <InputError :message="form.errors.designation" />
+                        </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="company" :value="lang().label.company" />
-                        <TextInput
-                            id="company"
-                            v-model="formData.company"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="company"
-                            :placeholder="lang().placeholder.company"
-                            :error="form.errors.company"
-                        />
-                        <InputError :message="form.errors.company" />
-                    </div>
-
-                    <div class="space-y-1">
-                        <InputLabel for="rating" :value="lang().label.rating" />
-                        <TextInput
-                            id="rating"
-                            v-model="formData.rating"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="rating"
-                            :placeholder="lang().placeholder.rating"
-                            :error="form.errors.rating"
-                        />
-                        <InputError :message="form.errors.rating" />
+                        <div class="space-y-1 w-full">
+                            <InputLabel for="company" :value="lang().label.company" />
+                            <TextInput id="company" v-model="formData.company" type="text" class="block w-full"
+                                autocomplete="company" :placeholder="lang().placeholder.company"
+                                :error="form.errors.company" />
+                            <InputError :message="form.errors.company" />
+                        </div>
                     </div>
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextInput
-                            id="slug"
-                            v-model="formData.description"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="description"
-                            :placeholder="lang().placeholder.description"
-                            :error="form.errors.desctiption"
-                        />
+                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                            autocomplete="description" :placeholder="lang().placeholder.description"
+                            :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
-                    </div>
-
-                    <div class="space-y-1">
-                        <InputLabel for="status" :value="lang().label.status" />
-                        <select
-                            v-model="formData.status"
-                            id="status"
-                            name="status"
-                            class="block w-full"
-                        >
-                            <!-- Iterate over statuss and create options -->
-                            <option value="1">Published</option>
-                            <option value="0">Unpublished</option>
-                            <option :value="null">Draft</option>
-                        </select>
-                        <InputError :message="form.errors.status" />
                     </div>
                 </form>
             </template>
@@ -162,12 +135,8 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <PrimaryButton
-                    class="ml-3"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                    @click="submit"
-                >
+                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="submit">
                     {{ lang().button.save }} {{ form.processing ? "..." : "" }}
                 </PrimaryButton>
             </template>

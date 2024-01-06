@@ -11,7 +11,7 @@ const props = defineProps({
                 <p class="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Unveiling the authentic voices of satisfaction and success as shared by those who have experienced our exceptional service firsthand.</p>
             </div>
             <div class="grid mb-8 lg:mb-12 lg:grid-cols-2">
-                <figure v-for="testimonial in props.testimonials" :key="index"
+                <figure v-for="testimonial in props.testimonials" :key="testimonial.id"
                     class="flex flex-col justify-center items-center p-8 text-center bg-gray-50 border-b border-gray-200 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700">
                     <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
                         <!-- <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Speechless with how easy this was to

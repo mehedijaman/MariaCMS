@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
+            $table->string('banner')->nullable();
             $table->string('name');
             $table->string('short_name');
             $table->string('tagline')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('homepage')->nullable();
+            $table->boolean('banner_enabled')->default(false);
+            $table->string('home_slider')->nullable();
+            $table->string('news_category')->nullable();
+            $table->string('event_category')->nullable();
             $table->string('background_color')->nullable();
             $table->longText('additional_css')->nullable();
             $table->longText('header')->nullable();

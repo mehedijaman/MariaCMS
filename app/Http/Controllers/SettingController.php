@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
+use Inertia\Inertia;
+use App\Models\Slider;
 use App\Models\Setting;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Inertia\Inertia;
 
 class SettingController extends Controller
 {
@@ -15,8 +18,14 @@ class SettingController extends Controller
      */
     public function index()
     {
+        $pages = Page::all();
+        $categories = Category::all();
+        $sliders = Slider::all();
         return Inertia::render('Setting', [
             'title' => __('app.label.setting'),
+            'pages' => $pages,
+            'categories' => $categories,
+            'sliders' => $sliders,
             'setting' => Setting::first(),
             'breadcrumbs' => [
                 ['label' => __('app.label.setting'), 'href' => route('setting.index')],
@@ -69,6 +78,7 @@ class SettingController extends Controller
             } else {
                 $favicon = $setting->favicon;
             }
+
             if ($request->logo != null) {
                 Storage::delete('public/image/setting/'.$setting->logo);
                 $logo = time().'.'.$request->logo->extension();
@@ -76,14 +86,30 @@ class SettingController extends Controller
             } else {
                 $logo = $setting->logo;
             }
+
+            if ($request->banner != null) {
+                Storage::delete('public/image/setting/'.$setting->banner);
+                $banner = time().'.'.$request->banner->extension();
+                Storage::put('public/image/setting/'.$banner, File::get($request->banner), 'public');
+            } else {
+                $banner = $setting->banner;
+            }
+
+
             $setting->update([
                 'favicon' => $favicon,
                 'logo' => $logo,
+                'banner' => $banner,
+                'banner_enabled' => $request->banner_enabled,
                 'name' => $request->name,
                 'short_name' => $request->short_name,
                 'tagline' => $request->tagline,
                 'description' => $request->description,
                 'homepage' => $request->homepage,
+                'home_slider' => $request->home_slider,
+                'news_category' => $request->news_category,
+                'event_category' => $request->event_category,
+                'home_slider' => $request->home_slider,
                 'background_color' => $request->background_color,
                 'additional_css' => $request->additional_css,
                 'header' => $request->header,

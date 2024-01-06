@@ -21,6 +21,7 @@ class WebsiteController extends Controller
         $menus = Menu::where('status', true)->get();
 
         if (is_null($slug)) {
+
             $faqs = Faq::all();
             $testimonials = Testimonial::all();
             return Inertia::render('Website/Index', [

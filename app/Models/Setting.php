@@ -14,13 +14,18 @@ class Setting extends Model
     protected $fillable = [
         'logo',
         'favicon',
+        'banner',
         'name',
         'short_name',
         'tagline',
         'description',
         'homepage',
+        'home_slider',
+        'news_category',
+        'event_category',
         'background_color',
         'additional_css',
+        'banner_enabled',
         'header',
         'footer',
         'address',
@@ -34,7 +39,12 @@ class Setting extends Model
         'whatsapp',
     ];
 
-    protected $appends = ['full_path_logo', 'full_path_favicon'];
+    protected $appends = ['full_path_logo', 'full_path_favicon', 'full_path_banner'];
+
+    public function getFullPathBannerAttribute()
+    {
+        return $this->attributes['banner'] == null ? null : asset('storage/image/setting/'.$this->attributes['banner']);
+    }
 
     public function getFullPathLogoAttribute()
     {

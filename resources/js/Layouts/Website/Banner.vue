@@ -8,12 +8,14 @@ import {
 } from "@heroicons/vue/24/outline";
 </script>
 <template>
-    <div class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
+    <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.banner_full_path !== null" class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
+        <img class="" src="https://website.iiustb.ac.bd/public/assets/frontend/images/main_logo_full.png" alt="">
+    </div>
+    <div v-else class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
         <div class="shrink-0 flex  justify-start items-center space-x-2">
             <ApplicationLogo class="block h-14 w-auto" />
 
             <div class="flex flex-col">
-
                 <Link :href="route('index')" class="">
                 <span class="text-3xl font-semibold">
                     {{ $page.props.app.setting.name }}
@@ -54,7 +56,5 @@ import {
                 </div>
             </div>
         </div>
-
-        <!-- <img class="" src="https://website.iiustb.ac.bd/public/assets/frontend/images/main_logo_full.png" alt=""> -->
     </div>
 </template>
