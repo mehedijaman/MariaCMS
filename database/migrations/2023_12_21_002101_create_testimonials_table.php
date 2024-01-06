@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('designation')->nullable();
             $table->string('company')->nullable();
             $table->string('rating')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('status')->default(true)->nullable();
 
             $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();

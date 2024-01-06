@@ -7,6 +7,8 @@ import Slider from './Slider.vue';
 import FAQ from "./FAQ.vue";
 import Testimonials from "./Testimonials.vue";
 import LatestPosts from "./LatestPosts.vue";
+import Feature from "./Feature.vue";
+import CTA from "./CTA.vue";
 
 const props = defineProps({
     title: String,
@@ -21,6 +23,8 @@ const props = defineProps({
         <Slider v-if="props.slider != null" :slides="props.slider.items"></Slider>
         <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
             <Hero></Hero>
+            <!-- <Feature></Feature> -->
+            <!-- <CTA></CTA> -->
             <div class="max-w-7xl mx-auto w-full">
                 <div class="max-w-3xl">
                     <FAQ v-if="props.faqs?.length" :faqs="props.faqs"></FAQ>
