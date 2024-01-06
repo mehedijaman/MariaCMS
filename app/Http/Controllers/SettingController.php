@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
-use Inertia\Inertia;
-use App\Models\Slider;
-use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Page;
+use App\Models\Setting;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class SettingController extends Controller
 {
@@ -21,6 +21,7 @@ class SettingController extends Controller
         $pages = Page::all();
         $categories = Category::all();
         $sliders = Slider::all();
+
         return Inertia::render('Setting', [
             'title' => __('app.label.setting'),
             'pages' => $pages,
@@ -94,7 +95,6 @@ class SettingController extends Controller
             } else {
                 $banner = $setting->banner;
             }
-
 
             $setting->update([
                 'favicon' => $favicon,

@@ -2,8 +2,7 @@
 <template>
     <section class="not-format">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion
-                (20)</h2>
+            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
         </div>
         <form class="mb-6">
             <div
@@ -30,8 +29,7 @@
                         Gough
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                            title="February 8th, 2022">Feb. 8, 2022</time>
-                    </p>
+                            title="February 8th, 2022">Feb. 8, 2022</time></p>
                 </div>
                 <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -63,10 +61,8 @@
                     </ul>
                 </div>
             </footer>
-            <p>Very straight-to-point article. Really worth time reading. Thank you! But tools
-                are just the
-                instruments for the UX designers. The knowledge of the design tools are as
-                important as the
+            <p>Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
+                instruments for the UX designers. The knowledge of the design tools are as important as the
                 creation of the design strategy.</p>
             <div class="flex items-center mt-4 space-x-4">
                 <button type="button"
@@ -88,8 +84,7 @@
                             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Jese Leos">Jese Leos
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
-                            title="February 12th, 2022">Feb. 12,
-                            2022</time></p>
+                            title="February 12th, 2022">Feb. 12, 2022</time></p>
                 </div>
                 <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -143,8 +138,7 @@
                         Green
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
-                            title="March 12th, 2022">Mar. 12, 2022</time>
-                    </p>
+                            title="March 12th, 2022">Mar. 12, 2022</time></p>
                 </div>
                 <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -176,8 +170,8 @@
                     </ul>
                 </div>
             </footer>
-            <p>The article covers the essentials, challenges, myths and stages the UX designer
-                should consider while creating the design strategy.</p>
+            <p>The article covers the essentials, challenges, myths and stages the UX designer should
+                consider while creating the design strategy.</p>
             <div class="flex items-center mt-4 space-x-4">
                 <button type="button"
                     class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
@@ -199,8 +193,7 @@
                         Engels
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
-                            title="June 23rd, 2022">Jun. 23, 2022</time>
-                    </p>
+                            title="June 23rd, 2022">Jun. 23, 2022</time></p>
                 </div>
                 <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -231,8 +224,8 @@
                     </ul>
                 </div>
             </footer>
-            <p>Thanks for sharing this. I do came from the Backend development and explored some
-                of the tools to design my Side Projects.</p>
+            <p>Thanks for sharing this. I do came from the Backend development and explored some of the
+                tools to design my Side Projects.</p>
             <div class="flex items-center mt-4 space-x-4">
                 <button type="button"
                     class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">

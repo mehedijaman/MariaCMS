@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Message\StoreMessageRequest;
+use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Menu;
+use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use Inertia\Inertia;
-use App\Models\Message;
 use App\Models\Setting;
-use App\Models\Category;
+use App\Models\Slider;
 use App\Models\Testimonial;
+use Inertia\Inertia;
 use Spatie\Honeypot\Honeypot;
-use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -21,12 +22,24 @@ class WebsiteController extends Controller
         $menus = Menu::where('status', true)->get();
 
         if (is_null($slug)) {
+            $setting = Setting::first();
+
+            if ($setting->home_slider) {
+                $slider = Slider::where('id', $setting->home_slider)->with('items.media')->first();
+            } else {
+                $slider = null;
+            }
+
+            $latest_posts = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
 
             $faqs = Faq::all();
             $testimonials = Testimonial::all();
+
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
                 'faqs' => $faqs,
+                'latest_posts' => $latest_posts,
+                'slider' => $slider,
                 'testimonials' => $testimonials,
             ]);
         }
@@ -72,7 +85,7 @@ class WebsiteController extends Controller
     {
         $categories = Category::where('status', true)->get();
         if (is_null($slug)) {
-            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->paginate(10);
+            $posts = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->paginate(10);
 
             return Inertia::render('Website/Blog/Posts', [
                 'title' => 'Blog',
@@ -81,9 +94,9 @@ class WebsiteController extends Controller
             ]);
         }
 
-        $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
+        $post = Post::where('slug', $slug)->with('author', 'categories')->where('status', true)->firstOrFail();
 
-        return Inertia::render('Website/Blog/Post', [
+        return Inertia::render('Website/Blog/PostDetails', [
             'post' => $post,
             'categories' => $categories,
         ]);
@@ -92,8 +105,10 @@ class WebsiteController extends Controller
     public function blogCategoryPosts($slug)
     {
         $categories = Category::where('status', true)->get();
-        $category = Category::where('slug', $slug)->where('status', true)->firstOrFail();
-        $posts = $category->posts()->paginate(10);
+        $category = Category::where('slug', $slug)
+            ->where('status', true)
+            ->firstOrFail();
+        $posts = $category->posts()->with('author', 'categories')->paginate(10);
 
         return Inertia::render('Website/Blog/Posts', [
             'title' => $category->name,

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Slider;
-use App\Models\SliderItem;
-use Illuminate\Http\Request;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Requests\SliderItem\IndexSliderItemRequest;
 use App\Http\Requests\SliderItem\StoreSliderItemRequest;
 use App\Http\Requests\SliderItem\UpdateSliderItemRequest;
+use App\Models\Slider;
+use App\Models\SliderItem;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SliderItemController extends Controller
 {
@@ -26,7 +25,7 @@ class SliderItemController extends Controller
             'slider_items' => $slider_items,
             'breadcrumbs' => [
                 ['label' => __('app.label.sliders'), 'href' => route('sliders.index')],
-                ['label' => __('app.label.slider_item'), 'href' => route('slider.items.index', ['slider' => $slider->id])]
+                ['label' => __('app.label.slider_item'), 'href' => route('slider.items.index', ['slider' => $slider->id])],
             ],
         ]);
     }
@@ -61,8 +60,7 @@ class SliderItemController extends Controller
                 'status' => $request->status,
             ]);
 
-            if($request->hasFile('image'))
-            {
+            if ($request->hasFile('image')) {
                 $slider_item->addMediaFromRequest('image')->toMediaCollection('slider_item');
             }
 
@@ -115,8 +113,7 @@ class SliderItemController extends Controller
                 'status' => $request->status,
             ]);
 
-            if($request->hasFile('image'))
-            {
+            if ($request->hasFile('image')) {
                 $item->clearMediaCollection('slider_item');
                 $item->addMediaFromRequest('image')->toMediaCollection('slider_item');
             }

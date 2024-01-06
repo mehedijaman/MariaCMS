@@ -17,4 +17,9 @@ class Slider extends Model
         'description',
         'status',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(SliderItem::class);
+    }
 }

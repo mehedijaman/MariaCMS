@@ -1,28 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\TagController;
-use Illuminate\Support\Facades\Session;
-use Spatie\Honeypot\ProtectAgainstSpam;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SliderItemController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +48,6 @@ Route::get('/set-locale/{locale}', function ($locale) {
 
     return back();
 })->name('set-locale');
-
 
 /** Admin Panel Routes */
 Route::prefix('cp')->middleware([
@@ -145,15 +144,15 @@ Route::prefix('cp')->middleware([
     Route::post('sliders/{slider}/items/restore/bulk', [SliderItemController::class, 'restoreBulk'])->name('slider.items.restore.bulk');
     Route::post('sliders/{slider}/items/restore/all', [SliderItemController::class, 'restoreAll'])->name('slider.items.restore.all');
     Route::resource('sliders/{slider}/items', SliderItemController::class)
-    ->names([
-        'index' => 'slider.items.index',
-        'create' => 'slider.items.create',
-        'store' => 'slider.items.store',
-        'show' => 'slider.items.show',
-        'edit' => 'slider.items.edit',
-        'update' => 'slider.items.update',
-        'destroy' => 'slider.items.destroy',
-    ]);
+        ->names([
+            'index' => 'slider.items.index',
+            'create' => 'slider.items.create',
+            'store' => 'slider.items.store',
+            'show' => 'slider.items.show',
+            'edit' => 'slider.items.edit',
+            'update' => 'slider.items.update',
+            'destroy' => 'slider.items.destroy',
+        ]);
     Route::resource('sliders', SliderController::class);
 
     /** Message Routes */

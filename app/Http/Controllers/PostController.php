@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -51,11 +52,17 @@ class PostController extends Controller
     {
         DB::beginTransaction();
         try {
+            if ($request->excerpt) {
+                $excerpt = $this->generateExcerpt($request->excerpt);
+            } else {
+                $excerpt = $this->generateExcerpt($request->content);
+            }
+
             $post = Post::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
                 'content' => $request->content,
-                'excerpt' => $request->excerpt,
+                'excerpt' => $excerpt,
                 'password' => $request->password,
                 'allow_comment' => $request->allow_comment,
                 'is_featured' => $request->is_featured,
@@ -65,17 +72,8 @@ class PostController extends Controller
                 'meta_keywords' => $request->meta_keywords,
             ]);
 
-            if($request->hasFile('featured_image'))
-            {
+            if ($request->hasFile('featured_image')) {
                 $post->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
-            }
-
-            // Conditionally set the excerpt
-            if ($request->excerpt) {
-                $post->excerpt = $request->excerpt;
-            } else {
-                // If $request->excerpt is not present, use the first 20 words from $request->content
-                $post->excerpt = implode(' ', array_slice(str_word_count(strip_tags($request->content), 1), 0, 20));
             }
 
             $post->save();
@@ -133,11 +131,17 @@ class PostController extends Controller
     {
         DB::beginTransaction();
         try {
+            if ($request->excerpt) {
+                $excerpt = $this->generateExcerpt($request->excerpt);
+            } else {
+                $excerpt = $this->generateExcerpt($request->content);
+            }
+
             $post->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
                 'content' => $request->content,
-                'excerpt' => $request->excerpt,
+                'excerpt' => $excerpt,
                 'password' => $request->password,
                 'allow_comment' => $request->allow_comment,
                 'is_featured' => $request->is_featured,
@@ -156,6 +160,20 @@ class PostController extends Controller
 
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.post')]).$th->getMessage());
         }
+    }
+
+    private function generateExcerpt($text)
+    {
+        // If $text is not null, use it; otherwise, use $request->content
+        $textToUse = $text ?? '';
+
+        // Strip HTML tags and get plain text
+        $plainText = strip_tags($textToUse);
+
+        // Extract the first 30 words
+        $excerpt = Str::words($plainText, 100, '');
+
+        return $excerpt;
     }
 
     public function trash()

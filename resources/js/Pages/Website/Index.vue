@@ -6,25 +6,27 @@ import Hero from './Hero.vue';
 import Slider from './Slider.vue';
 import FAQ from "./FAQ.vue";
 import Testimonials from "./Testimonials.vue";
+import LatestPosts from "./LatestPosts.vue";
 
 const props = defineProps({
     title: String,
     faqs: Object,
+    slider:Object,
+    latest_posts: Object,
     testimonials: Object
 });
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <Slider></Slider>
+        <Slider v-if="props.slider != null" :slides="props.slider.items"></Slider>
         <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
             <Hero></Hero>
             <div class="max-w-7xl mx-auto w-full">
-
                 <div class="max-w-3xl">
-                    <FAQ :faqs="props.faqs"></FAQ>
+                    <FAQ v-if="props.faqs?.length" :faqs="props.faqs"></FAQ>
                 </div>
-
-                <Testimonials :testimonials="props.testimonials"></Testimonials>
+                <Testimonials v-if="props.testimonials?.length" :testimonials="props.testimonials"></Testimonials>
+                <LatestPosts :posts = "props.latest_posts"></LatestPosts>
             </div>
 
             <!-- <div data-aos="fade-up" data-aos-duration="1000"
