@@ -34,6 +34,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /** Website Routes */
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('contact', [WebsiteController::class, 'contactPost'])->name('contact.post')->middleware(ProtectAgainstSpam::class);

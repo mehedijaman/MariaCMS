@@ -34,7 +34,7 @@ import {
                 <PhoneIcon class="w-6 h-6" />
                 <div class="flex flex-col">
                     <span class="text-md font-semibold">
-                        Call now
+                        {{ lang().label.call_us }}
                     </span>
 
                     <span class="text-sm ">
@@ -47,7 +47,7 @@ import {
                 <EnvelopeOpenIcon class="w-6 h-6" />
                 <div class="flex flex-col">
                     <span class="text-md font-semibold">
-                        Email us
+                        {{ lang().label.email_us }}
                     </span>
 
                     <span class="text-sm ">

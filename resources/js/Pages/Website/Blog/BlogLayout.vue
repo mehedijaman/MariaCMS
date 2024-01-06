@@ -16,12 +16,7 @@ const props = defineProps({
                     <div class="col-span-3">
                         <slot />
                     </div>
-                    <div class="col-span-1 border-[1px] border-slate-400 h-fit">
-                        <div class="text-2xl font-bold p-2 border-b-2 border-slate-300 bg-slate-200">Categories</div>
-                        <div class="overflow-auto">
-                            <Categories :categories="props.categories"></Categories>
-                        </div>
-                    </div>
+                    <Categories :categories="props.categories"></Categories>
                 </div>
             </div>
         </section>

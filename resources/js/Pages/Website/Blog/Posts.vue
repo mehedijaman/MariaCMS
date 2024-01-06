@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
     <BlogLayout :title="props.title" :categories="props.categories">
         <PostCard v-for="post in props.posts.data" :key="post.slug" :post="post"> </PostCard>
-        <nav v-if="props.posts.from != props.posts.last_page" class="flex justify-center mt-10">
+        <nav v-if="props.posts.total != 0 && props.posts.from != props.posts.last_page" class="flex justify-center mt-10">
             <ul class="inline-flex -space-x-px text-base h-10">
                 <li>
                     <Link :href="props.posts.first_page_url"

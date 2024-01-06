@@ -83,7 +83,7 @@ onMounted(() => {
 
                 <NavbarLink
                     v-bind:class="
-                        route().current('blog') ? 'font-bold text-primary' : ''
+                        route().current('blog.posts') ? 'font-bold text-primary' : ''
                     "
                     :href="route('blog.posts')"
                     :label="lang().label.blog"
@@ -93,7 +93,7 @@ onMounted(() => {
                         route().current('contact') ? 'font-bold text-primary' : ''
                     "
                     :href="route('contact')"
-                    label="Contact"
+                    :label="lang().label.contact"
                 />
                 <NavbarLink
                     v-if="$page.props.auth.user"

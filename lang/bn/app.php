@@ -143,6 +143,10 @@ return [
         'home' => 'হোম',
         'user_management' => 'ইউজার ম্যানেজমেন্ট',
         'app_maintenance' => 'সফটওয়্যার মেইন্টেন্যান্স',
+        'contact' => 'যোগাযোগ',
+        'blog' => 'ব্লগ',
+        'email_us' => 'ইমেইল করুন',
+        'call_us' => 'কল করুন',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
