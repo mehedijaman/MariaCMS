@@ -4,9 +4,9 @@ import { Link } from '@inertiajs/vue3';
 
 </script>
 <template>
-    <footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+    <footer
+    class="p-4 bg-[#f9f9f9] border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl text-center">
-
             <Link :href="route('index')" class="shrink-0 flex w-full justify-center items-center space-x-4">
             <ApplicationLogo class="block h-8 w-auto" />
             <p class="text-lg font-semibold">

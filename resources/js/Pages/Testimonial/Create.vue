@@ -2,6 +2,7 @@
 import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import ImageInput from "@/Components/ImageInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -19,6 +20,7 @@ const updateItems = inject('updateItems');
 const show = ref(false);
 
 const formData = reactive({
+    image:null,
     name: null,
     designation: null,
     company: null,
@@ -56,6 +58,11 @@ const closeModal = () => {
     form.reset();
 };
 
+const fileChange = (value) => {
+    if (value.source === "image") {
+        formData.image = value.file;
+    }
+};
 </script>
 <template>
     <div>
@@ -70,6 +77,15 @@ const closeModal = () => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
+                    <div class="space-y-1">
+                        <InputLabel for="image" value="Image" />
+                        <ImageInput source="image" v-model="formData.image" class="mt-1 block w-32 h-32 rounded-full"
+                            @fileChange="fileChange" />
+                        <InputError :message="form.errors.image" class="mt-2" />
+                        <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                            {{ form.progress.percentage }}%
+                        </progress>
+                    </div>
                     <div class="flex flex-col md:flex-row gap-4">
                         <div class="space-y-1 w-full">
                             <InputLabel for="rating" :value="lang().label.rating" />

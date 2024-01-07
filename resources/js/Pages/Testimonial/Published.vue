@@ -18,6 +18,7 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
+    { text: "Media", value: "media", sortable: false },
     { text: "Name", value: "name", sortable: true },
     { text: "Designation", value: "designation", sortable: true },
     { text: "Company", value: "company", sortable: true },
@@ -46,6 +47,10 @@ const headers = [
     <EasyDataTable class="mt-2" :rows-per-page="rowsPerPage" show-index alternating border-cell buttons-pagination
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
+
+        <template #item-media="item">
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Testimonial" class="w-10 h-10 rounded-full">
+        </template>
 
         <template #expand="item">
             <div>

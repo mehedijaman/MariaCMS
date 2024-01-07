@@ -16,7 +16,7 @@ class TestimonialController extends Controller
      */
     public function index(IndexTestimonialRequest $request)
     {
-        $testimonials = Testimonial::all();
+        $testimonials = Testimonial::with('media')->get();
 
         return Inertia::render('Testimonial/Index', [
             'title' => __('app.label.testimonials'),
@@ -53,6 +53,10 @@ class TestimonialController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
+            if ($request->hasFile('image')) {
+                $testimonial->addMediaFromRequest('image')->toMediaCollection('image');;
+            }
 
             return back()
                 ->with('success', __('app.label.created_successfully', ['name' => $testimonial->name]));
@@ -100,6 +104,12 @@ class TestimonialController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
+            // if ($request->hasFile('image')) {
+            //     return "File received";
+            //     $item->clearMediaCollection('slider_item');
+            //     $item->addMediaFromRequest('image')->toMediaCollection('slider_item');
+            // }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $testimonial->name]));
         } catch (\Throwable $th) {

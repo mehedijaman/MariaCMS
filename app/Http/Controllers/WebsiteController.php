@@ -31,10 +31,11 @@ class WebsiteController extends Controller
             }
 
             $latest_posts = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+            // return $latest_news = Category::where('id', $setting->news_category)->with('posts');
 
             $faqs = Faq::all();
-            $testimonials = Testimonial::all();
-            $homepage = Page::where('id', $setting->home_page)->first();
+            $testimonials = Testimonial::with('media')->limit(4)->get();
+            $homepage = Page::where('id', $setting->homepage)->first();
 
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
@@ -117,6 +118,15 @@ class WebsiteController extends Controller
             'category' => $category,
             'categories' => $categories,
             'posts' => $posts,
+        ]);
+    }
+
+    public function testimonials()
+    {
+        $testimonials = Testimonial::with('media')->get();
+        return Inertia::render('Website/Testimonials', [
+            'title' => 'Testimonials',
+            'testimonials' => $testimonials,
         ]);
     }
 }

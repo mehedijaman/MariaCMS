@@ -47,9 +47,7 @@ const headers = [
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
         <template #item-media="item">
-
             <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Slider Image" class="w-18 h-14 rounded-sm">
-
         </template>
 
         <template #expand="item">
