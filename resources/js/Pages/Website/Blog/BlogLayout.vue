@@ -16,7 +16,7 @@ const props = defineProps({
                     <div class="col-span-3">
                         <slot />
                     </div>
-                    <Categories :categories="props.categories"></Categories>
+                    <Categories v-if="props.categories.length" :categories="props.categories"></Categories>
                 </div>
             </div>
         </section>

@@ -129,4 +129,11 @@ class WebsiteController extends Controller
             'testimonials' => $testimonials,
         ]);
     }
+
+    public function gallery($slug = null){
+
+        return Inertia::render('Website/Gallery', [
+            'title' => 'Gallery',
+        ]);
+    }
 }

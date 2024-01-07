@@ -83,6 +83,11 @@ class RoleSeeder extends Seeder
             'gallery update',
             'gallery delete',
 
+            'gallery item create',
+            'gallery item read',
+            'gallery item update',
+            'gallery item delete',
+
             'slider create',
             'slider read',
             'slider update',

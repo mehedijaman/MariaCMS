@@ -88,6 +88,15 @@ onMounted(() => {
                     :href="route('blog.posts')"
                     :label="lang().label.blog"
                 />
+
+                <NavbarLink
+                    v-bind:class="
+                        route().current('gallery') ? 'font-bold text-primary' : ''
+                    "
+                    :href="route('gallery')"
+                    :label="lang().label.gallery"
+                />
+
                 <NavbarLink
                     v-bind:class="
                         route().current('contact') ? 'font-bold text-primary' : ''

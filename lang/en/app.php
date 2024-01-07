@@ -189,6 +189,8 @@ return [
         'slider' => 'Slider',
         'slider_items' => 'Slider Items',
         'slider_item' => 'Slider Item',
+        'gallery_items' => 'Gallery Items',
+        'gallery_item' => 'Gallery Item',
 
         'tagline' => 'Tagline',
         'homepage' => 'Homepage',

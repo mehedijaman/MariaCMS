@@ -1,18 +1,16 @@
 <script setup>
-import Create from "@/Pages/Gallery/Create.vue";
-import Edit from "@/Pages/Gallery/Edit.vue";
-import Delete from "@/Pages/Gallery/Delete.vue";
-import DeleteBulk from "@/Pages/Gallery/DeleteBulk.vue";
+import Create from "@/Pages/GalleryItem/Create.vue";
+import Edit from "@/Pages/GalleryItem/Edit.vue";
+import Delete from "@/Pages/GalleryItem/Delete.vue";
+import DeleteBulk from "@/Pages/GalleryItem/DeleteBulk.vue";
 import { ref, inject } from "vue";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
-import { Link } from "@inertiajs/vue3";
 
 import {
     MagnifyingGlassIcon,
-    ComputerDesktopIcon,
 } from "@heroicons/vue/24/outline";
 
-const items = inject('published');
+const items = inject('unpublished');
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -20,16 +18,16 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
-    { text: "Name", value: "name", sortable: true },
-    { text: "Slug", value: "slug", sortable: true },
+    { text: "Title", value: "title", sortable: true },
+    { text: "Description", value: "description", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['gallery create'])" />
-            <DeleteBulk v-if="itemsSelected.length != 0 && can(['gallery delete'])" :itemsSelected="itemsSelected"
+            <Create v-if="can(['gallery item create'])" />
+            <DeleteBulk v-if="itemsSelected.length != 0 && can(['gallery item delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -47,21 +45,13 @@ const headers = [
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
 
-        <template #expand="item">
-            <div>
-                <strong>Description: </strong> {{ item.description }}
-            </div>
-        </template>
         <template #empty-message>
             <EmptyAnimation></EmptyAnimation>
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Link v-if="can(['gallery item create'])" :href="route('gallery.items.index', { gallery: item.id })" class="inline-flex items-center px-3 py-1.5 bg-violet-500 dark:bg-violet-600 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-violet-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150">
-                    <ComputerDesktopIcon class="w-4 h-auto" />
-                </Link>
-                <Edit v-show="can(['gallery update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-show="can(['gallery delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['gallery item update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['gallery item delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>

@@ -145,7 +145,7 @@ function userManagementActive() {
                 </li>
 
 
-                <li v-bind:class="(route().current('galleries.index') || route().current('galleries.trash'))
+                <li v-bind:class="(route().current('galleries.index') || route().current('galleries.trash') || route().current('gallery.items.index') || route().current('gallery.items.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
