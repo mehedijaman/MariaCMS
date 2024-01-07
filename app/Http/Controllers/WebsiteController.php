@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Message\StoreMessageRequest;
-use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Menu;
-use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Setting;
-use App\Models\Slider;
-use App\Models\Testimonial;
 use Inertia\Inertia;
+use App\Models\Slider;
+use App\Models\Gallery;
+use App\Models\Message;
+use App\Models\Setting;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -131,9 +132,18 @@ class WebsiteController extends Controller
     }
 
     public function gallery($slug = null){
+        if(!is_null($slug)){
+            $gallery = Gallery::where('slug', $slug)->with('items.media')->firstOrFail();
+            return Inertia::render('Website/Gallery', [
+                'title' => $gallery->name,
+                'gallery' => $gallery,
+            ]);
+        }
 
-        return Inertia::render('Website/Gallery', [
+        $galleries = Gallery::all();
+        return Inertia::render('Website/GalleryList', [
             'title' => 'Gallery',
+            'galleries' => $galleries,
         ]);
     }
 }

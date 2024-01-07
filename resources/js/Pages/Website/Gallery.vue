@@ -1,8 +1,9 @@
 <script setup>
 import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
-    galleries: Object,
+    gallery: Object,
     title: String,
 })
 </script>
@@ -15,12 +16,17 @@ const props = defineProps({
                     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
                         <div class="mx-auto max-w-screen-sm">
                             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-                                Galleries</h2>
-
+                                {{ props.gallery.name }}
+                            </h2>
                         </div>
-                        <div class="grid mb-8 lg:mb-12 lg:grid-cols-2">
 
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div v-for="item in gallery.items" :key="item.id">
+                                <img class="h-52 max-w-full rounded-lg"
+                                    :src="item.media[0].original_url" alt="">
+                            </div>
                         </div>
+
                     </div>
                 </section>
             </div>

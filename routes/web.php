@@ -40,7 +40,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('contact', [WebsiteController::class, 'contactPost'])->name('contact.post')->middleware(ProtectAgainstSpam::class);
 Route::get('testimonials', [WebsiteController::class, 'testimonials'])->name('testimonials.view');
-Route::get('gallery', [WebsiteController::class, 'gallery'])->name('gallery');
+Route::get('gallery/{slug?}', [WebsiteController::class, 'gallery'])->name('gallery');
 
 Route::get('blog/{slug?}', [WebsiteController::class, 'blogPosts'])->name('blog.posts');
 Route::get('blog/category/{slug?}', [WebsiteController::class, 'blogCategoryPosts'])->name('blog.category.posts');
