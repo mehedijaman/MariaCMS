@@ -34,9 +34,11 @@ class WebsiteController extends Controller
 
             $faqs = Faq::all();
             $testimonials = Testimonial::all();
+            $homepage = Page::where('id', $setting->home_page)->first();
 
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
+                'homepage' => $homepage,
                 'faqs' => $faqs,
                 'latest_posts' => $latest_posts,
                 'slider' => $slider,

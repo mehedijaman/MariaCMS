@@ -13,22 +13,41 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+
+            /** General Settings */
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('banner')->nullable();
             $table->string('name');
             $table->string('short_name');
             $table->string('tagline')->nullable();
-            $table->text('description')->nullable();
-            $table->string('homepage')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('header')->nullable();
+            $table->longText('footer')->nullable();
+
+            /** Home Page Settings */
+            $table->boolean('topbar_enabled')->default(false);
             $table->boolean('banner_enabled')->default(false);
+            $table->boolean('slider_enabled')->default(false);
+            $table->boolean('hero_enabled')->default(false);
+            $table->boolean('news_enabled')->default(false);
+            $table->boolean('event_enabled')->default(false);
+            $table->boolean('faq_enabled')->default(false);
+            $table->boolean('feature_enabled')->default(false);
+            $table->boolean('blog_enabled')->default(false);
+            $table->boolean('testimonial_enabled')->default(false);
+            $table->string('homepage')->nullable();
             $table->string('home_slider')->nullable();
             $table->string('news_category')->nullable();
             $table->string('event_category')->nullable();
-            $table->string('background_color')->nullable();
+
+
             $table->longText('additional_css')->nullable();
-            $table->longText('header')->nullable();
-            $table->longText('footer')->nullable();
+            $table->string('topbar_color')->nullable();
+            $table->string('body_color')->nullable();
+            $table->string('footer_color')->nullable();
+
+            /** Contact Settings */
             $table->text('address')->nullable();
             $table->text('google_map')->nullable();
             $table->string('contact_no')->nullable();

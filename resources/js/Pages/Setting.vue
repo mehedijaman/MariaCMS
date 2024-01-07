@@ -17,6 +17,7 @@ import {
     InformationCircleIcon,
     PhoneIcon,
     ClipboardDocumentListIcon,
+    HomeIcon,
 } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -29,22 +30,33 @@ const props = defineProps({
 });
 
 const form = useForm({
-    favicon: null,
     logo: null,
+    favicon: null,
     banner: null,
-    banner_enabled: props.setting?.banner_enabled,
     name: props.setting?.name,
     short_name: props.setting?.short_name,
     tagline: props.setting?.tagline,
     description: props.setting?.description,
-    homepage: props.setting?.homepage,
-    news_category: props.setting?.news_category,
-    event_category: props.setting?.event_category,
-    home_slider: props.setting?.home_slider,
-    background_color: props.setting?.background_color,
-    additional_css: props.setting?.additional_css,
     header: props.setting?.header,
     footer: props.setting?.footer,
+    topbar_enabled: props.setting?.topbar_enabled,
+    banner_enabled: props.setting?.banner_enabled,
+    slider_enabled: props.setting?.slider_enabled,
+    hero_enabled: props.setting?.hero_enabled,
+    news_enabled: props.setting?.news_enabled,
+    event_enabled: props.setting?.event_enabled,
+    faq_enabled: props.setting?.faq_enabled,
+    feature_enabled: props.setting?.feature_enabled,
+    blog_enabled: props.setting?.blog_enabled,
+    testimonial_enabled: props.setting?.testimonial_enabled,
+    homepage: props.setting?.homepage,
+    home_slider: props.setting?.home_slider,
+    news_category: props.setting?.news_category,
+    event_category: props.setting?.event_category,
+    additional_css: props.setting?.additional_css,
+    topbar_color: props.setting?.topbar_color,
+    body_color: props.setting?.body_color,
+    footer_color: props.setting?.footer_color,
     address: props.setting?.address,
     google_map: props.setting?.google_map,
     contact_no: props.setting?.contact_no,
@@ -95,6 +107,15 @@ const fileChange = (value) => {
                                 Site Settings
                             </button>
                         </li>
+                        <li class="me-2" role="presentation">
+                            <button class="p-4 border-b-2 rounded-t-lg flex" id="homepage-settings-tab"
+                                data-tabs-target="#homepage-settings" type="button" role="tab" aria-controls="site-settings"
+                                aria-selected="false">
+                                <HomeIcon class="w-5 h-5 me-2 text-gray-400"></HomeIcon>
+                                Homepage Settings
+                            </button>
+                        </li>
+
                         <li class="me-2" role="presentation">
                             <button
                                 class="flex p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -178,64 +199,6 @@ const fileChange = (value) => {
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="homepage" :value="lang().label.homepage" />
-                                    <select v-model="form.homepage" id="homepage" name="homepage" class="block w-full">
-                                        <option :value="null">Default</option>
-
-                                        <option v-for="page in props.pages" :key="page.id" :value="page.slug">{{ page.name
-                                        }}</option>
-                                    </select>
-                                    <InputError :message="form.errors.homepage" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="banner" :value="lang().label.banner" />
-                                    <select v-model="form.banner_enabled" id="banner" name="banner_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
-                                    <InputError :message="form.errors.banner" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="news_category" :value="lang().label.news_category" />
-                                    <select v-model="form.news_category" id="news_category" name="news_category" class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="category in props.categories" :key="category.id" :value="category.id">{{ category.name
-                                        }}</option>
-                                    </select>
-                                    <InputError :message="form.errors.news_category" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="event_category" :value="lang().label.event_category" />
-                                    <select v-model="form.event_category" id="event_category" name="event_category" class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="category in props.categories" :key="category.id" :value="category.id">{{ category.name
-                                        }}</option>
-                                    </select>
-                                    <InputError :message="form.errors.event_category" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="home_slider" :value="lang().label.home_slider" />
-                                    <select v-model="form.home_slider" id="home_slider" name="home_slider" class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="slider in props.sliders" :key="slider.id" :value="slider.id">{{ slider.name
-                                        }}</option>
-                                    </select>
-                                    <InputError :message="form.errors.home_slider" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="background_color" :value="lang().label.background_color" />
-                                    <TextInput id="background_color" v-model="form.background_color" type="color"
-                                        class="mt-1 block w-full" :placeholder="lang().placeholder.background_color"
-                                        :error="form.errors.background_color" />
-                                    <InputError :message="form.errors.background_color" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="header" :value="lang().label.header" />
                                     <TextAreaInput id="header" v-model="form.header" type="text" class="mt-1 block w-full"
                                         :placeholder="lang().placeholder.header" :error="form.errors.header" />
@@ -248,6 +211,199 @@ const fileChange = (value) => {
                                         :placeholder="lang().placeholder.footer" :error="form.errors.footer" />
                                     <InputError :message="form.errors.footer" class="mt-2" />
                                 </div>
+                            </template>
+                            <template #actions>
+                                <ActionMessage :on="form.recentlySuccessful" class="mr-3">
+                                    {{ lang().label.saved }}
+                                </ActionMessage>
+
+                                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                                    @click="update">
+                                    {{ lang().button.save }}
+                                    {{ form.processing ? "..." : "" }}
+                                </PrimaryButton>
+                            </template>
+                        </FormSection>
+                    </div>
+                    <div class="hidden rounded-sm bg-gray-50 dark:bg-gray-800" id="homepage-settings" role="tabpanel"
+                        aria-labelledby="homapage-settings-tab">
+                        <FormSection>
+                            <template #form class="grid grid-cols-6 gap-6 ">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="homepage" :value="lang().label.homepage" />
+                                    <select v-model="form.homepage" id="homepage" name="homepage" class="block w-full">
+                                        <option :value="null">Default</option>
+                                        <option v-for="page in props.pages" :key="page.id" :value="page.id">
+                                            {{ page.name }}
+                                        </option>
+                                    </select>
+                                    <InputError :message="form.errors.homepage" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="home_slider" :value="lang().label.home_slider" />
+                                    <select v-model="form.home_slider" id="home_slider" name="home_slider"
+                                        class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="slider in props.sliders" :key="slider.id" :value="slider.id">
+                                            {{ slider.name }}
+                                        </option>
+                                    </select>
+                                    <InputError :message="form.errors.home_slider" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="news_category" :value="lang().label.news_category" />
+                                    <select v-model="form.news_category" id="news_category" name="news_category"
+                                        class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="category in props.categories" :key="category.id"
+                                            :value="category.id">
+                                            {{ category.name }}
+                                        </option>
+                                    </select>
+                                    <InputError :message="form.errors.news_category" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="event_category" :value="lang().label.event_category" />
+                                    <select v-model="form.event_category" id="event_category" name="event_category"
+                                        class="block w-full">
+                                        <option :value="null">None</option>
+                                        <option v-for="category in props.categories" :key="category.id"
+                                            :value="category.id">
+                                            {{ category.name }}
+                                        </option>
+                                    </select>
+                                    <InputError :message="form.errors.event_category" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="topbar" :value="lang().label.topbar" />
+                                    <select v-model="form.topbar_enabled" id="topbar" name="topbar_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.topbar" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="banner" :value="lang().label.banner" />
+                                    <select v-model="form.banner_enabled" id="banner" name="banner_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.banner" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="slider" :value="lang().label.slider" />
+                                    <select v-model="form.slider_enabled" id="slider" name="slider_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.slider" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="hero" :value="lang().label.hero" />
+                                    <select v-model="form.hero_enabled" id="hero" name="hero_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.hero" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="news" :value="lang().label.news" />
+                                    <select v-model="form.news_enabled" id="news" name="news_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.news" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="event" :value="lang().label.event" />
+                                    <select v-model="form.event_enabled" id="event" name="event_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.event" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="faq" :value="lang().label.faq" />
+                                    <select v-model="form.faq_enabled" id="faq" name="faq_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.faq" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="feature" :value="lang().label.feature" />
+                                    <select v-model="form.feature_enabled" id="feature" name="feature_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.feature" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="blog" :value="lang().label.blog" />
+                                    <select v-model="form.blog_enabled" id="blog" name="blog_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.blog" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="testimonial" :value="lang().label.testimonial" />
+                                    <select v-model="form.testimonial_enabled" id="testimonial" name="testimonial_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.testimonial" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-3 grid grid-cols-3">
+                                    <div>
+                                        <InputLabel for="topbar_color" :value="lang().label.topbar_color" />
+                                        <TextInput id="topbar_color" v-model="form.topbar_color" type="color"
+                                            class="mt-1 block w-full" :placeholder="lang().placeholder.topbar_color"
+                                            :error="form.errors.topbar_color" />
+                                        <InputError :message="form.errors.topbar_color" class="mt-2" />
+                                    </div>
+
+                                    <div>
+                                        <InputLabel for="body_color" :value="lang().label.body_color" />
+                                        <TextInput id="body_color" v-model="form.body_color" type="color"
+                                            class="mt-1 block w-full" :placeholder="lang().placeholder.body_color"
+                                            :error="form.errors.body_color" />
+                                        <InputError :message="form.errors.body_color" class="mt-2" />
+                                    </div>
+
+                                    <div>
+                                        <InputLabel for="footer_color" :value="lang().label.footer_color" />
+                                        <TextInput id="footer_color" v-model="form.footer_color" type="color"
+                                            class="mt-1 block w-full" :placeholder="lang().placeholder.footer_color"
+                                            :error="form.errors.footer_color" />
+                                        <InputError :message="form.errors.footer_color" class="mt-2" />
+                                    </div>
+                                </div>
+
                             </template>
                             <template #actions>
                                 <ActionMessage :on="form.recentlySuccessful" class="mr-3">
@@ -363,7 +519,6 @@ const fileChange = (value) => {
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-    </AppLayout>
-</template>
+    </div>
+</AppLayout></template>
