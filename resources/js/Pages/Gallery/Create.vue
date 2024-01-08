@@ -3,11 +3,13 @@ import Checkbox from "@/Components/Checkbox.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import ImageInput from "@/Components/ImageInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
-import { reactive, ref , inject, watch } from "vue";
+import { reactive, ref, inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
@@ -16,16 +18,17 @@ const updateItems = inject('updateItems');
 const show = ref(false);
 
 const formData = reactive({
+    thumbnail: null,
     name: null,
-    slug:null,
-    description:null,
-    status:1,
+    slug: null,
+    description: null,
+    status: 1,
 });
 
 // Watch for changes in the 'name' property
 watch(() => formData.name, (newName) => {
-  // Update the 'slug' property based on the new 'name'
-  formData.slug = generateSlug(newName);
+    // Update the 'slug' property based on the new 'name'
+    formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -51,13 +54,15 @@ const closeModal = () => {
     form.reset();
 };
 
+const fileChange = (value) => {
+    if (value.source === "thumbnail") {
+        formData.thumbnail = value.file;
+    }
+};
 </script>
 <template>
     <div>
-        <PrimaryButton
-            class="flex rounded-none items-center justify-start gap-2"
-            @click.prevent="show = true"
-        >
+        <PrimaryButton class="flex rounded-none items-center justify-start gap-2" @click.prevent="show = true">
             <PlusIcon class="w-4 h-auto" />
             <span class="hidden md:block">{{ lang().label.add }}</span>
         </PrimaryButton>
@@ -68,63 +73,54 @@ const closeModal = () => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-                    <div class="space-y-1">
-                        <InputLabel for="name" :value="lang().label.name" />
-                        <TextInput
-                            id="name"
-                            v-model="formData.name"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="name"
-                            :placeholder="lang().placeholder.gallery_name"
-                            :error="form.errors.name"
-                        />
-                        <InputError :message="form.errors.name" />
-                    </div>
+                    <div class="grid grid-cols-3 space-x-2">
+                        <div class="col-span-1">
+                            <InputLabel for="thumbnail" value="Thumbnail" />
+                            <ImageInput source="thumbnail" v-model="formData.thumbnail" class="mt-1 block w-44 h-44"
+                                @fileChange="fileChange" />
+                            <InputError :message="form.errors.thumbnail" class="mt-2" />
+                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                                {{ form.progress.percentage }}%
+                            </progress>
+                        </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="slug" :value="lang().label.slug" />
-                        <TextInput
-                            id="slug"
-                            v-model="formData.slug"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="slug"
-                            :placeholder="lang().placeholder.slug"
-                            :error="form.errors.slug"
-                        />
-                        <InputError :message="form.errors.slug" />
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <InputLabel for="name" :value="lang().label.name" />
+                                <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                    autocomplete="name" :placeholder="lang().placeholder.gallery_name"
+                                    :error="form.errors.name" />
+                                <InputError :message="form.errors.name" />
+                            </div>
+
+                            <div class="space-y-1">
+                                <InputLabel for="slug" :value="lang().label.slug" />
+                                <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
+                                    autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
+                                <InputError :message="form.errors.slug" />
+                            </div>
+
+                            <div class="space-y-1">
+                                <InputLabel for="status" :value="lang().label.status" />
+                                <select v-model="formData.status" id="status" name="status" class="block w-full">
+                                    <!-- Iterate over statuss and create options -->
+                                    <option value="1">Published</option>
+                                    <option value="0">Unpublished</option>
+                                    <option :value="null">Draft</option>
+                                </select>
+                                <InputError :message="form.errors.status" />
+                            </div>
+                        </div>
                     </div>
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextInput
-                            id="slug"
-                            v-model="formData.description"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="description"
-                            :placeholder="lang().placeholder.description"
-                            :error="form.errors.desctiption"
-                        />
+                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                            autocomplete="description" :placeholder="lang().placeholder.description"
+                            :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
                     </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="status" :value="lang().label.status" />
-                        <select
-                            v-model="formData.status"
-                            id="status"
-                            name="status"
-                            class="block w-full"
-                        >
-                            <!-- Iterate over statuss and create options -->
-                            <option value="1">Published</option>
-                            <option value="0">Unpublished</option>
-                            <option :value="null">Draft</option>
-                        </select>
-                        <InputError :message="form.errors.status" />
-                    </div>
                 </form>
             </template>
 
@@ -133,12 +129,8 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <PrimaryButton
-                    class="ml-3"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                    @click="submit"
-                >
+                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="submit">
                     {{ lang().button.save }} {{ form.processing ? "..." : "" }}
                 </PrimaryButton>
             </template>

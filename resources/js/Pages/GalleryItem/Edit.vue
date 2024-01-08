@@ -7,6 +7,7 @@ import ActionButton from "@/Components/ActionButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
@@ -65,39 +66,45 @@ const fileChange = (value) => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-                    <div class="space-y-1">
-                        <InputLabel for="image" value="Image" />
-                        <ImageInput source="image" v-model="form.image" class="mt-1 block w-full h-64"
-                            :image="props.item.media[0].original_url"
-                            @fileChange="fileChange" />
-                        <InputError :message="form.errors.image" class="mt-2" />
-                        <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-                            {{ form.progress.percentage }}%
-                        </progress>
-                    </div>
+                    <div class="grid grid-cols-3 space-x-2">
+                        <div class="col-span-1">
+                            <InputLabel for="image" value="Image" />
+                            <ImageInput source="image" v-model="form.image" class="mt-1 block w-full h-48"
+                                :image="props.item?.media[0].original_url"
+                                @fileChange="fileChange" />
+                            <InputError :message="form.errors.image" class="mt-2" />
+                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                                {{ form.progress.percentage }}%
+                            </progress>
+                        </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="title" :value="lang().label.title" />
-                        <TextInput id="title" v-model="form.title" type="text" class="block w-full" autocomplete="title"
-                            :placeholder="lang().placeholder.gallery_title" :error="form.errors.title" />
-                        <InputError :message="form.errors.name" />
-                    </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <InputLabel for="status" :value="lang().label.status" />
+                                <select v-model="form.status" id="status" name="status" class="block w-full">
+                                    <option :value="1">Published</option>
+                                    <option :value="0">Unpublished</option>
+                                    <option :value="null">Draft</option>
+                                </select>
+                                <InputError :message="form.errors.status" />
+                            </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="slug" :value="lang().label.description" />
-                        <TextInput id="slug" v-model="form.description" type="text" class="block w-full"
-                            autocomplete="description" :placeholder="lang().placeholder.description"
-                            :error="form.errors.desctiption" />
-                        <InputError :message="form.errors.description" />
-                    </div>
-                    <div class="space-y-1">
-                        <InputLabel for="status" :value="lang().label.status" />
-                        <select v-model="form.status" id="status" name="status" class="block w-full">
-                            <option :value="1">Published</option>
-                            <option :value="0">Unpublished</option>
-                            <option :value="null">Draft</option>
-                        </select>
-                        <InputError :message="form.errors.status" />
+                            <div class="space-y-1">
+                                <InputLabel for="title" :value="lang().label.title" />
+                                <TextInput id="title" v-model="form.title" type="text" class="block w-full"
+                                    autocomplete="title" :placeholder="lang().placeholder.gallery_title"
+                                    :error="form.errors.title" />
+                                <InputError :message="form.errors.name" />
+                            </div>
+
+                            <div class="space-y-1">
+                                <InputLabel for="slug" :value="lang().label.description" />
+                                <TextAreaInput id="slug" v-model="form.description" type="text" class="block w-full"
+                                    autocomplete="description" :placeholder="lang().placeholder.description"
+                                    :error="form.errors.desctiption" />
+                                <InputError :message="form.errors.description" />
+                            </div>
+                        </div>
                     </div>
                 </form>
             </template>

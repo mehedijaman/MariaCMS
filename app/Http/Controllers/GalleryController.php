@@ -16,7 +16,7 @@ class GalleryController extends Controller
      */
     public function index(IndexGalleryRequest $request)
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::with('media')->get();
 
         return Inertia::render('Gallery/Index', [
             'title' => __('app.label.galleries'),
@@ -52,6 +52,10 @@ class GalleryController extends Controller
                 'status' => $request->status,
             ]);
 
+            if ($request->hasFile('thumbnail')) {
+                $gallery->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
+            }
+
             return back()
                 ->with('gallery', $gallery)
                 ->with('success', __('app.label.created_successfully', ['name' => $gallery->name]));
@@ -66,6 +70,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
+        $gallery->getFirstMedia();
         return Inertia::render('Gallery/Show', [
             'title' => __('app.label.gallery'),
             'gallery' => $gallery,
@@ -78,6 +83,7 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
+        $gallery->getMedia();
         return Inertia::render('Gallery/Edit', [
             'title' => __('app.label.gallery'),
             'gallery' => $gallery,
@@ -97,6 +103,10 @@ class GalleryController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
+            // if ($request->hasFile('thumbnail')) {
+            //     $gallery->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
+            // }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $gallery->name]));
         } catch (\Throwable $th) {

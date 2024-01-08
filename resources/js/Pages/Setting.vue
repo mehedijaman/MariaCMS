@@ -378,7 +378,7 @@ const fileChange = (value) => {
                                     <InputError :message="form.errors.testimonial" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-3 grid grid-cols-3">
+                                <!-- <div class="col-span-3 grid grid-cols-3">
                                     <div>
                                         <InputLabel for="topbar_color" :value="lang().label.topbar_color" />
                                         <TextInput id="topbar_color" v-model="form.topbar_color" type="color"
@@ -402,7 +402,7 @@ const fileChange = (value) => {
                                             :error="form.errors.footer_color" />
                                         <InputError :message="form.errors.footer_color" class="mt-2" />
                                     </div>
-                                </div>
+                                </div> -->
 
                             </template>
                             <template #actions>
