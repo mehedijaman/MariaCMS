@@ -11,8 +11,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Gallery extends Model implements HasMedia
 {
     use HasFactory;
-    use SoftDeletes;
     use InteractsWithMedia;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',

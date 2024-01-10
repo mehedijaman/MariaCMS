@@ -41,7 +41,6 @@ return new class extends Migration
             $table->string('news_category')->nullable();
             $table->string('event_category')->nullable();
 
-
             $table->longText('additional_css')->nullable();
             $table->string('topbar_color')->nullable();
             $table->string('body_color')->nullable();

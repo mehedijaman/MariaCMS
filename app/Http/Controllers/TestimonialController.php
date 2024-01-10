@@ -55,7 +55,7 @@ class TestimonialController extends Controller
             ]);
 
             if ($request->hasFile('image')) {
-                $testimonial->addMediaFromRequest('image')->toMediaCollection('image');;
+                $testimonial->addMediaFromRequest('image')->toMediaCollection('image');
             }
 
             return back()

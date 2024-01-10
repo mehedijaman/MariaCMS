@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Gallery;
-use App\Models\GalleryItem;
-use Illuminate\Http\Request;
 use App\Http\Requests\GalleryItem\IndexGalleryItemRequest;
 use App\Http\Requests\GalleryItem\StoreGalleryItemRequest;
 use App\Http\Requests\GalleryItem\UpdateGalleryItemRequest;
+use App\Models\Gallery;
+use App\Models\GalleryItem;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class GalleryItemController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index(IndexGalleryItemRequest $request, Gallery $gallery)
@@ -110,7 +110,7 @@ class GalleryItemController extends Controller
             ]);
 
             if ($request->hasFile('image')) {
-                return "File received";
+                return 'File received';
                 $item->clearMediaCollection('gallery_item');
                 $item->addMediaFromRequest('image')->toMediaCollection('gallery_item');
             }

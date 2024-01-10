@@ -73,25 +73,25 @@ class SettingController extends Controller
     {
         try {
             if ($request->favicon != null) {
-                Storage::delete('public/image/setting/' . $setting->favicon);
-                $favicon = time() . '.' . $request->favicon->extension();
-                Storage::put('public/image/setting/' . $favicon, File::get($request->favicon), 'public');
+                Storage::delete('public/image/setting/'.$setting->favicon);
+                $favicon = time().'.'.$request->favicon->extension();
+                Storage::put('public/image/setting/'.$favicon, File::get($request->favicon), 'public');
             } else {
                 $favicon = $setting->favicon;
             }
 
             if ($request->logo != null) {
-                Storage::delete('public/image/setting/' . $setting->logo);
-                $logo = time() . '.' . $request->logo->extension();
-                Storage::put('public/image/setting/' . $logo, File::get($request->logo), 'public');
+                Storage::delete('public/image/setting/'.$setting->logo);
+                $logo = time().'.'.$request->logo->extension();
+                Storage::put('public/image/setting/'.$logo, File::get($request->logo), 'public');
             } else {
                 $logo = $setting->logo;
             }
 
             if ($request->banner != null) {
-                Storage::delete('public/image/setting/' . $setting->banner);
-                $banner = time() . '.' . $request->banner->extension();
-                Storage::put('public/image/setting/' . $banner, File::get($request->banner), 'public');
+                Storage::delete('public/image/setting/'.$setting->banner);
+                $banner = time().'.'.$request->banner->extension();
+                Storage::put('public/image/setting/'.$banner, File::get($request->banner), 'public');
             } else {
                 $banner = $setting->banner;
             }

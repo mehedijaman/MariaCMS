@@ -71,6 +71,7 @@ class GalleryController extends Controller
     public function show(Gallery $gallery)
     {
         $gallery->getFirstMedia();
+
         return Inertia::render('Gallery/Show', [
             'title' => __('app.label.gallery'),
             'gallery' => $gallery,
@@ -84,6 +85,7 @@ class GalleryController extends Controller
     public function edit(Gallery $gallery)
     {
         $gallery->getMedia();
+
         return Inertia::render('Gallery/Edit', [
             'title' => __('app.label.gallery'),
             'gallery' => $gallery,
