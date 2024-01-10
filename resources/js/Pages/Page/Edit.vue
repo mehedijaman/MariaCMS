@@ -9,11 +9,16 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 import { Link } from "@inertiajs/vue3";
 
+// CKEditor
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+const editor = ref(ClassicEditor);
+const editorConfig = ref({});
+
 const props = defineProps({
     title: String,
-    page:Object,
-    pages:Object,
-    breadcrumbs:Object,
+    page: Object,
+    pages: Object,
+    breadcrumbs: Object,
 });
 
 const formData = reactive({
@@ -31,8 +36,8 @@ const formData = reactive({
 
 // Watch for changes in the 'name' property
 watch(() => formData.name, (newName) => {
-  // Update the 'slug' property based on the new 'name'
-  formData.slug = generateSlug(newName);
+    // Update the 'slug' property based on the new 'name'
+    formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -92,8 +97,7 @@ const config = {};
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-4 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-lg">
                             <InputError :message="form.errors.content" />
-                            <froala id="edit" style="height: 100vh !important;" :tag="'textarea'" :config="config"
-                                v-model:value="formData.content"></froala>
+                            <ckeditor :editor="editor" v-model="formData.content" :config="editorConfig"></ckeditor>
                         </div>
 
                         <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-md text-sm">

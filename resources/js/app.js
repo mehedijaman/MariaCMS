@@ -14,19 +14,8 @@ import FloatingVue from 'floating-vue'
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 
-/* Froala */
-//Import Froala Editor
-import 'froala-editor/js/plugins.pkgd.min.js';
-//Import third party plugins
-import 'froala-editor/js/third_party/embedly.min';
-import 'froala-editor/js/third_party/font_awesome.min';
-// import 'froala-editor/js/third_party/spell_checker.min';
-import 'froala-editor/js/third_party/image_tui.min';
-// Import Froala Editor css files.
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/css/froala_style.min.css';
-import VueFroala from 'vue-froala-wysiwyg';
-/* /Froala */
+// CKEditor
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -44,7 +33,7 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
             .use(Vue3Lottie)
             .use(FloatingVue)
-            .use(VueFroala)
+            .use(CKEditor)
             .component('EasyDataTable', Vue3EasyDataTable)
             .mixin({
                 methods: {

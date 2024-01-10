@@ -9,6 +9,11 @@ import { reactive, ref, inject, watch } from "vue";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
+// CKEditor
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+const editor = ref(ClassicEditor);
+const editorConfig = ref({});
+
 import {
     TrashIcon,
     BookmarkSlashIcon,
@@ -100,8 +105,7 @@ const config = ref();
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-4 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-lg">
                             <InputError :message="form.errors.content" />
-                            <froala id="edit" style="height: 100vh !important;" :tag="'textarea'" :config="config"
-                                v-model:value="formData.content"></froala>
+                            <ckeditor :editor="editor" v-model="formData.content" :config="editorConfig"></ckeditor>
                         </div>
 
                         <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-md text-sm">
