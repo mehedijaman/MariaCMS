@@ -11,6 +11,7 @@ import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 // CKEditor
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 const editor = ref(ClassicEditor);
 const editorConfig = ref({});
 
