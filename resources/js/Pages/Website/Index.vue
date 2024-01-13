@@ -15,25 +15,21 @@ import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     title: String,
-    faqs: Object,
-    slider: Object,
-    homepage: Object,
-    latest_posts: Object,
-    testimonials: Object
+    data: Object
 });
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <Slider v-if="$page.props.app.setting.slider_enabled && props.slider.length" :slides="props.slider.items"></Slider>
+        <Slider v-if="$page.props.app.setting.slider_enabled && props.data.slider" :slides="props.data.slider.items"></Slider>
         <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
-            <Hero v-if="$page.props.app.setting.hero_enabled"></Hero>
-            <Home v-if="props.homepage" :homepage="props.homepage"></Home>
-            <Feature v-if="$page.props.app.setting.feature_enabled"></Feature>
-            <CTA v-if="$page.props.app.setting.cta_enabled"></CTA>
+            <Hero v-if="$page.props.app.setting.hero_enabled" :hero="props.data.hero"></Hero>
+            <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
+            <Feature v-if="$page.props.app.setting.feature_enabled" :features="props.data.features"></Feature>
+            <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
             <div class="max-w-7xl mx-auto w-full">
                 <div class="grid grid-cols-2">
-                    <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.faqs"></FAQ>
-                    <News v-if="$page.props.app.setting.news_enabled" :news="props.news"></News>
+                    <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
+                    <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>
                 </div>
 
                 <section v-if="$page.props.app.setting.testimonial_enabled" class="bg-white dark:bg-gray-900 my-4">
@@ -48,7 +44,7 @@ const props = defineProps({
                                 firsthand.</p>
                         </div>
                         <div class="grid mb-8 lg:mb-12 lg:grid-cols-2">
-                            <TestimonialCard v-for="testimonial in props.testimonials" :key="testimonial.id"
+                            <TestimonialCard v-for="testimonial in props.data.testimonials" :key="testimonial.id"
                                 :testimonial="testimonial">
                             </TestimonialCard>
                         </div>
@@ -63,7 +59,7 @@ const props = defineProps({
                         </div>
                     </div>
                 </section>
-                <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.latest_posts"></LatestPosts>
+                <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.data.latest_posts"></LatestPosts>
             </div>
         </section>
     </WebsiteLayout>

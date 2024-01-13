@@ -116,5 +116,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'message read', 'guard_name' => 'web']);
         Permission::create(['name' => 'message update', 'guard_name' => 'web']);
         Permission::create(['name' => 'message delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'hero create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'hero read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'hero update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'hero delete', 'guard_name' => 'web']);
     }
 }

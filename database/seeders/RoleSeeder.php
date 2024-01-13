@@ -122,6 +122,11 @@ class RoleSeeder extends Seeder
             'message read',
             'message update',
             'message delete',
+
+            'hero create',
+            'hero read',
+            'hero update',
+            'hero delete',
         ]);
 
         $admin = Role::create([

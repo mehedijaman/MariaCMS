@@ -1,29 +1,30 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\GalleryItemController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\MenuItemController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\SliderItemController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Session;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use App\Http\Controllers\HeroController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SliderItemController;
+use App\Http\Controllers\GalleryItemController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -249,4 +250,7 @@ Route::prefix('cp')->middleware([
 
     /** Setting Routes */
     Route::resource('setting', SettingController::class)->except('create', 'store', 'show', 'edit', 'destory');
+
+    /** Hero Routes */
+    Route::resource('heroes', HeroController::class)->except('create', 'store', 'show', 'edit', 'destory');
 });

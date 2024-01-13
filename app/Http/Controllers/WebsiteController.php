@@ -2,58 +2,82 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Message\StoreMessageRequest;
-use App\Models\Category;
 use App\Models\Faq;
-use App\Models\Gallery;
+use App\Models\Hero;
 use App\Models\Menu;
-use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Setting;
-use App\Models\Slider;
-use App\Models\Testimonial;
 use Inertia\Inertia;
+use App\Models\Slider;
+use App\Models\Gallery;
+use App\Models\Message;
+use App\Models\Setting;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
     public function index($slug = null)
     {
-        $menus = Menu::where('status', true)->get();
+        $setting = Setting::first();
+
+        $data = [
+            'menus' => Menu::where('status', true)->get(),
+        ];
+
 
         if (is_null($slug)) {
-            $setting = Setting::first();
-
-            if ($setting->home_slider) {
-                $slider = Slider::where('id', $setting->home_slider)->with('items.media')->first();
-            } else {
-                $slider = null;
+            if ($setting->slider_enabled) {
+                $data['slider'] = Slider::where('id', $setting->home_slider)->with('items.media')->first();
             }
 
-            $latest_posts = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
-            // return $latest_news = Category::where('id', $setting->news_category)->with('posts');
+            if ($setting->hero_enabled) {
+                $data['hero'] = Hero::first();
+            }
 
-            $faqs = Faq::all();
-            $testimonials = Testimonial::with('media')->limit(4)->get();
-            $homepage = Page::where('id', $setting->homepage)->first();
+            if($setting->homepage_enabled){
+                $data['homepage'] = Page::where('id', $setting->homepage)->first();
+            }
+
+            if($setting->news_enabled){
+                //have to filter news_category
+                $data['news'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+            }
+
+            if($setting->event_enabled){
+                // need to filter events category
+                $data['events'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+            }
+
+            if($setting->faq_enabled){
+                $data['faqs'] = Faq::all();
+            }
+
+            if($setting->feature_enabled){
+                //
+            }
+
+            if($setting->blog_enabled){
+                $data['latest_posts'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+            }
+
+            if($setting->testimonial_enabled){
+                $data['testimonials'] = Testimonial::with('media')->limit(4)->get();
+            }
 
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
-                'homepage' => $homepage,
-                'faqs' => $faqs,
-                'latest_posts' => $latest_posts,
-                'slider' => $slider,
-                'testimonials' => $testimonials,
+                'data' => $data
             ]);
         }
 
-        $page = Page::where('slug', $slug)->where('status', true)->firstOrFail();
+        $data['page'] = Page::where('slug', $slug)->where('status', true)->firstOrFail();
 
         return Inertia::render('Website/Page', [
-            'page' => $page,
+            'data' => $data,
         ]);
-
     }
 
     public function contact(Honeypot $honeypot)
@@ -81,7 +105,7 @@ class WebsiteController extends Controller
                 ->with('message', $message)
                 ->with('success', __('app.label.sent_successfully'));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.sent_error').$th->getMessage());
+            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
         }
     }
 
@@ -134,7 +158,7 @@ class WebsiteController extends Controller
 
     public function gallery($slug = null)
     {
-        if (! is_null($slug)) {
+        if (!is_null($slug)) {
             $gallery = Gallery::where('slug', $slug)->with('items.media')->firstOrFail();
 
             return Inertia::render('Website/Gallery', [

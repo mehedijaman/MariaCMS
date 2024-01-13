@@ -192,6 +192,10 @@ return [
         'gallery_items' => 'Gallery Items',
         'gallery_item' => 'Gallery Item',
 
+        'button_text' => 'Button Text',
+        'button_url' => 'Button URL',
+        'button_target' => 'Button Target',
+
         'tagline' => 'Tagline',
         'homepage' => 'Homepage',
         'topbar_color' => 'Topbar Color',
@@ -201,12 +205,13 @@ return [
         'topbar' => 'Topbar',
         'banner' => 'Banner',
         'slider' => 'Slider',
-        'hero' => 'Hero',
+        'heroes' => 'Hero',
         'news' => 'News',
         'event' => 'Event',
         'faq' => 'FAQ',
         'feature' => 'Feature',
         'blog' => 'Blog',
+        'hero' => 'Hero',
         'testimonial' => 'Testimonial',
         'header' => 'Header',
         'footer' => 'Footer',
@@ -281,6 +286,10 @@ return [
         'subject' => 'Enter Subject',
         'phone' => 'Enter Phone No',
         'message' => 'Enter Message',
+
+        'button_text' => 'Button Text',
+        'button_url' => 'http://',
+        'button_target' => 'Button Target',
     ],
     'button' => [
         'login' => 'Log In',

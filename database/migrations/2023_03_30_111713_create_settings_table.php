@@ -30,12 +30,15 @@ return new class extends Migration
             $table->boolean('banner_enabled')->default(false);
             $table->boolean('slider_enabled')->default(false);
             $table->boolean('hero_enabled')->default(false);
+            $table->boolean('homepage_enabled')->default(false);
             $table->boolean('news_enabled')->default(false);
             $table->boolean('event_enabled')->default(false);
             $table->boolean('faq_enabled')->default(false);
             $table->boolean('feature_enabled')->default(false);
+            $table->boolean('cta_enabled')->default(false);
             $table->boolean('blog_enabled')->default(false);
             $table->boolean('testimonial_enabled')->default(false);
+
             $table->string('homepage')->nullable();
             $table->string('home_slider')->nullable();
             $table->string('news_category')->nullable();
