@@ -24,7 +24,7 @@ const props = defineProps({
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <Slider v-if="$page.props.app.setting.slider_enabled" :slides="props.slider.items"></Slider>
+        <Slider v-if="$page.props.app.setting.slider_enabled && props.slider.length" :slides="props.slider.items"></Slider>
         <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
             <Hero v-if="$page.props.app.setting.hero_enabled"></Hero>
             <Home v-if="props.homepage" :homepage="props.homepage"></Home>
@@ -65,5 +65,6 @@ const props = defineProps({
                 </section>
                 <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.latest_posts"></LatestPosts>
             </div>
-    </section>
-</WebsiteLayout></template>
+        </section>
+    </WebsiteLayout>
+</template>
