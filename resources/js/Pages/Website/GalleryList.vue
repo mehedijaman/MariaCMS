@@ -1,5 +1,6 @@
 <script setup>
 import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/20/solid";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -19,29 +20,23 @@ const props = defineProps({
                                 Galleries
                             </h2>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-4 space-x-2">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div v-for="gallery in galleries" :key="gallery.id"
                                 class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-                                </a>
+                                <img class="rounded-t-lg h-44 w-full" :src="gallery.media[0].original_url" alt="" />
                                 <div class="p-5">
                                     <Link :href="route('gallery',{slug:gallery.slug})">
-                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                                             {{ gallery.name }}
                                         </h5>
                                     </Link>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <!-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                         {{ gallery.description }}
-                                    </p>
+                                    </p> -->
                                     <Link :href="route('gallery', {slug: gallery.slug})"
-                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700  rounded-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
                                         View Photos
-                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                        </svg>
+                                        <ArrowRightIcon class="rtl:rotate-180 w-3.5 h-3.5 ms-2"></ArrowRightIcon>
                                     </Link>
                                 </div>
                             </div>

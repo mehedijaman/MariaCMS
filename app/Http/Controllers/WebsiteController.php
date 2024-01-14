@@ -172,7 +172,7 @@ class WebsiteController extends Controller
             ]);
         }
 
-        $galleries = Gallery::all();
+        $galleries = Gallery::with('media')->get();
 
         return Inertia::render('Website/GalleryList', [
             'title' => 'Gallery',

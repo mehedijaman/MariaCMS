@@ -8,8 +8,8 @@ import {
 } from "@heroicons/vue/24/outline";
 </script>
 <template>
-    <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.banner_full_path != null" class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
-        <img class="" :src="$page.props.app.setting.banner_full_path" alt="">
+    <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.full_path_banner != null" class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
+        <img class="" :src="$page.props.app.setting.full_path_banner" alt="">
     </div>
     <div v-else class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
         <div class="shrink-0 flex  justify-start items-center space-x-2">
