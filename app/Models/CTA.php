@@ -26,8 +26,11 @@ class CTA extends Model
     protected $appends = ['full_path_image'];
     public function getFullPathImageAttribute()
     {
-        return $this->attributes['image'] == null ? asset('image.png') : asset('storage/image/cta/'.$this->attributes['image']);
+        $image = $this->attributes['image'] ?? null;
+
+        return $image ? asset('storage/image/cta/' . $image) : asset('image.png');
     }
+
 
     public function getCreatedAtAttribute()
     {

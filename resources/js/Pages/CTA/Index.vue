@@ -75,11 +75,13 @@ const fileChange = (value) => {
                                 <InputError :message="form.errors.buttonURL" class="mt-2" />
                             </div>
 
-                            <div class="">
+                            <div>
                                 <InputLabel for="buttonTarget" :value="lang().label.button_target" />
-                                <TextInput id="buttonTarget" v-model="form.buttonTarget" type="text"
-                                    class="mt-1 block w-full" :placeholder="lang().placeholder.button_target"
-                                    :error="form.errors.buttonTarget" />
+                                <select v-model="form.buttonTarget" id="buttonTarget" name="buttonTarget"
+                                    class="block w-full">
+                                    <option :value="null">Self</option>
+                                    <option value="_blank">Blank Tab</option>
+                                </select>
                                 <InputError :message="form.errors.buttonTarget" class="mt-2" />
                             </div>
                         </div>

@@ -15,6 +15,7 @@ class SettingSeeder extends Seeder
         Setting::create([
             'favicon' => null,
             'logo' => null,
+            'banner' => null,
             'name' => 'MariaCMS',
             'contact_no' => '01914090747',
             'email' => 'mail4mjaman@gmail.com',

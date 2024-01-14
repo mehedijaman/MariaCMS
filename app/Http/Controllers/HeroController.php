@@ -7,7 +7,6 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Hero\UpdateHeroRequest;
 
 class HeroController extends Controller
 {
@@ -80,9 +79,9 @@ class HeroController extends Controller
                 'button_target' => $request->buttonTarget,
             ]);
 
-            return back();
+            return back()->with('success', __('app.label.updated_successfully', ['name' => __('app.label.heroes')]));
         } catch (\Throwable $th) {
-            return back();
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.heroes')]).$th->getMessage());
         }
     }
 

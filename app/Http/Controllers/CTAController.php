@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CTA;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,10 +60,10 @@ class CTAController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CTA $cta)
+    public function update(Request $request, $cta)
     {
-
-        // try {
+        $cta =  CTA::find($cta);
+        try {
             if ($request->image != null) {
                 Storage::delete('public/image/cta/' . $cta->image);
                 $image = time() . '.' . $request->image->extension();
@@ -80,10 +81,10 @@ class CTAController extends Controller
                 'button_target' => $request->buttonTarget,
             ]);
 
-            return back();
-        // } catch (\Throwable $th) {
-        //     return back();
-        // }
+            return back()->with('success', __('app.label.updated_successfully', ['name' => __('app.label.cta')]));
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.cta')]).$th->getMessage());
+        }
     }
 
     /**
