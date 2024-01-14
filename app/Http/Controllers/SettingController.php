@@ -109,6 +109,7 @@ class SettingController extends Controller
                 'banner_enabled' => $request->banner_enabled,
                 'slider_enabled' => $request->slider_enabled,
                 'hero_enabled' => $request->hero_enabled,
+                'homepage_enabled' => $request->homepage_enabled,
                 'news_enabled' => $request->news_enabled,
                 'event_enabled' => $request->event_enabled,
                 'faq_enabled' => $request->faq_enabled,

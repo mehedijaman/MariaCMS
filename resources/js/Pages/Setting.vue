@@ -43,6 +43,7 @@ const form = useForm({
     banner_enabled: props.setting?.banner_enabled,
     slider_enabled: props.setting?.slider_enabled,
     hero_enabled: props.setting?.hero_enabled,
+    homepage_enabled: props.setting?.homepage_enabled,
     news_enabled: props.setting?.news_enabled,
     event_enabled: props.setting?.event_enabled,
     faq_enabled: props.setting?.faq_enabled,
@@ -229,6 +230,16 @@ const fileChange = (value) => {
                         aria-labelledby="homapage-settings-tab">
                         <FormSection>
                             <template #form class="grid grid-cols-6 gap-6 ">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="homepage_enabled" :value="lang().label.homepage" />
+                                    <select v-model="form.homepage_enabled" id="homepage_enabled" name="homepage_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.homepage_enabled" class="mt-2" />
+                                </div>
+
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="homepage" :value="lang().label.homepage" />
                                     <select v-model="form.homepage" id="homepage" name="homepage" class="block w-full">

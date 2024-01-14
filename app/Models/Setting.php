@@ -25,6 +25,7 @@ class Setting extends Model
         'banner_enabled',
         'slider_enabled',
         'hero_enabled',
+        'homepage_enabled',
         'news_enabled',
         'event_enabled',
         'faq_enabled',
