@@ -212,6 +212,7 @@ return [
         'feature' => 'Feature',
         'blog' => 'Blog',
         'hero' => 'Hero',
+        'cta' => 'CTA',
         'testimonial' => 'Testimonial',
         'header' => 'Header',
         'footer' => 'Footer',

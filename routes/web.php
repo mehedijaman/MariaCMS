@@ -19,6 +19,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CTAController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
@@ -253,4 +254,7 @@ Route::prefix('cp')->middleware([
 
     /** Hero Routes */
     Route::resource('heroes', HeroController::class)->except('create', 'store', 'show', 'edit', 'destory');
+
+    /** CTA Routes */
+    Route::resource('cta', CTAController::class)->except('create', 'store', 'show', 'edit', 'destory');
 });

@@ -29,6 +29,7 @@ class Setting extends Model
         'news_enabled',
         'event_enabled',
         'faq_enabled',
+        'cta_enabled',
         'feature_enabled',
         'blog_enabled',
         'testimonial_enabled',

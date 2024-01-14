@@ -2,10 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CTA extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'cta';
+
+    protected $fillable = [
+        'image',
+        'title',
+        'description',
+        'button_text',
+        'button_url',
+        'button_target'
+    ];
+
+    protected $appends = ['full_path_image'];
+    public function getFullPathImageAttribute()
+    {
+        return $this->attributes['image'] == null ? asset('image.png') : asset('storage/image/cta/'.$this->attributes['image']);
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->isoFormat('D MMMM Y HH:mm');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->isoFormat('D MMMM Y HH:mm');
+    }
 }

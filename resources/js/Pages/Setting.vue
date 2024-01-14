@@ -47,6 +47,7 @@ const form = useForm({
     news_enabled: props.setting?.news_enabled,
     event_enabled: props.setting?.event_enabled,
     faq_enabled: props.setting?.faq_enabled,
+    cta_enabled: props.setting?.cta_enabled,
     feature_enabled: props.setting?.feature_enabled,
     blog_enabled: props.setting?.blog_enabled,
     testimonial_enabled: props.setting?.testimonial_enabled,
@@ -357,6 +358,16 @@ const fileChange = (value) => {
                                         <option :value="1">Enabled</option>
                                     </select>
                                     <InputError :message="form.errors.faq" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="cta" :value="lang().label.cta" />
+                                    <select v-model="form.cta_enabled" id="cta" name="cta_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.cta" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">

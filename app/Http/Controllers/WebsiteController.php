@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CTA;
 use App\Models\Faq;
 use App\Models\Hero;
 use App\Models\Menu;
@@ -35,6 +36,10 @@ class WebsiteController extends Controller
 
             if ($setting->hero_enabled) {
                 $data['hero'] = Hero::first();
+            }
+
+            if ($setting->cta_enabled) {
+                $data['cta'] = CTA::first();
             }
 
             if($setting->homepage_enabled){

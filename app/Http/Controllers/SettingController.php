@@ -113,6 +113,7 @@ class SettingController extends Controller
                 'news_enabled' => $request->news_enabled,
                 'event_enabled' => $request->event_enabled,
                 'faq_enabled' => $request->faq_enabled,
+                'cta_enabled' => $request->cta_enabled,
                 'feature_enabled' => $request->feature_enabled,
                 'blog_enabled' => $request->blog_enabled,
                 'testimonial_enabled' => $request->testimonial_enabled,
