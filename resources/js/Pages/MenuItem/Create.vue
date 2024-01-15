@@ -37,7 +37,6 @@ const submit = () => {
         preserveScroll: true,
         onSuccess: (response) => {
             addItem(formData);
-            closeModal();
         },
         onError: () => null,
         onFinish: () => null,

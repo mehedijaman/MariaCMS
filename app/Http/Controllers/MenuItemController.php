@@ -63,7 +63,6 @@ class MenuItemController extends Controller
             ]);
 
             return back()
-                ->with('item', $item)
                 ->with('success', __('app.label.created_successfully', ['name' => $item->name]));
         } catch (\Throwable $th) {
             return back()->with('error', __('app.label.created_error', ['name' => __('app.label.menu')]).$th->getMessage());

@@ -92,7 +92,7 @@ provide('updateItem', updateItem);
 
         <div class="py-4">
             <div class="max-w-7xl sm:px-6 lg:px-4 grid grid-cols-5 gap-2">
-                <div class="col-span-2 bg-white rounded-sm p-2">
+                <div class="col-span-2 bg-white rounded-sm p-2 h-fit">
                     <div id="accordion-collapse" data-accordion="collapse">
                         <h2 id="accordion-collapse-heading-2">
                             <button type="button"
@@ -111,27 +111,6 @@ provide('updateItem', updateItem);
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                                 <ul>
                                     <li v-for="(page, index) in pages" :key="index">{{ page.name }}</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h2 id="accordion-collapse-heading-3">
-                            <button type="button"
-                                class="flex items-center justify-between w-full p-2 font-semibold rtl:text-right text-gray-700 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                data-accordion-target="#posts" aria-expanded="false"
-                                aria-controls="posts">
-                                <span>Posts</span>
-                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M9 5 5 1 1 5" />
-                                </svg>
-                            </button>
-                        </h2>
-                        <div id="posts" class="hidden" aria-labelledby="accordion-collapse-heading-3">
-                            <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                                <ul>
-                                    <li v-for="(post, index) in posts" :key="index">{{ post.name }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -177,7 +156,7 @@ provide('updateItem', updateItem);
                         </div>
                     </div>
                 </div>
-                <div class="col-span-3 bg-white rounded-sm border-[1px] border-slate-400">
+                <div class="col-span-3 bg-white rounded-sm border-[1px] border-slate-400 h-fit">
                     <div class="h-12 p-3 bg-slate-300 border-b-[1px] border-slate-400">
                         <h2 class="font-semibold text-gray-700">{{ menu.name }} Items</h2>
                     </div>
