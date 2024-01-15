@@ -20,14 +20,16 @@ use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
+    // public $menu;
+
+    // public function __construct(){
+    //     $this->menu = Menu::where('status', true)->with('items')->get();
+    // }
     public function index($slug = null)
     {
         $setting = Setting::first();
 
-        $data = [
-            'menus' => Menu::where('status', true)->get(),
-        ];
-
+        $data = [];
 
         if (is_null($slug)) {
             if ($setting->slider_enabled) {

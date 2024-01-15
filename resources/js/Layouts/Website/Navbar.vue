@@ -13,6 +13,7 @@ const data = reactive({
     fixed: false,
 });
 
+
 window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY;
     if (scrollPos > 0) {
@@ -30,98 +31,60 @@ onMounted(() => {
 });
 </script>
 <template>
-    <header
-        v-bind:class="
-            data.fixed || data.isOpen
-                ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
-                : 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
-        "
-        class="w-full fixed text-slate-600  dark:text-slate-200 z-50"
-    >
+    <header v-bind:class="data.fixed || data.isOpen
+            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
+            : 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
+        " class="w-full fixed text-slate-600  dark:text-slate-200 z-50">
         <div
-            class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-6 py-2"
-        >
+            class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-6 py-2">
             <div class="flex items-center justify-between">
                 <div>
-                    <Link
-                        :href="route('index')"
-                        class="shrink-0 flex w-full justify-start items-center space-x-2"
-                    >
-                        <ApplicationLogo v-show="data.fixed || data.isOpen" class="block h-8 w-auto" />
-                        <p
-                            class="text-lg font-semibold"
-                        >
-                            {{ $page.props.app.setting.short_name }}
-                        </p>
+
+                    <Link :href="route('index')" class="shrink-0 flex w-full justify-start items-center space-x-2">
+                    <ApplicationLogo v-show="data.fixed || data.isOpen" class="block h-8 w-auto" />
+                    <p class="text-lg font-semibold">
+                        {{ $page.props.app.setting.short_name }}
+                    </p>
+
                     </Link>
                 </div>
                 <div class="sm:hidden">
                     <SwitchDarkMode />
-                    <button
-                        @click="data.isOpen = !data.isOpen"
-                        class="inline-flex items-center justify-center p-2 rounded text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none focus:bg-slate-100 dark:focus:bg-slate-900 focus:text-slate-500 dark:focus:text-slate-400 transition duration-150 ease-in-out"
-                    >
-                        <Bars3BottomRightIcon
-                            v-if="!data.isOpen"
-                            class="w-6 h-auto"
-                        />
+                    <button @click="data.isOpen = !data.isOpen"
+                        class="inline-flex items-center justify-center p-2 rounded text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none focus:bg-slate-100 dark:focus:bg-slate-900 focus:text-slate-500 dark:focus:text-slate-400 transition duration-150 ease-in-out">
+                        <Bars3BottomRightIcon v-if="!data.isOpen" class="w-6 h-auto" />
                         <XMarkIcon v-else class="w-6 h-auto" />
                     </button>
                 </div>
             </div>
-            <nav
-                :class="data.isOpen ? '' : 'hidden'"
-                class="relative sm:flex items-center space-y-2 sm:space-y-0 gap-2 py-4 sm:py-0"
-            >
-                <NavbarLink
-                    v-bind:class="
-                        route().current('index') ? 'font-bold text-primary' : ''
-                    "
-                    :href="route('index')"
-                    :label="lang().label.home"
-                />
+            <nav :class="data.isOpen ? '' : 'hidden'"
+                class="relative sm:flex items-center space-y-2 sm:space-y-0 gap-2 py-4 sm:py-0">
+                <NavbarLink v-bind:class="route().current('index') ? 'font-bold text-primary' : ''
+                    " :href="route('index')" :label="lang().label.home" />
 
-                <NavbarLink
-                    v-bind:class="
-                        route().current('blog.posts') ? 'font-bold text-primary' : ''
-                    "
-                    :href="route('blog.posts')"
-                    :label="lang().label.blog"
-                />
+                <a v-for="item in $page.props.menu[0].items" v-bind:class="route().current(item.url) ? 'font-bold text-primary' : ''
+                    " :href="item.url">
+                    {{ item.name }}
+                </a>
 
-                <NavbarLink
-                    v-bind:class="
-                        route().current('gallery') ? 'font-bold text-primary' : ''
-                    "
-                    :href="route('gallery')"
-                    :label="lang().label.gallery"
-                />
+                <NavbarLink v-bind:class="route().current('blog.posts') ? 'font-bold text-primary' : ''
+                    " :href="route('blog.posts')" :label="lang().label.blog" />
 
-                <NavbarLink
-                    v-bind:class="
-                        route().current('contact') ? 'font-bold text-primary' : ''
-                    "
-                    :href="route('contact')"
-                    :label="lang().label.contact"
-                />
-                <NavbarLink
-                    v-if="$page.props.auth.user"
-                    :href="route('dashboard')"
-                    :label="lang().label.dashboard"
-                />
+                <NavbarLink v-bind:class="route().current('gallery') ? 'font-bold text-primary' : ''
+                    " :href="route('gallery')" :label="lang().label.gallery" />
+
+                <NavbarLink v-bind:class="route().current('contact') ? 'font-bold text-primary' : ''
+                    " :href="route('contact')" :label="lang().label.contact" />
+                <NavbarLink v-if="$page.props.auth.user" :href="route('dashboard')" :label="lang().label.dashboard" />
                 <template v-else>
-                    <NavbarLink
-                        v-if="route().has('login')"
-                        :href="route('login')"
-                        label="Login"
-                    />
+                    <NavbarLink v-if="route().has('login')" :href="route('login')" label="Login" />
                     <!-- <NavbarLink
                         v-if="route().has('register')"
                         :href="route('register')"
                         label="Register"
                     /> -->
                 </template>
-                <SwitchLocale/>
+                <SwitchLocale />
                 <SwitchDarkMode class="hidden sm:block" />
             </nav>
         </div>

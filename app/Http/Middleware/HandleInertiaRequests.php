@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Menu;
 use App\Models\Setting;
-use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+use Illuminate\Http\Request;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -64,6 +65,9 @@ class HandleInertiaRequests extends Middleware
                     return Setting::first();
                 },
             ],
+            'menu' => function(){
+                return Menu::where('status', true)->with('items')->get();
+            },
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
