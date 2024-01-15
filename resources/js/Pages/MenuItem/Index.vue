@@ -130,10 +130,6 @@ provide('updateItems', updateItems);
                         <h2 class="font-semibold text-gray-700">{{ menu.name }} Items</h2>
                     </div>
                     <div class="p-4">
-                        <!-- <ul>
-                            <li v-for="(item, index) in items" :key="index">{{ item.name }}</li>
-                        </ul> -->
-
                         <Sortable :list="items" :itemKey="items.id" :options="options" @end="(event) => console.log(event)">
                             <template #item="{ element, index }" tag="ul">
                                 <div class="draggable" :key="element.id">
@@ -143,8 +139,6 @@ provide('updateItems', updateItems);
                                             <ChevronRightIcon class="inline w-4 h-4"></ChevronRightIcon>
                                             {{ element.name }}
                                         </div>
-                                        <!-- <TrashIcon class="inline w-5 h-5 hover:text-red-500 cursor-pointer"
-                                            @click="removeItem(element.id)"></TrashIcon> -->
                                         <div class="flex w-fit rounded overflow-hidden">
                                             <Edit v-if="can(['menu item update'])" :title="element.name" :item="element"
                                                 @open="element = element" />
