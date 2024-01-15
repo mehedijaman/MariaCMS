@@ -13,11 +13,11 @@ class MenuItem extends Model
 
     protected $fillable = [
         'menu_id',
-        'parent',
+        'parent_id',
         'order',
         'name',
-        'slug',
         'url',
-        'type',
+        'target',
+        'status'
     ];
 }

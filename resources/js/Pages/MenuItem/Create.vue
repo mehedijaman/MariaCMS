@@ -8,21 +8,16 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
-import { PlusIcon } from "@heroicons/vue/24/outline";
-import { toTitleCase } from "../../Helpers/textHelper";
 
-const addItem = inject('addItem');
-const items = inject('items');
+const updateItems = inject('updateItems');
 const menu = inject('menu');
 
 const formData = reactive({
     menu_id: menu.id,
-    parent: null,
+    parent_id: null,
     order: null,
     name: null,
-    slug: null,
     url: null,
-    type: null,
     target: null,
     status: 1,
 });
@@ -36,7 +31,7 @@ const submit = () => {
     form.post(route("menu.items.store", menu.id), {
         preserveScroll: true,
         onSuccess: (response) => {
-            addItem(formData);
+            updateItems(response.props.items);
         },
         onError: () => null,
         onFinish: () => null,

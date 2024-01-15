@@ -20,7 +20,6 @@ class MenuItemController extends Controller
     {
         $pages = Page::all();
         $categories = Category::all();
-        $posts = Post::all();
         $items = MenuItem::where('menu_id', $menu->id)->get();
 
         return Inertia::render('MenuItem/Index', [
@@ -53,11 +52,9 @@ class MenuItemController extends Controller
             $item = MenuItem::create([
                 'name' => $request->name,
                 'menu_id' => $request->menu_id,
-                'parent' => $request->parent,
+                'parent_id' => $request->parent_id,
                 'order' => $request->order,
-                'slug' => $request->slug,
                 'url' => $request->url,
-                'type' => $request->type,
                 'target' => $request->target,
                 'status' => $request->status,
             ]);
@@ -88,9 +85,25 @@ class MenuItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMenuItemRequest $request, MenuItem $menuItem)
+    public function update(UpdateMenuItemRequest $request, Menu $menu, MenuItem $item)
     {
-        //
+        try {
+            $item->update([
+                'name' => $request->name,
+                'menu_id' => $request->menu_id,
+                'parent_id' => $request->parent_id,
+                'order' => $request->order,
+                'url' => $request->url,
+                'target' => $request->target,
+                'status' => $request->status,
+            ]);
+
+            return back()->with('success', __('app.label.updated_successfully', ['name' => $item->title]));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.gallery_item')]).$th->getMessage());
+        }
     }
 
     /**
@@ -99,5 +112,13 @@ class MenuItemController extends Controller
     public function destroy(MenuItem $menuItem)
     {
         //
+    }
+
+    public function destroyForce(Menu $menu, $menu_item)
+    {
+        $menu_item = MenuItem::where('id', $menu_item)->withTrashed()->first();
+        $menu_item->forceDelete();
+
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $menu_item->name]));
     }
 }

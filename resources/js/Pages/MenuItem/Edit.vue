@@ -11,20 +11,21 @@ import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase } from "../../Helpers/textHelper";
 
-const updateItem = inject('updateItem');
-const positions = inject('positions');
+const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
     title: String,
-    item:Object,
+    item: Object,
 });
 
 const formData = reactive({
+    menu_id: props.item?.menu_id,
+    parent_id: props.item?.parent_id,
     name: props.item?.name,
-    position: props.item?.position,
-    status: props.item?.status,
+    url: props.item?.url,
+    target: props.item?.target,
 });
 
 let form = useForm(formData);
@@ -33,11 +34,11 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("menus.update", props.item?.id), {
+    form.put(route("menu.items.update", { menu: props.item?.menu_id, item: props.item?.id }), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
-            updateItem(props.item?.id, formData);
+            updateItems(response.props.items);
         },
         onError: () => null,
         onFinish: () => null,
@@ -52,9 +53,7 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-        <ActionButton
-            @click.prevent="(show = true), emit('open')"
-        >
+        <ActionButton @click.prevent="(show = true), emit('open')">
             <PencilIcon class="w-4 h-auto" />
         </ActionButton>
         <DialogModal :show="show" @close="closeModal" max-width="md">
@@ -64,55 +63,32 @@ const closeModal = () => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-                    <div class="space-y-1">
-                        <InputLabel for="name" :value="lang().label.name" />
-                        <TextInput
-                            id="name"
-                            v-model="formData.name"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="name"
-                            :placeholder="lang().placeholder.menu_name"
-                            :error="form.errors.name"
-                        />
+                    <div class="space-y-1 grid grid-cols-3">
+                        <InputLabel for="name" :value="lang().label.name" class="col-span-1" />
+                        <TextInput id="name" v-model="formData.name" type="text" class="block w-full h-9 col-span-2"
+                            autocomplete="name" :placeholder="lang().placeholder.menu_name" :error="form.errors.name" />
                         <InputError :message="form.errors.name" />
                     </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="position" :value="lang().label.position" />
-                        <select
-                            v-model="formData.position"
-                            id="position"
-                            name="position"
-                            class="block w-full"
-                        >
-                            <!-- Iterate over positions and create options -->
-                            <option
-                                v-for="(position, index) in positions"
-                                :key="index"
-                                :value="position"
-                            >
-                                {{ toTitleCase(position) }}
-                            </option>
-                        </select>
-                        <InputError :message="form.errors.position" />
+                    <div class="space-y-1 grid grid-cols-3">
+                        <InputLabel for="url" :value="lang().label.url" class="col-span-1" />
+                        <TextInput id="url" v-model="formData.url" type="text" class="block w-full h-9 col-span-2"
+                            autocomplete="url" placeholder="https://" :error="form.errors.url" />
+                        <InputError :message="form.errors.url" />
                     </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="status" :value="lang().label.status" />
-                        <select
-                            v-model="formData.status"
-                            id="status"
-                            name="status"
-                            class="block w-full"
-                        >
-                            <!-- Iterate over statuss and create options -->
-                            <option value="1">Published</option>
-                            <option value="0">Unpublished</option>
-                            <option :value="null">Draft</option>
+                    <div class="space-y-1 grid grid-cols-3">
+                        <InputLabel for="target" :value="lang().label.target" class="col-span-1 items-center" />
+                        <select v-model="formData.target" id="target" name="target" class="block w-full h-9 col-span-2">
+                            <option :value="null">Self Tab</option>
+                            <option value="_blank">Blank Tab</option>
                         </select>
-                        <InputError :message="form.errors.status" />
+                        <InputError :message="form.errors.target" />
                     </div>
+
+                    <!-- <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="submit">
+                        {{ lang().button.save }} {{ form.processing ? "..." : "" }}
+                    </PrimaryButton> -->
                 </form>
             </template>
 
@@ -121,12 +97,8 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <PrimaryButton
-                    class="ml-3"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                    @click="submit"
-                >
+                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="submit">
                     {{ lang().button.save }} {{ form.processing ? "..." : "" }}
                 </PrimaryButton>
             </template>

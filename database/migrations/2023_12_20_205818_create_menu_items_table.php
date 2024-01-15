@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
-            $table->unsignedBigInteger('parent')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('order')->nullable();
             $table->string('name');
-            $table->string('slug')->nullable();
             $table->string('url')->nullable();
-            $table->string('type')->nullable();
             $table->string('target')->nullable();
             $table->boolean('status')->default(true)->nullable();
 
