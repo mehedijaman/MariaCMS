@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Message\StoreMessageRequest;
+use App\Models\Category;
 use App\Models\CTA;
 use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Menu;
+use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use Inertia\Inertia;
-use App\Models\Slider;
-use App\Models\Gallery;
-use App\Models\Message;
 use App\Models\Setting;
-use App\Models\Category;
+use App\Models\Slider;
 use App\Models\Testimonial;
+use Inertia\Inertia;
 use Spatie\Honeypot\Honeypot;
-use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -44,39 +44,39 @@ class WebsiteController extends Controller
                 $data['cta'] = CTA::first();
             }
 
-            if($setting->homepage_enabled){
+            if ($setting->homepage_enabled) {
                 $data['homepage'] = Page::where('id', $setting->homepage)->first();
             }
 
-            if($setting->news_enabled){
+            if ($setting->news_enabled) {
                 //have to filter news_category
                 $data['news'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if($setting->event_enabled){
+            if ($setting->event_enabled) {
                 // need to filter events category
                 $data['events'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if($setting->faq_enabled){
+            if ($setting->faq_enabled) {
                 $data['faqs'] = Faq::all();
             }
 
-            if($setting->feature_enabled){
+            if ($setting->feature_enabled) {
                 //
             }
 
-            if($setting->blog_enabled){
+            if ($setting->blog_enabled) {
                 $data['latest_posts'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if($setting->testimonial_enabled){
+            if ($setting->testimonial_enabled) {
                 $data['testimonials'] = Testimonial::with('media')->limit(4)->get();
             }
 
             return Inertia::render('Website/Index', [
                 'title' => 'Home',
-                'data' => $data
+                'data' => $data,
             ]);
         }
 
@@ -112,7 +112,7 @@ class WebsiteController extends Controller
                 ->with('message', $message)
                 ->with('success', __('app.label.sent_successfully'));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
+            return back()->with('error', __('app.label.sent_error').$th->getMessage());
         }
     }
 
@@ -165,7 +165,7 @@ class WebsiteController extends Controller
 
     public function gallery($slug = null)
     {
-        if (!is_null($slug)) {
+        if (! is_null($slug)) {
             $gallery = Gallery::where('slug', $slug)->with('items.media')->firstOrFail();
 
             return Inertia::render('Website/Gallery', [

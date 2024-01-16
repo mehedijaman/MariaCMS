@@ -18,6 +18,6 @@ class MenuItem extends Model
         'name',
         'url',
         'target',
-        'status'
+        'status',
     ];
 }

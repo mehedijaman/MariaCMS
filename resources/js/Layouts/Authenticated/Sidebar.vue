@@ -203,7 +203,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-show="can(['product read'])" v-bind:class="(route().current('products.index') || route().current('products.trash'))
+                <li v-show="can(['product read'])" v-bind:class="(route().current('products.index') || route().current('products.create') || route().current('products.edit') || route().current('products.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">

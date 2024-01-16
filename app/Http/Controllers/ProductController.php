@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Product\IndexProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index(IndexProductRequest $request)
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category', 'media')->get();
 
         return Inertia::render('Product/Index', [
             'title' => __('app.label.products'),
@@ -60,7 +60,7 @@ class ProductController extends Controller
                 'status' => $request->status,
             ]);
 
-            if ($request->hasFile('featured_image')) {
+            if($request->hasFile('featured_image')) {
                 $product->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
             }
 
@@ -95,10 +95,12 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = ProductCategory::all();
+        $product->getMedia();
 
         return Inertia::render('Product/Edit', [
             'title' => __('app.label.products'),
             'categories' => $categories,
+            'product' => $product,
             'breadcrumbs' => [
                 ['label' => __('app.label.products'), 'href' => route('products.index')],
                 ['label' => __('app.label.edit'), 'href' => route('products.edit', ['product' => $product->id])],
@@ -113,7 +115,7 @@ class ProductController extends Controller
     {
         DB::beginTransaction();
         try {
-            $product = Product::create([
+            $product->update([
                 'category_id' => $request->category_id,
                 'slug' => $request->slug,
                 'name' => $request->name,
@@ -121,6 +123,11 @@ class ProductController extends Controller
                 'is_featured' => $request->is_featured,
                 'status' => $request->status,
             ]);
+
+            if ($request->hasFile('featured_image')) {
+                $product->clearMediaCollection('featured_image');
+                $product->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
+            }
 
             DB::commit();
 

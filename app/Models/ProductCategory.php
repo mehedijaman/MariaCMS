@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use App\Traits\UserStamp;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class ProductCategory extends Model implements HasMedia
 {
@@ -25,7 +25,8 @@ class ProductCategory extends Model implements HasMedia
         'status',
     ];
 
-    public function parent(){
+    public function parent()
+    {
         return $this->belongsTo(ProductCategory::class, 'parent_id');
     }
 

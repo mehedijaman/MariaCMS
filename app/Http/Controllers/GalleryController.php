@@ -106,9 +106,10 @@ class GalleryController extends Controller
                 'status' => $request->status,
             ]);
 
-            // if ($request->hasFile('thumbnail')) {
-            //     $gallery->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
-            // }
+            if ($request->hasFile('thumbnail')) {
+                $gallery->clearMediaCollection('thumbnail');
+                $gallery->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
+            }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $gallery->name]));
         } catch (\Throwable $th) {

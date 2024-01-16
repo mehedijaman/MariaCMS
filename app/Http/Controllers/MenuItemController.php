@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Page;
-use App\Models\Post;
 use Inertia\Inertia;
 
 class MenuItemController extends Controller

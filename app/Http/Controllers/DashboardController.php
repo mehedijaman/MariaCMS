@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\Category;
 use App\Models\Page;
+use App\Models\Permission;
 use App\Models\Post;
 use App\Models\Role;
+use App\Models\Tag;
+use App\Models\Testimonial;
 use App\Models\User;
 use Inertia\Inertia;
-use App\Models\Category;
-use App\Models\Permission;
-use App\Models\Testimonial;
 
 class DashboardController extends Controller
 {

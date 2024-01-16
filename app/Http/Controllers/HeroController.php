@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hero;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class HeroController extends Controller
 {
@@ -63,9 +63,9 @@ class HeroController extends Controller
     {
         try {
             if ($request->image != null) {
-                Storage::delete('public/image/hero/' . $hero->image);
-                $image = time() . '.' . $request->image->extension();
-                Storage::put('public/image/hero/' . $image, File::get($request->image), 'public');
+                Storage::delete('public/image/hero/'.$hero->image);
+                $image = time().'.'.$request->image->extension();
+                Storage::put('public/image/hero/'.$image, File::get($request->image), 'public');
             } else {
                 $image = $hero->image;
             }

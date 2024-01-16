@@ -110,7 +110,6 @@ class GalleryItemController extends Controller
             ]);
 
             if ($request->hasFile('image')) {
-                return 'File received';
                 $item->clearMediaCollection('gallery_item');
                 $item->addMediaFromRequest('image')->toMediaCollection('gallery_item');
             }

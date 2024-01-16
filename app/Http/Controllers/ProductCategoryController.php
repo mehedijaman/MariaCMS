@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Requests\ProductCategory\IndexProductCategoryRequest;
 use App\Http\Requests\ProductCategory\StoreProductCategoryRequest;
 use App\Http\Requests\ProductCategory\UpdateProductCategoryRequest;
+use App\Models\ProductCategory;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductCategoryController extends Controller
 {
@@ -57,7 +57,7 @@ class ProductCategoryController extends Controller
                 ->with('success', __('app.label.created_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
 
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.product_category')]) . $th->getMessage());
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.product_category')]).$th->getMessage());
         }
     }
 
@@ -101,7 +101,7 @@ class ProductCategoryController extends Controller
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.product_category')]) . $th->getMessage());
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.product_category')]).$th->getMessage());
         }
     }
 
@@ -146,9 +146,9 @@ class ProductCategoryController extends Controller
             $product_categories = ProductCategory::whereIn('id', $request->id);
             $product_categories->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.product_categories')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.product_categories')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.product_categories')]) . $th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.product_categories')]).$th->getMessage());
         }
     }
 
@@ -158,9 +158,9 @@ class ProductCategoryController extends Controller
             $product_categories = ProductCategory::whereIn('id', $request->id)->onlyTrashed();
             $product_categories->forceDelete();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.product_category')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.product_category')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.product_category')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.product_category')]).$th->getMessage());
         }
     }
 
@@ -171,9 +171,9 @@ class ProductCategoryController extends Controller
             $count = count($product_categories);
             $product_categories->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count . ' ' . __('app.label.product_categories')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.product_categories')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count . ' ' . __('app.label.product_categories')]) . $th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.product_categories')]).$th->getMessage());
         }
     }
 
@@ -194,9 +194,9 @@ class ProductCategoryController extends Controller
             $product_categories = ProductCategory::whereIn('id', $request->id)->onlyTrashed();
             $product_categories->restore();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.product_category')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.product_category')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.product_category')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.product_category')]).$th->getMessage());
         }
     }
 
@@ -208,7 +208,7 @@ class ProductCategoryController extends Controller
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.product_category')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', [__('app.label.product_category')]) . $th->getMessage());
+            return back()->with('error', __('app.label.restore_error', [__('app.label.product_category')]).$th->getMessage());
         }
     }
 }

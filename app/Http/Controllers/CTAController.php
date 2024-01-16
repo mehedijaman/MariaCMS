@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CTA;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class CTAController extends Controller
 {
@@ -62,12 +61,12 @@ class CTAController extends Controller
      */
     public function update(Request $request, $cta)
     {
-        $cta =  CTA::find($cta);
+        $cta = CTA::find($cta);
         try {
             if ($request->image != null) {
-                Storage::delete('public/image/cta/' . $cta->image);
-                $image = time() . '.' . $request->image->extension();
-                Storage::put('public/image/cta/' . $image, File::get($request->image), 'public');
+                Storage::delete('public/image/cta/'.$cta->image);
+                $image = time().'.'.$request->image->extension();
+                Storage::put('public/image/cta/'.$image, File::get($request->image), 'public');
             } else {
                 $image = $cta->image;
             }
