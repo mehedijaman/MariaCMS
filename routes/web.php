@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CTAController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Session;
@@ -15,18 +16,18 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CTAController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\GalleryItemController;
-use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -269,4 +270,15 @@ Route::prefix('cp')->middleware([
     Route::post('product-categories/restore/bulk', [ProductCategoryController::class, 'restoreBulk'])->name('product-categories.restore.bulk');
     Route::post('product-categories/restore/all', [ProductCategoryController::class, 'restoreAll'])->name('product-categories.restore.all');
     Route::resource('product-categories', ProductCategoryController::class);
+
+    /** Products Routes */
+    Route::get('products/trash', [ProductController::class, 'trash'])->name('products.trash');
+    Route::delete('products/destroy/bulk', [ProductController::class, 'destroyBulk'])->name('products.destroy.bulk');
+    Route::delete('products/{category}/destroy/force', [ProductController::class, 'destroyForce'])->name('products.destroy.force');
+    Route::delete('products/destroy/force/bulk', [ProductController::class, 'destroyForceBulk'])->name('products.destroy.force.bulk');
+    Route::delete('products/destroy/force/all', [ProductController::class, 'destroyForceAll'])->name('products.destroy.force.all');
+    Route::post('products/{category}/restore', [ProductController::class, 'restore'])->name('products.restore');
+    Route::post('products/restore/bulk', [ProductController::class, 'restoreBulk'])->name('products.restore.bulk');
+    Route::post('products/restore/all', [ProductController::class, 'restoreAll'])->name('products.restore.all');
+    Route::resource('products', ProductController::class);
 });

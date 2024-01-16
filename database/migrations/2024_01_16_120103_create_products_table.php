@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->boolean('status')->nullable();
+            $table->boolean('is_featured')->nullable();
 
             $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();

@@ -20,5 +20,11 @@ class Product extends Model implements HasMedia
         'name',
         'description',
         'status',
+        'is_featured',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class);
+    }
 }

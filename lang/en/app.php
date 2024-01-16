@@ -178,6 +178,9 @@ return [
         'categories' => 'Categories',
         'category' => 'Category',
 
+        'product' => 'Product',
+        'products' => 'Products',
+
         'product_categories' => 'Product Categories',
         'product_category' => 'Product Category',
 

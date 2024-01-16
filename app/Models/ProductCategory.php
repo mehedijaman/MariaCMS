@@ -43,4 +43,9 @@ class ProductCategory extends Model implements HasMedia
     {
         return Carbon::parse($this->attributes['updated_at'])->isoFormat('D MMMM Y HH:mm');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
