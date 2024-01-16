@@ -311,16 +311,16 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "f9301a5b2fb1216b2b08f02ba04dc45423db6bff"
+                "reference": "2930cd5ef353871c821d5c43ed030d39ac8cfe65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/f9301a5b2fb1216b2b08f02ba04dc45423db6bff",
-                "reference": "f9301a5b2fb1216b2b08f02ba04dc45423db6bff",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/2930cd5ef353871c821d5c43ed030d39ac8cfe65",
+                "reference": "2930cd5ef353871c821d5c43ed030d39ac8cfe65",
                 "shasum": ""
             },
             "require": {
@@ -382,7 +382,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
-                "source": "https://github.com/doctrine/inflector/tree/2.0.8"
+                "source": "https://github.com/doctrine/inflector/tree/2.0.9"
             },
             "funding": [
                 {
@@ -398,7 +398,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-16T13:40:37+00:00"
+            "time": "2024-01-15T18:05:13+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -4229,16 +4229,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.3.3",
+            "version": "3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "bc2c7c72ec5e9c8ce12b38d4db073a13efd6f2ce"
+                "reference": "6bd35eecd44a08f93fd0436f99e9adbe3ebc05da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/bc2c7c72ec5e9c8ce12b38d4db073a13efd6f2ce",
-                "reference": "bc2c7c72ec5e9c8ce12b38d4db073a13efd6f2ce",
+                "url": "https://api.github.com/repos/spatie/image/zipball/6bd35eecd44a08f93fd0436f99e9adbe3ebc05da",
+                "reference": "6bd35eecd44a08f93fd0436f99e9adbe3ebc05da",
                 "shasum": ""
             },
             "require": {
@@ -4285,7 +4285,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.3.3"
+                "source": "https://github.com/spatie/image/tree/3.3.4"
             },
             "funding": [
                 {
@@ -4297,7 +4297,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-05T14:07:00+00:00"
+            "time": "2024-01-15T12:17:58+00:00"
         },
         {
             "name": "spatie/image-optimizer",
