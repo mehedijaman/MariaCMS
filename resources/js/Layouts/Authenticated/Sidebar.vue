@@ -187,7 +187,22 @@ function userManagementActive() {
 
                     </Link>
                 </li>
-                <li v-bind:class="(route().current('messages.index') || route().current('messages.trash'))
+
+                <li v-show="can(['product category read'])" v-bind:class="(route().current('product-categories.index') || route().current('product-categories.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('product-categories.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <PaperClipIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.product_categories }}</span>
+
+                    </Link>
+                </li>
+
+                <li v-show="can(['message read'])" v-bind:class="(route().current('messages.index') || route().current('messages.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -201,7 +216,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-show="can(['hero read'])" v-bind:class="route().current('heroes.index')
+                <li v-if="can(['hero read'])" v-bind:class="route().current('heroes.index')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -215,7 +230,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-show="can(['cta read'])" v-bind:class="route().current('cta.index')
+                <li v-if="can(['cta read'])" v-bind:class="route().current('cta.index')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -243,7 +258,7 @@ function userManagementActive() {
                     </Link>
                 </li>
 
-                <li v-show="can(['setting read'])" v-bind:class="route().current('setting.index')
+                <li v-if="can(['setting read'])" v-bind:class="route().current('setting.index')
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
                     ">
@@ -274,7 +289,7 @@ function userManagementActive() {
                         </ChevronDownIcon>
                     </button>
                     <ul id="user" :class="userManagementActive() ? 'space-y-2' : 'hidden space-y-2'">
-                        <li v-show="can(['user read'])"
+                        <li v-if="can(['user read'])"
                             :class="route().current('user.index') ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-300 dark:hover:bg-gray-700'">
 
                             <Link :href="route('user.index')"
@@ -286,7 +301,7 @@ function userManagementActive() {
                             </Link>
                         </li>
 
-                        <li v-show="can(['role read'])"
+                        <li v-if="can(['role read'])"
                             :class="route().current('role.index') ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-300 dark:hover:bg-gray-700'">
 
                             <Link :href="route('role.index')"
@@ -298,7 +313,7 @@ function userManagementActive() {
                             </Link>
                         </li>
 
-                        <li v-show="can(['permission read'])"
+                        <li v-if="can(['permission read'])"
                             :class="route().current('permission.index') ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-300 dark:hover:bg-gray-700'">
 
                             <Link :href="route('permission.index')"
@@ -310,7 +325,7 @@ function userManagementActive() {
                             </Link>
                         </li>
 
-                        <li v-show="can(['activity read'])"
+                        <li v-if="can(['activity read'])"
                             :class="route().current('activity.index') ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-300 dark:hover:bg-gray-700'">
 
                             <Link :href="route('activity.index')"
@@ -322,7 +337,7 @@ function userManagementActive() {
                             </Link>
                         </li>
 
-                        <!-- <li v-show="can(['role read'])">
+                        <!-- <li v-if="can(['role read'])">
 
                             <Link :href="route('role.index')"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -332,7 +347,7 @@ function userManagementActive() {
 
                             </Link>
                         </li>
-                        <li v-show="can(['permission read'])">
+                        <li v-if="can(['permission read'])">
 
                             <Link :href="route('permission.index')"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -342,7 +357,7 @@ function userManagementActive() {
 
                             </Link>
                         </li>
-                        <li v-show="can(['activity read'])">
+                        <li v-if="can(['activity read'])">
 
                             <Link :href="route('activity.index')"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
@@ -356,7 +371,7 @@ function userManagementActive() {
 
 
 
-                <li v-show="can(['app maintenance read'])" class="border-b-[1px] border-gray-200 dark:border-gray-700">
+                <li v-if="can(['app maintenance read'])" class="border-b-[1px] border-gray-200 dark:border-gray-700">
                     <button type="button"
                         class="flex items-center p-2 w-full font-sans font-semibold text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="application" data-collapse-toggle="application">
@@ -369,7 +384,7 @@ function userManagementActive() {
                     </button>
                     <ul id="application" class="hidden py-2 space-y-2">
 
-                        <li v-show="can(['logs read'])">
+                        <li v-if="can(['logs read'])">
 
                             <a href="/logs"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700">
@@ -378,7 +393,7 @@ function userManagementActive() {
                                 <span class="flex-1 whitespace-nowrap">{{ lang().label.logs }}</span>
                             </a>
                         </li>
-                        <li v-show="can(['backup read'])">
+                        <li v-if="can(['backup read'])">
 
                             <a href="/backup"
                                 class="flex items-center gap-2 p-2 pl-8 w-full font-sans font-medium text-sm text-gray-900 rounded-sm transition duration-75 group hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700">

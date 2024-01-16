@@ -132,6 +132,36 @@ class RoleSeeder extends Seeder
             'cta read',
             'cta update',
             'cta delete',
+
+            'product category create',
+            'product category read',
+            'product category update',
+            'product category delete',
+
+            'product create',
+            'product read',
+            'product update',
+            'product delete',
+
+            'cart create',
+            'cart read',
+            'cart update',
+            'cart delete',
+
+            'order create',
+            'order read',
+            'order update',
+            'order delete',
+
+            'wishlist create',
+            'wishlist read',
+            'wishlist update',
+            'wishlist delete',
+
+            'product review create',
+            'product review read',
+            'product review update',
+            'product review delete',
         ]);
 
         $admin = Role::create([

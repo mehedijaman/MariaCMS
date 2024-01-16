@@ -25,6 +25,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\GalleryItemController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TestimonialController;
 
 /*
@@ -87,7 +88,7 @@ Route::prefix('cp')->middleware([
         ]);
     Route::resource('menus', MenuController::class);
 
-    /** Tags Routes */
+    /** Categories Routes */
     Route::get('categories/trash', [CategoryController::class, 'trash'])->name('categories.trash');
     Route::delete('categories/destroy/bulk', [CategoryController::class, 'destroyBulk'])->name('categories.destroy.bulk');
     Route::delete('categories/{category}/destroy/force', [CategoryController::class, 'destroyForce'])->name('categories.destroy.force');
@@ -98,13 +99,13 @@ Route::prefix('cp')->middleware([
     Route::post('categories/restore/all', [CategoryController::class, 'restoreAll'])->name('categories.restore.all');
     Route::resource('categories', CategoryController::class);
 
-    /** Categories Routes */
+    /** Tags Routes */
     Route::get('tags/trash', [TagController::class, 'trash'])->name('tags.trash');
     Route::delete('tags/destroy/bulk', [TagController::class, 'destroyBulk'])->name('tags.destroy.bulk');
-    Route::delete('tags/{category}/destroy/force', [TagController::class, 'destroyForce'])->name('tags.destroy.force');
+    Route::delete('tags/{tag}/destroy/force', [TagController::class, 'destroyForce'])->name('tags.destroy.force');
     Route::delete('tags/destroy/force/bulk', [TagController::class, 'destroyForceBulk'])->name('tags.destroy.force.bulk');
     Route::delete('tags/destroy/force/all', [TagController::class, 'destroyForceAll'])->name('tags.destroy.force.all');
-    Route::post('tags/{category}/restore', [TagController::class, 'restore'])->name('tags.restore');
+    Route::post('tags/{tag}/restore', [TagController::class, 'restore'])->name('tags.restore');
     Route::post('tags/restore/bulk', [TagController::class, 'restoreBulk'])->name('tags.restore.bulk');
     Route::post('tags/restore/all', [TagController::class, 'restoreAll'])->name('tags.restore.all');
     Route::resource('tags', TagController::class);
@@ -257,4 +258,15 @@ Route::prefix('cp')->middleware([
 
     /** CTA Routes */
     Route::resource('cta', CTAController::class)->except('create', 'store', 'show', 'edit', 'destory');
+
+    /** Categories Routes */
+    Route::get('product-categories/trash', [ProductCategoryController::class, 'trash'])->name('product-categories.trash');
+    Route::delete('product-categories/destroy/bulk', [ProductCategoryController::class, 'destroyBulk'])->name('product-categories.destroy.bulk');
+    Route::delete('product-categories/{category}/destroy/force', [ProductCategoryController::class, 'destroyForce'])->name('product-categories.destroy.force');
+    Route::delete('product-categories/destroy/force/bulk', [ProductCategoryController::class, 'destroyForceBulk'])->name('product-categories.destroy.force.bulk');
+    Route::delete('product-categories/destroy/force/all', [ProductCategoryController::class, 'destroyForceAll'])->name('product-categories.destroy.force.all');
+    Route::post('product-categories/{category}/restore', [ProductCategoryController::class, 'restore'])->name('product-categories.restore');
+    Route::post('product-categories/restore/bulk', [ProductCategoryController::class, 'restoreBulk'])->name('product-categories.restore.bulk');
+    Route::post('product-categories/restore/all', [ProductCategoryController::class, 'restoreAll'])->name('product-categories.restore.all');
+    Route::resource('product-categories', ProductCategoryController::class);
 });

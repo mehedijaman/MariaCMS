@@ -126,5 +126,35 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'cta read', 'guard_name' => 'web']);
         Permission::create(['name' => 'cta update', 'guard_name' => 'web']);
         Permission::create(['name' => 'cta delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'product category create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product category read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product category update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product category delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'product create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'cart create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'cart read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'cart update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'cart delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'order create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'order read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'order update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'order delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'wishlist create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'wishlist read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'wishlist update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'wishlist delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'product review create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product review read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product review update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'product review delete', 'guard_name' => 'web']);
     }
 }

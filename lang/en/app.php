@@ -177,6 +177,10 @@ return [
         'faq' => 'FAQ',
         'categories' => 'Categories',
         'category' => 'Category',
+
+        'product_categories' => 'Product Categories',
+        'product_category' => 'Product Category',
+
         'tags' => 'Tags',
         'tag' => 'Tag',
         'posts' => 'Posts',
