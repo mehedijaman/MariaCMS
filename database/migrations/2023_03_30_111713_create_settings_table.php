@@ -38,6 +38,7 @@ return new class extends Migration
             $table->boolean('cta_enabled')->default(false);
             $table->boolean('blog_enabled')->default(false);
             $table->boolean('testimonial_enabled')->default(false);
+            $table->boolean('featured_product_enabled')->default(false);
 
             $table->string('homepage')->nullable();
             $table->string('home_slider')->nullable();

@@ -33,6 +33,7 @@ class Setting extends Model
         'feature_enabled',
         'blog_enabled',
         'testimonial_enabled',
+        'featured_product_enabled',
         'homepage',
         'home_slider',
         'news_category',

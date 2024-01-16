@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Message\StoreMessageRequest;
-use App\Models\Category;
 use App\Models\CTA;
 use App\Models\Faq;
-use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Menu;
-use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Setting;
-use App\Models\Slider;
-use App\Models\Testimonial;
 use Inertia\Inertia;
+use App\Models\Slider;
+use App\Models\Gallery;
+use App\Models\Message;
+use App\Models\Product;
+use App\Models\Setting;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -62,8 +63,8 @@ class WebsiteController extends Controller
                 $data['faqs'] = Faq::all();
             }
 
-            if ($setting->feature_enabled) {
-                //
+            if ($setting->featured_product_enabled) {
+                $data['featured_products'] = Product::where('is_featured', true)->with('media')->limit(4)->get();
             }
 
             if ($setting->blog_enabled) {

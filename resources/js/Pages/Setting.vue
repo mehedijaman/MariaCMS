@@ -51,6 +51,7 @@ const form = useForm({
     feature_enabled: props.setting?.feature_enabled,
     blog_enabled: props.setting?.blog_enabled,
     testimonial_enabled: props.setting?.testimonial_enabled,
+    featured_product_enabled: props.setting?.featured_product_enabled,
     homepage: props.setting?.homepage,
     home_slider: props.setting?.home_slider,
     news_category: props.setting?.news_category,
@@ -398,6 +399,16 @@ const fileChange = (value) => {
                                         <option :value="1">Enabled</option>
                                     </select>
                                     <InputError :message="form.errors.testimonial" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <InputLabel for="featured_product" :value="lang().label.featured_product" />
+                                    <select v-model="form.featured_product_enabled" id="featured_product" name="featured_product_enabled"
+                                        class="block w-full">
+                                        <option :value="0">Disabled</option>
+                                        <option :value="1">Enabled</option>
+                                    </select>
+                                    <InputError :message="form.errors.featured_product" class="mt-2" />
                                 </div>
 
                                 <!-- <div class="col-span-3 grid grid-cols-3">

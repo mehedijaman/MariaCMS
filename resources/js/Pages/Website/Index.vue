@@ -12,6 +12,7 @@ import Feature from "./Partials/Feature.vue";
 import CTA from "./Partials/CTA.vue";
 import News from "./Partials/News.vue";
 import { Link } from "@inertiajs/vue3";
+import FeaturedProducts from "./Partials/FeaturedProducts.vue";
 
 const props = defineProps({
     title: String,
@@ -26,7 +27,9 @@ const props = defineProps({
             <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
             <Feature v-if="$page.props.app.setting.feature_enabled" :features="props.data.features"></Feature>
             <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
+
             <div class="max-w-7xl mx-auto w-full">
+                <FeaturedProducts v-if="$page.props.app.setting.featured_product_enabled" :products="props.data.featured_products"></FeaturedProducts>
                 <div class="grid grid-cols-2">
                     <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
                     <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>

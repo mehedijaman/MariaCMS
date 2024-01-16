@@ -117,6 +117,7 @@ class SettingController extends Controller
                 'feature_enabled' => $request->feature_enabled,
                 'blog_enabled' => $request->blog_enabled,
                 'testimonial_enabled' => $request->testimonial_enabled,
+                'featured_product_enabled' => $request->featured_product_enabled,
                 'homepage' => $request->homepage,
                 'home_slider' => $request->home_slider,
                 'news_category' => $request->news_category,
