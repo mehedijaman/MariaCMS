@@ -23,7 +23,7 @@ class UpdateProductCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|max:255|unique:product_categories,slug,'.$this->product_category->id,
+            // 'slug' => 'required|max:255|unique:product_categories,slug,'.$this->product_category->id,
         ];
     }
 }

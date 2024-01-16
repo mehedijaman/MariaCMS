@@ -117,8 +117,6 @@ class GalleryItemController extends Controller
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $item->title]));
         } catch (\Throwable $th) {
-            return $th->getMessage();
-
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.gallery_item')]).$th->getMessage());
         }
     }

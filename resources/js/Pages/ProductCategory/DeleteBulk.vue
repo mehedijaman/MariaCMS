@@ -31,12 +31,12 @@ watchEffect(() => {
 });
 
 const submit = () => {
-    form.delete(route("categories.destroy.bulk"), {
+    form.delete(route("product-categories.destroy.bulk"), {
         preserveScroll: true,
         onSuccess: (response) => {
             closeModal();
             emit("close");
-            updateItems(response.props.categories);
+            updateItems(response.props.product_categories);
         },
         onError: () => null,
         onFinish: () => null,

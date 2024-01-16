@@ -1,12 +1,9 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, reactive, watch, provide, computed } from "vue";
-import { router } from "@inertiajs/vue3";
-import { formatDate } from "../../Helpers/dateHelper";
 import Published from "./Published.vue";
 import Unpublished from './Unpublished.vue';
 import Draft from './Draft.vue';
-// import Trash from "./Trash.vue";
 import { Link }  from "@inertiajs/vue3";
 import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
@@ -34,7 +31,8 @@ const updateItems = (updatedItems) => {
     updatedItems.forEach(item => items.push(item));
 };
 
-provide('categories', items);
+provide('title', props.title);
+provide('product_categories', items);
 
 provide('published', published);
 provide('unpublished', unpublished);
@@ -90,7 +88,7 @@ provide('updateItems', updateItems);
                             </li>
                             <li class="me-2" role="presentation">
                                 <Link
-                                    :href="route('categories.trash')"
+                                    :href="route('product-categories.trash')"
                                     class="inline-flex gap-2 p-4 border-none rounded-t-lg text-gray-400 hover:text-gray-600 group-hover:text-gray-600  hover:border-gray-300 dark:hover:text-gray-300"
                                     type="button">
                                     <TrashIcon

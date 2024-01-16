@@ -16,7 +16,7 @@ class ProductCategoryController extends Controller
      */
     public function index(IndexProductCategoryRequest $request)
     {
-        $product_categories = ProductCategory::all();
+        $product_categories = ProductCategory::with('parent')->get();
 
         return Inertia::render('ProductCategory/Index', [
             'title' => __('app.label.product_categories'),
@@ -30,7 +30,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $product_categories = ProductCategory::all();
+        $product_categories = ProductCategory::with('parent')->get();
 
         return Inertia::render('ProductCategory/Create', [
             'product_categories' => $product_categories,
@@ -54,7 +54,7 @@ class ProductCategoryController extends Controller
             ]);
 
             return back()
-                ->with('success', __('app.label.created_successfully', ['name' => $category->name]));
+                ->with('success', __('app.label.created_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
 
             return back()->with('error', __('app.label.created_error', ['name' => __('app.label.product_category')]) . $th->getMessage());
@@ -88,10 +88,10 @@ class ProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductCategoryRequest $request, ProductCategory $category)
+    public function update(UpdateProductCategoryRequest $request, ProductCategory $product_category)
     {
         try {
-            $category->update([
+            $product_category->update([
                 'parent_id' => $request->parent_id,
                 'slug' => $request->slug,
                 'name' => $request->name,
@@ -99,10 +99,8 @@ class ProductCategoryController extends Controller
                 'status' => $request->status,
             ]);
 
-            return back()->with('success', __('app.label.updated_successfully', ['name' => $category->name]));
+            return back()->with('success', __('app.label.updated_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
-            return $th->getMessage();
-
             return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.product_category')]) . $th->getMessage());
         }
     }
@@ -121,11 +119,11 @@ class ProductCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductCategory $category)
+    public function destroy(ProductCategory $product_category)
     {
-        $category->delete();
+        $product_category->delete();
 
-        return back()->with('success', __('app.label.deleted_successfully', ['name' => $category->name]));
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $product_category->name]));
     }
 
     /**
@@ -134,9 +132,9 @@ class ProductCategoryController extends Controller
     public function destroyForce($category)
     {
         $product_category = ProductCategory::where('id', $category)->onlyTrashed()->first();
-        $category->forceDelete();
+        $product_category->forceDelete();
 
-        return back()->with('success', __('app.label.deleted_successfully', ['name' => $category->name]));
+        return back()->with('success', __('app.label.deleted_successfully', ['name' => $product_category->name]));
     }
 
     /**
@@ -185,9 +183,9 @@ class ProductCategoryController extends Controller
     public function restore($category)
     {
         $product_category = ProductCategory::where('id', $category)->onlyTrashed()->first();
-        $category->restore();
+        $product_category->restore();
 
-        return back()->with('success', __('app.label.restored_successfully', ['name' => $category->name]));
+        return back()->with('success', __('app.label.restored_successfully', ['name' => $product_category->name]));
     }
 
     public function restoreBulk(Request $request)

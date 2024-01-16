@@ -1,10 +1,9 @@
 <script setup>
-import Create from "@/Pages/Category/Create.vue";
-import Edit from "@/Pages/Category/Edit.vue";
-import Delete from "@/Pages/Category/Delete.vue";
-import DeleteBulk from "@/Pages/Category/DeleteBulk.vue";
+import Create from "@/Pages/ProductCategory/Create.vue";
+import Edit from "@/Pages/ProductCategory/Edit.vue";
+import Delete from "@/Pages/ProductCategory/Delete.vue";
+import DeleteBulk from "@/Pages/ProductCategory/DeleteBulk.vue";
 import { ref, inject } from "vue";
-import { formatDate } from "../../Helpers/dateHelper";
 import EmptyAnimation from "../../Components/Animations/Empty.vue";
 
 import {
@@ -21,15 +20,15 @@ const searchValue = ref('');
 const headers = [
     { text: "Name", value: "name", sortable: true },
     { text: "Slug", value: "slug", sortable: true },
-    { text: "Parent", value: "parent", sortable: true },
+    { text: "Parent", value: "parent.name", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <Create v-if="can(['category create'])" />
-            <DeleteBulk v-if="itemsSelected.length != 0 && can(['category delete'])" :itemsSelected="itemsSelected"
+            <Create v-if="can(['product category create'])" />
+            <DeleteBulk v-if="itemsSelected.length != 0 && can(['product category delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
         <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center gap-2">
@@ -57,8 +56,8 @@ const headers = [
         </template>
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <Edit v-show="can(['category update'])" :title="item.name" :item="item" @open="item = item" />
-                <Delete v-show="can(['category delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['product category update'])" :title="item.name" :item="item" @open="item = item" />
+                <Delete v-show="can(['product category delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>
     </EasyDataTable>
