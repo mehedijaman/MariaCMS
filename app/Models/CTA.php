@@ -29,7 +29,7 @@ class CTA extends Model
     {
         $image = $this->attributes['image'] ?? null;
 
-        return $image ? asset('storage/image/cta/'.$image) : asset('image.png');
+        return $image ? asset('image/cta/'.$image) : asset('image.png');
     }
 
     public function getCreatedAtAttribute()

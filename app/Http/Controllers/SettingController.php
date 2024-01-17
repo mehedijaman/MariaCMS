@@ -72,29 +72,55 @@ class SettingController extends Controller
     public function update(Request $request, Setting $setting)
     {
         try {
-            if ($request->favicon != null) {
-                Storage::delete('public/image/setting/'.$setting->favicon);
-                $favicon = time().'.'.$request->favicon->extension();
-                Storage::put('public/image/setting/'.$favicon, File::get($request->favicon), 'public');
+            if ($request->hasFile('favicon')) {
+                $oldFaviconPath = 'public/image/setting/' . $setting->favicon;
+
+                // Delete the old favicon
+                if (Storage::exists($oldFaviconPath)) {
+                    Storage::delete($oldFaviconPath);
+                }
+
+                // Save the new favicon
+                $favicon = time() . '.' . $request->favicon->extension();
+                $request->favicon->move(public_path('image/setting'), $favicon);
             } else {
                 $favicon = $setting->favicon;
             }
 
-            if ($request->logo != null) {
-                Storage::delete('public/image/setting/'.$setting->logo);
-                $logo = time().'.'.$request->logo->extension();
-                Storage::put('public/image/setting/'.$logo, File::get($request->logo), 'public');
+
+            if ($request->hasFile('logo')) {
+                $oldLogoPath = 'public/image/setting/' . $setting->logo;
+
+                // Delete the old logo
+                if (Storage::exists($oldLogoPath)) {
+                    Storage::delete($oldLogoPath);
+                }
+
+                // Save the new logo
+                $logo = time() . '.' . $request->logo->extension();
+                $request->logo->move(public_path('image/setting'), $logo);
             } else {
                 $logo = $setting->logo;
             }
 
-            if ($request->banner != null) {
-                Storage::delete('public/image/setting/'.$setting->banner);
-                $banner = time().'.'.$request->banner->extension();
-                Storage::put('public/image/setting/'.$banner, File::get($request->banner), 'public');
+
+            if ($request->hasFile('banner')) {
+                $oldBannerPath = 'public/image/setting/' . $setting->banner;
+
+                // Delete the old banner
+                if (Storage::exists($oldBannerPath)) {
+                    Storage::delete($oldBannerPath);
+                }
+
+                // Save the new banner
+                $banner = time() . '.' . $request->banner->extension();
+                $request->banner->move(public_path('image/setting'), $banner);
             } else {
                 $banner = $setting->banner;
             }
+
+
+
             $setting->update([
                 'logo' => $logo,
                 'favicon' => $favicon,

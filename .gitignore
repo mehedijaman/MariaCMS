@@ -4,6 +4,7 @@
 # /public/build
 /public/hot
 /public/media
+/public/image
 /public/storage
 /storage/*.key
 /vendor

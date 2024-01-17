@@ -1,1 +1,0 @@
-import{o,d as t,g as s}from"./app-55bd926a.js";const a={class:"bg-white dark:bg-gray-900 w-full mx-auto max-w-screen-xl px-4 sm:py-8 lg:px-6 my-4"},c=["innerHTML"],l={__name:"Home",props:{homepage:Object},setup(n){const e=n;return(r,m)=>(o(),t("section",a,[e.homepage?(o(),t("span",{key:0,innerHTML:e.homepage.content},null,8,c)):s("",!0)]))}};export{l as default};

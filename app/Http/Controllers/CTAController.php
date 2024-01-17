@@ -63,13 +63,21 @@ class CTAController extends Controller
     {
         $cta = CTA::find($cta);
         try {
-            if ($request->image != null) {
-                Storage::delete('public/image/cta/'.$cta->image);
-                $image = time().'.'.$request->image->extension();
-                Storage::put('public/image/cta/'.$image, File::get($request->image), 'public');
+            if ($request->hasFile('image')) {
+                $oldImagePath = 'public/image/cta/' . $cta->image;
+
+                // Delete the old image
+                if (Storage::exists($oldImagePath)) {
+                    Storage::delete($oldImagePath);
+                }
+
+                // Save the new image
+                $image = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('image/cta'), $image);
             } else {
                 $image = $cta->image;
             }
+
 
             $cta->update([
                 'image' => $image,
