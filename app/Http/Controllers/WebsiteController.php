@@ -17,6 +17,7 @@ use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Models\ProductCategory;
 use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
@@ -180,6 +181,42 @@ class WebsiteController extends Controller
         return Inertia::render('Website/GalleryList', [
             'title' => 'Gallery',
             'galleries' => $galleries,
+        ]);
+    }
+
+    public function products($slug = null)
+    {
+        if (is_null($slug)) {
+            $categories = ProductCategory::where('status', true)->withCount('products')->get();
+            $products = Product::where('status', true)->with('media', 'category')->orderBy('created_at', 'desc')->paginate(10);
+
+            return Inertia::render('Website/Product/Products', [
+                'title' => 'Products',
+                'categories' => $categories,
+                'products' => $products,
+            ]);
+        }
+
+        $product = Product::where('slug', $slug)->with('media', 'category')->where('status', true)->firstOrFail();
+
+        return Inertia::render('Website/Product/ProductDetails', [
+            'product' => $product
+        ]);
+    }
+
+    public function categoryProducts($slug)
+    {
+        $categories = ProductCategory::where('status', true)->get();
+        $category = ProductCategory::where('slug', $slug)
+            ->where('status', true)
+            ->firstOrFail();
+        $products = $category->products()->with('media', 'category')->paginate(10);
+
+        return Inertia::render('Website/Product/Products', [
+            'title' => $category->name,
+            'category' => $category,
+            'categories' => $categories,
+            'products' => $products,
         ]);
     }
 }

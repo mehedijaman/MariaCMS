@@ -23,6 +23,13 @@ class Product extends Model implements HasMedia
         'is_featured',
     ];
 
+    protected $appends = ['placeholder_url'];
+
+    public function getPlaceholderUrlAttribute()
+    {
+        return $this->attributes['placeholder_url'] = asset('image.png');
+    }
+
     public function category()
     {
         return $this->belongsTo(ProductCategory::class);

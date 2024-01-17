@@ -101,7 +101,7 @@ const fileChange = (value) => {
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-4 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-lg">
                             <InputLabel for="status" :value="lang().label.description" />
-                            <ckeditor :editor="editor" id="description" v-model="formData.content" :config="editorConfig">
+                            <ckeditor :editor="editor" id="description" v-model="formData.description" :config="editorConfig">
                             </ckeditor>
                             <InputError :message="form.errors.description" />
                         </div>

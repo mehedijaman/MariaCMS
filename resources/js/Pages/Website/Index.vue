@@ -12,7 +12,7 @@ import Feature from "./Partials/Feature.vue";
 import CTA from "./Partials/CTA.vue";
 import News from "./Partials/News.vue";
 import { Link } from "@inertiajs/vue3";
-import FeaturedProducts from "./Partials/FeaturedProducts.vue";
+import FeaturedProducts from "./Product/FeaturedProducts.vue";
 
 const props = defineProps({
     title: String,
