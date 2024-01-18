@@ -3,8 +3,7 @@
 /node_modules
 # /public/build
 /public/hot
-/public/media
-/public/image
+/public/uploads
 /public/storage
 /storage/*.key
 /vendor

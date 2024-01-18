@@ -57,17 +57,31 @@ class Setting extends Model
 
     public function getFullPathBannerAttribute()
     {
-        return $this->attributes['banner'] == null ? null : asset('image/setting/'.$this->attributes['banner']);
+        if ($this->attributes['banner'] === null) {
+            return null;
+        }
+
+        return asset('uploads/image/setting/' . $this->attributes['banner']);
     }
+
 
     public function getFullPathLogoAttribute()
     {
-        return $this->attributes['logo'] == null ? asset('logo.svg') : asset('image/setting/'.$this->attributes['logo']);
+        if ($this->attributes['logo'] === null) {
+            return asset('logo.svg');
+        }
+
+        return asset('uploads/image/setting/' . $this->attributes['logo']);
     }
+
 
     public function getFullPathFaviconAttribute()
     {
-        return $this->attributes['favicon'] == null ? asset('favicon.png') : asset('image/setting/'.$this->attributes['favicon']);
+        if ($this->attributes['favicon'] === null) {
+            return asset('favicon.png');
+        }
+
+        return asset('uploads/image/setting/' . $this->attributes['favicon']);
     }
 
     public function getCreatedAtAttribute()

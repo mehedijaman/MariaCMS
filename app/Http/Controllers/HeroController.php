@@ -63,20 +63,19 @@ class HeroController extends Controller
     {
         try {
             if ($request->hasFile('image')) {
-                $oldImagePath = 'public/image/hero/' . $hero->image;
+                $oldImagePath = public_path('uploads/image/hero/' . $hero->image);
 
                 // Delete the old image
-                if (Storage::exists($oldImagePath)) {
-                    Storage::delete($oldImagePath);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
                 }
 
                 // Save the new image
                 $image = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('image/hero'), $image);
+                $request->image->move(public_path('uploads/image/hero'), $image);
             } else {
                 $image = $hero->image;
             }
-
 
             $hero->update([
                 'image' => $image,

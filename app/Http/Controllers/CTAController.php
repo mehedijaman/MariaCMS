@@ -64,19 +64,20 @@ class CTAController extends Controller
         $cta = CTA::find($cta);
         try {
             if ($request->hasFile('image')) {
-                $oldImagePath = 'public/image/cta/' . $cta->image;
+                $oldImagePath = public_path('uploads/image/cta/' . $cta->image);
 
                 // Delete the old image
-                if (Storage::exists($oldImagePath)) {
-                    Storage::delete($oldImagePath);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
                 }
 
                 // Save the new image
                 $image = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('image/cta'), $image);
+                $request->image->move(public_path('uploads/image/cta'), $image);
             } else {
                 $image = $cta->image;
             }
+
 
 
             $cta->update([

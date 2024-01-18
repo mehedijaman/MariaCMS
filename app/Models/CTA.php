@@ -27,9 +27,11 @@ class CTA extends Model
 
     public function getFullPathImageAttribute()
     {
-        $image = $this->attributes['image'] ?? null;
+        if ($this->attributes['image'] === null) {
+            return asset('image.png');
+        }
 
-        return $image ? asset('image/cta/'.$image) : asset('image.png');
+        return asset('uploads/image/cta/' . $this->attributes['image']);
     }
 
     public function getCreatedAtAttribute()
