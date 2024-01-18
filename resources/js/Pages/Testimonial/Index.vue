@@ -31,37 +31,13 @@ const updateItems = (updatedItems) => {
     updatedItems.forEach(item => items.push(item));
 };
 
-// Method to remove an item from the array based on its ID
-const removeItem = (itemId) => {
-    // Find the index of the item in the items array
-    const index = items.findIndex(item => item.id === itemId);
-
-    // Remove the item if found
-    if (index !== -1) {
-        items.splice(index, 1);
-    }
-};
-
-const removeBulkItems = (itemIds) => {
-    // Iterate over the array of item IDs
-    itemIds.forEach(itemId => {
-        // Find the index of the item in the items array
-        const index = items.findIndex(item => item.id === itemId);
-
-        // Remove the item if found
-        if (index !== -1) {
-            items.splice(index, 1);
-        }
-    });
-};
+provide('title', props.title);
 
 provide('published', published);
 provide('unpublished', unpublished);
 provide('draft', draft);
 
 provide('updateItems', updateItems);
-provide('removeItem', removeItem);
-provide('removeBulkItems', removeBulkItems);
 </script>
 
 <template>
