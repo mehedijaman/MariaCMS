@@ -1,1 +1,0 @@
-function r(e){return e.replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase()})}function a(e){return e.toLowerCase().replace(/\s+/g,"-").replace(/[^\w-]+/g,"")}export{a as g,r as t};
