@@ -77,17 +77,15 @@ class SettingController extends Controller
 
                 // Delete the old favicon
                 if (file_exists($oldFaviconPath)) {
-                    unlink($oldFaviconPath);
                 }
+                return unlink($oldFaviconPath);
 
                 // Save the new favicon
                 $favicon = 'favicon.' . $request->favicon->extension();
-                $request->favicon->move(public_path('uploads/image/setting'), $favicon);
+                $request->favicon->move('uploads/image/setting', $favicon);
             } else {
                 $favicon = $setting->favicon;
             }
-
-
 
             if ($request->hasFile('logo')) {
                 $oldLogoPath = asset('uploads/image/setting/' . $setting->logo);
@@ -104,8 +102,6 @@ class SettingController extends Controller
                 $logo = $setting->logo;
             }
 
-
-
             if ($request->hasFile('banner')) {
                 $oldBannerPath = asset('uploads/image/setting/' . $setting->banner);
 
@@ -120,8 +116,6 @@ class SettingController extends Controller
             } else {
                 $banner = $setting->banner;
             }
-
-
 
 
             $setting->update([
@@ -168,7 +162,7 @@ class SettingController extends Controller
 
             return back();
         } catch (\Throwable $th) {
-            return back();
+            return back()->with('error', $th->getMessage());
         }
     }
 
