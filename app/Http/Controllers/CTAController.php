@@ -64,10 +64,10 @@ class CTAController extends Controller
         $cta = CTA::find($cta);
         try {
             if ($request->hasFile('image')) {
-                $oldImagePath = asset('uploads/image/cta/' . $cta->image);
+                $oldImagePath = public_path('uploads/image/cta/' . $cta->image);
 
                 // Delete the old image
-                if (file_exists($oldImagePath)) {
+                if (is_file($oldImagePath)) {
                     unlink($oldImagePath);
                 }
 
@@ -77,8 +77,6 @@ class CTAController extends Controller
             } else {
                 $image = $cta->image;
             }
-
-
 
             $cta->update([
                 'image' => $image,

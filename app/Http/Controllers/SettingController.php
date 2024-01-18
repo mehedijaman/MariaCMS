@@ -73,50 +73,50 @@ class SettingController extends Controller
     {
         try {
             if ($request->hasFile('favicon')) {
-                $oldFaviconPath = asset('uploads/image/setting/' . $setting->favicon);
+                $oldFaviconPath = public_path('uploads/image/setting/' . $setting->favicon);
 
-                // Delete the old favicon
-                if (file_exists($oldFaviconPath)) {
+                // Delete the old Favicon
+                if (is_file($oldFaviconPath)) {
+                    unlink($oldFaviconPath);
                 }
-                return unlink($oldFaviconPath);
 
-                // Save the new favicon
+                // Save the new Favicon
                 $favicon = 'favicon.' . $request->favicon->extension();
-                $request->favicon->move('uploads/image/setting', $favicon);
+                $request->favicon->move(public_path('uploads/image/setting'), $favicon);
             } else {
                 $favicon = $setting->favicon;
             }
 
             if ($request->hasFile('logo')) {
-                $oldLogoPath = asset('uploads/image/setting/' . $setting->logo);
+                $oldLogoPath = public_path('uploads/image/setting/' . $setting->logo);
 
-                // // Delete the old logo
-                if (file_exists($oldLogoPath)) {
+                // Delete the old Logo
+                if (is_file($oldLogoPath)) {
                     unlink($oldLogoPath);
                 }
 
-                // Save the new logo
+                // Save the new Logo
                 $logo = 'logo.' . $request->logo->extension();
                 $request->logo->move(public_path('uploads/image/setting'), $logo);
             } else {
                 $logo = $setting->logo;
             }
 
-            if ($request->hasFile('banner')) {
-                $oldBannerPath = asset('uploads/image/setting/' . $setting->banner);
 
-                // // Delete the old banner
-                if (file_exists($oldBannerPath)) {
+            if ($request->hasFile('banner')) {
+                $oldBannerPath = public_path('uploads/image/setting/' . $setting->banner);
+
+                // Delete the old Banner
+                if (is_file($oldBannerPath)) {
                     unlink($oldBannerPath);
                 }
 
-                // Save the new banner
+                // Save the new Banner
                 $banner = 'banner.' . $request->banner->extension();
                 $request->banner->move(public_path('uploads/image/setting'), $banner);
             } else {
                 $banner = $setting->banner;
             }
-
 
             $setting->update([
                 'logo' => $logo,

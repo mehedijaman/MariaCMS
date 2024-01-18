@@ -13,16 +13,16 @@ class HeroController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return Inertia::render('Hero/Index', [
-            'title' => __('app.label.heroes'),
-            'hero' => Hero::firstOrCreate(),
-            'breadcrumbs' => [
-                ['label' => __('app.label.heroes'), 'href' => route('heroes.index')],
-            ],
-        ]);
-    }
+        public function index()
+        {
+            return Inertia::render('Hero/Index', [
+                'title' => __('app.label.heroes'),
+                'hero' => Hero::firstOrCreate(),
+                'breadcrumbs' => [
+                    ['label' => __('app.label.heroes'), 'href' => route('heroes.index')],
+                ],
+            ]);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -63,19 +63,22 @@ class HeroController extends Controller
     {
         try {
             if ($request->hasFile('image')) {
-                $oldImagePath = asset('uploads/image/hero/' . $hero->image);
+                $oldImagePath = public_path('uploads/image/hero/' . $hero->image);
 
-                // Delete the old image
-                if (file_exists($oldImagePath)) {
+                // Delete the old image if it exists
+                if (is_file($oldImagePath)) {
                     unlink($oldImagePath);
                 }
 
-                // Save the new image
                 $image = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads/image/hero'), $image);
+
             } else {
+                // No new image provided, use the existing one
                 $image = $hero->image;
             }
+
+
 
             $hero->update([
                 'image' => $image,
