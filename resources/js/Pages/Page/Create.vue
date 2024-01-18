@@ -4,6 +4,8 @@ import { Link } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
+import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
@@ -40,6 +42,7 @@ const formData = reactive({
     meta_title: null,
     meta_description: null,
     meta_keywords: null,
+    featured_image: null,
 });
 
 // Watch for changes in the 'name' property
@@ -63,6 +66,12 @@ const submit = () => {
 };
 
 const config = ref();
+
+const fileChange = (value) => {
+    if (value.source === "featured_image") {
+        formData.featured_image = value.file;
+    }
+};
 </script>
 
 <template>
@@ -114,8 +123,8 @@ const config = ref();
                                 <h2 id="accordion-open-heading-1">
                                     <button type="button"
                                         class="flex items-center justify-between w-full p-2 font-sans rtl:text-right text-gray-800 border border-b-0 border-gray-200  focus:ring-2 focus:ring-red-300 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                        data-accordion-target="#post-summary" aria-expanded="true"
-                                        aria-controls="post-summary">
+                                        data-accordion-target="#page-summary" aria-expanded="true"
+                                        aria-controls="page-summary">
                                         <span class="flex items-center">Summary</span>
                                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -124,7 +133,7 @@ const config = ref();
                                         </svg>
                                     </button>
                                 </h2>
-                                <div id="post-summary" class="hidden" aria-labelledby="accordion-open-heading-1">
+                                <div id="page-summary" class="hidden" aria-labelledby="accordion-open-heading-1">
                                     <div
                                         class="p-2 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                         <div class="space-y-1">
@@ -156,7 +165,7 @@ const config = ref();
                                                 class="block w-full h-8 py-0 text-sm" autocomplete="password"
                                                 :placeholder="lang().placeholder.password"
                                                 :error="form.errors.desctiption" />
-                                            <InputError :message="form.errors.excerpt" />
+                                            <InputError :message="form.errors.password" />
                                         </div>
                                     </div>
                                 </div>
@@ -164,8 +173,8 @@ const config = ref();
                                 <h2 id="accordion-open-heading-3">
                                     <button type="button"
                                         class="flex items-center justify-between w-full p-2 font-sans rtl:text-right text-gray-800 border border-gray-200 focus:ring-2 focus:ring-red-300 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                        data-accordion-target="#post-featured-image" aria-expanded="false"
-                                        aria-controls="post-featured-image">
+                                        data-accordion-target="#page-featured-image" aria-expanded="true"
+                                        aria-controls="page-featured-image">
                                         <span class="flex items-center">Featured Image</span>
                                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -174,16 +183,23 @@ const config = ref();
                                         </svg>
                                     </button>
                                 </h2>
-                                <div id="post-featured-image" class="hidden" aria-labelledby="accordion-open-heading-3">
+                                <div id="page-featured-image" class="hidden" aria-labelledby="accordion-open-heading-3">
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
-                                        <!-- Featured Image here -->
+                                        <div class="space-y-1">
+                                            <ImageInput source="featured_image" v-model="formData.featured_image"
+                                                class="mt-1 block w-44 h-44" @fileChange="fileChange" />
+                                            <InputError :message="form.errors.featured_image" class="mt-2" />
+                                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                                                {{ form.progress.percentage }}%
+                                            </progress>
+                                        </div>
                                     </div>
                                 </div>
                                 <h2 id="accordion-open-heading-3">
                                     <button type="button"
                                         class="flex items-center justify-between w-full p-2 font-sans rtl:text-right text-gray-800 border border-gray-200 focus:ring-2 focus:ring-red-300 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                        data-accordion-target="#post-excerpt" aria-expanded="false"
-                                        aria-controls="post-excerpt">
+                                        data-accordion-target="#page-excerpt" aria-expanded="false"
+                                        aria-controls="page-excerpt">
                                         <span class="flex items-center">Excerpt</span>
                                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -192,11 +208,11 @@ const config = ref();
                                         </svg>
                                     </button>
                                 </h2>
-                                <div id="post-excerpt" class="hidden" aria-labelledby="accordion-open-heading-3">
+                                <div id="page-excerpt" class="hidden" aria-labelledby="accordion-open-heading-3">
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
                                         <div class="space-y-1">
                                             <InputLabel for="excerpt" :value="lang().label.excerpt" />
-                                            <TextInput id="excerpt" v-model="formData.excerpt" type="text"
+                                            <TextAreaInput id="excerpt" v-model="formData.excerpt" type="text"
                                                 class="block w-full h-8 py-0 text-sm" autocomplete="excerpt"
                                                 :placeholder="lang().placeholder.excerpt"
                                                 :error="form.errors.desctiption" />
@@ -208,8 +224,8 @@ const config = ref();
                                 <h2 id="accordion-open-heading-3">
                                     <button type="button"
                                         class="flex items-center justify-between w-full p-2 font-sans rtl:text-right text-gray-800 border border-gray-200 focus:ring-2 focus:ring-red-300 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                        data-accordion-target="#post-meta-information" aria-expanded="false"
-                                        aria-controls="post-meta-information">
+                                        data-accordion-target="#page-meta-information" aria-expanded="false"
+                                        aria-controls="page-meta-information">
                                         <span class="flex items-center">Meta Information</span>
                                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -218,7 +234,7 @@ const config = ref();
                                         </svg>
                                     </button>
                                 </h2>
-                                <div id="post-meta-information" class="hidden" aria-labelledby="accordion-open-heading-3">
+                                <div id="page-meta-information" class="hidden" aria-labelledby="accordion-open-heading-3">
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
                                         <div class="space-y-1">
                                             <InputLabel for="meta_title" :value="lang().label.meta_title" />

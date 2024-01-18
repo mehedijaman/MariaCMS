@@ -13,6 +13,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
+import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
@@ -75,6 +77,12 @@ const submit = () => {
 };
 
 const config = {};
+
+const fileChange = (value) => {
+    if (value.source === "featured_image") {
+        formData.featured_image = value.file;
+    }
+};
 </script>
 
 <template>
@@ -166,7 +174,7 @@ const config = {};
                                                 class="block w-full h-8 py-0 text-sm" autocomplete="password"
                                                 :placeholder="lang().placeholder.password"
                                                 :error="form.errors.desctiption" />
-                                            <InputError :message="form.errors.excerpt" />
+                                            <InputError :message="form.errors.password" />
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +208,7 @@ const config = {};
                                 <h2 id="accordion-open-heading-3">
                                     <button type="button"
                                         class="flex items-center justify-between w-full p-2 font-sans rtl:text-right text-gray-800 border border-gray-200 focus:ring-2 focus:ring-red-300 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                                        data-accordion-target="#post-featured-image" aria-expanded="false"
+                                        data-accordion-target="#post-featured-image" aria-expanded="true"
                                         aria-controls="post-featured-image">
                                         <span class="flex items-center">Featured Image</span>
                                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
@@ -212,27 +220,10 @@ const config = {};
                                 </h2>
                                 <div id="post-featured-image" class="hidden" aria-labelledby="accordion-open-heading-3">
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
-                                        <div id="image-preview"
-                                            class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
-                                            <input id="upload" @input="formData.featured_image = $event.target.files[0]"
-                                                type="file" class="hidden" accept="image/*" />
-
-                                            <label for="upload" class="cursor-pointer">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor"
-                                                    class="w-8 h-8 text-gray-700 mx-auto mb-4">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                                </svg>
-                                                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload
-                                                    picture</h5>
-                                                <!-- <p class="font-normal text-sm text-gray-400 md:px-6">Photo size should be
-                                                    less than <b class="text-gray-600">2MB</b></p>
-                                                <p class="font-normal text-sm text-gray-400 md:px-6">and should be in <b
-                                                        class="text-gray-600">JPG, JPEG or PNG</b> format.</p>
-                                                <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span> -->
-
-                                            </label>
+                                        <div class="space-y-1">
+                                            <ImageInput source="featured_image" v-model="formData.featured_image"
+                                                class="mt-1 block w-44 h-44" @fileChange="fileChange" />
+                                            <InputError :message="form.errors.featured_image" class="mt-2" />
                                             <progress v-if="form.progress" :value="form.progress.percentage" max="100">
                                                 {{ form.progress.percentage }}%
                                             </progress>
@@ -256,7 +247,7 @@ const config = {};
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
                                         <div class="space-y-1">
                                             <InputLabel for="excerpt" :value="lang().label.excerpt" />
-                                            <TextInput id="excerpt" v-model="formData.excerpt" type="text"
+                                            <TextAreaInput id="excerpt" v-model="formData.excerpt" type="text"
                                                 class="block w-full h-8 py-0 text-sm" autocomplete="excerpt"
                                                 :placeholder="lang().placeholder.excerpt"
                                                 :error="form.errors.desctiption" />

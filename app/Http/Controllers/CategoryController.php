@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index(IndexCategoryRequest $request)
     {
-        $categories = Category::all();
+        $categories = Category::with('parent')->get();
 
         return Inertia::render('Category/Index', [
             'title' => __('app.label.categories'),
@@ -48,7 +48,7 @@ class CategoryController extends Controller
             $category = Category::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
-                'parent' => $request->parent,
+                'parent_id' => $request->parent_id,
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
@@ -95,7 +95,7 @@ class CategoryController extends Controller
             $category->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
-                'parent' => $request->parent,
+                'parent_id' => $request->parent_id,
                 'description' => $request->description,
                 'status' => $request->status,
             ]);

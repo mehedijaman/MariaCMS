@@ -6,11 +6,13 @@ import ActionButton from "@/Components/ActionButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
+const title = inject('title');
 const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
@@ -58,63 +60,41 @@ const closeModal = () => {
         >
             <PencilIcon class="w-4 h-auto" />
         </ActionButton>
-        <DialogModal :show="show" @close="closeModal" max-width="md">
+        <DialogModal :show="show" @close="closeModal" max-width="xl">
             <template #title>
-                {{ lang().label.edit }} {{ props.title }}
+                {{ lang().label.edit }} {{ title }}
             </template>
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-                    <div class="space-y-1">
-                        <InputLabel for="name" :value="lang().label.name" />
-                        <TextInput
-                            id="name"
-                            v-model="formData.name"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="name"
-                            :placeholder="lang().placeholder.menu_name"
-                            :error="form.errors.name"
-                        />
-                        <InputError :message="form.errors.name" />
-                    </div>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="w-full">
+                            <InputLabel for="name" :value="lang().label.name" />
+                            <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                autocomplete="name" :placeholder="lang().placeholder.name"
+                                :error="form.errors.name" />
+                            <InputError :message="form.errors.name" />
+                        </div>
 
-                    <div class="space-y-1">
-                        <InputLabel for="slug" :value="lang().label.slug" />
-                        <TextInput
-                            id="slug"
-                            v-model="formData.slug"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="slug"
-                            :placeholder="lang().placeholder.slug"
-                            :error="form.errors.slug"
-                        />
-                        <InputError :message="form.errors.slug" />
+                        <div class="w-full">
+                            <InputLabel for="slug" :value="lang().label.slug" />
+                            <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
+                                autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
+                            <InputError :message="form.errors.slug" />
+                        </div>
                     </div>
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextInput
-                            id="slug"
-                            v-model="formData.description"
-                            type="text"
-                            class="block w-full"
-                            autocomplete="description"
-                            :placeholder="lang().placeholder.description"
-                            :error="form.errors.desctiption"
-                        />
+                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                            autocomplete="description" :placeholder="lang().placeholder.description"
+                            :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
                     </div>
 
                     <div class="space-y-1">
                         <InputLabel for="status" :value="lang().label.status" />
-                        <select
-                            v-model="formData.status"
-                            id="status"
-                            name="status"
-                            class="block w-full"
-                        >
+                        <select v-model="formData.status" id="status" name="status" class="block w-full">
                             <!-- Iterate over statuss and create options -->
                             <option value="1">Published</option>
                             <option value="0">Unpublished</option>

@@ -21,7 +21,7 @@ const searchValue = ref('');
 const headers = [
     { text: "Name", value: "name", sortable: true },
     { text: "Slug", value: "slug", sortable: true },
-    { text: "Parent", value: "parent", sortable: true },
+    { text: "Parent", value: "parent.name", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>

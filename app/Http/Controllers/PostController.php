@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index(IndexPostRequest $request)
     {
-        $posts = Post::all();
+        $posts = Post::with('media')->get();
 
         return Inertia::render('Post/Index', [
             'title' => __('app.label.posts'),
@@ -96,6 +96,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->getMedia();
         return Inertia::render('Post/Show', [
             'title' => __('app.label.posts'),
             'page' => $post,
@@ -109,6 +110,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $post->getMedia();
 
         $postCategories = $post->categories->pluck('id')->toArray();
 
@@ -150,6 +152,11 @@ class PostController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
+
+            if ($request->hasFile('featured_image')) {
+                $post->clearMediaCollection('featured_image');
+                $post->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
+            }
 
             $post->categories()->sync($request->categories);
             DB::commit();

@@ -88,7 +88,7 @@ const fileChange = (value) => {
                             <!-- <div class="grid grid-cols-2 gap-2"> -->
                             <button :disabled="form.processing" @click="submit" type="button"
                                 class="text-white bg-blue-700  hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 px-3 font-sans rounded-md text-sm  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 col-span-1 w-full">{{
-                                    lang().button.save }} {{ form.processing ? "..." : "" }}</button>
+                                    lang().button.update }} {{ form.processing ? "..." : "" }}</button>
 
                             <Link :href="route('products.index')"
                                 class="text-white  bg-slate-600 hover:bg-slate-700 focus:ring-2 focus:ring-blue-300 font-sans rounded-md text-sm px-5 py-3  dark:bg-slate-500 dark:hover:bg-slate-600 dark:focus:ring-slate-700 text-center items-center col-span-1 w-full">

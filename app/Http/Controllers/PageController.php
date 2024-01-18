@@ -16,7 +16,7 @@ class PageController extends Controller
      */
     public function index(IndexPageRequest $request)
     {
-        $pages = Page::all();
+        $pages = Page::with('media')->get();
 
         return Inertia::render('Page/Index', [
             'title' => __('app.label.pages'),
@@ -61,6 +61,10 @@ class PageController extends Controller
                 'meta_keywords' => $request->meta_keywords,
             ]);
 
+            if($request->hasFile('featured_image')) {
+                $page->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
+            }
+
             return redirect()->route('pages.edit', ['page' => $page->id])
                 ->with('success', __('app.label.created_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {
@@ -87,6 +91,7 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         $pages = Page::all();
+        $page->getMedia();
 
         return Inertia::render('Page/Edit', [
             'title' => __('app.label.page'),
@@ -117,6 +122,11 @@ class PageController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
             ]);
+
+            if ($request->hasFile('featured_image')) {
+                $page->clearMediaCollection('featured_image');
+                $page->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
+            }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $page->name]));
         } catch (\Throwable $th) {

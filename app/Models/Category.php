@@ -14,7 +14,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'parent',
+        'parent_id',
         'description',
         'status',
     ];
@@ -22,5 +22,10 @@ class Category extends Model
     public function posts()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

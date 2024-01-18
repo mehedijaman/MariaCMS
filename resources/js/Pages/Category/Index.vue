@@ -34,6 +34,7 @@ const updateItems = (updatedItems) => {
     updatedItems.forEach(item => items.push(item));
 };
 
+provide('title', props.title);
 provide('categories', items);
 
 provide('published', published);
