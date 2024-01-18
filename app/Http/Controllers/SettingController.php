@@ -73,7 +73,7 @@ class SettingController extends Controller
     {
         try {
             if ($request->hasFile('favicon')) {
-                $oldFaviconPath = public_path('uploads/image/setting/' . $setting->favicon);
+                $oldFaviconPath = asset('uploads/image/setting/' . $setting->favicon);
 
                 // Delete the old favicon
                 if (file_exists($oldFaviconPath)) {
@@ -90,7 +90,7 @@ class SettingController extends Controller
 
 
             if ($request->hasFile('logo')) {
-                $oldLogoPath = public_path('uploads/image/setting/' . $setting->logo);
+                $oldLogoPath = asset('uploads/image/setting/' . $setting->logo);
 
                 // // Delete the old logo
                 if (file_exists($oldLogoPath)) {
@@ -107,7 +107,7 @@ class SettingController extends Controller
 
 
             if ($request->hasFile('banner')) {
-                $oldBannerPath = public_path('uploads/image/setting/' . $setting->banner);
+                $oldBannerPath = asset('uploads/image/setting/' . $setting->banner);
 
                 // // Delete the old banner
                 if (file_exists($oldBannerPath)) {

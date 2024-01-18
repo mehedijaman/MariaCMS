@@ -63,7 +63,7 @@ class HeroController extends Controller
     {
         try {
             if ($request->hasFile('image')) {
-                $oldImagePath = public_path('uploads/image/hero/' . $hero->image);
+                $oldImagePath = asset('uploads/image/hero/' . $hero->image);
 
                 // Delete the old image
                 if (file_exists($oldImagePath)) {
