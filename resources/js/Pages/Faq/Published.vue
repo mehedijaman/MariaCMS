@@ -19,7 +19,6 @@ const searchValue = ref('');
 
 const headers = [
     { text: "Question", value: "question", sortable: true },
-    { text: "Answer", value: "answer", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
@@ -47,7 +46,7 @@ const headers = [
 
         <template #expand="item">
             <div>
-                <strong>Description: </strong> {{ item.description }}
+                <strong>Answer: </strong> {{ item.answer }}
             </div>
         </template>
         <template #empty-message>

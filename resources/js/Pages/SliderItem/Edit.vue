@@ -7,6 +7,7 @@ import ActionButton from "@/Components/ActionButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
@@ -60,7 +61,7 @@ const fileChange = (value) => {
         <ActionButton @click.prevent="(show = true), emit('open')">
             <PencilIcon class="w-4 h-auto" />
         </ActionButton>
-        <DialogModal :show="show" @close="closeModal" max-width="2xl">
+        <DialogModal :show="show" @close="closeModal" max-width="xl">
             <template #title>
                 {{ lang().label.edit }} {{ props.title }}
             </template>
@@ -81,13 +82,13 @@ const fileChange = (value) => {
                     <div class="space-y-1">
                         <InputLabel for="title" :value="lang().label.title" />
                         <TextInput id="title" v-model="form.title" type="text" class="block w-full" autocomplete="title"
-                            :placeholder="lang().placeholder.slider_title" :error="form.errors.title" />
-                        <InputError :message="form.errors.name" />
+                            :placeholder="lang().placeholder.title" :error="form.errors.title" />
+                        <InputError :message="form.errors.title" />
                     </div>
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextInput id="slug" v-model="form.description" type="text" class="block w-full"
+                        <TextAreaInput id="slug" v-model="form.description" type="text" class="block w-full"
                             autocomplete="description" :placeholder="lang().placeholder.description"
                             :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />

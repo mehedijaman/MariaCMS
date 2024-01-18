@@ -6,11 +6,13 @@ import ActionButton from "@/Components/ActionButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
+const title = inject('title');
 const updateItems = inject('updateItems');
 
 const emit = defineEmits(["open"]);
@@ -52,15 +54,15 @@ const closeModal = () => {
         >
             <PencilIcon class="w-4 h-auto" />
         </ActionButton>
-        <DialogModal :show="show" @close="closeModal" max-width="md">
+        <DialogModal :show="show" @close="closeModal" max-width="xl">
             <template #title>
-                {{ lang().label.edit }} {{ props.title }}
+                {{ lang().label.edit }} {{ title }}
             </template>
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
                     <div class="space-y-1">
-                        <InputLabel for="question" :value="lang().label.name" />
+                        <InputLabel for="question" :value="lang().label.question" />
                         <TextInput
                             id="question"
                             v-model="formData.question"
@@ -75,13 +77,13 @@ const closeModal = () => {
 
                     <div class="space-y-1">
                         <InputLabel for="answer" :value="lang().label.answer" />
-                        <TextInput
+                        <TextAreaInput
                             id="answer"
                             v-model="formData.answer"
                             type="text"
                             class="block w-full"
                             autocomplete="answer"
-                            :placeholder="lang().placeholder.answer"
+                            :placeholder="lang().placeholder.faq_answer"
                             :error="form.errors.answer"
                         />
                         <InputError :message="form.errors.answer" />
@@ -95,7 +97,6 @@ const closeModal = () => {
                             name="status"
                             class="block w-full"
                         >
-                            <!-- Iterate over statuss and create options -->
                             <option value="1">Published</option>
                             <option value="0">Unpublished</option>
                             <option :value="null">Draft</option>

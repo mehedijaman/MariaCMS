@@ -19,15 +19,15 @@ const title = inject('title');
 const emit = defineEmits(["open"]);
 const show = ref(false);
 const props = defineProps({
-    item:Object,
+    item: Object,
 });
 
 const formData = reactive(props.item);
 
 // Watch for changes in the 'name' property
 watch(() => formData.name, (newName) => {
-  // Update the 'slug' property based on the new 'name'
-  formData.slug = generateSlug(newName);
+    // Update the 'slug' property based on the new 'name'
+    formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -55,18 +55,41 @@ const closeModal = () => {
 </script>
 <template>
     <div>
-        <ActionButton
-            @click.prevent="(show = true), emit('open')"
-        >
+        <ActionButton @click.prevent="(show = true), emit('open')">
             <PencilIcon class="w-4 h-auto" />
         </ActionButton>
-        <DialogModal :show="show" @close="closeModal" max-width="md">
+        <DialogModal :show="show" @close="closeModal" max-width="xl">
             <template #title>
                 {{ lang().label.edit }} {{ title }}
             </template>
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
+
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="w-full">
+                            <InputLabel for="name" :value="lang().label.name" />
+                            <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                autocomplete="name" :placeholder="lang().placeholder.name" :error="form.errors.name" />
+                            <InputError :message="form.errors.name" />
+                        </div>
+
+                        <div class="w-full">
+                            <InputLabel for="slug" :value="lang().label.slug" />
+                            <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
+                                autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
+                            <InputError :message="form.errors.slug" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <InputLabel for="slug" :value="lang().label.description" />
+                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                            autocomplete="description" :placeholder="lang().placeholder.description"
+                            :error="form.errors.desctiption" />
+                        <InputError :message="form.errors.description" />
+                    </div>
+
                     <div class="flex flex-col md:flex-row gap-4">
                         <div class="w-full">
                             <InputLabel for="parent_id" :value="lang().label.parent" />
@@ -89,28 +112,6 @@ const closeModal = () => {
                             <InputError :message="form.errors.status" />
                         </div>
                     </div>
-
-                    <div class="space-y-1">
-                        <InputLabel for="name" :value="lang().label.name" />
-                        <TextInput id="name" v-model="formData.name" type="text" class="block w-full" autocomplete="name"
-                            :placeholder="lang().placeholder.category_name" :error="form.errors.name" />
-                        <InputError :message="form.errors.name" />
-                    </div>
-
-                    <div class="space-y-1">
-                        <InputLabel for="slug" :value="lang().label.slug" />
-                        <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full" autocomplete="slug"
-                            :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
-                        <InputError :message="form.errors.slug" />
-                    </div>
-
-                    <div class="space-y-1">
-                        <InputLabel for="slug" :value="lang().label.description" />
-                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
-                            autocomplete="description" :placeholder="lang().placeholder.description"
-                            :error="form.errors.desctiption" />
-                        <InputError :message="form.errors.description" />
-                    </div>
                 </form>
             </template>
 
@@ -119,12 +120,8 @@ const closeModal = () => {
                     {{ lang().button.cancel }}
                 </SecondaryButton>
 
-                <PrimaryButton
-                    class="ml-3"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                    @click="submit"
-                >
+                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="submit">
                     {{ lang().button.save }} {{ form.processing ? "..." : "" }}
                 </PrimaryButton>
             </template>

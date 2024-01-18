@@ -54,6 +54,8 @@ const removeBulkItems = (itemIds) => {
         }
     });
 };
+provide('title', props.title);
+
 provide('published', published);
 provide('unpublished', unpublished);
 provide('draft', draft);

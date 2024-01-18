@@ -269,6 +269,7 @@ return [
         'email' => 'email@email.com',
         'password' => '••••••••',
         'name' => 'Enter Name',
+        'title' => 'Enter Title',
         'slug' => 'Enter a slug',
         'code' => '••••••••',
         'recovery_code' => 'xxxx-xxxx-xxxx-xxxx',

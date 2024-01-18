@@ -6,11 +6,13 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref , inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
+const title = inject('title');
 const updateItems = inject('updateItems');
 
 const show = ref(false);
@@ -54,9 +56,9 @@ const closeModal = () => {
             <PlusIcon class="w-4 h-auto" />
             <span class="hidden md:block">{{ lang().label.add }}</span>
         </PrimaryButton>
-        <DialogModal :show="show" @close="closeModal" max-width="2xl">
+        <DialogModal :show="show" @close="closeModal" max-width="xl">
             <template #title>
-                {{ lang().label.add }}
+                {{ lang().label.add }} {{ title }}
             </template>
 
             <template #content>
@@ -77,7 +79,7 @@ const closeModal = () => {
 
                     <div class="space-y-1">
                         <InputLabel for="answer" :value="lang().label.answer" />
-                        <TextInput
+                        <TextAreaInput
                             id="answer"
                             v-model="formData.answer"
                             type="text"
