@@ -180,7 +180,7 @@ return [
 
         'product' => 'Product',
         'products' => 'Products',
-        'featured_product' => 'Featured Product',
+        'featured_product' => 'Featured Products',
 
         'product_categories' => 'Product Categories',
         'product_category' => 'Product Category',

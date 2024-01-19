@@ -35,7 +35,7 @@ const headers = [
             <Link :href="route('products.create')" v-if="can(['product create'])"
                 class="text-white flex gap-2 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-4 py-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             <PlusIcon class="w-4 h-auto" />
-            Add New product
+            Add New {{ lang().label.product }}
 
             </Link>
 
