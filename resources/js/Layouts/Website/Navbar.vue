@@ -62,10 +62,10 @@ onMounted(() => {
                 <NavbarLink v-bind:class="route().current('index') ? 'font-bold text-primary' : ''
                     " :href="route('index')" :label="lang().label.home" />
 
-                <!-- <a v-for="item in $page.props.menu[0].items" v-bind:class="route().current(item.url) ? 'font-bold text-primary' : ''
+                <a v-for="item in $page.props.menu[0].items" v-bind:class="route().current(item.url) ? 'font-bold text-primary' : ''
                     " :href="item.url">
                     {{ item.name }}
-                </a> -->
+                </a>
 
                 <NavbarLink v-bind:class="route().current('blog.posts') ? 'font-bold text-primary' : ''
                     " :href="route('blog.posts')" :label="lang().label.blog" />
