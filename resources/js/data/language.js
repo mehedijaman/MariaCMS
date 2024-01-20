@@ -39,19 +39,19 @@ export const languages = [
             </svg>
         `,
     },
-    {
-        code: "id",
-        name: "Bahasa",
-        flag: `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" class="h-4 w-6">
-                <!-- Red stripe -->
-                <rect width="1200" height="400" fill="#ff0000" />
+    // {
+    //     code: "id",
+    //     name: "Bahasa",
+    //     flag: `
+    //         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" class="h-4 w-6">
+    //             <!-- Red stripe -->
+    //             <rect width="1200" height="400" fill="#ff0000" />
 
-                <!-- White stripe -->
-                <rect width="1200" height="400" y="400" fill="#ffffff" />
-            </svg>
-        `,
-    },
+    //             <!-- White stripe -->
+    //             <rect width="1200" height="400" y="400" fill="#ffffff" />
+    //         </svg>
+    //     `,
+    // },
     {
         code: "bn",
         name: "বাংলা",
