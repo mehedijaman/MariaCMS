@@ -39,7 +39,8 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__ . '/website.php';
+// require __DIR__ . '/website.php';
+require __DIR__ . '/website_blade.php';
 
 /** Locale Routes */
 Route::get('/set-locale/{locale}', function ($locale) {
