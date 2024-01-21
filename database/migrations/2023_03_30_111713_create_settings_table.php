@@ -46,9 +46,17 @@ return new class extends Migration
             $table->string('event_category')->nullable();
 
             $table->longText('additional_css')->nullable();
-            $table->string('topbar_color')->nullable();
-            $table->string('body_color')->nullable();
-            $table->string('footer_color')->nullable();
+
+            $table->string('topbar_background_color')->nullable();
+            $table->string('topbar_text_color')->nullable();
+            $table->string('banner_background_color')->nullable();
+            $table->string('banner_text_color')->nullable();
+            $table->string('navbar_background_color')->nullable();
+            $table->string('navbar_text_color')->nullable();
+            $table->string('body_background_color')->nullable();
+            $table->string('body_text_color')->nullable();
+            $table->string('footer_background_color')->nullable();
+            $table->string('footer_text_color')->nullable();
 
             /** Contact Settings */
             $table->text('address')->nullable();

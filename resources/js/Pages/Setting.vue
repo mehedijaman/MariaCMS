@@ -11,13 +11,13 @@ import { useForm } from "@inertiajs/vue3";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import Breadcrumb from "../Layouts/Authenticated/Breadcrumb.vue";
-import { ref } from "vue";
 
 import {
     InformationCircleIcon,
     PhoneIcon,
     ClipboardDocumentListIcon,
     HomeIcon,
+    PaintBrushIcon
 } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -57,9 +57,18 @@ const form = useForm({
     news_category: props.setting?.news_category,
     event_category: props.setting?.event_category,
     additional_css: props.setting?.additional_css,
-    topbar_color: props.setting?.topbar_color,
-    body_color: props.setting?.body_color,
-    footer_color: props.setting?.footer_color,
+
+    topbar_background_color: props.setting?.topbar_background_color,
+    topbar_text_color: props.setting?.topbar_text_color,
+    banner_background_color: props.setting?.banner_background_color,
+    banner_text_color: props.setting?.banner_text_color,
+    navbar_background_color: props.setting?.navbar_background_color,
+    navbar_text_color: props.setting?.navbar_text_color,
+    body_background_color: props.setting?.body_background_color,
+    body_text_color: props.setting?.body_text_color,
+    footer_background_color: props.setting?.footer_background_color,
+    footer_text_color: props.setting?.footer_text_color,
+
     address: props.setting?.address,
     google_map: props.setting?.google_map,
     contact_no: props.setting?.contact_no,
@@ -126,6 +135,15 @@ const fileChange = (value) => {
                                 aria-controls="dashboard" aria-selected="false">
                                 <PhoneIcon class="w-5 h-5 me-2 text-gray-400"></PhoneIcon>
                                 Contact Info
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="flex p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="color-setting-tab" data-tabs-target="#color-setting" type="button" role="tab"
+                                aria-controls="color-setting" aria-selected="false">
+                                <PaintBrushIcon class="w-5 h-5 me-2 text-gray-400"></PaintBrushIcon>
+                                Color Setting
                             </button>
                         </li>
                         <li class="me-2" role="presentation">
@@ -323,8 +341,7 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="hero" :value="lang().label.hero" />
-                                    <select v-model="form.hero_enabled" id="hero" name="hero_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.hero_enabled" id="hero" name="hero_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
@@ -333,8 +350,7 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="news" :value="lang().label.news" />
-                                    <select v-model="form.news_enabled" id="news" name="news_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.news_enabled" id="news" name="news_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
@@ -353,8 +369,7 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="faq" :value="lang().label.faq" />
-                                    <select v-model="form.faq_enabled" id="faq" name="faq_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.faq_enabled" id="faq" name="faq_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
@@ -363,8 +378,7 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="cta" :value="lang().label.cta" />
-                                    <select v-model="form.cta_enabled" id="cta" name="cta_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.cta_enabled" id="cta" name="cta_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
@@ -383,8 +397,7 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="blog" :value="lang().label.blog" />
-                                    <select v-model="form.blog_enabled" id="blog" name="blog_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.blog_enabled" id="blog" name="blog_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
@@ -403,40 +416,13 @@ const fileChange = (value) => {
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="featured_product" :value="lang().label.featured_product" />
-                                    <select v-model="form.featured_product_enabled" id="featured_product" name="featured_product_enabled"
-                                        class="block w-full">
+                                    <select v-model="form.featured_product_enabled" id="featured_product"
+                                        name="featured_product_enabled" class="block w-full">
                                         <option :value="0">Disabled</option>
                                         <option :value="1">Enabled</option>
                                     </select>
                                     <InputError :message="form.errors.featured_product" class="mt-2" />
                                 </div>
-
-                                <!-- <div class="col-span-3 grid grid-cols-3">
-                                    <div>
-                                        <InputLabel for="topbar_color" :value="lang().label.topbar_color" />
-                                        <TextInput id="topbar_color" v-model="form.topbar_color" type="color"
-                                            class="mt-1 block w-full" :placeholder="lang().placeholder.topbar_color"
-                                            :error="form.errors.topbar_color" />
-                                        <InputError :message="form.errors.topbar_color" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="body_color" :value="lang().label.body_color" />
-                                        <TextInput id="body_color" v-model="form.body_color" type="color"
-                                            class="mt-1 block w-full" :placeholder="lang().placeholder.body_color"
-                                            :error="form.errors.body_color" />
-                                        <InputError :message="form.errors.body_color" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="footer_color" :value="lang().label.footer_color" />
-                                        <TextInput id="footer_color" v-model="form.footer_color" type="color"
-                                            class="mt-1 block w-full" :placeholder="lang().placeholder.footer_color"
-                                            :error="form.errors.footer_color" />
-                                        <InputError :message="form.errors.footer_color" class="mt-2" />
-                                    </div>
-                                </div> -->
-
                             </template>
                             <template #actions>
                                 <ActionMessage :on="form.recentlySuccessful" class="mr-3">
@@ -529,6 +515,103 @@ const fileChange = (value) => {
                             </PrimaryButton>
                         </div>
                     </div>
+                    <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="color-setting" role="tabpanel"
+                        aria-labelledby="color-setting-tab">
+
+                        <div class="col-span-3 grid grid-cols-2">
+                            <div class="">
+                                <InputLabel for="topbar_background_color" value="Topbar Background Color" />
+                                <TextInput id="topbar_background_color" v-model="form.topbar_background_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.topbar_background_color" />
+                                <InputError :message="form.errors.topbar_background_color" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="topbar_text_color" value="Topbar Text Color" />
+                                <TextInput id="topbar_text_color" v-model="form.topbar_text_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.topbar_text_color" />
+                                <InputError :message="form.errors.topbar_text_color" class="mt-2" />
+                            </div>
+
+                            <div class="">
+                                <InputLabel for="banner_background_color" value="Banner Background Color" />
+                                <TextInput id="banner_background_color" v-model="form.banner_background_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.banner_background_color" />
+                                <InputError :message="form.errors.banner_background_color" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="banner_text_color" value="Banner Text Color" />
+                                <TextInput id="banner_text_color" v-model="form.banner_text_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.banner_text_color" />
+                                <InputError :message="form.errors.banner_text_color" class="mt-2" />
+                            </div>
+
+                            <div class="">
+                                <InputLabel for="navbar_background_color" value="navbar Background Color" />
+                                <TextInput id="navbar_background_color" v-model="form.navbar_background_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.navbar_background_color" />
+                                <InputError :message="form.errors.navbar_background_color" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="navbar_text_color" value="navbar Text Color" />
+                                <TextInput id="navbar_text_color" v-model="form.navbar_text_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.navbar_text_color" />
+                                <InputError :message="form.errors.navbar_text_color" class="mt-2" />
+                            </div>
+
+                            <div class="">
+                                <InputLabel for="body_background_color" value="body Background Color" />
+                                <TextInput id="body_background_color" v-model="form.body_background_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.body_background_color" />
+                                <InputError :message="form.errors.body_background_color" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="body_text_color" value="body Text Color" />
+                                <TextInput id="body_text_color" v-model="form.body_text_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.body_text_color" />
+                                <InputError :message="form.errors.body_text_color" class="mt-2" />
+                            </div>
+
+                            <div class="">
+                                <InputLabel for="footer_background_color" value="footer Background Color" />
+                                <TextInput id="footer_background_color" v-model="form.footer_background_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.footer_background_color" />
+                                <InputError :message="form.errors.footer_background_color" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="footer_text_color" value="footer Text Color" />
+                                <TextInput id="footer_text_color" v-model="form.footer_text_color" type="color"
+                                    class="mt-1 block w-full"
+                                    :error="form.errors.footer_text_color" />
+                                <InputError :message="form.errors.footer_text_color" class="mt-2" />
+                            </div>
+                        </div>
+
+                        <div class="my-4 flex justify-end">
+                            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
+                                {{ lang().label.saved }}
+                            </ActionMessage>
+
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                                @click="update">
+                                {{ lang().button.save }}
+                                {{ form.processing ? "..." : "" }}
+                            </PrimaryButton>
+                        </div>
+                    </div>
                     <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="settings" role="tabpanel"
                         aria-labelledby="settings-tab">
                         <div class="col-span-6 sm:col-span-3">
@@ -552,6 +635,7 @@ const fileChange = (value) => {
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-</AppLayout></template>
+    </AppLayout>
+</template>

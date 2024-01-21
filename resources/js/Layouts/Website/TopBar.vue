@@ -7,14 +7,14 @@ import {
 
 </script>
 <template>
-    <div class="h-10 bg-indigo-800">
+    <div :style="{ backgroundColor: $page.props.app.setting.topbar_background_color, color: $page.props.app.setting.topbar_text_color }" class="h-10">
         <div class="flex flex-col max-w-7xl px-4 sm:px-8 lg:px-12 py-2 mx-auto sm:items-center sm:justify-between sm:flex-row">
             <div class="flex gap-8 text-slate-100">
-                <div v-if="$page.props.app.setting.header" class="flex gap-2">
+                <div v-if="$page.props.app.setting.header" :style="{color: $page.props.app.setting.topbar_text_color}" class="flex gap-2">
                     <MicrophoneIcon class="w-4"></MicrophoneIcon >
                     <span v-html="$page.props.app.setting.header"></span>
                 </div>
-                <!-- <div class="flex gap-2">
+                <!-- <div class="fslex gap-2">
                     <PhoneIcon class="w-4"></PhoneIcon>
                     <span>{{ $page.props.app.setting.contact_no }}</span>
                 </div>
