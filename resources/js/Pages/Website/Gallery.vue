@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 </script>
+
 <template>
     <WebsiteLayout :title="title">
         <section class="min-h-[calc(100vh)] bg-pattern" id="home">

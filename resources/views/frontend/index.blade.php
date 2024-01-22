@@ -34,9 +34,11 @@
                         <div class="header-social">
                             <span>
                                 Follow us:-
-                                <a href="{{ $setting->facebook }}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ $setting->facebook }}" title="Facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
                                 <a href="{{ $setting->twitter }}" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="{{ $setting->instagram }}" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="{{ $setting->instagram }}" title="Instagram"><i
+                                        class="fab fa-instagram"></i></a>
                                 <a href="{{ $setting->youtube }}" title="Youtube"><i class="fab fa-youtube"></i></a>
                                 <a href="{{ $setting->whatsapp }}" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
                             </span>
@@ -80,7 +82,8 @@
         <div class="container my-3">
             <div class="row">
                 <div class="col">
-                    <a href="{{ route('index') }}"> <img src="{{ $setting->full_path_banner }}" alt="full size logo"> </a>
+                    <a href="{{ route('index') }}"> <img src="{{ $setting->full_path_banner }}" alt="full size logo">
+                    </a>
                 </div>
             </div>
         </div>
@@ -191,9 +194,11 @@
                         href="teaching-research.html">Teaching & Research</a></li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
                         href="conferences-workshops.html">Conferences & Workshops</a></li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="library.html">Library </a>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="library.html">Library
+                    </a>
                 </li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="career-iiustb.html">Career
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                        href="career-iiustb.html">Career
                         at IIUSTB</a></li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="iiustb-club.html">IIUSTB
                         Club</a></li>
@@ -207,10 +212,11 @@
         <div id="cssmenu2" class="menu-one-page-menu-container">
             <ul id="menu-one-page-menu-12" class="menu">
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                        href="#home"><span>01774-709900</span></a></li>
+                        href="#home"><span>{{ $setting->contact_no }}</span></a></li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
                         href="#howitwork"><span>iiustbbaipail@gmail.com </span></a></li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#howitwork"><span>Corporate
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                        href="#howitwork"><span>Corporate
                             Office: Square Bhabon, 1/B, DIT Avenue, Motijheel C/A, Dhaka-1000 </span></a></li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#howitwork"><span>
                             Permanent Campus: Baipail, Ashulia, Dhaka-1349 </span></a></li>
@@ -225,7 +231,8 @@
         <section id="home" class="slider-area fix p-relative">
 
             <div class="slider-active slick-initialized slick-slider" style="background: #141b22;">
-                <button type="button" class="slick-prev slick-arrow" style=""><i class="fas fa-angle-left"></i></button>
+                <button type="button" class="slick-prev slick-arrow" style=""><i
+                        class="fas fa-angle-left"></i></button>
                 <div class="slick-list draggable">
                     <div class="slick-track" style="opacity: 1; width: 3806px;">
                         <div class="single-slider slider-bg slick-slide"
@@ -237,13 +244,16 @@
                                     <div class="col-lg-7 col-md-7">
                                         <div class="slider-content s-slider-content mt-130">
                                             <h5 data-animation="fadeInUp" data-delay=".4s"
-                                                style="animation-delay: 0.4s;" class="">welcome To International Islami
+                                                style="animation-delay: 0.4s;" class="">welcome To International
+                                                Islami
                                                 University of Science and Technology Bangladesh </h5>
                                             <h2 data-animation="fadeInUp" data-delay=".4s"
-                                                style="animation-delay: 0.4s;" class="">Education is the best key
+                                                style="animation-delay: 0.4s;" class="">Education is the best
+                                                key
                                                 success in life</h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" style="animation-delay: 0.6s;"
-                                                class="">Donec vitae libero non enim placerat eleifend aliquam erat
+                                            <p data-animation="fadeInUp" data-delay=".6s"
+                                                style="animation-delay: 0.6s;" class="">Donec vitae libero non
+                                                enim placerat eleifend aliquam erat
                                                 volutpat. Curabitur diam ex, dapibus purus sapien, cursus sed nisl
                                                 tristique, commodo gravida lectus non.</p>
 
@@ -275,13 +285,16 @@
                                     <div class="col-lg-7 col-md-7">
                                         <div class="slider-content s-slider-content mt-130">
                                             <h5 data-animation="fadeInUp" data-delay=".4s"
-                                                style="animation-delay: 0.4s;" class="">welcome To International Islami
+                                                style="animation-delay: 0.4s;" class="">welcome To International
+                                                Islami
                                                 University of Science and Technology Bangladesh </h5>
                                             <h2 data-animation="fadeInUp" data-delay=".4s"
-                                                style="animation-delay: 0.4s;" class="">Education is the best key
+                                                style="animation-delay: 0.4s;" class="">Education is the best
+                                                key
                                                 success in life</h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" style="animation-delay: 0.6s;"
-                                                class="">Donec vitae libero non enim placerat eleifend aliquam erat
+                                            <p data-animation="fadeInUp" data-delay=".6s"
+                                                style="animation-delay: 0.6s;" class="">Donec vitae libero non
+                                                enim placerat eleifend aliquam erat
                                                 volutpat. Curabitur diam ex, dapibus purus sapien, cursus sed nisl
                                                 tristique, commodo gravida lectus non.</p>
 
@@ -450,13 +463,12 @@
                     <div class="slick-list draggable">
                         <div class="slick-track"
                             style="opacity: 1; width: 6640px; transform: translate3d(-1660px, 0px, 0px);">
-                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-4" id=""
-                                aria-hidden="true" style="width: 415px;" tabindex="-1">
+                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-4"
+                                id="" aria-hidden="true" style="width: 415px;" tabindex="-1">
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="-1"><img
-                                                src="/frontend/images/couress-img-3.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-3.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
                                         <div class="cat"><i class="fas fa-graduation-cap"></i> </div>
@@ -471,17 +483,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-3" id=""
-                                aria-hidden="true" style="width: 415px;" tabindex="-1">
+                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-3"
+                                id="" aria-hidden="true" style="width: 415px;" tabindex="-1">
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="-1"><img
-                                                src="/frontend/images/couress-img-4.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-4.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
                                         <div class="cat"><i class="fas fa-graduation-cap"></i> Public</div>
-                                        <h3><a href="single-courses.html" tabindex="-1"> Public Administration </a></h3>
+                                        <h3><a href="single-courses.html" tabindex="-1"> Public Administration </a>
+                                        </h3>
                                         <p>Seamlessly visualize quality ellectual capital without superior collaboration
                                             and idea tically</p>
                                         <a href="single-courses.html" class="readmore" tabindex="-1">Read More <i
@@ -492,13 +504,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-2" id=""
-                                aria-hidden="true" style="width: 415px;" tabindex="-1">
+                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-2"
+                                id="" aria-hidden="true" style="width: 415px;" tabindex="-1">
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="-1"><img
-                                                src="/frontend/images/couress-img-5.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-5.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
                                         <div class="cat"><i class="fas fa-graduation-cap"></i> Sciences</div>
@@ -513,13 +524,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-1" id=""
-                                aria-hidden="true" style="width: 415px;" tabindex="-1">
+                            <div class="col-lg-4 col-md-6 slick-slide slick-cloned" data-slick-index="-1"
+                                id="" aria-hidden="true" style="width: 415px;" tabindex="-1">
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="-1"><img
-                                                src="/frontend/images/couress-img-6.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-6.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
                                         <div class="cat"><i class="fas fa-graduation-cap"></i> Finance</div>
@@ -539,11 +549,12 @@
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="0"><img
-                                                src="/frontend/images/islamicstudies.jpg"
-                                                alt="contact-bg-an-01" style="height: 217px !important"></a>
+                                                src="/frontend/images/islamicstudies.jpg" alt="contact-bg-an-01"
+                                                style="height: 217px !important"></a>
                                     </div>
                                     <div class="courses-content">
-                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Religious Science</div>
+                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Religious Science
+                                        </div>
                                         <h3><a href="single-courses.html" tabindex="0"> BA (Hons) in Al Quran and
                                                 Islamic Studies</a></h3>
                                         <p>Seamlessly visualize quality ellectual capital without superior collaboration
@@ -561,13 +572,14 @@
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="0"><img
-                                                src="/frontend/images/couress-img-2.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-2.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
-                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Science and Engineering
+                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Science and
+                                            Engineering
                                         </div>
-                                        <h3><a href="single-courses.html" tabindex="0"> B. Sc in Computer Science and
+                                        <h3><a href="single-courses.html" tabindex="0"> B. Sc in Computer Science
+                                                and
                                                 Engineering</a></h3>
                                         <p>Seamlessly visualize quality ellectual capital without superior collaboration
                                             and idea tically</p>
@@ -584,11 +596,11 @@
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="0"><img
-                                                src="/frontend/images/couress-img-3.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-3.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
-                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Science and Engineering
+                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Science and
+                                            Engineering
                                         </div>
                                         <h3><a href="single-courses.html" tabindex="0"> B. Sc in Electrical and
                                                 Electronic Engineering</a></h3>
@@ -607,11 +619,11 @@
                                 <div class="courses-item mb-30 hover-zoomin">
                                     <div class="thumb fix">
                                         <a href="single-courses.html" tabindex="0"><img
-                                                src="/frontend/images/couress-img-4.jpg"
-                                                alt="contact-bg-an-01"></a>
+                                                src="/frontend/images/couress-img-4.jpg" alt="contact-bg-an-01"></a>
                                     </div>
                                     <div class="courses-content">
-                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Business Administration
+                                        <div class="cat"><i class="fas fa-graduation-cap"></i> Business
+                                            Administration
                                         </div>
                                         <h3><a href="single-courses.html" tabindex="0"> Bachelor of Business
                                                 Administration </a></h3>
@@ -658,8 +670,8 @@
                         </div>
                         <ul class="pr-20">
                             <li>
-                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s"
-                                    style="visibility: hidden; animation-name: none;">
+                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp"
+                                    data-delay=".4s" style="visibility: hidden; animation-name: none;">
                                     <div class="dnumber">
                                         <div class="date-box"><img src="/frontend/images/fea-icon01.png"
                                                 alt="icon"></div>
@@ -672,8 +684,8 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s"
-                                    style="visibility: hidden; animation-name: none;">
+                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp"
+                                    data-delay=".4s" style="visibility: hidden; animation-name: none;">
                                     <div class="dnumber">
                                         <div class="date-box"><img src="/frontend/images/fea-icon02.png"
                                                 alt="icon"></div>
@@ -686,8 +698,8 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s"
-                                    style="visibility: hidden; animation-name: none;">
+                                <div class="step-box wow fadeInUp animated" data-animation="fadeInUp"
+                                    data-delay=".4s" style="visibility: hidden; animation-name: none;">
                                     <div class="dnumber">
                                         <div class="date-box"><img src="/frontend/images/fea-icon03.png"
                                                 alt="icon"></div>
@@ -755,7 +767,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -773,7 +786,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -790,7 +804,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -808,7 +823,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -826,7 +842,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -843,7 +860,8 @@
                                 <p>Seamlessly visualize quality ellectual capital without superior collaboration and
                                     idea tically</p>
                                 <div class="time">3:30 pm - 4:30 pm <i class="fa fa-long-arrow-right"></i>
-                                    <strong>United Kingdom</strong></div>
+                                    <strong>United Kingdom</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -854,8 +872,7 @@
         </section>
         <!-- courses-area -->
         <!-- cta-area -->
-        <section class="cta-area cta-bg pt-50 pb-50"
-            style="background-image:url(/frontend/images/cta_bg02.png)">
+        <section class="cta-area cta-bg pt-50 pb-50" style="background-image:url(/frontend/images/cta_bg02.png)">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -916,8 +933,8 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne">
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseOne">
                                                 02. What is the name of the Chairman of your university?
                                             </button>
                                         </h2>
@@ -934,38 +951,42 @@
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTwo">
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
                                                 03. Where is the location of your university?
                                             </button>
                                         </h2>
                                     </div>
                                     <div id="collapseTwo" class="collapse" data-bs-parent="#accordionExample">
                                         <div class="card-body">
-                                            Baipile, Ashulia, Dhaka. South side of EPZ and 700 yards north of Bypile Bus Stop.
+                                            Baipile, Ashulia, Dhaka. South side of EPZ and 700 yards north of Bypile Bus
+                                            Stop.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseFour">
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFour">
                                                 04. How many programs are running in your university?
                                             </button>
                                         </h2>
                                     </div>
                                     <div id="collapseFour" class="collapse" data-bs-parent="#accordionExample">
                                         <div class="card-body">
-                                            Six. Namely, 1. Al Quran and Islamic Studies (Hons), 2. Al Quran and Islamic Studies (Masters), 3. Electrical and Electronic Engineering (Hons), 4. Computer Science and Engineering (Hons), 5. Bachelor of Business Administration, 6. Masters of Business Administration.
+                                            Six. Namely, 1. Al Quran and Islamic Studies (Hons), 2. Al Quran and Islamic
+                                            Studies (Masters), 3. Electrical and Electronic Engineering (Hons), 4.
+                                            Computer Science and Engineering (Hons), 5. Bachelor of Business
+                                            Administration, 6. Masters of Business Administration.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseFive">
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFive">
                                                 05. Is your own campus?
                                             </button>
                                         </h2>
@@ -979,9 +1000,10 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseSix">
-                                                06. How much does it cost to study Honors in Al Quran and Islamic Studies?
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                                06. How much does it cost to study Honors in Al Quran and Islamic
+                                                Studies?
                                             </button>
                                         </h2>
                                     </div>
@@ -994,8 +1016,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h2 class="mb-0">
-                                            <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseSeven">
+                                            <button class="faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseSeven">
                                                 07. How much does a Masters in Al Quran and Islamic Studies cost?
                                             </button>
                                         </h2>
@@ -1028,27 +1050,27 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="contact-field p-relative c-name mb-20">
-                                            <input type="text" id="firstn" name="firstn" placeholder="First Name"
-                                                required="">
+                                            <input type="text" id="firstn" name="firstn"
+                                                placeholder="First Name" required="">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="email" name="email" placeholder="Email" required="">
+                                            <input type="text" id="email" name="email" placeholder="Email"
+                                                required="">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="phone" name="phone" placeholder="Phone No."
-                                                required="">
+                                            <input type="text" id="phone" name="phone"
+                                                placeholder="Phone No." required="">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="contact-field p-relative c-message mb-30">
-                                            <textarea name="message" id="message" cols="30" rows="10"
-                                                placeholder="Write comments"></textarea>
+                                            <textarea name="message" id="message" cols="30" rows="10" placeholder="Write comments"></textarea>
                                         </div>
                                         <div class="slider-btn">
                                             <button class="btn ss-btn" data-animation="fadeInRight"
@@ -1067,8 +1089,7 @@
         </section>
         <!-- frequently-area-end -->
         <!-- video-area -->
-        <section class="cta-area cta-bg pt-160 pb-160"
-            style="background-image:url(/frontend/images/cta_bg.png)">
+        <section class="cta-area cta-bg pt-160 pb-160" style="background-image:url(/frontend/images/cta_bg.png)">
             <div class="container">
                 <div class="row justify-content-center  align-items-center">
                     <div class="col-xl-6 col-lg-6 col-md-12">
@@ -1322,14 +1343,15 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="contact-field p-relative c-name mb-20">
-                                            <input type="text" id="firstn2" name="firstn" placeholder="First Name"
-                                                required="">
+                                            <input type="text" id="firstn2" name="firstn"
+                                                placeholder="First Name" required="">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="email3" name="email" placeholder="Email" required="">
+                                            <input type="text" id="email3" name="email"
+                                                placeholder="Email" required="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -1461,20 +1483,20 @@
                                     <img src="/frontend/images/brand/b-logo1.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="1" aria-hidden="false"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="1"
+                                aria-hidden="false" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo2.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="2" aria-hidden="false"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="2"
+                                aria-hidden="false" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo3.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="3" aria-hidden="false"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-active" data-slick-index="3"
+                                aria-hidden="false" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo4.png" alt="img">
                                 </div>
@@ -1485,42 +1507,38 @@
                                     <img src="/frontend/images/brand/b-logo5.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="5" id=""
+                                aria-hidden="true" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo1.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="6" id=""
+                                aria-hidden="true" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo2.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="7" id=""
+                                aria-hidden="true" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo3.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="8" id=""
+                                aria-hidden="true" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo4.png" alt="img">
                                 </div>
                             </div>
-                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true"
-                                style="width: 330px;" tabindex="-1">
+                            <div class="col-xl-2 slick-slide slick-cloned" data-slick-index="9" id=""
+                                aria-hidden="true" style="width: 330px;" tabindex="-1">
                                 <div class="single-brand">
                                     <img src="/frontend/images/brand/b-logo5.png" alt="img">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -1538,9 +1556,7 @@
                             <h2>
                                 Latest Blog &amp; News
                             </h2>
-
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
@@ -1630,8 +1646,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
@@ -1659,7 +1673,8 @@
                             <div class="form-group p-relative">
                                 <input class="form-control" id="email2" name="email" type="email"
                                     placeholder="Email Address..." value="" required="">
-                                <button type="submit" class="btn btn-custom" id="send2">Subscribe Now</button>
+                                <button type="submit" class="btn btn-custom" id="send2">Subscribe
+                                    Now</button>
                             </div>
                             <!-- /Form-email -->
                         </form>
@@ -1723,28 +1738,27 @@
                             <div class="recent-blog-footer">
                                 <ul>
                                     <li>
-                                        <div class="thum"> <img
-                                                src="/frontend/images/blog/s-blogimg-01.png" alt="img">
+                                        <div class="thum"> <img src="/frontend/images/blog/s-blogimg-01.png"
+                                                alt="img">
                                         </div>
-                                        <div class="text"> <a href="blog-details.html">Nothing impossble to need hard
+                                        <div class="text"> <a href="blog-details.html">Nothing impossble to need
+                                                hard
                                                 work</a>
                                             <span>25 September, 2023</span>
                                         </div>
                                     </li>
 
                                     <li>
-                                        <div class="thum"> <img
-                                                src="/frontend/images/blog/s-blogimg-02.png" alt="img">
+                                        <div class="thum"> <img src="/frontend/images/blog/s-blogimg-02.png"
+                                                alt="img">
                                         </div>
-                                        <div class="text"> <a href="blog-details.html">Nothing impossble to need hard
+                                        <div class="text"> <a href="blog-details.html">Nothing impossble to need
+                                                hard
                                                 work</a>
                                             <span>25 September, 2023</span>
                                         </div>
                                     </li>
-
                                 </ul>
-
-
                             </div>
                         </div>
                     </div>
@@ -1757,24 +1771,22 @@
                                 <ul>
                                     <li>
                                         <i class="icon fas fa-phone"></i>
-                                        <span><a href="tel:01774-709900"> 01774-709900</a></span>
+                                        <span><a href="tel:01774-709900"> {{ $setting->contact_no }}</a></span>
                                     </li>
                                     <li><i class="icon fas fa-envelope"></i>
                                         <span>
-                                            <a href="mailto:iiustbbaipail@gmail.com">iiustbbaipail@gmail.com</a>
+                                            <a href="mailto:iiustbbaipail@gmail.com">{{ $setting->email }}</a>
                                         </span>
                                     </li>
                                     <li>
                                         <i class="icon fas fa-map-marker-alt"></i>
-                                        <span>Corporate Office- Square Bhabon, 1/B, DIT Avenue, Motijheel C/A,
-                                            Dhaka-1000</span><br>
+                                        <span>{{ $setting->address }}</span><br>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <i class="icon fas fa-map-marker-alt"></i>
                                         <span> Permanent Campus - Baipail, Ashulia, Dhaka-1349</span>
 
-                                    </li>
-
+                                    </li> --}}
                                 </ul>
 
                             </div>
@@ -1789,7 +1801,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 text-left text-xl-right">
-                        Copyright © IIUSTB 2023 . All rights reserved.
+                        Copyright © {{ $setting->short_name }} {{ date('Y') }} . All rights reserved.
                     </div>
                     <div class="col-lg-6 text-center">
 
