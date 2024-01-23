@@ -114,7 +114,6 @@ class SliderItemController extends Controller
             ]);
 
             if ($request->hasFile('image')) {
-                return 'File received';
                 $item->clearMediaCollection('slider_item');
                 $item->addMediaFromRequest('image')->toMediaCollection('slider_item');
             }

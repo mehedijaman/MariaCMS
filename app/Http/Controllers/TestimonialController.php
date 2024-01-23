@@ -105,11 +105,10 @@ class TestimonialController extends Controller
                 'status' => $request->status,
             ]);
 
-            // if ($request->hasFile('image')) {
-            //     return "File received";
-            //     $item->clearMediaCollection('slider_item');
-            //     $item->addMediaFromRequest('image')->toMediaCollection('slider_item');
-            // }
+            if ($request->hasFile('image')) {
+                $testimonial->clearMediaCollection('image');
+                $testimonial->addMediaFromRequest('image')->toMediaCollection('image');
+            }
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $testimonial->name]));
         } catch (\Throwable $th) {

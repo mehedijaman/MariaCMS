@@ -22,7 +22,7 @@ const props = defineProps({
     item: Object,
 });
 
-const formData = reactive({
+const form = useForm({
     image: null,
     name: props.item?.name,
     designation: props.item?.designation,
@@ -32,12 +32,6 @@ const formData = reactive({
     status: props.item?.status,
     _method: "PUT",
 });
-
-let form = useForm(formData);
-watch(formData, (newValues) => {
-    form = useForm(newValues);
-});
-
 const submit = () => {
     form.post(route("testimonials.update", props.item?.id), {
         preserveScroll: true,
@@ -58,7 +52,7 @@ const closeModal = () => {
 
 const fileChange = (value) => {
     if (value.source === "image") {
-        formData.image = value.file;
+        form.image = value.file;
     }
 };
 </script>
@@ -70,8 +64,7 @@ const fileChange = (value) => {
         <DialogModal :show="show" @close="closeModal" max-width="2xl">
             <template #title>
                 {{ lang().label.edit }} {{ props.title }}
-
-                {{ formData }}
+                {{ form }}
             </template>
 
             <template #content>
@@ -79,7 +72,7 @@ const fileChange = (value) => {
                     <div class="grid grid-cols-3 space-x-2">
                         <div class="col-span-1">
                             <InputLabel for="image" value="Image" />
-                            <ImageInput source="image" v-model="formData.image" class="mt-1 block w-36 h-36 rounded-full"
+                            <ImageInput source="image" class="mt-1 block w-36 h-36 rounded-full"
                                 :image="props.item.media[0]?.original_url" @fileChange="fileChange" />
                             <InputError :message="form.errors.image" class="mt-2" />
                             <progress v-if="form.progress" :value="form.progress.percentage" max="100">
@@ -91,7 +84,7 @@ const fileChange = (value) => {
                             <div class="flex flex-col md:flex-row gap-4">
                                 <div class="space-y-1 w-full">
                                     <InputLabel for="rating" :value="lang().label.rating" />
-                                    <select v-model="formData.rating" id="rating" name="rating" class="block w-full">
+                                    <select v-model="form.rating" id="rating" name="rating" class="block w-full">
                                         <option value="5">***** (5) </option>
                                         <option value="4">**** (4) </option>
                                         <option value="3">*** (3) </option>
@@ -104,7 +97,7 @@ const fileChange = (value) => {
 
                                 <div class="space-y-1 w-full">
                                     <InputLabel for="status" :value="lang().label.status" />
-                                    <select v-model="formData.status" id="status" name="status" class="block w-full">
+                                    <select v-model="form.status" id="status" name="status" class="block w-full">
                                         <option value="1">Published</option>
                                         <option value="0">Unpublished</option>
                                         <option :value="null">Draft</option>
@@ -115,7 +108,7 @@ const fileChange = (value) => {
 
                             <div class="">
                                 <InputLabel for="name" :value="lang().label.name" />
-                                <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                <TextInput id="name" v-model="form.name" type="text" class="block w-full"
                                     autocomplete="name" :placeholder="lang().placeholder.name" :error="form.errors.name" />
                                 <InputError :message="form.errors.name" />
                             </div>
@@ -123,7 +116,7 @@ const fileChange = (value) => {
                             <div class="flex flex-col md:flex-row md:gap-4">
                                 <div class="space-y-1 w-full">
                                     <InputLabel for="designation" :value="lang().label.designation" />
-                                    <TextInput id="designation" v-model="formData.designation" type="text"
+                                    <TextInput id="designation" v-model="form.designation" type="text"
                                         class="block w-full" autocomplete="designation"
                                         :placeholder="lang().placeholder.designation" :error="form.errors.designation" />
                                     <InputError :message="form.errors.designation" />
@@ -131,7 +124,7 @@ const fileChange = (value) => {
 
                                 <div class="space-y-1 w-full">
                                     <InputLabel for="company" :value="lang().label.company" />
-                                    <TextInput id="company" v-model="formData.company" type="text" class="block w-full"
+                                    <TextInput id="company" v-model="form.company" type="text" class="block w-full"
                                         autocomplete="company" :placeholder="lang().placeholder.company"
                                         :error="form.errors.company" />
                                     <InputError :message="form.errors.company" />
@@ -142,7 +135,7 @@ const fileChange = (value) => {
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                        <TextAreaInput id="slug" v-model="form.description" type="text" class="block w-full"
                             autocomplete="description" :placeholder="lang().placeholder.description"
                             :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />

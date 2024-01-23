@@ -6,7 +6,7 @@ import { useForm } from "@inertiajs/vue3";
 import { ref, watchEffect, inject } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/outline";
 
-const removeBulkItems = inject('removeBulkItems');
+const updateItems = inject('updateItems');
 
 const emit = defineEmits(["close"]);
 const show = ref(false);
@@ -33,10 +33,10 @@ watchEffect(() => {
 const submit = () => {
     form.delete(route("testimonials.destroy.bulk"), {
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: (response) => {
             closeModal();
             emit("close");
-            removeBulkItems(form.id);
+            updateItems(response.props.testimonials);
         },
         onError: () => null,
         onFinish: () => null,
