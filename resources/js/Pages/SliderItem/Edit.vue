@@ -29,10 +29,11 @@ const form = useForm({
     target: props.item?.target,
     order: props.item?.order,
     status: props.item?.status,
+    _method: "PUT",
 });
 
 const submit = () => {
-    form.put(route("slider.items.update", { slider: props.item?.slider_id, item: props.item?.id }), {
+    form.post(route("slider.items.update", { slider: props.item?.slider_id, item: props.item?.id }), {
         preserveScroll: true,
         onSuccess: (response) => {
             updateItems(response.props.slider_items);

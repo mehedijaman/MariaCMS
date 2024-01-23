@@ -27,10 +27,11 @@ const form = useForm({
     description: props.item?.description,
     order: props.item?.order,
     status: props.item?.status,
+    _method: "PUT",
 });
 
 const submit = () => {
-    form.put(route("gallery.items.update", { gallery: props.item?.gallery_id, item: props.item?.id }), {
+    form.post(route("gallery.items.update", { gallery: props.item?.gallery_id, item: props.item?.id }), {
         preserveScroll: true,
         onSuccess: (response) => {
             updateItems(response.props.gallery_items);

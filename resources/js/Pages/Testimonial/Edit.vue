@@ -22,7 +22,16 @@ const props = defineProps({
     item: Object,
 });
 
-const formData = reactive(props.item);
+const formData = reactive({
+    image: null,
+    name: props.item?.name,
+    designation: props.item?.designation,
+    company: props.item?.company,
+    description: props.item?.description,
+    rating: props.item?.rating,
+    status: props.item?.status,
+    _method: "PUT",
+});
 
 let form = useForm(formData);
 watch(formData, (newValues) => {
@@ -30,7 +39,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("testimonials.update", props.item?.id), {
+    form.post(route("testimonials.update", props.item?.id), {
         preserveScroll: true,
         onSuccess: (response) => {
             closeModal();
@@ -61,6 +70,8 @@ const fileChange = (value) => {
         <DialogModal :show="show" @close="closeModal" max-width="2xl">
             <template #title>
                 {{ lang().label.edit }} {{ props.title }}
+
+                {{ formData }}
             </template>
 
             <template #content>

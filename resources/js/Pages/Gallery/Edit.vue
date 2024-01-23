@@ -23,11 +23,12 @@ const props = defineProps({
 });
 
 const formData = reactive({
-    thumbnail: props.item?.thumbnail,
+    thumbnail:null,
     name: props.item?.name,
     slug: props.item?.slug,
     description: props.item?.description,
     status: props.item?.status,
+    _method: "PUT",
 });
 
 // Watch for changes in the 'name' property
@@ -42,7 +43,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("galleries.update", props.item?.id), {
+    form.post(route("galleries.update", props.item?.id), {
         preserveScroll: true,
         onSuccess: (response) => {
             closeModal();

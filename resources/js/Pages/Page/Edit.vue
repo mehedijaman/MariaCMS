@@ -35,6 +35,7 @@ const formData = reactive({
     meta_description: props.page.meta_description,
     meta_keywords: props.page.meta_keywords,
     featured_image: null,
+    _method: "PUT",
 });
 
 // Watch for changes in the 'name' property
@@ -49,7 +50,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("pages.update", props.page?.id), {
+    form.post(route("pages.update", props.page?.id), {
         preserveScroll: true,
         onSuccess: () => null,
         onError: () => null,

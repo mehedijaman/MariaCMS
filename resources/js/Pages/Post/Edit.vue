@@ -48,6 +48,7 @@ const formData = reactive({
     meta_title: props.post.meta_title,
     meta_description: props.post.meta_description,
     meta_keywords: props.post.meta_description,
+    _method: "PUT",
 });
 
 onMounted(() => {
@@ -65,7 +66,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("posts.update", props.post?.id), {
+    form.post(route("posts.update", props.post?.id), {
         preserveScroll: true,
         onSuccess: () => null,
         onError: () => null,

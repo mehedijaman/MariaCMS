@@ -30,6 +30,7 @@ const formData = reactive({
     is_featured: props.product.is_featured,
     status: props.product.status,
     featured_image: null,
+    _method: "PUT",
 });
 
 
@@ -45,7 +46,7 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("products.update", props.product?.id), {
+    form.post(route("products.update", props.product?.id), {
         preserveScroll: true,
         onSuccess: () => null,
         onError: () => null,

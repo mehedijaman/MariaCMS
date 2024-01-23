@@ -132,7 +132,7 @@ const fileChange = (value) => {
                                     <div
                                         class="p-2 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                         <div class="space-y-1">
-                                            <InputLabel for="category_id" :value="lang().label.category" />
+                                            <InputLabel for="category_id" :value="lang().label.product_category" />
                                             <select v-model="formData.category_id" id="category_id" name="category_id"
                                                 class="block w-full h-8 py-0 text-sm">
                                                 <option v-for="category in categories" :key="category.id"
