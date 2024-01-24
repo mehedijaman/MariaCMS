@@ -65,7 +65,7 @@ class HandleInertiaRequests extends Middleware
                     return Setting::first();
                 },
             ],
-            'menu' => function () {
+            'menus' => function () {
                 return Menu::where('status', true)->with('items')->get();
             },
             'flash' => [

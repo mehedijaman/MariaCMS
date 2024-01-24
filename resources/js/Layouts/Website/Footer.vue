@@ -1,12 +1,15 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
 
+const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
+const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
 </script>
 <template>
-    <footer
-    class="p-4 bg-[#f9f9f9] border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
+    <footer class="p-4 bg-[#f9f9f9] border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl text-center">
+
             <Link :href="route('index')" class="shrink-0 flex w-full justify-center items-center space-x-4">
             <ApplicationLogo class="block h-8 w-auto" />
             <p class="text-lg font-semibold">
@@ -15,6 +18,11 @@ import { Link } from '@inertiajs/vue3';
 
             </Link>
             <p class="my-6 text-gray-500 dark:text-gray-400"><span v-html="$page.props.app.setting.footer"></span></p>
+            <ul class="flex gap-4 justify-center items-center mb-6 text-gray-900 dark:text-white">
+                <a v-for="item in footerMenu?.items" class="text-gray-500" :href="item.url" :target="item.target">
+                    {{ item.name }}
+                </a>
+            </ul>
             <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
                 <span class="inline-flex">
                     <a class="text-gray-500" :href="$page.props.app.setting.facebook" target="_blank">
@@ -49,8 +57,9 @@ import { Link } from '@inertiajs/vue3';
                 </span>
             </ul>
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
-            Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
-                href="https://gtechservice.net">gTechService</a></span>
-    </div>
-</footer></template>
+                &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
+                Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
+                    href="https://gtechservice.net">gTechService</a></span>
+        </div>
+    </footer>
+</template>

@@ -5,14 +5,21 @@ import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
 import SwitchLocale from "@/Components/SwitchLocale.vue";
 import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
+import { initFlowbite } from 'flowbite';
+import { usePage } from "@inertiajs/vue3";
 
 const data = reactive({
     isOpen: false,
     fixed: false,
 });
 
+const primaryMenus = usePage().props.menus.filter(menu => menu.position === 'primary');
+const primaryMenu = primaryMenus.length > 0 ? primaryMenus[0] : null;
+
+const secondaryMenus = usePage().props.menus.filter(menu => menu.position === 'secondary');
+const secondaryMenu = secondaryMenus.length > 0 ? secondaryMenus[0] : null;
 
 window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY;
@@ -22,9 +29,6 @@ window.addEventListener("scroll", () => {
         data.fixed = false;
     }
 });
-
-import { initFlowbite } from 'flowbite';
-import { onMounted } from 'vue';
 
 onMounted(() => {
     initFlowbite();
@@ -62,8 +66,8 @@ onMounted(() => {
                 <NavbarLink v-bind:class="route().current('index') ? 'font-bold text-primary' : ''
                     " :href="route('index')" :label="lang().label.home" />
 
-                <a v-for="item in $page.props.menu[0].items" v-bind:class="route().current(item.url) ? 'font-bold text-primary' : ''
-                    " :href="item.url">
+                <a v-for="item in primaryMenu?.items" v-bind:class="route().current(item.url) ? 'font-bold text-primary' : ''
+                    " :href="item.url" :target="item.target">
                     {{ item.name }}
                 </a>
 
