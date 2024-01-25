@@ -10,6 +10,10 @@ import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { initFlowbite } from 'flowbite';
 import { usePage } from "@inertiajs/vue3";
 
+const backgroundColor = usePage().props.app.setting.navbar_background_color?usePage().props.app.setting.navbar_background_color : 'white';
+const textColor = usePage().props.app.setting.navbar_text_color?usePage().props.app.setting.navbar_text_color : 'black';
+
+
 const data = reactive({
     isOpen: false,
     fixed: false,
@@ -35,9 +39,9 @@ onMounted(() => {
 });
 </script>
 <template>
-    <header v-bind:class="data.fixed || data.isOpen
-            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
-            : 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
+    <header :style="{ backgroundColor: backgroundColor, color: textColor }" v-bind:class="data.fixed || data.isOpen
+            ? 'dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
+            : 'dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
         " class="w-full fixed text-slate-600  dark:text-slate-200 z-50">
         <div
             class="flex flex-col max-w-7xl px-4 mx-auto sm:items-center sm:justify-between sm:flex-row sm:px-6 lg:px-6 py-2">

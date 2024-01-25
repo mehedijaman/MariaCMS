@@ -4,13 +4,17 @@ import {
     EnvelopeIcon,
     MicrophoneIcon,
 } from '@heroicons/vue/24/outline'
+import { usePage } from '@inertiajs/vue3';
+
+const backgroundColor = usePage().props.app.setting.topbar_background_color?usePage().props.app.setting.topbar_background_color : 'white';
+const textColor = usePage().props.app.setting.topbar_text_color?usePage().props.app.setting.topbar_text_color : 'black';
 
 </script>
 <template>
-    <div :style="{ backgroundColor: $page.props.app.setting.topbar_background_color, color: $page.props.app.setting.topbar_text_color }" class="h-10">
+    <div :style="{ backgroundColor: backgroundColor}" class="h-10">
         <div class="flex flex-col max-w-7xl px-4 sm:px-8 lg:px-12 py-2 mx-auto sm:items-center sm:justify-between sm:flex-row">
             <div class="flex gap-8 text-slate-100">
-                <div v-if="$page.props.app.setting.header" :style="{color: $page.props.app.setting.topbar_text_color}" class="flex gap-2">
+                <div v-if="$page.props.app.setting.header" :style="{color: textColor}" class="flex gap-2">
                     <MicrophoneIcon class="w-4"></MicrophoneIcon >
                     <span v-html="$page.props.app.setting.header"></span>
                 </div>
@@ -24,13 +28,13 @@ import {
                 </div> -->
             </div>
             <div class="inline-flex">
-                <a class="text-slate-100" :href="$page.props.app.setting.facebook" target="_blank">
+                <a :style="{color: textColor}" :href="$page.props.app.setting.facebook" target="_blank">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
                         viewBox="0 0 24 24">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                 </a>
-                <a class="ml-4 text-slate-100" :href="$page.props.app.setting.twitter" target="_blank">
+                <a :style="{color: textColor}" class="ml-4 " :href="$page.props.app.setting.twitter" target="_blank">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
                         viewBox="0 0 24 24">
                         <path
@@ -38,14 +42,14 @@ import {
                         </path>
                     </svg>
                 </a>
-                <a class="ml-4 text-slate-100" :href="$page.props.app.setting.instagram" target="_blank">
+                <a :style="{color: textColor}" class="ml-4 " :href="$page.props.app.setting.instagram" target="_blank">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         class="w-5 h-5" viewBox="0 0 24 24">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                 </a>
-                <a class="ml-4 text-slate-100" :href="$page.props.app.setting.whatsapp" target="_blank">
+                <a :style="{color: textColor}" class="ml-4 " :href="$page.props.app.setting.whatsapp" target="_blank">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
                         viewBox="0 0 24 24">
                         <path

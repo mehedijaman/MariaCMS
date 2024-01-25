@@ -325,5 +325,6 @@ return [
         'show_recovery_codes' => 'Show Recovery Codes',
         'disable' => 'Disable,',
         'add' => 'Add',
+        'reset' => 'Reset',
     ],
 ];

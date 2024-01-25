@@ -98,6 +98,19 @@ const fileChange = (value) => {
         form.banner = value.file;
     }
 };
+
+function resetColors() {
+    form.topbar_background_color = '#F8F2F1';
+    form.topbar_text_color = '#191514';
+    form.banner_background_color = '#FFFFFF';
+    form.banner_text_color = '#191514';
+    form.navbar_background_color = '#FFFFFF';
+    form.navbar_text_color = '#191514';
+    form.body_background_color = '#FFFFFF';
+    form.body_text_color = '#191514';
+    form.footer_background_color = '#FFFFFF';
+    form.footer_text_color = '#191514';
+}
 </script>
 
 <template>
@@ -517,85 +530,79 @@ const fileChange = (value) => {
                     </div>
                     <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="color-setting" role="tabpanel"
                         aria-labelledby="color-setting-tab">
+                        <PrimaryButton
+                            @click="resetColors">
+                            {{ lang().button.reset }}
+                        </PrimaryButton>
 
                         <div class="col-span-3 grid grid-cols-2">
                             <div class="">
                                 <InputLabel for="topbar_background_color" value="Topbar Background Color" />
                                 <TextInput id="topbar_background_color" v-model="form.topbar_background_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.topbar_background_color" />
+                                    class="mt-1 block w-full" :error="form.errors.topbar_background_color" />
                                 <InputError :message="form.errors.topbar_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="topbar_text_color" value="Topbar Text Color" />
                                 <TextInput id="topbar_text_color" v-model="form.topbar_text_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.topbar_text_color" />
+                                    class="mt-1 block w-full" :error="form.errors.topbar_text_color" />
                                 <InputError :message="form.errors.topbar_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="banner_background_color" value="Banner Background Color" />
                                 <TextInput id="banner_background_color" v-model="form.banner_background_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.banner_background_color" />
+                                    class="mt-1 block w-full" :error="form.errors.banner_background_color" />
                                 <InputError :message="form.errors.banner_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="banner_text_color" value="Banner Text Color" />
                                 <TextInput id="banner_text_color" v-model="form.banner_text_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.banner_text_color" />
+                                    class="mt-1 block w-full" :error="form.errors.banner_text_color" />
                                 <InputError :message="form.errors.banner_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="navbar_background_color" value="navbar Background Color" />
                                 <TextInput id="navbar_background_color" v-model="form.navbar_background_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.navbar_background_color" />
+                                    class="mt-1 block w-full" :error="form.errors.navbar_background_color" />
                                 <InputError :message="form.errors.navbar_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="navbar_text_color" value="navbar Text Color" />
                                 <TextInput id="navbar_text_color" v-model="form.navbar_text_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.navbar_text_color" />
+                                    class="mt-1 block w-full" :error="form.errors.navbar_text_color" />
                                 <InputError :message="form.errors.navbar_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="body_background_color" value="body Background Color" />
                                 <TextInput id="body_background_color" v-model="form.body_background_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.body_background_color" />
+                                    class="mt-1 block w-full" :error="form.errors.body_background_color" />
                                 <InputError :message="form.errors.body_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="body_text_color" value="body Text Color" />
                                 <TextInput id="body_text_color" v-model="form.body_text_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.body_text_color" />
+                                    class="mt-1 block w-full" :error="form.errors.body_text_color" />
                                 <InputError :message="form.errors.body_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="footer_background_color" value="footer Background Color" />
                                 <TextInput id="footer_background_color" v-model="form.footer_background_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.footer_background_color" />
+                                    class="mt-1 block w-full" :error="form.errors.footer_background_color" />
                                 <InputError :message="form.errors.footer_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="footer_text_color" value="footer Text Color" />
                                 <TextInput id="footer_text_color" v-model="form.footer_text_color" type="color"
-                                    class="mt-1 block w-full"
-                                    :error="form.errors.footer_text_color" />
+                                    class="mt-1 block w-full" :error="form.errors.footer_text_color" />
                                 <InputError :message="form.errors.footer_text_color" class="mt-2" />
                             </div>
                         </div>

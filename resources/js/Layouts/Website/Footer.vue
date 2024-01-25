@@ -3,11 +3,14 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 
+const backgroundColor = usePage().props.app.setting.footer_background_color?usePage().props.app.setting.footer_background_color : 'grey';
+const textColor = usePage().props.app.setting.footer_text_color?usePage().props.app.setting.footer_text_color : '#f9f9f9';
+
 const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
 const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
 </script>
 <template>
-    <footer class="p-4 bg-[#f9f9f9] border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
+    <footer :style="{ backgroundColor: backgroundColor, color: textColor }" class="p-4 border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl text-center">
 
             <Link :href="route('index')" class="shrink-0 flex w-full justify-center items-center space-x-4">
@@ -17,21 +20,21 @@ const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
             </p>
 
             </Link>
-            <p class="my-6 text-gray-500 dark:text-gray-400"><span v-html="$page.props.app.setting.footer"></span></p>
-            <ul class="flex gap-4 justify-center items-center mb-6 text-gray-900 dark:text-white">
-                <a v-for="item in footerMenu?.items" class="text-gray-500" :href="item.url" :target="item.target">
+            <p class="my-6 dark:text-gray-400"><span v-html="$page.props.app.setting.footer"></span></p>
+            <ul class="flex gap-4 justify-center items-center mb-6  dark:text-white">
+                <a v-for="item in footerMenu?.items" :href="item.url" :target="item.target">
                     {{ item.name }}
                 </a>
             </ul>
-            <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+            <ul class="flex flex-wrap justify-center items-center mb-6  dark:text-white">
                 <span class="inline-flex">
-                    <a class="text-gray-500" :href="$page.props.app.setting.facebook" target="_blank">
+                    <a :style={color:textColor} :href="$page.props.app.setting.facebook" target="_blank">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             class="w-5 h-5" viewBox="0 0 24 24">
                             <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                         </svg>
                     </a>
-                    <a class="ml-4 text-gray-500" :href="$page.props.app.setting.twitter" target="_blank">
+                    <a class="ml-4" :style={color:textColor} :href="$page.props.app.setting.twitter" target="_blank">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             class="w-5 h-5" viewBox="0 0 24 24">
                             <path
@@ -39,14 +42,14 @@ const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
                             </path>
                         </svg>
                     </a>
-                    <a class="ml-4 text-gray-500" :href="$page.props.app.setting.instagram" target="_blank">
+                    <a class="ml-4" :style={color:textColor} :href="$page.props.app.setting.instagram" target="_blank">
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                             <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                         </svg>
                     </a>
-                    <a class="ml-4 text-gray-500" :href="$page.props.app.setting.whatsapp" target="_blank">
+                    <a class="ml-4" :style={color:textColor} :href="$page.props.app.setting.whatsapp" target="_blank">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             class="w-5 h-5" viewBox="0 0 24 24">
                             <path
@@ -56,7 +59,7 @@ const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
                     </a>
                 </span>
             </ul>
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            <span class="text-sm sm:text-center dark:text-gray-400">
                 &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
                 Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
                     href="https://gtechservice.net">gTechService</a></span>
