@@ -72,48 +72,27 @@ class SettingController extends Controller
     public function update(Request $request, Setting $setting)
     {
         try {
-            if ($request->hasFile('favicon')) {
-                $oldFaviconPath = public_path('uploads/image/setting/' . $setting->favicon);
-
-                // Delete the old Favicon
-                if (is_file($oldFaviconPath)) {
-                    unlink($oldFaviconPath);
-                }
-
-                // Save the new Favicon
-                $favicon = 'favicon.' . $request->favicon->extension();
-                $request->favicon->move(public_path('uploads/image/setting'), $favicon);
+            if ($request->favicon != null) {
+                Storage::delete('public/image/setting/'.$setting->favicon);
+                $favicon = 'favicon.'.$request->favicon->extension();
+                Storage::put('public/image/setting/'.$favicon, File::get($request->favicon), 'public');
             } else {
                 $favicon = $setting->favicon;
             }
 
-            if ($request->hasFile('logo')) {
-                $oldLogoPath = public_path('uploads/image/setting/' . $setting->logo);
-
-                // Delete the old Logo
-                if (is_file($oldLogoPath)) {
-                    unlink($oldLogoPath);
-                }
-
-                // Save the new Logo
-                $logo = 'logo.' . $request->logo->extension();
-                $request->logo->move(public_path('uploads/image/setting'), $logo);
+            if ($request->logo != null) {
+                Storage::delete('public/image/setting/'.$setting->logo);
+                $logo = 'logo.'.$request->logo->extension();
+                Storage::put('public/image/setting/'.$logo, File::get($request->logo), 'public');
             } else {
                 $logo = $setting->logo;
             }
 
 
-            if ($request->hasFile('banner')) {
-                $oldBannerPath = public_path('uploads/image/setting/' . $setting->banner);
-
-                // Delete the old Banner
-                if (is_file($oldBannerPath)) {
-                    unlink($oldBannerPath);
-                }
-
-                // Save the new Banner
-                $banner = 'banner.' . $request->banner->extension();
-                $request->banner->move(public_path('uploads/image/setting'), $banner);
+            if ($request->banner != null) {
+                Storage::delete('public/image/setting/'.$setting->banner);
+                $banner = 'banner.'.$request->banner->extension();
+                Storage::put('public/image/setting/'.$banner, File::get($request->banner), 'public');
             } else {
                 $banner = $setting->banner;
             }

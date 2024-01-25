@@ -29,7 +29,7 @@ class Hero extends Model
             return asset('image.png');
         }
 
-        return asset('uploads/image/hero/' . $this->attributes['image']);
+        return asset('storage/image/hero/' . $this->attributes['image']);
     }
 
 

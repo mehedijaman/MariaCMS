@@ -62,23 +62,13 @@ class HeroController extends Controller
     public function update(Request $request, Hero $hero)
     {
         try {
-            if ($request->hasFile('image')) {
-                $oldImagePath = public_path('uploads/image/hero/' . $hero->image);
-
-                // Delete the old image if it exists
-                if (is_file($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-
-                $image = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('uploads/image/hero'), $image);
-
+            if ($request->image != null) {
+                Storage::delete('public/image/hero/'.$hero->image);
+                $image = time().'.'.$request->image->extension();
+                Storage::put('public/image/hero/'.$image, File::get($request->image), 'public');
             } else {
-                // No new image provided, use the existing one
                 $image = $hero->image;
             }
-
-
 
             $hero->update([
                 'image' => $image,

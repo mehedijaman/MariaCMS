@@ -31,7 +31,7 @@ class CTA extends Model
             return asset('image.png');
         }
 
-        return asset('uploads/image/cta/' . $this->attributes['image']);
+        return asset('storage/image/cta/' . $this->attributes['image']);
     }
 
     public function getCreatedAtAttribute()

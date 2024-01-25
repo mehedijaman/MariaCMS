@@ -62,18 +62,12 @@ class CTAController extends Controller
     public function update(Request $request, $cta)
     {
         $cta = CTA::find($cta);
+
         try {
-            if ($request->hasFile('image')) {
-                $oldImagePath = public_path('uploads/image/cta/' . $cta->image);
-
-                // Delete the old image
-                if (is_file($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-
-                // Save the new image
-                $image = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('uploads/image/cta'), $image);
+            if ($request->image != null) {
+                Storage::delete('public/image/cta/'.$cta->image);
+                $image = time().'.'.$request->image->extension();
+                Storage::put('public/image/cta/'.$image, File::get($request->image), 'public');
             } else {
                 $image = $cta->image;
             }

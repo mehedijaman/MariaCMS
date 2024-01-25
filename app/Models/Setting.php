@@ -70,7 +70,7 @@ class Setting extends Model
             return null;
         }
 
-        return asset('uploads/image/setting/' . $this->attributes['banner']);
+        return asset('storage/image/setting/' . $this->attributes['banner']);
     }
 
 
@@ -80,7 +80,7 @@ class Setting extends Model
             return asset('logo.svg');
         }
 
-        return asset('uploads/image/setting/' . $this->attributes['logo']);
+        return asset('storage/image/setting/' . $this->attributes['logo']);
     }
 
 
@@ -90,7 +90,7 @@ class Setting extends Model
             return asset('favicon.png');
         }
 
-        return asset('uploads/image/setting/' . $this->attributes['favicon']);
+        return asset('storage/image/setting/' . $this->attributes['favicon']);
     }
 
     public function getCreatedAtAttribute()
