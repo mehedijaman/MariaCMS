@@ -82,7 +82,7 @@ provide('updateItems', updateItems);
                             </div>
                         </div>
 
-                        <h2 id="accordion-collapse-heading-2">
+                        <!-- <h2 id="accordion-collapse-heading-2">
                             <button type="button"
                                 class="flex items-center justify-between w-full p-2 font-semibold rtl:text-right text-gray-700 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
                                 data-accordion-target="#pages" aria-expanded="false" aria-controls="pages">
@@ -100,9 +100,9 @@ provide('updateItems', updateItems);
                                     <li v-for="(page, index) in pages" :key="index">{{ page.name }}</li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <h2 id="accordion-collapse-heading-3">
+                        <!-- <h2 id="accordion-collapse-heading-3">
                             <button type="button"
                                 class="flex items-center justify-between w-full p-2 font-semibold rtl:text-right text-gray-700 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
                                 data-accordion-target="#categories" aria-expanded="false" aria-controls="categories">
@@ -120,7 +120,7 @@ provide('updateItems', updateItems);
                                     <li v-for="(category, index) in categories" :key="index">{{ category.name }}</li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
