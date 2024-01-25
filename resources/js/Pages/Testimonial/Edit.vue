@@ -64,7 +64,6 @@ const fileChange = (value) => {
         <DialogModal :show="show" @close="closeModal" max-width="2xl">
             <template #title>
                 {{ lang().label.edit }} {{ props.title }}
-                {{ form }}
             </template>
 
             <template #content>

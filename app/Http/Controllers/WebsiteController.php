@@ -47,7 +47,7 @@ class WebsiteController extends Controller
             }
 
             if ($setting->homepage_enabled) {
-                $data['homepage'] = Page::where('id', $setting->homepage)->first();
+                $data['homepage'] = Page::with('media')->where('id', $setting->homepage)->first();
             }
 
             if ($setting->news_enabled) {
