@@ -40,7 +40,6 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 require __DIR__ . '/website.php';
-// require __DIR__ . '/website_blade.php';
 
 /** Locale Routes */
 Route::get('/set-locale/{locale}', function ($locale) {
