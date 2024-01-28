@@ -16,13 +16,13 @@ const textColor = usePage().props.app.setting.banner_text_color ? usePage().prop
         <img class="" :src="$page.props.app.setting.full_path_banner" alt="">
     </div>
     <div v-else class="w-full dark:bg-slate-900" :style="{ backgroundColor: backgroundColor, color: textColor }">
-        <div  class="max-h-[100px]  p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
-            <div class="shrink-0 flex justify-start items-center space-x-2">
-                <ApplicationLogo class="block h-14 w-auto" />
-                <div class="flex flex-col">
+        <div  class="max-h-[100px]  p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+            <div class="shrink-0 flex flex-col md:flex-row items-center md:space-x-2">
+                <ApplicationLogo class="block h-16" />
+                <div class="flex flex-col text-center md:text-left">
 
                     <Link :href="route('index')" class="">
-                    <span class="text-3xl font-semibold">
+                    <span class="text-2xl font-semibold">
                         {{ $page.props.app.setting.name }}
                     </span>
 
