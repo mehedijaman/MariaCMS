@@ -39,7 +39,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <header :style="{ backgroundColor: backgroundColor, color: textColor }" v-bind:class="data.fixed || data.isOpen
+    <header :style="{ backgroundColor: backgroundColor, color: textColor }" :class="data.fixed || data.isOpen
             ? 'dark:bg-slate-900/70 backdrop-blur-lg border-b border-slate-300/50 dark:border-slate-700/50 top-0'
             : 'dark:bg-slate-900/70 backdrop-blur-lg border border-slate-300/50 dark:border-slate-700/50'
         " class="w-full fixed text-slate-600  dark:text-slate-200 z-50">

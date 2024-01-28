@@ -185,7 +185,7 @@ const activeImageURL = ref(props.product.media[0].original_url);
                         </div>
 
                         <div class="mt-8 flow-root sm:mt-12">
-                            <p>{{ props.product.description }}</p>
+                            <span v-html="props.product.description "></span>
                             <!-- <h1 class="text-3xl font-bold">Delivered To Your Door</h1>
                     <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusantium nesciunt fuga.</p>
                     <h1 class="mt-8 text-3xl font-bold">From the Fine Farms of Brazil</h1>

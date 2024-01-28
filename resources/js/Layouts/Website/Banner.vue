@@ -11,6 +11,7 @@ const backgroundColor = usePage().props.app.setting.banner_background_color ? us
 const textColor = usePage().props.app.setting.banner_text_color ? usePage().props.app.setting.banner_text_color : 'black';
 </script>
 <template>
+
     <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.full_path_banner != null"
         class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
         <img class="" :src="$page.props.app.setting.full_path_banner" alt="">
