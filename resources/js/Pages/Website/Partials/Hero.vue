@@ -5,7 +5,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <section class="bg-white dark:bg-gray-900 shadow-xl">
+    <section class="bg-white shadow-lg dark:bg-gray-900 w-full mx-auto max-w-screen-xl px-4 sm:py-8 lg:px-6 my-4">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h3
@@ -19,7 +19,7 @@ const props = defineProps({
                     {{ props.hero.button_text }}
                 </a>
             </div>
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex ">
+            <div class="lg:mt-0 lg:col-span-5 lg:flex ">
                 <img :src="props.hero.full_path_image" class="shadow-lg" alt="Hero Image">
             </div>
         </div>
