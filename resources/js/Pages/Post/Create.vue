@@ -43,7 +43,7 @@ const props = defineProps({
 const formData = reactive({
     name: null,
     slug: null,
-    content: null,
+    content: '',
     excerpt: null,
     password: null,
     categories: [],

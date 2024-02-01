@@ -1,7 +1,6 @@
 import "./bootstrap";
 import "../css/app.css";
-import 'flowbite';
-// import PrimeVue from "primevue/config";
+import "flowbite";
 
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
@@ -12,11 +11,12 @@ import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
 
 /** Vue3 Easy Data Table */
-import Vue3EasyDataTable from 'vue3-easy-data-table';
-import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from "vue3-easy-data-table";
+import "vue3-easy-data-table/dist/style.css";
 
 // CKEditor
-import CKEditor from '@ckeditor/ckeditor5-vue';
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -34,7 +34,7 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
             .use(Vue3Lottie)
             .use(CKEditor)
-            .component('EasyDataTable', Vue3EasyDataTable)
+            .component("EasyDataTable", Vue3EasyDataTable)
             .mixin({
                 methods: {
                     can: function (permissions) {

@@ -13,9 +13,88 @@ import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 // CKEditor
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// ClassicEditor
+//     .create( document.querySelector( '#editor' ), {
+//         fontColor: {
+//             colors: [
+//                 {
+//                     color: 'hsl(0, 0%, 0%)',
+//                     label: 'Black'
+//                 },
+//                 {
+//                     color: 'hsl(0, 0%, 30%)',
+//                     label: 'Dim grey'
+//                 },
+//                 {
+//                     color: 'hsl(0, 0%, 60%)',
+//                     label: 'Grey'
+//                 },
+//                 {
+//                     color: 'hsl(0, 0%, 90%)',
+//                     label: 'Light grey'
+//                 },
+//                 {
+//                     color: 'hsl(0, 0%, 100%)',
+//                     label: 'White',
+//                     hasBorder: true
+//                 },
+//                 // More colors.
+//                 // ...
+//             ]
+//         },
+//         fontBackgroundColor: {
+//             colors: [
+//                 {
+//                     color: 'hsl(0, 75%, 60%)',
+//                     label: 'Red'
+//                 },
+//                 {
+//                     color: 'hsl(30, 75%, 60%)',
+//                     label: 'Orange'
+//                 },
+//                 {
+//                     color: 'hsl(60, 75%, 60%)',
+//                     label: 'Yellow'
+//                 },
+//                 {
+//                     color: 'hsl(90, 75%, 60%)',
+//                     label: 'Light green'
+//                 },
+//                 {
+//                     color: 'hsl(120, 75%, 60%)',
+//                     label: 'Green'
+//                 },
+//                 // More colors.
+//                 // ...
+//             ]
+//         },
+//         toolbar: [
+//             'heading', 'bulletedList', 'numberedList', 'fontColor', 'fontBackgroundColor', 'undo', 'redo'
+//         ]
+//     } )
+//     .then( /* ... */ )
+//     .catch( /* ... */ );
 
-const editor = ref(ClassicEditor);
-const editorConfig = ref({});
+
+// import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
+// import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+
+// const editor = ref(ClassicEditor);
+// const editorConfig = ref({
+//   plugins: [SimpleUploadAdapter],
+//   toolbar: ['imageUpload', ...otherToolbarOptions],
+//   // other CKEditor configuration options
+// });
+
+// const editorConfig = ref({
+// //   plugins: [Base64UploadAdapter],
+// //   toolbar: ['imageUpload', ],
+// //   simpleUpload: {
+// //     uploadUrl: 'your-upload-endpoint',
+// //   },
+// });
+
+
 
 import {
     TrashIcon,
@@ -34,7 +113,7 @@ const props = defineProps({
 const formData = reactive({
     name: null,
     slug: null,
-    content: null,
+    content: '',
     excerpt: null,
     parent: null,
     password: null,
@@ -115,7 +194,7 @@ const fileChange = (value) => {
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-4 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-lg">
                             <InputError :message="form.errors.content" />
-                            <ckeditor :editor="editor" v-model="formData.content" :config="editorConfig"></ckeditor>
+                            <ckeditor :editor="ClassicEditor" v-model="formData.content" ></ckeditor>
                         </div>
 
                         <div class="col-span-1 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-md text-sm">
