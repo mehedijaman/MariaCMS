@@ -10,13 +10,12 @@ import { usePage } from "@inertiajs/vue3";
 import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
 
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
 /** Vue3 Easy Data Table */
 import Vue3EasyDataTable from "vue3-easy-data-table";
 import "vue3-easy-data-table/dist/style.css";
 
-// CKEditor
-import CKEditor from "@ckeditor/ckeditor5-vue";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
