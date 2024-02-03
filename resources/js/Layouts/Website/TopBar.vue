@@ -16,39 +16,31 @@ const textColor = usePage().props.app.setting.topbar_text_color?usePage().props.
 
 </script>
 <template>
-    <div :style="{ backgroundColor: backgroundColor}" class="h-fit border-b border-slate-300/50 ">
-        <div class="flex flex-col max-w-7xl px-4 sm:px-8 lg:px-12  mx-auto sm:items-center sm:justify-between sm:flex-row">
-            <div class="flex gap-8 text-slate-100">
+    <div :style="{ backgroundColor: backgroundColor}" class="h-fit border-b border-slate-50/50 ">
+        <div class="flex flex-col max-w-7xl px-4 sm:px-8 lg:px-[1px]2  mx-auto sm:items-center sm:justify-between sm:flex-row">
+            <div class="flex gap-8 text-slate-100 text-center">
                 <div :style="{color: textColor}" class="flex gap-2">
-                    <MicrophoneIcon class="w-6"></MicrophoneIcon >
-                    <span v-if="$page.props.app.setting.header" v-html="$page.props.app.setting.header"></span>
+                    <MicrophoneIcon class="w-5 h-5"></MicrophoneIcon >
+                    <span v-if="$page.props.app.setting.header"  v-html="$page.props.app.setting.header"></span>
                 </div>
-                <!-- <div class="fslex gap-2">
-                    <PhoneIcon class="w-4"></PhoneIcon>
-                    <span>{{ $page.props.app.setting.contact_no }}</span>
-                </div>
-                <div class="flex gap-2">
-                    <EnvelopeIcon class="w-5"></EnvelopeIcon>
-                    <span>{{ $page.props.app.setting.email }}</span>
-                </div> -->
             </div>
             <div class="inline-flex items-center justify-center md:justify-end">
                 <SwitchLocale />
 
-                <Link v-if="$page.props.auth.user" class="border-x-2 border-slate-300 px-2" :href="route('dashboard')">
+                <Link v-if="$page.props.auth.user" class="border-x-[1px] border-slate-50 px-2" :href="route('dashboard')">
                     <CogIcon :style="{color: textColor}" class="w-5 h-5"></CogIcon>
                 </Link>
-                <Link  v-else class="border-x-2 border-slate-300 px-2" v-if="route().has('login')" :href="route('login')">
+                <Link  v-else class="border-x-[1px] border-slate-50 px-2" v-if="route().has('login')" :href="route('login')">
                     <UserIcon :style="{color: textColor}" class="w-5 h-5"></UserIcon>
                 </Link>
 
-                <a :style="{color: textColor}" class="border-r-2 border-slate-300 px-2" :href="$page.props.app.setting.facebook" target="_blank">
+                <a :style="{color: textColor}" class="border-r-[1px] border-slate-50 px-2" :href="$page.props.app.setting.facebook" target="_blank">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
                         viewBox="0 0 24 24">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                 </a>
-                <a :style="{color: textColor}"  class="border-r-2 border-slate-300 px-2"  :href="$page.props.app.setting.twitter" target="_blank">
+                <a :style="{color: textColor}"  class="border-r-[1px] border-slate-50 px-2"  :href="$page.props.app.setting.twitter" target="_blank">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
                         viewBox="0 0 24 24">
                         <path
@@ -56,7 +48,7 @@ const textColor = usePage().props.app.setting.topbar_text_color?usePage().props.
                         </path>
                     </svg>
                 </a>
-                <a :style="{color: textColor}"  class="border-r-2 border-slate-300 px-2"  :href="$page.props.app.setting.instagram" target="_blank">
+                <a :style="{color: textColor}"  class="border-r-[1px] border-slate-50 px-2"  :href="$page.props.app.setting.instagram" target="_blank">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         class="w-5 h-5" viewBox="0 0 24 24">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
