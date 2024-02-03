@@ -29,11 +29,11 @@ const props = defineProps({
             <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
 
             <FeaturedProducts v-if="$page.props.app.setting.featured_product_enabled" :products="props.data.featured_products"></FeaturedProducts>
+            <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
 
 
             <div class="max-w-7xl mx-auto w-full shadow-md">
                 <div class="grid grid-cols-2">
-                    <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
                     <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>
                 </div>
             </div>
