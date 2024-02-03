@@ -9,7 +9,8 @@ const props = defineProps({
 </script>
 <template>
     <WebsiteLayout :title="title">
-        <section class="min-h-[calc(100vh)] bg-pattern" id="home">
+
+        <!-- <section class="min-h-[calc(100vh)] bg-pattern" id="home">
             <div data-aos="fade-up" data-aos-duration="1000"
                 class="grid grid-cols-1 text-center gap-4 py-8 m-auto px-4 sm:px-6 lg:px-8">
                 <section class="bg-white dark:bg-gray-900 my-4">
@@ -31,6 +32,6 @@ const props = defineProps({
                     </div>
                 </section>
             </div>
-        </section>
+        </section> -->
     </WebsiteLayout>
 </template>
