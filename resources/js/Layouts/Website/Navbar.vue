@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/vue3";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
-import SwitchLocale from "@/Components/SwitchLocale.vue";
+
 import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
 import { reactive, onMounted } from "vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
@@ -83,14 +83,10 @@ onMounted(() => {
 
                 <NavbarLink v-bind:class="route().current('contact') ? 'font-bold text-primary' : ''
                     " :href="route('contact')" :label="lang().label.contact" />
-                <NavbarLink v-if="$page.props.auth.user" :href="route('dashboard')" :label="lang().label.dashboard" />
-                <template v-else>
-                    <NavbarLink v-if="route().has('login')" :href="route('login')" label="Login" />
 
-                </template>
-                <SwitchLocale />
                 <SwitchDarkMode class="hidden sm:block" />
             </nav>
         </div>
     </header>
+
 </template>

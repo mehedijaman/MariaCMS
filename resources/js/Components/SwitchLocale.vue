@@ -7,9 +7,9 @@ const currentLocale = languages.find(language => language.code === locale);
 </script>
 <template>
     <button type="button" data-dropdown-toggle="language-dropdown-menu"
-        class="inline-flex gap-2 items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+        class="inline-flex gap-2 items-center font-medium justify-center px-2 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
         <span v-html="currentLocale.flag"></span>
-        {{ currentLocale.name }}
+        <!-- {{ currentLocale.name }} -->
     </button>
     <!-- Dropdown -->
     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
