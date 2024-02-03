@@ -8,7 +8,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <section class="bg-white shadow-md dark:bg-gray-900 py-8 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 flex flex-col gap-8">
+    <section class="bg-white dark:bg-gray-900 py-8 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 flex flex-col gap-8">
         <div class="text-center">
             <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                 <ShoppingBagIcon class="inline-block h-8 w-8"></ShoppingBagIcon>

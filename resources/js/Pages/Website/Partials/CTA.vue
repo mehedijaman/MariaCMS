@@ -4,7 +4,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <section class="bg-white dark:bg-gray-900 shadow-lg">
+    <section class="bg-white dark:bg-gray-900">
         <div class="gap-8 items-center p-4 mx-auto max-w-screen-xl xl:gap-12 md:grid md:grid-cols-2 sm:py-8 lg:px-6">
             <img class="w-full" :src="props.cta.full_path_image" alt="dashboard image">
 
