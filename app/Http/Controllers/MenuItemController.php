@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MenuItem\StoreMenuItemRequest;
 use App\Http\Requests\MenuItem\UpdateMenuItemRequest;
-use App\Models\Category;
 use App\Models\Menu;
 use App\Models\MenuItem;
-use App\Models\Page;
 use Inertia\Inertia;
 
 class MenuItemController extends Controller
@@ -17,16 +15,15 @@ class MenuItemController extends Controller
      */
     public function index(Menu $menu)
     {
-        $pages = Page::all();
-        $categories = Category::all();
-        $items = MenuItem::where('menu_id', $menu->id)->get();
+        $items = MenuItem::where('menu_id', $menu->id)
+            ->whereNull('parent_id')
+            ->with('children.children.children')
+            ->get();
 
         return Inertia::render('MenuItem/Index', [
             'title' => __('app.label.menu_items'),
             'menu' => $menu,
             'items' => $items,
-            'pages' => $pages,
-            'categories' => $categories,
             'breadcrumbs' => [
                 ['label' => __('app.label.menus'), 'href' => route('menus.index')],
                 ['label' => $menu->name, 'href' => route('menu.items.index', ['menu' => $menu->id])],

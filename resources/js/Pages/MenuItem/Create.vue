@@ -11,6 +11,7 @@ import { reactive, ref, inject, watch } from "vue";
 
 const updateItems = inject('updateItems');
 const menu = inject('menu');
+const items = inject('items');
 
 const formData = reactive({
     menu_id: menu.id,
@@ -40,21 +41,39 @@ const submit = () => {
 </script>
 <template>
     <form class="space-y-2" @submit.prevent="submit">
-        <div class="space-y-1 grid grid-cols-3">
+        <div class="grid grid-cols-3 items-center">
+            <InputLabel for="parent_id" :value="lang().label.parent" class="col-span-1 items-center" />
+            <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="block w-full h-9 col-span-2">
+                <option :value="null">/</option>
+                <template v-for="(item, index) in items" :key="index">
+                    <option :value="item.id">{{ item.name }}</option>
+                    <template v-if="item.children" v-for="(child, index) in item.children" :key="index">
+                        <option :value="child.id">&nbsp;&nbsp;&nbsp;&nbsp;- {{ child.name }}</option>
+
+                        <template v-if="child.children" v-for="(child, index) in child.children" :key="index">
+                            <option :value="child.id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ child.name }}
+                            </option>
+                        </template>
+                    </template>
+                </template>
+            </select>
+            <InputError :message="form.errors.parent_id" />
+        </div>
+        <div class="grid grid-cols-3 items-center">
             <InputLabel for="name" :value="lang().label.name" class="col-span-1" />
             <TextInput id="name" v-model="formData.name" type="text" class="block w-full h-9 col-span-2" autocomplete="name"
                 :placeholder="lang().placeholder.menu_name" :error="form.errors.name" />
             <InputError :message="form.errors.name" />
         </div>
 
-        <div class="space-y-1 grid grid-cols-3">
+        <div class="grid grid-cols-3 items-center">
             <InputLabel for="url" :value="lang().label.url" class="col-span-1" />
             <TextInput id="url" v-model="formData.url" type="text" class="block w-full h-9 col-span-2" autocomplete="url"
                 placeholder="https://" :error="form.errors.url" />
             <InputError :message="form.errors.url" />
         </div>
 
-        <div class="space-y-1 grid grid-cols-3">
+        <div class="grid grid-cols-3 items-center">
             <InputLabel for="target" :value="lang().label.target" class="col-span-1 items-center" />
             <select v-model="formData.target" id="target" name="target" class="block w-full h-9 col-span-2">
                 <option :value="null">Self Tab</option>
