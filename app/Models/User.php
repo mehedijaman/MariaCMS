@@ -80,10 +80,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return Carbon::parse($this->attributes['updated_at'])->isoFormat('D MMMM Y HH:mm');
     }
 
-    public function getEmailVerifiedAtAttribute()
-    {
-        return $this->attributes['email_verified_at'] == null ? null : Carbon::parse($this->attributes['email_verified_at'])->isoFormat('D MMMM Y HH:mm');
-    }
+    // public function getEmailVerifiedAtAttribute()
+    // {
+    //     return $this->attributes['email_verified_at'] == null ? null : Carbon::parse($this->attributes['email_verified_at'])->isoFormat('D MMMM Y HH:mm');
+    // }
 
     public function getPermissionArray()
     {
