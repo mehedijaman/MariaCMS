@@ -3055,16 +3055,16 @@
         },
         {
             "name": "opcodesio/log-viewer",
-            "version": "v3.1.11",
+            "version": "v3.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opcodesio/log-viewer.git",
-                "reference": "2d4a741d17fe96d842ba4134663b0958162e72bb"
+                "reference": "d06402faf57a1403202ff5ac45b85ba7620ddd05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/2d4a741d17fe96d842ba4134663b0958162e72bb",
-                "reference": "2d4a741d17fe96d842ba4134663b0958162e72bb",
+                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/d06402faf57a1403202ff5ac45b85ba7620ddd05",
+                "reference": "d06402faf57a1403202ff5ac45b85ba7620ddd05",
                 "shasum": ""
             },
             "require": {
@@ -3127,7 +3127,7 @@
             ],
             "support": {
                 "issues": "https://github.com/opcodesio/log-viewer/issues",
-                "source": "https://github.com/opcodesio/log-viewer/tree/v3.1.11"
+                "source": "https://github.com/opcodesio/log-viewer/tree/v3.1.12"
             },
             "funding": [
                 {
@@ -3139,7 +3139,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-30T15:28:03+00:00"
+            "time": "2024-02-09T14:27:42+00:00"
         },
         {
             "name": "opcodesio/mail-parser",
@@ -8274,16 +8274,16 @@
         },
         {
             "name": "laravel-lang/http-statuses",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/http-statuses.git",
-                "reference": "beb0ee5943bf7a0b811d55851729876d883288a8"
+                "reference": "28b90d88cc1e5efe69687e95da23c2016d9f78d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/http-statuses/zipball/beb0ee5943bf7a0b811d55851729876d883288a8",
-                "reference": "beb0ee5943bf7a0b811d55851729876d883288a8",
+                "url": "https://api.github.com/repos/Laravel-Lang/http-statuses/zipball/28b90d88cc1e5efe69687e95da23c2016d9f78d7",
+                "reference": "28b90d88cc1e5efe69687e95da23c2016d9f78d7",
                 "shasum": ""
             },
             "require": {
@@ -8335,9 +8335,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Lang/http-statuses/issues",
-                "source": "https://github.com/Laravel-Lang/http-statuses/tree/3.8.0"
+                "source": "https://github.com/Laravel-Lang/http-statuses/tree/3.8.1"
             },
-            "time": "2023-12-30T09:28:20+00:00"
+            "time": "2024-02-11T08:58:31+00:00"
         },
         {
             "name": "laravel-lang/lang",
@@ -10545,16 +10545,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67"
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/005e1e7b1232f3b22d7e7be3f602693efc7dba67",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/351504f4570e32908839fc5a2dc53bf77d02f85e",
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e",
                 "shasum": ""
             },
             "require": {
@@ -10633,7 +10633,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-12T13:14:58+00:00"
+            "time": "2024-02-09T16:08:40+00:00"
         },
         {
             "name": "symfony/polyfill-php81",
