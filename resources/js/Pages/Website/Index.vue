@@ -273,88 +273,94 @@ onMounted(() => {
         <!-- /Banner-->
 
         <!--Navbar-->
-        <nav class="bg-white top-0 border-b-4 border-[#ffab1f] sticky z-9">
-            <div class="max-w-7xl px-4 py-1 flex flex-wrap justify-between mx-auto">
-                <div
-                    class="flex justify-start items-center text-center  md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
-                    <button type="button" data-dropdown-toggle="language-dropdown-menu"
-                        class="inline-flex items-end font-medium justify-end px-4 py-2 text-sm text-gray-900 dark:text-white rounded-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                        </svg>
-                    </button>
-
-                    <form>
-                        <div class="flex">
-                            <div class="relative w-full">
-                                <input type="search" id="location-search"
-                                    class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-full rounded-s-full border border-gray-3000"
-                                    placeholder="Search..." required>
-                                <button type="submit"
-                                    class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-blue-700 rounded-e-full border border-blue-700 hover:bg-blue-800 ">
-                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                    </svg>
-                                    <span class="sr-only">Search</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <button data-collapse-toggle="navbar-language" type="button"
-                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-sm md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-language" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="items-center hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
-                    <ul
-                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-sm bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#"
-                                class="hover:bg-blue-500 hover:text-white block rounded-sm xl:px-3 px-2  py-3 text-base font-medium"
-                                aria-current="page">Home</a>
-                        </li>
-                        <li>
-                            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                                class="  font-medium rounded-sm text-base xl:px-3 px-2 py-3 text-center inline-flex items-center hover:bg-blue-500 hover:text-white">Department
-                                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
+        <nav class="bg-white border-b-4 border-[#ffab1f] z-9 sticky top-0">
+            <div class="max-w-7xl mx-auto px-4 py-2 md:py-0">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div
+                        class="flex items-center w-full md:w-auto justify-between md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
+                        <div class="flex items-center gap-2">
+                            <button type="button"
+                                class="inline-flex items-end font-medium justify-end px-4 py-2 text-sm text-gray-900 dark:text-white rounded-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
                                 </svg>
                             </button>
-                            <div id="dropdownNavbar"
-                                class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                <ul class="text-base text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownLargeButton">
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Computer</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+
+                            <form>
+                                <div class="flex">
+                                    <div class="relative w-full">
+                                        <input type="search" id="location-search"
+                                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-full rounded-s-full border border-gray-3000"
+                                            placeholder="Search..." required>
+                                        <button type="submit"
+                                            class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-blue-700 rounded-e-full border border-blue-700 hover:bg-blue-800 ">
+                                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                            </svg>
+                                            <span class="sr-only">Search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <button data-collapse-toggle="navbar-primary" type="button"
+                            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-sm md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            aria-controls="navbar-primary" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 17 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M1 1h15M1 7h15M1 13h15" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="items-center hidden w-full md:w-auto md:flex md:order-1" id="navbar-primary">
+                        <ul
+                            class="flex flex-col gap-2 font-medium border border-gray-100 rounded-sm bg-gray-50  rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <li>
+                                <a href="#"
+                                    class="hover:bg-[#ffab1f] hover:text-white block px-2 py-3 text-base font-medium"
+                                    aria-current="page">Home</a>
+                            </li>
+
+                            <li>
+                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                                    class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">Department
+                                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                <div id="dropdownNavbar"
+                                    class="z-10 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                    <ul class="text-base text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownLargeButton">
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">Computer</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
         <!-- /Navbar-->
 
-        <!--start banner section-->
+        <!-- Slider -->
         <div class="h-96 bg-no-repeat bg-center bg-cover" style="background-image: url(./images/Main-Building.jpg);">
             <div class="mx-auto max-w-7xl">
                 <div class="">
@@ -365,102 +371,98 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <!--end banner section-->
+        <!-- /Slider -->
 
+        <!-- Services -->
+        <div class="bg-inherit">
+            <div class="mx-auto max-w-7xl px-4">
+                <h1 class="text-center text-2xl md:text-4xl font-bold py-4 text-gray-900">ABOUT <span
+                        class="text-red-700">US</span></h1>
+                <div class="md:grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+                    <div class="shadow-lg pb-6 mt-5 bg-white">
+                        <img class="h-48 w-full" src="/images/1.jpeg">
+                        <div class="px-4">
+                            <div class="border-b-2 mb-4 pb-4">
+                                <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
+                                <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
+                                    বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
+                                    ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
+                                    আমাদের তরুণদের…</p>
+                            </div>
+                            <button
+                                class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
+                                More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
+                                </svg></button>
+                        </div>
+                    </div>
 
-        <!--start clg section-->
-        <div class="mx-auto max-w-7xl py-10 px-2">
-            <h1 class="text-center text-3xl font-bold py-6">About us</h1>
-            <div class="md:grid lg:grid-cols-4 md:grid-cols-2 gap-6">
-                <div class="shadow-lg pb-6 mt-5 bg-white">
-                    <div class="bg-[url('./images/1.jpeg')] h-48 opacity-70">
-                        <!-- <h1 class="pt-44 text-3xl text-gray-900 font-bold text-center">আমাদের কথা</h1> -->
-                    </div>
-                    <div class="px-4">
-                        <div class="border-b-2 mb-4 pb-4">
-                            <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
-                            <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
-                                বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
-                                ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
-                                আমাদের তরুণদের…</p>
+                    <div class="shadow-lg pb-6 mt-5 bg-white">
+                        <img class="h-48 w-full" src="/images/1.jpeg">
+                        <div class="px-4">
+                            <div class="border-b-2 mb-4 pb-4">
+                                <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
+                                <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
+                                    বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
+                                    ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
+                                    আমাদের তরুণদের…</p>
+                            </div>
+                            <button
+                                class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
+                                More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
+                                </svg></button>
                         </div>
-                        <button
-                            class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
-                            More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
-                            </svg></button>
                     </div>
-                </div>
-                <div class="shadow-lg pb-6 mt-5 bg-white">
-                    <div class="bg-[url('./images/1.jpeg')] h-48 opacity-70">
-                        <!-- <h1 class="pt-44 text-3xl text-gray-900 font-bold text-center">আমাদের কথা</h1> -->
-                    </div>
-                    <div class="px-4">
-                        <div class="border-b-2 mb-4 pb-4">
-                            <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
-                            <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
-                                বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
-                                ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
-                                আমাদের তরুণদের…</p>
-                        </div>
-                        <button
-                            class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
-                            More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
-                            </svg></button>
-                    </div>
-                </div>
-                <div class="shadow-lg pb-6 mt-5 bg-white">
-                    <div class="bg-[url('./images/1.jpeg')] h-48 opacity-70">
-                        <!-- <h1 class="pt-44 text-3xl text-gray-900 font-bold text-center">আমাদের কথা</h1> -->
-                    </div>
-                    <div class="px-4">
-                        <div class="border-b-2 mb-4 pb-4">
-                            <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
-                            <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
-                                বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
-                                ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
-                                আমাদের তরুণদের…</p>
-                        </div>
-                        <button
-                            class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
-                            More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
-                            </svg></button>
-                    </div>
-                </div>
-                <div class="shadow-lg pb-6 mt-5 bg-white">
-                    <div class="bg-[url('./images/1.jpeg')] h-48 opacity-70">
-                        <!-- <h1 class="pt-44 text-3xl text-gray-900 font-bold text-center">আমাদের কথা</h1> -->
-                    </div>
-                    <div class="px-4">
-                        <div class="border-b-2 mb-4 pb-4">
-                            <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
-                            <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
-                                বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
-                                ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
-                                আমাদের তরুণদের…</p>
-                        </div>
-                        <button
-                            class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
-                            More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
-                            </svg></button>
-                    </div>
-                </div>
 
+                    <div class="shadow-lg pb-6 mt-5 bg-white">
+                        <img class="h-48 w-full" src="/images/1.jpeg">
+                        <div class="px-4">
+                            <div class="border-b-2 mb-4 pb-4">
+                                <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
+                                <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
+                                    বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
+                                    ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
+                                    আমাদের তরুণদের…</p>
+                            </div>
+                            <button
+                                class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
+                                More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+
+                    <div class="shadow-lg pb-6 mt-5 bg-white">
+                        <img class="h-48 w-full" src="/images/1.jpeg">
+                        <div class="px-4">
+                            <div class="border-b-2 mb-4 pb-4">
+                                <h1 class=" text-2xl pt-4 pb-2 text-gray-700 font-bold text-center">আমাদের কথা</h1>
+                                <p class="h-48 text-base text-justify">বর্তমান যুগ বিজ্ঞান ও প্রযুক্তির যুগ । এ শতাব্দীতে
+                                    বিজ্ঞান ও তথ্য প্রযুক্তির ক্ষেত্রে যে উন্নতি সাধিত হয়েছে তা সমগ্র বিশ্বকে একটি গ্লোবাল
+                                    ভিলেজে পরিণত করেছে । আজকের এ বিশ্ব প্রতিযোগিতায় টিকে থেকে অর্থনৈতিক যুদ্ধে জয়ী হতে হলে
+                                    আমাদের তরুণদের…</p>
+                            </div>
+                            <button
+                                class="flex gap-2 py-2 px-4 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">Read
+                                More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <!--end clg section-->
-
+        <!-- /Services -->
 
         <!--start Department section-->
         <div class="mx-auto max-w-7xl py-10 px-2">
