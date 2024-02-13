@@ -164,7 +164,8 @@ return [
         'meta_title' => 'Meta Title',
         'meta_description' => 'Meta description',
         'meta_keywords' => 'Meta keywords',
-
+        'clients' => 'Our Clients',
+        'client' => 'Client',
         'items' => 'Items',
         'item' => 'Item',
         'pages' => 'Pages',

@@ -70,9 +70,8 @@ class Setting extends Model
             return null;
         }
 
-        return asset('storage/image/setting/' . $this->attributes['banner']);
+        return asset('storage/image/setting/'.$this->attributes['banner']);
     }
-
 
     public function getFullPathLogoAttribute()
     {
@@ -80,9 +79,8 @@ class Setting extends Model
             return asset('logo.svg');
         }
 
-        return asset('storage/image/setting/' . $this->attributes['logo']);
+        return asset('storage/image/setting/'.$this->attributes['logo']);
     }
-
 
     public function getFullPathFaviconAttribute()
     {
@@ -90,7 +88,7 @@ class Setting extends Model
             return asset('favicon.png');
         }
 
-        return asset('storage/image/setting/' . $this->attributes['favicon']);
+        return asset('storage/image/setting/'.$this->attributes['favicon']);
     }
 
     public function getCreatedAtAttribute()

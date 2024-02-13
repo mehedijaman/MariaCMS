@@ -97,6 +97,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post->getMedia();
+
         return Inertia::render('Post/Show', [
             'title' => __('app.label.posts'),
             'page' => $post,

@@ -13,16 +13,16 @@ class HeroController extends Controller
     /**
      * Display a listing of the resource.
      */
-        public function index()
-        {
-            return Inertia::render('Hero/Index', [
-                'title' => __('app.label.heroes'),
-                'hero' => Hero::firstOrCreate(),
-                'breadcrumbs' => [
-                    ['label' => __('app.label.heroes'), 'href' => route('heroes.index')],
-                ],
-            ]);
-        }
+    public function index()
+    {
+        return Inertia::render('Hero/Index', [
+            'title' => __('app.label.heroes'),
+            'hero' => Hero::firstOrCreate(),
+            'breadcrumbs' => [
+                ['label' => __('app.label.heroes'), 'href' => route('heroes.index')],
+            ],
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

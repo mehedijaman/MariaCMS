@@ -12,6 +12,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
@@ -24,10 +25,8 @@ use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +38,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__ . '/website.php';
+require __DIR__.'/website.php';
 
 /** Locale Routes */
 Route::get('/set-locale/{locale}', function ($locale) {
@@ -118,6 +117,7 @@ Route::prefix('cp')->middleware([
     Route::post('galleries/{gallery}/restore', [GalleryController::class, 'restore'])->name('galleries.restore');
     Route::post('galleries/restore/bulk', [GalleryController::class, 'restoreBulk'])->name('galleries.restore.bulk');
     Route::post('galleries/restore/all', [GalleryController::class, 'restoreAll'])->name('galleries.restore.all');
+
     /** Gallery Items Routes */
     Route::get('galleries/{gallery}/items/trash', [GalleryItemController::class, 'trash'])->name('gallery.items.trash');
     Route::delete('galleries/{gallery}/items/destroy/bulk', [GalleryItemController::class, 'destroyBulk'])->name('gallery.items.destroy.bulk');
@@ -190,6 +190,17 @@ Route::prefix('cp')->middleware([
     Route::post('messages/restore/bulk', [MessageController::class, 'restoreBulk'])->name('messages.restore.bulk');
     Route::post('messages/restore/all', [MessageController::class, 'restoreAll'])->name('messages.restore.all');
     Route::resource('messages', MessageController::class);
+
+    /** Our Clients Routes */
+    Route::get('clients/trash', [OurClientController::class, 'trash'])->name('clients.trash');
+    Route::delete('clients/destroy/bulk', [OurClientController::class, 'destroyBulk'])->name('clients.destroy.bulk');
+    Route::delete('clients/{gallery}/destroy/force', [OurClientController::class, 'destroyForce'])->name('clients.destroy.force');
+    Route::delete('clients/destroy/force/bulk', [OurClientController::class, 'destroyForceBulk'])->name('clients.destroy.force.bulk');
+    Route::delete('clients/destroy/force/all', [OurClientController::class, 'destroyForceAll'])->name('clients.destroy.force.all');
+    Route::post('clients/{gallery}/restore', [OurClientController::class, 'restore'])->name('clients.restore');
+    Route::post('clients/restore/bulk', [OurClientController::class, 'restoreBulk'])->name('clients.restore.bulk');
+    Route::post('clients/restore/all', [OurClientController::class, 'restoreAll'])->name('clients.restore.all');
+    Route::resource('clients', OurClientController::class);
 
     /** Testimonial Routes */
     Route::get('testimonials/trash', [TestimonialController::class, 'trash'])->name('testimonials.trash');

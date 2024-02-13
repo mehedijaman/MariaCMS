@@ -156,5 +156,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'product review read', 'guard_name' => 'web']);
         Permission::create(['name' => 'product review update', 'guard_name' => 'web']);
         Permission::create(['name' => 'product review delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'client create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'client read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'client update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'client delete', 'guard_name' => 'web']);
     }
 }

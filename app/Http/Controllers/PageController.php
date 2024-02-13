@@ -61,7 +61,7 @@ class PageController extends Controller
                 'meta_keywords' => $request->meta_keywords,
             ]);
 
-            if($request->hasFile('featured_image')) {
+            if ($request->hasFile('featured_image')) {
                 $page->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
             }
 

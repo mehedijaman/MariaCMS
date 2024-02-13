@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('our_clients', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->boolean('status')->default(true)->nullable();
+
+            $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('deleted_by')->references('id')->on('users')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

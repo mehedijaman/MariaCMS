@@ -25,13 +25,12 @@ class Hero extends Model
 
     public function getFullPathImageAttribute()
     {
-        if (!isset($this->attributes['image']) || $this->attributes['image'] === null) {
+        if (! isset($this->attributes['image']) || $this->attributes['image'] === null) {
             return asset('image.png');
         }
 
-        return asset('storage/image/hero/' . $this->attributes['image']);
+        return asset('storage/image/hero/'.$this->attributes['image']);
     }
-
 
     public function getCreatedAtAttribute()
     {

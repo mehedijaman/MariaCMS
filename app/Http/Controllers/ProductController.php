@@ -60,7 +60,7 @@ class ProductController extends Controller
                 'status' => $request->status,
             ]);
 
-            if($request->hasFile('featured_image')) {
+            if ($request->hasFile('featured_image')) {
                 $product->addMediaFromRequest('featured_image')->toMediaCollection('featured_image');
             }
 

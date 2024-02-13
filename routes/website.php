@@ -1,7 +1,7 @@
 <?php
+
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*

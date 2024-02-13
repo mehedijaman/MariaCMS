@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Message\StoreMessageRequest;
+use App\Models\Category;
 use App\Models\CTA;
 use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Menu;
+use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use Inertia\Inertia;
-use App\Models\Slider;
-use App\Models\Gallery;
-use App\Models\Message;
 use App\Models\Product;
-use App\Models\Setting;
-use App\Models\Category;
-use App\Models\Testimonial;
-use Spatie\Honeypot\Honeypot;
 use App\Models\ProductCategory;
-use App\Http\Requests\Message\StoreMessageRequest;
+use App\Models\Setting;
+use App\Models\Slider;
+use App\Models\Testimonial;
+use Inertia\Inertia;
+use Spatie\Honeypot\Honeypot;
 
 class WebsiteController extends Controller
 {
@@ -200,7 +200,7 @@ class WebsiteController extends Controller
         $product = Product::where('slug', $slug)->with('media', 'category')->where('status', true)->firstOrFail();
 
         return Inertia::render('Website/Product/ProductDetails', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 

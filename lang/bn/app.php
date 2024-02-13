@@ -184,7 +184,7 @@ return [
         'gallery_item' => 'গ্যালারী আইটেম',
         'messages' => 'বার্তা সমুহ',
         'hero' => 'হিরো সেকশন',
-        'cta' => 'CTA' 
+        'cta' => 'CTA',
 
     ],
     'placeholder' => [

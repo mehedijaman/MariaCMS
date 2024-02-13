@@ -88,7 +88,6 @@ class SettingController extends Controller
                 $logo = $setting->logo;
             }
 
-
             if ($request->banner != null) {
                 Storage::delete('public/image/setting/'.$setting->banner);
                 $banner = 'banner.'.$request->banner->extension();

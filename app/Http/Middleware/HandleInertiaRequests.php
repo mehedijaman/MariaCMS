@@ -3,11 +3,11 @@
 namespace App\Http\Middleware;
 
 use App\Models\Menu;
+use App\Models\ProductCategory;
 use App\Models\Setting;
+use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -69,7 +69,7 @@ class HandleInertiaRequests extends Middleware
             'menus' => function () {
                 return Menu::where('status', true)->with('items')->get();
             },
-            'product_categories' => function(){
+            'product_categories' => function () {
                 return ProductCategory::all();
             },
             'flash' => [

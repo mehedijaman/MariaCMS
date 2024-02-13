@@ -162,6 +162,11 @@ class RoleSeeder extends Seeder
             'product review read',
             'product review update',
             'product review delete',
+
+            'client create',
+            'client read',
+            'client update',
+            'client delete',
         ]);
 
         $admin = Role::create([
