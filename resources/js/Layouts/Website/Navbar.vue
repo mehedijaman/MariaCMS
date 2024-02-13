@@ -186,7 +186,7 @@ onMounted(() => {
                                 </li>
 
                                 <li v-else>
-                                    <button id="dropdownNavbarLink" :data-dropdown-toggle="item.name + item.id"
+                                    <button id="dropdownNavbarLink" :data-dropdown-toggle="item.name + item.id" data-dropdown-trigger="hover"
                                         class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
                                         {{ item.name }}
                                         <ChevronDownIcon class="w-4 h-4 ms-1 items-center"></ChevronDownIcon>
@@ -199,7 +199,7 @@ onMounted(() => {
                                                 <li v-if="child.children.length == 0">
 
                                                     <Link :href="child.url" :target="child.target"
-                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                        class="border-b block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
                                                     {{ child.name }}
 
                                                     </Link>
@@ -207,10 +207,10 @@ onMounted(() => {
 
                                                 <li v-else>
                                                     <button id="dropdownNavbarLink"
-                                                        :data-dropdown-toggle="child.name + child.id"
-                                                        class="px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white w-full flex items-center justify-between">
+                                                        :data-dropdown-toggle="child.name + child.id" data-dropdown-trigger="hover"
+                                                        class="border-b px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white w-full flex items-center justify-between">
                                                         {{ child.name }}
-                                                        <ChevronRightIcon class="w-4 h-4 ms-1 items-center">
+                                                        <ChevronRightIcon class="w-4 h-4 items-center">
                                                         </ChevronRightIcon>
                                                     </button>
                                                     <div :id="child.name + child.id"
@@ -222,68 +222,34 @@ onMounted(() => {
 
                                                                     <Link :href="nestedChild.url"
                                                                         :target="nestedChild.target"
-                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                        class="border-b block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
                                                                     {{ nestedChild.name }}
 
                                                                     </Link>
                                                                 </li>
-
-                                                                <li v-if="nestedChild.children?.length > 0">
-                                                                    <button id="dropdownNavbarLink"
+                                                                <li v-else>
+                                                                    <button id="dropdownNavbarLink" data-dropdown-trigger="hover"
                                                                         :data-dropdown-toggle="nestedChild.name + nestedChild.id"
-                                                                        class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
+                                                                        class="px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white w-full flex items-center justify-between">
                                                                         {{ nestedChild.name }}
                                                                         <ChevronRightIcon class="w-4 h-4 ms-1 items-center">
                                                                         </ChevronRightIcon>
                                                                     </button>
-
                                                                     <div :id="nestedChild.name + nestedChild.id"
                                                                         class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                                         <ul class="text-base text-gray-700 dark:text-gray-200"
                                                                             aria-labelledby="dropdownLargeButton">
                                                                             <template
                                                                                 v-for="nestedChild2 in nestedChild.children">
-                                                                                <li
-                                                                                    v-if="nestedChild2.children?.length == 0">
+                                                                                <li>
 
-                                                                                    <Link :href="child.url"
-                                                                                        :target="child.target"
-                                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
-                                                                                    {{ child.name }}
+                                                                                    <Link :href="nestedChild2.url"
+                                                                                        :target="nestedChild2.target"
+                                                                                        class="border-b block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                                    {{ nestedChild2.name }}
 
                                                                                     </Link>
                                                                                 </li>
-
-                                                                                <!-- <li v-else>
-                                                                                    <button id="dropdownNavbarLink"
-                                                                                        :data-dropdown-toggle="nestedChild.name + nestedChild.id"
-                                                                                        class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
-                                                                                        {{ nestedChild.name }}
-                                                                                        <ChevronRightIcon
-                                                                                            class="w-4 h-4 ms-1 items-center">
-                                                                                        </ChevronRightIcon>
-                                                                                    </button>
-
-                                                                                    <div :id="nestedChild.name + nestedChild.id"
-                                                                                        class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                                                        <ul class="text-base text-gray-700 dark:text-gray-200"
-                                                                                            aria-labelledby="dropdownLargeButton">
-                                                                                            <template
-                                                                                                v-for="nestedChild2 in nestedChild.children">
-                                                                                                <li
-                                                                                                    v-if="nestedChild2.children?.length == 0">
-
-                                                                                                    <Link :href="child.url"
-                                                                                                        :target="child.target"
-                                                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
-                                                                                                    {{ child.name }}
-
-                                                                                                    </Link>
-                                                                                                </li>
-                                                                                            </template>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </li> -->
                                                                             </template>
                                                                         </ul>
                                                                     </div>
@@ -303,4 +269,5 @@ onMounted(() => {
             </div>
         </div>
     </nav>
-<!-- /Navbar--></template>
+    <!-- /Navbar-->
+</template>

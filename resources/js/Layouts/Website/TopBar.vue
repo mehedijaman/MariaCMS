@@ -134,7 +134,8 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                     </div>
 
                     <button id="dropdownHoverButton1" data-dropdown-toggle="dropdownHover1" data-dropdown-trigger="hover"
-                        class="text-white font-medium inline-flex items-center pl-2 hover:text-gray-200 border-l" type="button">
+                        class="text-white font-medium inline-flex items-center pl-2 hover:text-gray-200 border-l"
+                        type="button">
                         Quick Links
                         <p class="bg-yellow-300 ml-2">
                             <ChevronDownIcon class="w-4 h-4 text-black"></ChevronDownIcon>
@@ -145,15 +146,14 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                     <div id="dropdownHover1"
                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700"
                         style="transform: translate3d(1252px, 42.8px, 0px);">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton1">
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Student
-                                    Panel</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
+                        <ul class=" text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton1">
+                            <li v-for="item in $page.props.menus.secondary?.items" :key="item.id">
+
+                                <Link :href="item.url" :target="item.target"
+                                    class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white border-b">
+                                {{ item.name }}
+
+                                </Link>
                             </li>
 
                         </ul>
@@ -162,5 +162,4 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
             </div>
         </div>
     </section>
-    <!-- /Topbar-->
-</template>
+    <!-- /Topbar--></template>

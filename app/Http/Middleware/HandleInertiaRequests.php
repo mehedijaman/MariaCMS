@@ -33,7 +33,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $menus = Menu::where('status', true)->with('items.children.children')->get();
+        $menus = Menu::where('status', true)->with('items.children.children.children')->get();
         return array_merge(parent::share($request), [
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

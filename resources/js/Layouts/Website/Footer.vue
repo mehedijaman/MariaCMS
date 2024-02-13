@@ -67,7 +67,7 @@ const textColor = usePage().props.app.setting.footer_text_color ? usePage().prop
     </footer> -->
     <!-- Footer -->
     <div>
-        <div class="py-6 bg-[#294A70] border-t-4 border-[#ffab1f]">
+        <!-- <div class="py-6 bg-[#294A70] border-t-4 border-[#ffab1f]">
             <div class="mx-auto max-w-7xl">
                 <div class="md:grid lg:grid-cols-4 md:grid-cols-2 gap-4 text-white">
                     <div class="p-2 border-r border-dashed">
@@ -308,22 +308,26 @@ const textColor = usePage().props.app.setting.footer_text_color ? usePage().prop
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!--start coppyright section-->
         <div class="bg-[#15305B] py-8">
-            <div class="mx-auto max-w-7xl text-center ">
-                <ul class="flex gap-2 justify-center pb-2">
-                    <li class="px-4 py-2"><a class="text-gray-300 hover:text-gray-500 text-base" href="#">Home</a>
+            <div class="max-w-7xl mx-auto text-center flex flex-col gap-4">
+                <ul class="flex flex-col md:flex-row gap-2 justify-center">
+                    <li v-for="item in $page.props.menus.footer?.items" :key="item.id" class="px-4 py-2">
+
+                        <Link class="text-gray-300 hover:text-gray-500 text-base" :href="item.url" :target="item.target">
+                        {{ item.name }}
+
+                        </Link>
                     </li>
-                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
-                            href="#">Gallery</a></li>
-                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
-                            href="#">Contact</a></li>
-                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
-                            href="#">Sitemap</a></li>
                 </ul>
-                <h4 class="text-gray-300 text-lg">কপিরাইট©২০২২ সিটি পলিটেকনিক ইনস্টিটিউট খুলনা</h4>
+                <!-- <hr class="border-gray-200 outline-none h-0"> -->
+                <span class="text-sm sm:text-center text-gray-300 dark:text-gray-400">
+                    &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
+                    Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
+                        href="https://gtechservice.net">gTechService</a>
+                </span>
             </div>
         </div>
 
