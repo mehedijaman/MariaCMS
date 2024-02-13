@@ -12,7 +12,7 @@ import Feature from "./Partials/Feature.vue";
 import CTA from "./Partials/CTA.vue";
 import News from "./Partials/News.vue";
 import { Link } from "@inertiajs/vue3";
-import FeaturedProducts from "./Product/FeaturedProducts.vue";
+import FeaturedCategories from "./Partials/FeaturedCategories.vue";
 import TestimonialSection from "./Partials/TestimonialSection.vue";
 
 const props = defineProps({
@@ -27,16 +27,16 @@ onMounted(() => {
 <template>
     <WebsiteLayout :title="props.title">
         <Slider v-if="$page.props.app.setting.slider_enabled && props.data.slider" :slides="props.data.slider.items"></Slider>
+        <Hero v-if="$page.props.app.setting.hero_enabled" :hero="props.data.hero"></Hero>
+        <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
+        <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
+        <FeaturedCategories v-if="$page.props.app.setting.featured_product_enabled" :products="props.data.featured_products"></FeaturedCategories>
+        <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
+        <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.data.latest_posts"></LatestPosts>
+        <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>
+        <TestimonialSection v-if="$page.props.app.setting.testimonial_enabled" :testimonials="props.data.testimonials"></TestimonialSection>
         <!-- <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
-            <Hero v-if="$page.props.app.setting.hero_enabled" :hero="props.data.hero"></Hero>
-            <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
             <Feature v-if="$page.props.app.setting.feature_enabled" :features="props.data.features"></Feature>
-            <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
-            <FeaturedProducts v-if="$page.props.app.setting.featured_product_enabled" :products="props.data.featured_products"></FeaturedProducts>
-            <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
-            <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>
-            <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.data.latest_posts"></LatestPosts>
-            <TestimonialSection v-if="$page.props.app.setting.testimonial_enabled" :testimonials="props.data.testimonials"></TestimonialSection>
         </section> -->
     </WebsiteLayout>
 </template>

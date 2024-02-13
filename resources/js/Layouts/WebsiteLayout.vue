@@ -44,7 +44,7 @@ onMounted(() => {
     <TopBar v-if="$page.props.app.setting.topbar_enabled"></TopBar>
     <Banner></Banner>
     <Navbar />
-    <div class="bg-gray-700">
+    <div class="bg-gray-100">
         <slot></slot>
     </div>
     <ChatButton></ChatButton>

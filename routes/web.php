@@ -25,6 +25,7 @@ use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -212,6 +213,17 @@ Route::prefix('cp')->middleware([
     Route::post('testimonials/restore/bulk', [TestimonialController::class, 'restoreBulk'])->name('testimonials.restore.bulk');
     Route::post('testimonials/restore/all', [TestimonialController::class, 'restoreAll'])->name('testimonials.restore.all');
     Route::resource('testimonials', TestimonialController::class);
+
+    /** Video Routes */
+    Route::get('videos/trash', [VideoController::class, 'trash'])->name('videos.trash');
+    Route::delete('videos/destroy/bulk', [VideoController::class, 'destroyBulk'])->name('videos.destroy.bulk');
+    Route::delete('videos/{slider}/destroy/force', [VideoController::class, 'destroyForce'])->name('videos.destroy.force');
+    Route::delete('videos/destroy/force/bulk', [VideoController::class, 'destroyForceBulk'])->name('videos.destroy.force.bulk');
+    Route::delete('videos/destroy/force/all', [VideoController::class, 'destroyForceAll'])->name('videos.destroy.force.all');
+    Route::post('videos/{slider}/restore', [VideoController::class, 'restore'])->name('videos.restore');
+    Route::post('videos/restore/bulk', [VideoController::class, 'restoreBulk'])->name('videos.restore.bulk');
+    Route::post('videos/restore/all', [VideoController::class, 'restoreAll'])->name('videos.restore.all');
+    Route::resource('videos', VideoController::class);
 
     /** Pages Routes */
     Route::get('pages/trash', [PageController::class, 'trash'])->name('pages.trash');

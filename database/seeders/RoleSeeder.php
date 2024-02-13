@@ -167,6 +167,11 @@ class RoleSeeder extends Seeder
             'client read',
             'client update',
             'client delete',
+
+            'video create',
+            'video read',
+            'video update',
+            'video delete',
         ]);
 
         $admin = Role::create([

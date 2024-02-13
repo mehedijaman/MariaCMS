@@ -161,5 +161,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'client read', 'guard_name' => 'web']);
         Permission::create(['name' => 'client update', 'guard_name' => 'web']);
         Permission::create(['name' => 'client delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'video create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'video read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'video update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'video delete', 'guard_name' => 'web']);
     }
 }

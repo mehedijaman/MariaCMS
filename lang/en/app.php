@@ -178,6 +178,8 @@ return [
         'faq' => 'FAQ',
         'categories' => 'Categories',
         'category' => 'Category',
+        'video' => 'Video',
+        'videos' => 'Videos',
 
         'product' => 'Product',
         'products' => 'Products',
