@@ -11,7 +11,7 @@ import { initFlowbite } from 'flowbite';
 import { usePage } from "@inertiajs/vue3";
 
 import {
-    ChevronDownIcon,
+    ChevronDownIcon, ChevronRightIcon,
 } from "@heroicons/vue/24/solid";
 
 const backgroundColor = usePage().props.app.setting.navbar_background_color ? usePage().props.app.setting.navbar_background_color : 'white';
@@ -23,13 +23,13 @@ const data = reactive({
     fixed: false,
 });
 
-const primaryMenus = usePage().props.menus.filter(menu => menu.position === 'primary');
-const primaryMenu = primaryMenus.length > 0 ? primaryMenus[0] : null;
+// const primaryMenus = usePage().props.menus.filter(menu => menu.position === 'primary');
+// const primaryMenu = primaryMenus.length > 0 ? primaryMenus[0] : null;
 
-const secondaryMenus = usePage().props.menus.filter(menu => menu.position === 'secondary');
-const secondaryMenu = secondaryMenus.length > 0 ? secondaryMenus[0] : null;
+// const secondaryMenus = usePage().props.menus.filter(menu => menu.position === 'secondary');
+// const secondaryMenu = secondaryMenus.length > 0 ? secondaryMenus[0] : null;
 
-const productCategories = usePage().props.product_categories;
+// const productCategories = usePage().props.product_categories;
 
 window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY;
@@ -174,39 +174,133 @@ onMounted(() => {
                 <div class="items-center hidden w-full md:w-auto md:flex md:order-1" id="navbar-primary">
                     <ul
                         class="flex flex-col gap-2 font-medium border border-gray-100 rounded-sm bg-gray-50  rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#" class="hover:bg-[#ffab1f] hover:text-white block px-2 py-3 text-base font-medium"
-                                aria-current="page">Home</a>
-                        </li>
+                        <template v-for="item in $page.props.menus.primary.items" :key="item.id">
+                            <template v-if="item.parent_id == null">
+                                <li v-if="item.children.length == 0">
 
-                        <li>
-                            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                                class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">Department
-                                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                            <div id="dropdownNavbar"
-                                class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                <ul class="text-base text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownLargeButton">
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">Computer</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                                    <Link :target="item.target" :href="item.url" aria-current="page"
+                                        class="hover:bg-[#ffab1f] hover:text-white block px-2 py-3 text-base font-medium">
+                                    {{ item.name }}
+
+                                    </Link>
+                                </li>
+
+                                <li v-else>
+                                    <button id="dropdownNavbarLink" :data-dropdown-toggle="item.name + item.id"
+                                        class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
+                                        {{ item.name }}
+                                        <ChevronDownIcon class="w-4 h-4 ms-1 items-center"></ChevronDownIcon>
+                                    </button>
+                                    <div :id="item.name + item.id"
+                                        class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                        <ul class="text-base text-gray-700 dark:text-gray-200"
+                                            aria-labelledby="dropdownLargeButton">
+                                            <template v-for="child in item.children">
+                                                <li v-if="child.children.length == 0">
+
+                                                    <Link :href="child.url" :target="child.target"
+                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    {{ child.name }}
+
+                                                    </Link>
+                                                </li>
+
+                                                <li v-else>
+                                                    <button id="dropdownNavbarLink"
+                                                        :data-dropdown-toggle="child.name + child.id"
+                                                        class="px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white w-full flex items-center justify-between">
+                                                        {{ child.name }}
+                                                        <ChevronRightIcon class="w-4 h-4 ms-1 items-center">
+                                                        </ChevronRightIcon>
+                                                    </button>
+                                                    <div :id="child.name + child.id"
+                                                        class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                        <ul class="text-base text-gray-700 dark:text-gray-200"
+                                                            aria-labelledby="dropdownLargeButton">
+                                                            <template v-for="nestedChild in child.children">
+                                                                <li v-if="nestedChild.children?.length == 0">
+
+                                                                    <Link :href="nestedChild.url"
+                                                                        :target="nestedChild.target"
+                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                    {{ nestedChild.name }}
+
+                                                                    </Link>
+                                                                </li>
+
+                                                                <li v-if="nestedChild.children?.length > 0">
+                                                                    <button id="dropdownNavbarLink"
+                                                                        :data-dropdown-toggle="nestedChild.name + nestedChild.id"
+                                                                        class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
+                                                                        {{ nestedChild.name }}
+                                                                        <ChevronRightIcon class="w-4 h-4 ms-1 items-center">
+                                                                        </ChevronRightIcon>
+                                                                    </button>
+
+                                                                    <div :id="nestedChild.name + nestedChild.id"
+                                                                        class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                                        <ul class="text-base text-gray-700 dark:text-gray-200"
+                                                                            aria-labelledby="dropdownLargeButton">
+                                                                            <template
+                                                                                v-for="nestedChild2 in nestedChild.children">
+                                                                                <li
+                                                                                    v-if="nestedChild2.children?.length == 0">
+
+                                                                                    <Link :href="child.url"
+                                                                                        :target="child.target"
+                                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                                    {{ child.name }}
+
+                                                                                    </Link>
+                                                                                </li>
+
+                                                                                <!-- <li v-else>
+                                                                                    <button id="dropdownNavbarLink"
+                                                                                        :data-dropdown-toggle="nestedChild.name + nestedChild.id"
+                                                                                        class="font-medium w-full md:w-auto text-base px-2 py-3 text-center inline-flex items-center hover:bg-[#ffab1f] hover:text-white">
+                                                                                        {{ nestedChild.name }}
+                                                                                        <ChevronRightIcon
+                                                                                            class="w-4 h-4 ms-1 items-center">
+                                                                                        </ChevronRightIcon>
+                                                                                    </button>
+
+                                                                                    <div :id="nestedChild.name + nestedChild.id"
+                                                                                        class="z-20 hidden font-medium bg-white rounded-sm shadow min-w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                                                        <ul class="text-base text-gray-700 dark:text-gray-200"
+                                                                                            aria-labelledby="dropdownLargeButton">
+                                                                                            <template
+                                                                                                v-for="nestedChild2 in nestedChild.children">
+                                                                                                <li
+                                                                                                    v-if="nestedChild2.children?.length == 0">
+
+                                                                                                    <Link :href="child.url"
+                                                                                                        :target="child.target"
+                                                                                                        class="block px-4 py-2 hover:bg-[#ffab1f] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                                                    {{ child.name }}
+
+                                                                                                    </Link>
+                                                                                                </li>
+                                                                                            </template>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </li> -->
+                                                                            </template>
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </template>
+                        </template>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- /Navbar-->
-</template>
+<!-- /Navbar--></template>

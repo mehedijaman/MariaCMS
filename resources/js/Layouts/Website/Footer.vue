@@ -6,8 +6,8 @@ import { usePage } from '@inertiajs/vue3';
 const backgroundColor = usePage().props.app.setting.footer_background_color ? usePage().props.app.setting.footer_background_color : 'grey';
 const textColor = usePage().props.app.setting.footer_text_color ? usePage().props.app.setting.footer_text_color : '#f9f9f9';
 
-const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
-const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
+// const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
+// const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
 </script>
 <template>
     <!-- <footer :style="{ backgroundColor: backgroundColor, color: textColor }" class="p-4 border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">

@@ -33,6 +33,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $menus = Menu::where('status', true)->with('items.children.children')->get();
         return array_merge(parent::share($request), [
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
@@ -41,8 +42,8 @@ class HandleInertiaRequests extends Middleware
             },
             'can' => $request->user() ? $request->user()->getPermissionArray() : [],
             'app' => [
-                'name' => ENV('APP_NAME'),
-                'version' => ENV('APP_VERSION'),
+                'name' => env('APP_NAME'),
+                'version' => env('APP_VERSION'),
                 'perpage' => [
                     ['label' => '5', 'value' => 5],
                     ['label' => '10', 'value' => 10],
@@ -66,11 +67,12 @@ class HandleInertiaRequests extends Middleware
                     return Setting::first();
                 },
             ],
-            'menus' => function () {
-                return Menu::where('status', true)->with('items')->get();
-            },
-            'product_categories' => function () {
-                return ProductCategory::all();
+            'menus' => function () use($menus) {
+                return [
+                    'primary' => $menus->where('position', 'primary')->first(),
+                    'secondary' => $menus->where('position', 'secondary')->first(),
+                    'footer' => $menus->where('position', 'footer')->first()
+                ];
             },
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
