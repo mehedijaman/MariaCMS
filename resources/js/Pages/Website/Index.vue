@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <!-- <Slider v-if="$page.props.app.setting.slider_enabled && props.data.slider" :slides="props.data.slider.items"></Slider> -->
+        <Slider v-if="$page.props.app.setting.slider_enabled && props.data.slider" :slides="props.data.slider.items"></Slider>
         <!-- <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
             <Hero v-if="$page.props.app.setting.hero_enabled" :hero="props.data.hero"></Hero>
             <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
