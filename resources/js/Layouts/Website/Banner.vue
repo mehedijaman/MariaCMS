@@ -12,7 +12,7 @@ const backgroundColor = usePage().props.app.setting.banner_background_color ? us
 const textColor = usePage().props.app.setting.banner_text_color ? usePage().props.app.setting.banner_text_color : 'black';
 </script>
 <template>
-    <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.full_path_banner != null"
+    <!-- <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.full_path_banner != null"
         class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
         <img class="" :src="$page.props.app.setting.full_path_banner" alt="">
     </div>
@@ -62,5 +62,43 @@ const textColor = usePage().props.app.setting.banner_text_color ? usePage().prop
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <!--Banner-->
+    <div v-if="$page.props.app.setting.banner_enabled && $page.props.app.setting.full_path_banner != null"
+        class="max-h-[100px] bg-white dark:bg-slate-900 p-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex justify-between">
+        <img class="" :src="$page.props.app.setting.full_path_banner" alt="">
     </div>
+    <section v-else class=" bg-[#294A70]">
+        <div class="mx-auto max-w-7xl p-4 md:py-6">
+            <div class="flex flex-col md:flex-row gap-4 md:justify-between">
+                <div class="flex flex-col md:flex-row gap-4 items-center">
+                    <ApplicationLogo class="block h-16" />
+                    <div class="text-slate-200 flex flex-col text-center md:text-left">
+                        <Link :href="route('index')" class="text-xl md:text-3xl font-bold">{{ $page.props.app.setting.name }}</Link>
+                        <p class="text-xs md:text-sm">
+                            {{ $page.props.app.setting.tagline }}
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-2 md:gap-4 px-2 text-slate-200">
+                    <div class="flex justify-start items-center gap-2">
+                        <DevicePhoneMobileIcon class="w-4 md:w-6 h-4 md:h-6" />
+                        <div class="flex md:flex-col gap-2 md:gap-0 items-center md:items-start">
+                            <h6 class="text-md font-semibold">{{ lang().label.call_us }}</h6>
+                            <span class="text-sm">{{ $page.props.app.setting.contact_no }}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                        <EnvelopeOpenIcon class="w-4 md:w-6 h-4 md:h-6" />
+                        <div class="flex md:flex-col gap-2 md:gap-0 items-center md:items-start">
+                            <h6 class="text-md font-semibold">{{ lang().label.email_us }}</h6>
+                            <span>{{ $page.props.app.setting.email }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Banner-->
 </template>

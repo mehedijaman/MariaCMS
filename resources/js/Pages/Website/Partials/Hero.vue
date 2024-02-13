@@ -5,7 +5,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <section class="bg-white dark:bg-gray-900 w-full mx-auto max-w-screen-xl px-4 sm:py-8 lg:px-6 my-4">
+    <!-- <section class="bg-white dark:bg-gray-900 w-full mx-auto max-w-screen-xl px-4 sm:py-8 lg:px-6 my-4">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h3
@@ -23,5 +23,60 @@ const props = defineProps({
                 <img :src="props.hero.full_path_image" class="shadow-lg" alt="Hero Image">
             </div>
         </div>
-    </section>
+    </section> -->
+
+    <!-- Fascilities -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="flex gap-3  justify-center mx-auto">
+                <span class="w-10 h-0.5 bg-red-600 mt-4"></span>
+                <p class="text-2xl font-semibold">OUR</p>
+            </div>
+            <h1 class="text-center text-2xl md:text-3xl font-bold py-4 text-gray-900">
+                FASCI <span class="text-red-700">LITIES</span>
+            </h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <img class="w-full" src="https://picsum.photos/seed/picsum/580/520" alt="">
+                <div class="">
+                    <p class="text-justify text-gray-600 leading-8">
+                        সিটি পলিটেকনিক ইনস্টিটিউ এর প্রতিষ্ঠাকাল থেকে মানসম্মত সুশিক্ষা বিস্তারে কাজ করে আসছে। অত্র
+                        ইনস্টিটিউটের একজন শিক্ষার্থীকে তাত্ত্বিক ও ব্যবহারিক শিক্ষার পাশাপাশি তার ক্যারিয়ার ও
+                        যুগোপযোগী
+                        করে গড়ে তোলার জন্য যত্নসহকারে পরিচর্যা ও পর্যবেক্ষন করা হয়। শুধুমাত্র সনদ দেওয়াই নয় বরং
+                        শিক্ষার্থীকে একজন সুন্দর মানুষ গড়ার কারিগর হিসেবে কাজ করছে সিটি পলিটেকনিক ইনস্টিটিউট। সিটি
+                        পলিটেকনিক ইনস্টিটিউট দক্ষিন তথা দক্ষিন পশ্চিমাঞ্চলের সর্বপ্রথম ও সেরা এবং দেশের শীর্ষস্থানীয়
+                        একটি বেসরকারি পলিটেকনিক ইনস্টিটিউট।
+                    </p>
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility1.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility2.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility3.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility4.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility5.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                        <div class="text-center  pb-4">
+                            <img class="h-24 w-auto items-center justify-center mx-auto" src="/images/facility6.png" alt="">
+                            <h4 class="text-gray-800 font-bold md:text-xl">Higher Education</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Fascilities -->
 </template>

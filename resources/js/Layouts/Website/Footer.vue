@@ -3,14 +3,14 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 
-const backgroundColor = usePage().props.app.setting.footer_background_color?usePage().props.app.setting.footer_background_color : 'grey';
-const textColor = usePage().props.app.setting.footer_text_color?usePage().props.app.setting.footer_text_color : '#f9f9f9';
+const backgroundColor = usePage().props.app.setting.footer_background_color ? usePage().props.app.setting.footer_background_color : 'grey';
+const textColor = usePage().props.app.setting.footer_text_color ? usePage().props.app.setting.footer_text_color : '#f9f9f9';
 
 const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
 const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
 </script>
 <template>
-    <footer :style="{ backgroundColor: backgroundColor, color: textColor }" class="p-4 border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
+    <!-- <footer :style="{ backgroundColor: backgroundColor, color: textColor }" class="p-4 border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl text-center">
 
             <Link :href="route('index')" class="shrink-0 flex w-full justify-center items-center space-x-4">
@@ -64,5 +64,269 @@ const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
                 Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
                     href="https://gtechservice.net">gTechService</a></span>
         </div>
-    </footer>
+    </footer> -->
+    <!-- Footer -->
+    <div>
+        <div class="py-6 bg-[#294A70] border-t-4 border-[#ffab1f]">
+            <div class="mx-auto max-w-7xl">
+                <div class="md:grid lg:grid-cols-4 md:grid-cols-2 gap-4 text-white">
+                    <div class="p-2 border-r border-dashed">
+                        <h1 class="font-semibold text-base">সিটি পলিটেকনিক ইনস্টিটিউট খুলনা</h1>
+                        <div class="pt-4">
+                            <ul>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        ১০৩ বিআইডিসি রোড, খালিশপুর, খুলনা
+                                    </a></li>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        01750154334, 0171101862</a></li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        cpikhulna2003@gmail.com</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        www.cpik.ac.bd</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-2 border-r border-dashed">
+                        <h1 class="font-semibold text-base">নিউ সিটি নার্সিং ইনস্টিটিউট খুলনা</h1>
+                        <div class="pt-4">
+                            <ul>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        বাংলাদেশ নার্সিং এন্ড
+                                    </a></li>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        মিডওয়াইফারি কাউন্সিল(BNMC) অনুমোদিত</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        ডিপ্লোমা ইন নার্সিং সায়েন্স এন্ড মিডওয়াইফারি</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        ডিপ্লোমা ইন নার্সিং সায়েন্স এন্ড মিডওয়াইফারি</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        www.ncnik.ac.bd</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-2 border-r border-dashed">
+                        <h1 class="font-semibold text-base">গুরুত্বপূর্ণ লিঙ্ক</h1>
+                        <div class="pt-4">
+                            <ul>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        বাংলাদেশ কারিগরি শিক্ষা বোর্ড
+                                    </a></li>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        কারিগরি শিক্ষা অধিদপ্তর</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        শিক্ষা মন্ত্রনালয়</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        পরিচালকের কার্যালয়,খুলনা (RDO)</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        অনলাইন পুলিশ ক্লিয়ারেন্স</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        জন্ম ও মৃত্যু নিবন্ধন</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        আরও দেখুন...</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-2">
+                        <h1 class="font-semibold text-base">শিক্ষাবোর্ডের ফলাফল</h1>
+                        <div class="pt-4">
+                            <ul>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        ডিপ্লোমা ইন ইঞ্জিনিয়ারিং রেজাল্ট
+                                    </a></li>
+                                <li class="pb-2"><a href="#"
+                                        class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        শিক্ষাবোর্ডের ফলাফল-টেলিটক</a></li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        শিক্ষাবোর্ডের ফলাফল-ওয়েব</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        জাতীয় বিশ্ববিদ্যালয়ের ফলাফল</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        প্রাইমারি সমাপনী পরীক্ষার ফলাফল </a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        উন্মুক্ত বিশ্ববিদ্যালয়ের ফলাফল</a>
+                                </li>
+                                <li class="pb-2">
+                                    <a href="#" class="flex justify-start items-center text-gray-200 text-base gap-2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                        </svg>
+                                        এনটিআরসিএ পরীক্ষার ফলাফল</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--start coppyright section-->
+        <div class="bg-[#15305B] py-8">
+            <div class="mx-auto max-w-7xl text-center ">
+                <ul class="flex gap-2 justify-center pb-2">
+                    <li class="px-4 py-2"><a class="text-gray-300 hover:text-gray-500 text-base" href="#">Home</a>
+                    </li>
+                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
+                            href="#">Gallery</a></li>
+                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
+                            href="#">Contact</a></li>
+                    <li class=" py-2"><a class="border-l px-2 text-gray-300 hover:text-gray-500 text-base"
+                            href="#">Sitemap</a></li>
+                </ul>
+                <h4 class="text-gray-300 text-lg">কপিরাইট©২০২২ সিটি পলিটেকনিক ইনস্টিটিউট খুলনা</h4>
+            </div>
+        </div>
+
+    </div>
+    <!-- /Footer -->
 </template>

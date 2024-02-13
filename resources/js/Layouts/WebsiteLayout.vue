@@ -19,18 +19,16 @@ onMounted(() => {
 </script>
 
 <template>
-
-    <div>
+    <!-- <div>
         <Head :title="title" />
         <Toast :flash="$page.props.flash" />
         <div
             class="flex relative w-full min-h-screen dark:bg-slate-900 text-slate-900 dark:text-slate-200 overflow-x-hidden"
         >
             <div class="w-full">
-                <TopBar v-if="$page.props.app.setting.topbar_enabled"></TopBar>
+                <TopBar ></TopBar>
                 <Banner></Banner>
                 <Navbar />
-                <!-- Page Content -->
                 <main class="text-slate-600 dark:text-slate-200">
                     <slot />
                     <BackToTop />
@@ -38,5 +36,16 @@ onMounted(() => {
                 <Footer />
             </div>
         </div>
+    </div> -->
+
+    <Head :title="title" />
+    <Toast :flash="$page.props.flash" />
+    <TopBar v-if="$page.props.app.setting.topbar_enabled"></TopBar>
+    <Banner></Banner>
+    <Navbar />
+    <div class="bg-gray-700">
+        <slot></slot>
     </div>
+    <BackToTop></BackToTop>
+    <Footer></Footer>
 </template>
