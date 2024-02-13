@@ -1,6 +1,7 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
 import BackToTop from "@/Components/Website/BackToTop.vue";
+import ChatButton from "@/Components/Website/ChatButton.vue";
 import Toast from "@/Components/Toast.vue";
 import TopBar from "@/Layouts/Website/TopBar.vue";
 import Banner from "@/Layouts/Website/Banner.vue";
@@ -46,6 +47,7 @@ onMounted(() => {
     <div class="bg-gray-700">
         <slot></slot>
     </div>
+    <ChatButton></ChatButton>
     <BackToTop></BackToTop>
     <Footer></Footer>
 </template>
