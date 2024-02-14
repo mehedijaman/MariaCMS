@@ -22,6 +22,8 @@ class SettingSeeder extends Seeder
             'short_name' => 'mCMS',
             'tagline' => 'Elevate Your Content Experience with Laravel-Powered Simplicity and Power',
             'Description' => 'Introducing MariaCMS, a cutting-edge content management system meticulously crafted with the power of Laravel, Vue.js, Inertia, and Tailwind CSS. Born from the vision of seamlessly blending robust functionality with an intuitive user experience, MariaCMS stands as a formidable alternative to traditional content management solutions.',
+
+            'topbar_enabled' => 1,
         ]);
     }
 }
