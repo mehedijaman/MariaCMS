@@ -7,6 +7,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import DangerButton from '@/Components/DangerButton.vue';
 import TextInput from "@/Components/TextInput.vue";
+import SelectInput from "@/Components/SelectInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
@@ -37,21 +38,37 @@ const form = useForm({
     short_name: props.setting?.short_name,
     tagline: props.setting?.tagline,
     description: props.setting?.description,
-    header: props.setting?.header,
-    footer: props.setting?.footer,
-    topbar_enabled: props.setting?.topbar_enabled,
-    banner_enabled: props.setting?.banner_enabled,
-    slider_enabled: props.setting?.slider_enabled,
-    hero_enabled: props.setting?.hero_enabled,
-    homepage_enabled: props.setting?.homepage_enabled,
-    news_enabled: props.setting?.news_enabled,
-    event_enabled: props.setting?.event_enabled,
-    faq_enabled: props.setting?.faq_enabled,
-    cta_enabled: props.setting?.cta_enabled,
-    feature_enabled: props.setting?.feature_enabled,
-    blog_enabled: props.setting?.blog_enabled,
-    testimonial_enabled: props.setting?.testimonial_enabled,
-    featured_product_enabled: props.setting?.featured_product_enabled,
+    header_message: props.setting?.header_message,
+    footer_message: props.setting?.footer_message,
+
+    is_topbar: props.setting.is_topbar ? true : false,
+    is_header_message: props.setting.is_header_message ? true : false,
+    is_footer_message: props.setting.is_footer_message ? true : false,
+    is_search: props.setting.is_search ? true : false,
+    is_language: props.setting.is_language ? true : false,
+    is_dark_mode: props.setting.is_dark_mode ? true : false,
+    is_banner: props.setting.is_banner ? true : false,
+    is_logo: props.setting.is_logo ? true : false,
+    is_name: props.setting.is_name ? true : false,
+    is_tagline: props.setting.is_tagline ? true : false,
+    is_phone: props.setting.is_phone ? true : false,
+    is_email: props.setting.is_email ? true : false,
+    is_slider: props.setting.is_slider ? true : false,
+    is_hero: props.setting.is_hero ? true : false,
+    is_fascility: props.setting.is_fascility ? true : false,
+    is_homepage: props.setting.is_homepage ? true : false,
+    is_news: props.setting.is_news ? true : false,
+    is_event: props.setting.is_event ? true : false,
+    is_faq: props.setting.is_faq ? true : false,
+    is_feature: props.setting.is_feature ? true : false,
+    is_cta: props.setting.is_cta ? true : false,
+    is_blog: props.setting.is_blog ? true : false,
+    is_testimonial: props.setting.is_testimonial ? true : false,
+    is_product: props.setting.is_product ? true : false,
+    is_product_category: props.setting.is_product_category ? true : false,
+    is_clients: props.setting.is_clients ? true : false,
+    is_chat: props.setting.is_chat ? true : false,
+
     homepage: props.setting?.homepage,
     home_slider: props.setting?.home_slider,
     news_category: props.setting?.news_category,
@@ -111,6 +128,17 @@ function resetColors() {
     form.footer_background_color = '#FFFFFF';
     form.footer_text_color = '#191514';
 }
+
+const status = [
+    {
+        label: "Enabled",
+        value: true,
+    },
+    {
+        label: "Disabled",
+        value: false,
+    }
+];
 </script>
 
 <template>
@@ -199,12 +227,14 @@ function resetColors() {
                                     <InputLabel for="banner" value="Banner" />
                                     <ImageInput source="banner" v-model="form.banner"
                                         :image="props.setting.full_path_banner" tooltip="Click to select/change banner"
-                                        class="mt-1 block w-full h-24" @fileChange="fileChange" />
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-24"
+                                        @fileChange="fileChange" />
                                     <InputError :message="form.errors.banner" class="mt-2" />
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="name" :value="lang().label.name" />
-                                    <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full"
+                                    <TextInput id="name" v-model="form.name" type="text"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         :placeholder="lang().placeholder.name" :error="form.errors.name" />
                                     <InputError :message="form.errors.name" class="mt-2" />
                                 </div>
@@ -212,14 +242,15 @@ function resetColors() {
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="short_name" :value="lang().label.short_name" />
                                     <TextInput id="short_name" v-model="form.short_name" type="text"
-                                        class="mt-1 block w-full" :placeholder="lang().placeholder.short_name"
-                                        :error="form.errors.short_name" />
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        :placeholder="lang().placeholder.short_name" :error="form.errors.short_name" />
                                     <InputError :message="form.errors.short_name" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <InputLabel for="tagline" :value="lang().label.tagline" />
-                                    <TextInput id="tagline" v-model="form.tagline" type="text" class="mt-1 block w-full"
+                                    <TextInput id="tagline" v-model="form.tagline" type="text"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         :placeholder="lang().placeholder.tagline" :error="form.errors.tagline" />
                                     <InputError :message="form.errors.tagline" class="mt-2" />
                                 </div>
@@ -227,23 +258,25 @@ function resetColors() {
                                 <div class="col-span-6 sm:col-span-6">
                                     <InputLabel for="description" :value="lang().label.description" />
                                     <TextAreaInput id="description" rows="4" v-model="form.description"
-                                        class="mt-1 block w-full" :placeholder="lang().placeholder.description"
-                                        :error="form.errors.description" />
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        :placeholder="lang().placeholder.description" :error="form.errors.description" />
                                     <InputError :message="form.errors.description" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="header" :value="lang().label.header" />
-                                    <TextAreaInput id="header" v-model="form.header" type="text" class="mt-1 block w-full"
-                                        :placeholder="lang().placeholder.header" :error="form.errors.header" />
-                                    <InputError :message="form.errors.header" class="mt-2" />
+                                    <InputLabel for="header_message" :value="lang().label.header" />
+                                    <TextAreaInput id="header_message" v-model="form.header_message" type="text"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        :placeholder="lang().placeholder.header_message" :error="form.errors.header_message" />
+                                    <InputError :message="form.errors.header_message" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="footer" :value="lang().label.footer" />
-                                    <TextAreaInput id="footer" v-model="form.footer" type="text" class="mt-1 block w-full"
-                                        :placeholder="lang().placeholder.footer" :error="form.errors.footer" />
-                                    <InputError :message="form.errors.footer" class="mt-2" />
+                                    <InputLabel for="footer_message" :value="lang().label.footer" />
+                                    <TextAreaInput id="footer_message" v-model="form.footer_message" type="text"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        :placeholder="lang().placeholder.footer_message" :error="form.errors.footer_message" />
+                                    <InputError :message="form.errors.footer_message" class="mt-2" />
                                 </div>
                             </template>
                             <template #actions>
@@ -263,178 +296,414 @@ function resetColors() {
                         aria-labelledby="homapage-settings-tab">
                         <FormSection>
                             <template #form class="grid grid-cols-6 gap-6 ">
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="homepage_enabled" :value="lang().label.homepage" />
-                                    <select v-model="form.homepage_enabled" id="homepage_enabled" name="homepage_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
-                                    <InputError :message="form.errors.homepage_enabled" class="mt-2" />
-                                </div>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_homepage" class="sr-only peer"
+                                                id="is_homepage">
+                                            <div
+                                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                            </div>
+                                            <InputLabel for="homepage" :value="lang().label.homepage" />
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="homepage" :value="lang().label.homepage" />
-                                    <select v-model="form.homepage" id="homepage" name="homepage" class="block w-full">
-                                        <option :value="null">Default</option>
-                                        <option v-for="page in props.pages" :key="page.id" :value="page.id">
-                                            {{ page.name }}
-                                        </option>
-                                    </select>
+                                        </label>
+                                        <select v-model="form.homepage" id="homepage" name="homepage"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option :value="null">Default</option>
+                                            <option v-for="page in props.pages" :key="page.id" :value="page.id">
+                                                {{ page.name }}
+                                            </option>
+                                        </select>
+                                    </div>
                                     <InputError :message="form.errors.homepage" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="home_slider" :value="lang().label.home_slider" />
-                                    <select v-model="form.home_slider" id="home_slider" name="home_slider"
-                                        class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="slider in props.sliders" :key="slider.id" :value="slider.id">
-                                            {{ slider.name }}
-                                        </option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_slider" class="sr-only peer"
+                                                id="is_slider">
+                                            <div
+                                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                            </div>
+
+                                            <InputLabel for="home_slider" :value="lang().label.slider" />
+                                        </label>
+                                        <select v-model="form.home_slider" id="home_slider" name="home_slider"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option :value="null">Default</option>
+                                            <option v-for="slider in props.sliders" :key="slider.id" :value="slider.id">
+                                                {{ slider.name }}
+                                            </option>
+                                        </select>
+                                    </div>
                                     <InputError :message="form.errors.home_slider" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="news_category" :value="lang().label.news_category" />
-                                    <select v-model="form.news_category" id="news_category" name="news_category"
-                                        class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="category in props.categories" :key="category.id"
-                                            :value="category.id">
-                                            {{ category.name }}
-                                        </option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_news" class="sr-only peer"
+                                                id="is_news">
+                                            <div
+                                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                            </div>
+
+                                            <InputLabel for="is_news" :value="lang().label.news" />
+                                        </label>
+                                        <select v-model="form.news_category" id="news_category" name="news_category"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option v-for="category in props.categories" :key="category.id"
+                                                :value="category.id">
+                                                {{ category.name }}
+                                            </option>
+                                        </select>
+                                    </div>
                                     <InputError :message="form.errors.news_category" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="event_category" :value="lang().label.event_category" />
-                                    <select v-model="form.event_category" id="event_category" name="event_category"
-                                        class="block w-full">
-                                        <option :value="null">None</option>
-                                        <option v-for="category in props.categories" :key="category.id"
-                                            :value="category.id">
-                                            {{ category.name }}
-                                        </option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_event" class="sr-only peer"
+                                                id="is_event">
+                                            <div
+                                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                            </div>
+                                            <InputLabel for="is_event" :value="lang().label.event" />
+
+                                        </label>
+                                        <select v-model="form.event_category" id="event_category" name="event_category"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option v-for="category in props.categories" :key="category.id"
+                                                :value="category.id">
+                                                {{ category.name }}
+                                            </option>
+                                        </select>
+                                    </div>
                                     <InputError :message="form.errors.event_category" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="topbar" :value="lang().label.topbar" />
-                                    <select v-model="form.topbar_enabled" id="topbar" name="topbar_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_topbar" class="sr-only peer"
+                                            id="is_topbar">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_topbar" :value="lang().label.topbar" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.topbar" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="banner" :value="lang().label.banner" />
-                                    <select v-model="form.banner_enabled" id="banner" name="banner_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_header_message" class="sr-only peer"
+                                            id="is_header_message">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_header_message" :value="lang().label.header_message" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_header_message" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_footer_message" class="sr-only peer"
+                                            id="is_footer_message">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_footer_message" :value="lang().label.footer_message" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_header_message" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_phone" class="sr-only peer"
+                                            id="is_phone">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_phone" :value="lang().label.phone" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_phone" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_email" class="sr-only peer"
+                                            id="is_email">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_email" :value="lang().label.email" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_email" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_name" class="sr-only peer"
+                                            id="is_name">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_name" :value="lang().label.name" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_name" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_logo" class="sr-only peer"
+                                            id="is_logo">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_logo" :value="lang().label.logo" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_logo" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_tagline" class="sr-only peer"
+                                            id="is_tagline">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_tagline" :value="lang().label.tagline" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_tagline" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_banner" class="sr-only peer"
+                                            id="is_banner">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_banner" :value="lang().label.banner" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.banner" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="slider" :value="lang().label.slider" />
-                                    <select v-model="form.slider_enabled" id="slider" name="slider_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
-                                    <InputError :message="form.errors.slider" class="mt-2" />
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_search" class="sr-only peer"
+                                            id="is_search">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_search" :value="lang().label.search" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_search" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="hero" :value="lang().label.hero" />
-                                    <select v-model="form.hero_enabled" id="hero" name="hero_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_language" class="sr-only peer"
+                                            id="is_language">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_language" :value="lang().label.language" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_language" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_dark_mode" class="sr-only peer"
+                                            id="is_dark_mode">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_dark_mode" :value="lang().label.dark_mode" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_dark_mode" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_hero" class="sr-only peer"
+                                            id="is_hero">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_hero" :value="lang().label.hero" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.hero" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="news" :value="lang().label.news" />
-                                    <select v-model="form.news_enabled" id="news" name="news_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
-                                    <InputError :message="form.errors.news" class="mt-2" />
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_fascility" class="sr-only peer"
+                                            id="is_fascility">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_fascility" :value="lang().label.fascility" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_fascility" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="event" :value="lang().label.event" />
-                                    <select v-model="form.event_enabled" id="event" name="event_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
-                                    <InputError :message="form.errors.event" class="mt-2" />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="faq" :value="lang().label.faq" />
-                                    <select v-model="form.faq_enabled" id="faq" name="faq_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_faq" class="sr-only peer"
+                                            id="is_faq">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_faq" :value="lang().label.faq" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.faq" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="cta" :value="lang().label.cta" />
-                                    <select v-model="form.cta_enabled" id="cta" name="cta_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_cta" class="sr-only peer"
+                                            id="is_cta">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_cta" :value="lang().label.cta" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.cta" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="feature" :value="lang().label.feature" />
-                                    <select v-model="form.feature_enabled" id="feature" name="feature_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_feature" class="sr-only peer"
+                                            id="is_feature">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_feature" :value="lang().label.feature" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.feature" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="blog" :value="lang().label.blog" />
-                                    <select v-model="form.blog_enabled" id="blog" name="blog_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_blog" class="sr-only peer"
+                                            id="is_blog">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_blog" :value="lang().label.blog" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.blog" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="testimonial" :value="lang().label.testimonial" />
-                                    <select v-model="form.testimonial_enabled" id="testimonial" name="testimonial_enabled"
-                                        class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_testimonial" class="sr-only peer"
+                                            id="is_testimonial">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_testimonial" :value="lang().label.testimonial" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.testimonial" class="mt-2" />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <InputLabel for="featured_product" :value="lang().label.featured_product" />
-                                    <select v-model="form.featured_product_enabled" id="featured_product"
-                                        name="featured_product_enabled" class="block w-full">
-                                        <option :value="0">Disabled</option>
-                                        <option :value="1">Enabled</option>
-                                    </select>
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_product" class="sr-only peer"
+                                            id="is_product">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_product" :value="lang().label.featured_product" />
+                                        </label>
+                                    </div>
                                     <InputError :message="form.errors.featured_product" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_product_category" class="sr-only peer"
+                                            id="is_product_category">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_product_category" :value="lang().label.featured_product_category" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_product_category" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_clients" class="sr-only peer"
+                                            id="is_clients">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_clients" :value="lang().label.clients" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.clients" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 flex flex-col">
+                                    <div class="flex items-center gap-4">
+                                        <label class="relative inline-flex gap-2 items-center cursor-pointer">
+                                            <input type="checkbox" v-model="form.is_chat" class="sr-only peer"
+                                            id="is_chat">
+                                            <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        </div>
+                                        <InputLabel for="is_chat" :value="lang().label.chat" />
+                                        </label>
+                                    </div>
+                                    <InputError :message="form.errors.is_chat" class="mt-2" />
                                 </div>
                             </template>
                             <template #actions>
@@ -455,62 +724,71 @@ function resetColors() {
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="address" :value="lang().label.address" />
-                                <TextInput id="address" v-model="form.address" type="text" class="mt-1 block w-full"
+                                <TextInput id="address" v-model="form.address" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.address" :error="form.errors.address" />
                                 <InputError :message="form.errors.address" class="mt-2" />
                             </div>
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="google_map" :value="lang().label.google_map" />
-                                <TextInput id="google_map" v-model="form.google_map" type="text" class="mt-1 block w-full"
+                                <TextInput id="google_map" v-model="form.google_map" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.google_map" :error="form.errors.google_map" />
                                 <InputError :message="form.errors.google_map" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="contact_no" :value="lang().label.contact_no" />
-                                <TextInput id="contact_no" v-model="form.contact_no" type="text" class="mt-1 block w-full"
+                                <TextInput id="contact_no" v-model="form.contact_no" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.contact_no" :error="form.errors.contact_no" />
                                 <InputError :message="form.errors.contact_no" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="email" :value="lang().label.email" />
-                                <TextInput id="email" v-model="form.email" type="text" class="mt-1 block w-full"
+                                <TextInput id="email" v-model="form.email" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.email" :error="form.errors.email" />
                                 <InputError :message="form.errors.email" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="facebook" :value="lang().label.facebook" />
-                                <TextInput id="facebook" v-model="form.facebook" type="text" class="mt-1 block w-full"
+                                <TextInput id="facebook" v-model="form.facebook" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.facebook" :error="form.errors.facebook" />
                                 <InputError :message="form.errors.facebook" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="twitter" :value="lang().label.twitter" />
-                                <TextInput id="twitter" v-model="form.twitter" type="text" class="mt-1 block w-full"
+                                <TextInput id="twitter" v-model="form.twitter" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.twitter" :error="form.errors.twitter" />
                                 <InputError :message="form.errors.twitter" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="instagram" :value="lang().label.instagram" />
-                                <TextInput id="instagram" v-model="form.instagram" type="text" class="mt-1 block w-full"
+                                <TextInput id="instagram" v-model="form.instagram" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.instagram" :error="form.errors.instagram" />
                                 <InputError :message="form.errors.instagram" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="youtube" :value="lang().label.youtube" />
-                                <TextInput id="youtube" v-model="form.youtube" type="text" class="mt-1 block w-full"
+                                <TextInput id="youtube" v-model="form.youtube" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.youtube" :error="form.errors.youtube" />
                                 <InputError :message="form.errors.youtube" class="mt-2" />
                             </div>
 
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="whatsapp" :value="lang().label.whatsapp" />
-                                <TextInput id="whatsapp" v-model="form.whatsapp" type="text" class="mt-1 block w-full"
+                                <TextInput id="whatsapp" v-model="form.whatsapp" type="text"
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.whatsapp" :error="form.errors.whatsapp" />
                                 <InputError :message="form.errors.whatsapp" class="mt-2" />
                             </div>
@@ -530,8 +808,7 @@ function resetColors() {
                     </div>
                     <div class="hidden p-4 rounded-sm bg-white dark:bg-gray-800" id="color-setting" role="tabpanel"
                         aria-labelledby="color-setting-tab">
-                        <PrimaryButton
-                            @click="resetColors">
+                        <PrimaryButton @click="resetColors">
                             {{ lang().button.reset }}
                         </PrimaryButton>
 
@@ -539,70 +816,80 @@ function resetColors() {
                             <div class="">
                                 <InputLabel for="topbar_background_color" value="Topbar Background Color" />
                                 <TextInput id="topbar_background_color" v-model="form.topbar_background_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.topbar_background_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.topbar_background_color" />
                                 <InputError :message="form.errors.topbar_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="topbar_text_color" value="Topbar Text Color" />
                                 <TextInput id="topbar_text_color" v-model="form.topbar_text_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.topbar_text_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.topbar_text_color" />
                                 <InputError :message="form.errors.topbar_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="banner_background_color" value="Banner Background Color" />
                                 <TextInput id="banner_background_color" v-model="form.banner_background_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.banner_background_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.banner_background_color" />
                                 <InputError :message="form.errors.banner_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="banner_text_color" value="Banner Text Color" />
                                 <TextInput id="banner_text_color" v-model="form.banner_text_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.banner_text_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.banner_text_color" />
                                 <InputError :message="form.errors.banner_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="navbar_background_color" value="navbar Background Color" />
                                 <TextInput id="navbar_background_color" v-model="form.navbar_background_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.navbar_background_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.navbar_background_color" />
                                 <InputError :message="form.errors.navbar_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="navbar_text_color" value="navbar Text Color" />
                                 <TextInput id="navbar_text_color" v-model="form.navbar_text_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.navbar_text_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.navbar_text_color" />
                                 <InputError :message="form.errors.navbar_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="body_background_color" value="body Background Color" />
                                 <TextInput id="body_background_color" v-model="form.body_background_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.body_background_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.body_background_color" />
                                 <InputError :message="form.errors.body_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="body_text_color" value="body Text Color" />
                                 <TextInput id="body_text_color" v-model="form.body_text_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.body_text_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.body_text_color" />
                                 <InputError :message="form.errors.body_text_color" class="mt-2" />
                             </div>
 
                             <div class="">
                                 <InputLabel for="footer_background_color" value="footer Background Color" />
                                 <TextInput id="footer_background_color" v-model="form.footer_background_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.footer_background_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.footer_background_color" />
                                 <InputError :message="form.errors.footer_background_color" class="mt-2" />
                             </div>
 
                             <div>
                                 <InputLabel for="footer_text_color" value="footer Text Color" />
                                 <TextInput id="footer_text_color" v-model="form.footer_text_color" type="color"
-                                    class="mt-1 block w-full" :error="form.errors.footer_text_color" />
+                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :error="form.errors.footer_text_color" />
                                 <InputError :message="form.errors.footer_text_color" class="mt-2" />
                             </div>
                         </div>
@@ -624,8 +911,8 @@ function resetColors() {
                         <div class="col-span-6 sm:col-span-3">
                             <InputLabel for="additional_css" :value="lang().label.additional_css" />
                             <TextAreaInput id="additional_css" v-model="form.additional_css" type="text"
-                                class="mt-1 block w-full" :placeholder="lang().placeholder.additional_css"
-                                :error="form.errors.additional_css" />
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                :placeholder="lang().placeholder.additional_css" :error="form.errors.additional_css" />
                             <InputError :message="form.errors.additional_css" class="mt-2" />
                         </div>
 

@@ -186,7 +186,10 @@ return [
 
         'product' => 'Product',
         'products' => 'Products',
-        'featured_product' => 'Featured Products',
+        'featured_product' => 'Featured Product',
+        'featured_products' => 'Featured Products',
+        'featured_product_category' => 'Featured Product Category',
+        'featured_product_categories' => 'Featured Product Categories',
 
         'product_categories' => 'Product Categories',
         'product_category' => 'Product Category',
@@ -230,6 +233,8 @@ return [
         'testimonial' => 'Testimonial',
         'header' => 'Header',
         'footer' => 'Footer',
+        'header_message' => 'Header Message',
+        'footer_message' => 'Footer Message',
         'address' => 'Address',
         'google_map' => 'Google Map',
         'contact_no' => 'Contact No',
@@ -270,6 +275,12 @@ return [
         'news_category' => 'News Category',
         'event_category' => 'Event Category',
         'home_slider' => 'Home Slider',
+        'chat' => 'Chat',
+        'fascility' => 'Fascility',
+        'dark_mode' => 'Dark Mode',
+        'search' => 'Search',
+        'language' => 'Language',
+        'logo' => 'Logo',
     ],
     'placeholder' => [
         'email' => 'email@email.com',
