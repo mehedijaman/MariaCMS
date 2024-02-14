@@ -119,7 +119,7 @@ class OurClientController extends Controller
 
     public function trash()
     {
-        $clients = OurClient::onlyTrashed()->get();
+        $clients = OurClient::onlyTrashed()->with('media')->get();
 
         return Inertia::render('OurClient/Trash', [
             'title' => __('app.label.clients'),

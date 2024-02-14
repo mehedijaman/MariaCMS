@@ -92,22 +92,21 @@ const fileChange = (value) => {
                             </div>
 
                             <div class="space-y-1">
-                                <InputLabel for="status" :value="lang().label.status" />
-                                <select v-model="formData.status" id="status" name="status" class="block w-full">
-                                    <!-- Iterate over statuss and create options -->
-                                    <option value="1">Published</option>
-                                    <option value="0">Unpublished</option>
-                                    <option :value="null">Draft</option>
-                                </select>
-                                <InputError :message="form.errors.status" />
-                            </div>
-
-                            <div class="space-y-1">
                                 <InputLabel for="slug" :value="lang().label.description" />
                                 <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
                                     autocomplete="description" :placeholder="lang().placeholder.description"
                                     :error="form.errors.desctiption" />
                                 <InputError :message="form.errors.description" />
+                            </div>
+
+                            <div class="space-y-1">
+                                <InputLabel for="status" :value="lang().label.status" />
+                                <select v-model="formData.status" id="status" name="status" class="block w-full">
+                                    <option value="1">Published</option>
+                                    <option value="0">Unpublished</option>
+                                    <option :value="null">Draft</option>
+                                </select>
+                                <InputError :message="form.errors.status" />
                             </div>
                         </div>
                     </div>

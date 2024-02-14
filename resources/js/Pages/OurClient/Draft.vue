@@ -45,11 +45,10 @@ const headers = [
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
 
-        <template #expand="item">
-            <div>
-                <strong>Items: </strong> {{ item.items }}
-            </div>
+        <template #item-media="item">
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="client Image" class="w-18 h-14 rounded-sm">
         </template>
+
         <template #empty-message>
             <EmptyAnimation></EmptyAnimation>
         </template>
