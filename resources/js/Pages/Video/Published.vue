@@ -20,6 +20,7 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
+    { text: "Thumbnail", value: "thumbnail", sortable: true },
     { text: "Name", value: "name", sortable: true },
     { text: "URL", value: "url", sortable: true },
     { text: "Action", value: "actions" },
@@ -46,6 +47,10 @@ const headers = [
     <EasyDataTable class="mt-2" :rows-per-page="rowsPerPage" show-index alternating border-cell buttons-pagination
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
+
+        <template #item-thumbnail="item">
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Video Thumbnail" class="w-10 h-10 rounded-sm">
+        </template>
 
         <template #empty-message>
             <EmptyAnimation></EmptyAnimation>

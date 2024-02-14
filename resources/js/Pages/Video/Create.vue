@@ -22,7 +22,7 @@ const formData = reactive({
     name: null,
     url: null,
     description: null,
-    is_featured: null,
+    is_featured: 0,
     status: 1,
 });
 
@@ -89,7 +89,6 @@ const fileChange = (value) => {
                                 <InputLabel for="is_featured" :value="lang().label.is_featured" />
                                 <select v-model="formData.is_featured" id="is_featured" name="is_featured"
                                     class="block w-full">
-                                    <!-- Iterate over is_featured and create options -->
                                     <option value="1">Featured</option>
                                     <option value="0">Not Featured</option>
                                 </select>
@@ -101,7 +100,7 @@ const fileChange = (value) => {
                             <div class="space-y-1">
                                 <InputLabel for="name" :value="lang().label.name" />
                                 <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
-                                    autocomplete="name" :placeholder="lang().placeholder.gallery_name"
+                                    autocomplete="name" :placeholder="lang().placeholder.name"
                                     :error="form.errors.name" />
                                 <InputError :message="form.errors.name" />
                             </div>

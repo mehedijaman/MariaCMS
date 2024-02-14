@@ -121,7 +121,7 @@ class VideoController extends Controller
 
     public function trash()
     {
-        $videos = Video::onlyTrashed()->get();
+        $videos = Video::onlyTrashed()->with('media')->get();
 
         return Inertia::render('Video/Trash', [
             'title' => __('app.label.videos'),
