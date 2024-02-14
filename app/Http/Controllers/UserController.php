@@ -29,8 +29,8 @@ class UserController extends Controller
     {
         $users = User::query();
         if ($request->has('search')) {
-            $users->where('name', 'LIKE', '%'.$request->search.'%');
-            $users->orWhere('email', 'LIKE', '%'.$request->search.'%');
+            $users->where('name', 'LIKE', '%' . $request->search . '%');
+            $users->orWhere('email', 'LIKE', '%' . $request->search . '%');
         }
         if ($request->has(['field', 'order'])) {
             $users->orderBy($request->field, $request->order);
@@ -84,7 +84,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
 
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.user')]).$th->getMessage());
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.user')]) . $th->getMessage());
         }
     }
 
@@ -123,7 +123,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
 
-            return back()->with('error', __('app.label.updated_error', ['name' => $user->name]).$th->getMessage());
+            return back()->with('error', __('app.label.updated_error', ['name' => $user->name]) . $th->getMessage());
         }
     }
 
@@ -137,7 +137,7 @@ class UserController extends Controller
 
             return back()->with('success', __('app.label.deleted_successfully', ['name' => $user->name]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $user->name]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $user->name]) . $th->getMessage());
         }
     }
 
@@ -147,9 +147,9 @@ class UserController extends Controller
             $users = User::whereIn('id', $request->id);
             $users->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.user')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.user')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.user')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.user')]) . $th->getMessage());
         }
     }
 }

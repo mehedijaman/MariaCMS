@@ -222,10 +222,6 @@ const select = () => {
                                             {{ user.name }}
                                         </p>
                                         <CheckBadgeIcon
-                                            v-tooltip="
-                                                'Verified at ' +
-                                                user.email_verified_at
-                                            "
                                             v-if="user.email_verified_at"
                                             class="w-4 h-auto text-blue-500 ml-1 shrink-0"
                                         />

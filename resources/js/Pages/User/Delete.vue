@@ -32,7 +32,6 @@ const closeModal = () => {
 <template>
     <div>
         <ActionButton
-            v-tooltip="lang().label.delete"
             variant="danger"
             @click.prevent="(show = true), emit('open')"
         >

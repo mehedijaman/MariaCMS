@@ -58,7 +58,6 @@ const roles = props.roles?.map((role) => ({
 <template>
     <div>
         <ActionButton
-            v-tooltip="lang().label.edit"
             @click.prevent="(show = true), emit('open')"
         >
             <PencilIcon class="w-4 h-auto" />

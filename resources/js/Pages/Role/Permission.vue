@@ -44,7 +44,6 @@ const closeModal = () => {
     <div>
         <div>
             <p
-                v-tooltip="lang().label.show_permission"
                 class="text-primary underline cursor-pointer w-fit"
                 @click="show = true"
             >

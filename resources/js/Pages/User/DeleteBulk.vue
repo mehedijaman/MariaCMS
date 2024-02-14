@@ -42,7 +42,6 @@ const closeModal = () => {
 <template>
     <div>
         <DangerButton
-            v-tooltip="lang().label.delete_selected"
             class="rounded-none"
             @click.prevent="show = true"
         >
