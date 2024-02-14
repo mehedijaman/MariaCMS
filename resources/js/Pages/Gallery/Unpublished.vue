@@ -18,6 +18,7 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
+    { text: "Media", value: "media", sortable: false },
     { text: "Name", value: "name", sortable: true },
     { text: "Slug", value: "slug", sortable: true },
     { text: "Action", value: "actions" },
@@ -45,9 +46,13 @@ const headers = [
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
 
+        <template #item-media="item">
+            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Gallery" class="w-10 h-10 rounded-sm">
+        </template>
+
         <template #expand="item">
             <div>
-                <strong>Items: </strong> {{ item.items }}
+                <strong>Description: </strong> {{ item.description }}
             </div>
         </template>
         <template #empty-message>

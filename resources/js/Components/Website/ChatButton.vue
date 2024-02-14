@@ -2,19 +2,19 @@
 import { ChatBubbleLeftRightIcon } from "@heroicons/vue/24/outline";
 import { reactive } from "vue";
 const data = reactive({
-    show: false,
+    show: true,
 });
-const toTop = () => {
-    window.scrollTo(0, 0);
-};
-window.addEventListener("scroll", () => {
-    let scrollPos = window.scrollY;
-    if (scrollPos > 0) {
-        data.show = true;
-    } else {
-        data.show = false;
-    }
-});
+// const toTop = () => {
+//     window.scrollTo(0, 0);
+// };
+// window.addEventListener("scroll", () => {
+//     let scrollPos = window.scrollY;
+//     if (scrollPos > 0) {
+//         data.show = true;
+//     } else {
+//         data.show = false;
+//     }
+// });
 </script>
 <template>
     <a

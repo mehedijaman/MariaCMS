@@ -16,7 +16,7 @@ class ProductCategoryController extends Controller
      */
     public function index(IndexProductCategoryRequest $request)
     {
-        $product_categories = ProductCategory::with('parent')->get();
+        $product_categories = ProductCategory::with('parent','media')->get();
 
         return Inertia::render('ProductCategory/Index', [
             'title' => __('app.label.product_categories'),
@@ -30,7 +30,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $product_categories = ProductCategory::with('parent')->get();
+        $product_categories = ProductCategory::with('parent','media')->get();
 
         return Inertia::render('ProductCategory/Create', [
             'product_categories' => $product_categories,
@@ -50,13 +50,17 @@ class ProductCategoryController extends Controller
                 'slug' => $request->slug,
                 'name' => $request->name,
                 'description' => $request->description,
+                'is_featured' => $request->is_featured,
                 'status' => $request->status,
             ]);
+
+            if ($request->hasFile('thumbnail')) {
+                $product_category->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
+            }
 
             return back()
                 ->with('success', __('app.label.created_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
-
             return back()->with('error', __('app.label.created_error', ['name' => __('app.label.product_category')]).$th->getMessage());
         }
     }
@@ -66,6 +70,7 @@ class ProductCategoryController extends Controller
      */
     public function show(ProductCategory $category)
     {
+        $category->getMedia();
         return Inertia::render('ProductCategory/Show', [
             'title' => __('app.label.product_category'),
             'category' => $category,
@@ -78,6 +83,8 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $category)
     {
+        $category->getMedia();
+
         return Inertia::render('ProductCategory/Edit', [
             'title' => __('app.label.product_category'),
             'category' => $category,
@@ -96,8 +103,15 @@ class ProductCategoryController extends Controller
                 'slug' => $request->slug,
                 'name' => $request->name,
                 'description' => $request->description,
+                'is_featured' => $request->is_featured,
                 'status' => $request->status,
             ]);
+
+            if ($request->hasFile('thumbnail')) {
+                $product_category->clearMediaCollection('thumbnail');
+                $product_category->addMediaFromRequest('thumbnail')->toMediaCollection('thumbnail');
+            }
+
 
             return back()->with('success', __('app.label.updated_successfully', ['name' => $product_category->name]));
         } catch (\Throwable $th) {
@@ -107,7 +121,7 @@ class ProductCategoryController extends Controller
 
     public function trash()
     {
-        $product_categories = ProductCategory::onlyTrashed()->get();
+        $product_categories = ProductCategory::onlyTrashed()->with('media')->get();
 
         return Inertia::render('ProductCategory/Trash', [
             'title' => __('app.label.product_categories'),

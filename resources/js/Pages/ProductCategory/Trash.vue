@@ -34,6 +34,7 @@ const searchField = ref('');
 const searchValue = ref('');
 
 const headers = [
+    { text: "Media", value: "media", sortable: true },
     { text: "Name", value: "name", sortable: true },
     { text: "Created", value: "created_at", sortable: true, format: val => formatDate(new Date(val)) },
     { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
@@ -79,19 +80,21 @@ provide('removeAllItems', removeAllItems);
         <template #title>
             <span>{{ props.title }}</span>
         </template>
-        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
+        <Breadcrumb :breadcrumbs="props.breadcrumbs" />
 
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
                 <div class="bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-2">
                     <div class="flex justify-between">
                         <div class="flex shrink-0 rounded overflow-hidden">
+
                             <Link
                                 class="inline-flex gap-2 items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 font-semibold text-xs text-white tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 h-8"
                                 :href="route('product-categories.index')">
-                                <BackwardIcon class="w-5 h-5 ">
-                                </BackwardIcon>
-                                Back
+                            <BackwardIcon class="w-5 h-5 ">
+                            </BackwardIcon>
+                            Back
+
                             </Link>
                             <RestoreAll></RestoreAll>
                             <DeleteForceAll></DeleteForceAll>
@@ -117,10 +120,9 @@ provide('removeAllItems', removeAllItems);
                         buttons-pagination :headers="headers" :items="items" :search-field="searchField"
                         :search-value="searchValue" v-model:items-selected="itemsSelected">
 
-                        <template #expand="item">
-                            <div>
-                                <strong>Items: </strong> {{ item.items }}
-                            </div>
+                        <template #item-media="item">
+                            <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Product Category"
+                                class="w-10 h-10 rounded-sm">
                         </template>
                         <template #empty-message>
                             <EmptyAnimation></EmptyAnimation>

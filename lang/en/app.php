@@ -180,6 +180,7 @@ return [
         'category' => 'Category',
         'video' => 'Video',
         'videos' => 'Videos',
+        'featured' => 'Featured',
 
         'product' => 'Product',
         'products' => 'Products',

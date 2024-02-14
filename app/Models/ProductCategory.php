@@ -22,6 +22,7 @@ class ProductCategory extends Model implements HasMedia
         'name',
         'slug',
         'description',
+        'is_fetured',
         'status',
     ];
 

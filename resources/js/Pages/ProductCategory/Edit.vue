@@ -6,6 +6,7 @@ import ActionButton from "@/Components/ActionButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import ImageInput from "@/Components/ImageInput.vue";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
@@ -22,12 +23,21 @@ const props = defineProps({
     item: Object,
 });
 
-const formData = reactive(props.item);
+const formData = reactive({
+    thumbnail:null,
+    name: props.item?.name,
+    slug: props.item?.slug,
+    description: props.item?.description,
+    parent_id: props.item?.parent_id,
+    is_featured: props.item?.is_featured,
+    status: props.item?.status,
+    _method: "PUT",
+});
 
 // Watch for changes in the 'name' property
 watch(() => formData.name, (newName) => {
-    // Update the 'slug' property based on the new 'name'
-    formData.slug = generateSlug(newName);
+  // Update the 'slug' property based on the new 'name'
+  formData.slug = generateSlug(newName);
 });
 
 let form = useForm(formData);
@@ -35,8 +45,21 @@ watch(formData, (newValues) => {
     form = useForm(newValues);
 });
 
+
+// const submit = () => {
+//     form.put(route("product-categories.update", props.item?.id), {
+//         preserveScroll: true,
+//         onSuccess: (response) => {
+//             closeModal();
+//             updateItems(response.props.product_categories);
+//         },
+//         onError: () => null,
+//         onFinish: () => null,
+//     });
+// };
+
 const submit = () => {
-    form.put(route("product-categories.update", props.item?.id), {
+    form.post(route("product-categories.update", props.item?.id), {
         preserveScroll: true,
         onSuccess: (response) => {
             closeModal();
@@ -52,6 +75,12 @@ const closeModal = () => {
     form.errors = {};
     form.reset();
 };
+
+const fileChange = (value) => {
+    if (value.source === "thumbnail") {
+        formData.thumbnail = value.file;
+    }
+};
 </script>
 <template>
     <div>
@@ -65,20 +94,63 @@ const closeModal = () => {
 
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
-
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="w-full">
-                            <InputLabel for="name" :value="lang().label.name" />
-                            <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
-                                autocomplete="name" :placeholder="lang().placeholder.name" :error="form.errors.name" />
-                            <InputError :message="form.errors.name" />
+                    <div class="grid grid-cols-1 md:grid-cols-3 space-x-2">
+                        <div class="col-span-1">
+                            <InputLabel for="thumbnail" value="Thumbnail" />
+                            <ImageInput source="thumbnail" v-model="formData.thumbnail" class="mt-1 block w-44 h-44"
+                                :image="props.item.media[0]?.original_url" @fileChange="fileChange" />
+                            <InputError :message="form.errors.thumbnail" class="mt-2" />
+                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                                {{ form.progress.percentage }}%
+                            </progress>
                         </div>
 
-                        <div class="w-full">
-                            <InputLabel for="slug" :value="lang().label.slug" />
-                            <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
-                                autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
-                            <InputError :message="form.errors.slug" />
+                        <div class="col-span-1 md:col-span-2">
+                            <div class="w-full">
+                                <InputLabel for="parent_id" :value="lang().label.parent" />
+                                <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="block w-full">
+                                    <option v-for="(category, index) in product_categories" :key="index"
+                                        :value="category.id">
+                                        {{ toTitleCase(category.name) }}
+                                    </option>
+                                </select>
+                                <InputError :message="form.errors.parent_id" />
+                            </div>
+                            <div class="space-y-1">
+                                <InputLabel for="name" :value="lang().label.name" />
+                                <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                    autocomplete="name" :placeholder="lang().placeholder.name" :error="form.errors.name" />
+                                <InputError :message="form.errors.name" />
+                            </div>
+
+                            <div class="space-y-1">
+                                <InputLabel for="slug" :value="lang().label.slug" />
+                                <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
+                                    autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
+                                <InputError :message="form.errors.slug" />
+                            </div>
+
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="w-full">
+                                    <InputLabel for="is_featured" :value="lang().label.is_featured" />
+                                    <select v-model="formData.is_featured" id="is_featured" name="is_featured"
+                                        class="block w-full">
+                                        <option value="1">Featured</option>
+                                        <option value="0">Not Featured</option>
+                                    </select>
+                                    <InputError :message="form.errors.is_featured" />
+                                </div>
+
+                                <div class="w-full">
+                                    <InputLabel for="status" :value="lang().label.status" />
+                                    <select v-model="formData.status" id="status" name="status" class="block w-full">
+                                        <option value="1">Published</option>
+                                        <option value="0">Unpublished</option>
+                                        <option :value="null">Draft</option>
+                                    </select>
+                                    <InputError :message="form.errors.status" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -88,29 +160,6 @@ const closeModal = () => {
                             autocomplete="description" :placeholder="lang().placeholder.description"
                             :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
-                    </div>
-
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="w-full">
-                            <InputLabel for="parent_id" :value="lang().label.parent" />
-                            <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="block w-full">
-                                <option v-for="(category, index) in product_categories" :key="index" :value="category.id">
-                                    {{ toTitleCase(category.name) }}
-                                </option>
-                            </select>
-                            <InputError :message="form.errors.parent_id" />
-                        </div>
-
-                        <div class="w-full">
-                            <InputLabel for="status" :value="lang().label.status" />
-                            <select v-model="formData.status" id="status" name="status" class="block w-full">
-                                <!-- Iterate over statuss and create options -->
-                                <option value="1">Published</option>
-                                <option value="0">Unpublished</option>
-                                <option :value="null">Draft</option>
-                            </select>
-                            <InputError :message="form.errors.status" />
-                        </div>
                     </div>
                 </form>
             </template>

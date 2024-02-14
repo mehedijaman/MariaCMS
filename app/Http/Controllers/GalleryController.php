@@ -57,7 +57,6 @@ class GalleryController extends Controller
             }
 
             return back()
-                ->with('gallery', $gallery)
                 ->with('success', __('app.label.created_successfully', ['name' => $gallery->name]));
         } catch (\Throwable $th) {
 
@@ -121,7 +120,7 @@ class GalleryController extends Controller
 
     public function trash()
     {
-        $galleries = Gallery::onlyTrashed()->get();
+        $galleries = Gallery::onlyTrashed()->with('media')->get();
 
         return Inertia::render('Gallery/Trash', [
             'title' => __('app.label.galleries'),
