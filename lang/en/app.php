@@ -181,6 +181,8 @@ return [
         'video' => 'Video',
         'videos' => 'Videos',
         'featured' => 'Featured',
+        'order' => 'Order',
+        'orders' => 'Orders',
 
         'product' => 'Product',
         'products' => 'Products',

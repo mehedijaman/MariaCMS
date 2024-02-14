@@ -219,6 +219,20 @@ function userManagementActive() {
                     </Link>
                 </li>
 
+                <li v-show="can(['order read'])" v-bind:class="(route().current('orders.index') || route().current('orders.create') || route().current('orders.edit') || route().current('orders.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('orders.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <ShoppingBagIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.orders }}</span>
+
+                    </Link>
+                </li>
+
                 <li v-show="can(['message read'])" v-bind:class="(route().current('messages.index') || route().current('messages.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'

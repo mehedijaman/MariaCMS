@@ -12,6 +12,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PermissionController;
@@ -302,4 +303,15 @@ Route::prefix('cp')->middleware([
     Route::post('products/restore/bulk', [ProductController::class, 'restoreBulk'])->name('products.restore.bulk');
     Route::post('products/restore/all', [ProductController::class, 'restoreAll'])->name('products.restore.all');
     Route::resource('products', ProductController::class);
+
+    /** Order Routes */
+    Route::get('orders/trash', [OrderController::class, 'trash'])->name('orders.trash');
+    Route::delete('orders/destroy/bulk', [OrderController::class, 'destroyBulk'])->name('orders.destroy.bulk');
+    Route::delete('orders/{category}/destroy/force', [OrderController::class, 'destroyForce'])->name('orders.destroy.force');
+    Route::delete('orders/destroy/force/bulk', [OrderController::class, 'destroyForceBulk'])->name('orders.destroy.force.bulk');
+    Route::delete('orders/destroy/force/all', [OrderController::class, 'destroyForceAll'])->name('orders.destroy.force.all');
+    Route::post('orders/{category}/restore', [OrderController::class, 'restore'])->name('orders.restore');
+    Route::post('orders/restore/bulk', [OrderController::class, 'restoreBulk'])->name('orders.restore.bulk');
+    Route::post('orders/restore/all', [OrderController::class, 'restoreAll'])->name('orders.restore.all');
+    Route::resource('orders', OrderController::class);
 });

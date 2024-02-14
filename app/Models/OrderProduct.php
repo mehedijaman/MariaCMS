@@ -7,20 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order extends Model
+class OrderProduct extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-        'city',
-        'state',
-        'country',
-        'status',
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
     ];
 
     public function getCreatedAtAttribute()
@@ -33,8 +29,13 @@ class Order extends Model
         return Carbon::parse($this->attributes['updated_at'])->isoFormat('D MMMM Y HH:mm');
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasMany(OrderProduct::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }
