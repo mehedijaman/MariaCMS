@@ -123,7 +123,7 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                             </svg>
                         </a>
 
-                        <a v-if="$page.props.app.setting.whatsapp" :href="$page.props.app.setting.whatsapp" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.whatsapp" :href="'https://wa.me/' + $page.props.app.setting.whatsapp" target="_blank" class="border-l py-2 px-2">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path

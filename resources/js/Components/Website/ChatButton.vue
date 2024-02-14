@@ -17,9 +17,9 @@ const data = reactive({
 // });
 </script>
 <template>
-    <a
+    <a  v-if="$page.props.app.setting.whatsapp"
         v-show="data.show"
-        href="https://me.whatsapp.com"
+        :href="'https://wa.me/' + $page.props.app.setting.whatsapp"
         target="_blank"
         class="h-10 w-auto px-2 bg-primary fixed flex gap-1 m-auto justify-center items-center z-[9999] bottom-4 right-16 rounded-3xl font-semibold text-white hover:bg-primary/50 hover:text-black cursor-pointer"
     >
