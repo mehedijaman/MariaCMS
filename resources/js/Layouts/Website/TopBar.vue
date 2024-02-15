@@ -72,23 +72,27 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
     <section class="bg-[#49688E] min-h-8">
         <div class="mx-auto max-w-7xl px-4">
             <div class="grid grid-cols-1 md:grid-cols-3">
-                <div v-if="$page.props.app.setting.is_header_message" class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
-                    <MicrophoneIcon class="w-5 h-5 text-white"></MicrophoneIcon>
-                    <span v-if="$page.props.app.setting.header" v-html="$page.props.app.setting.header"
-                        class="text-slate-200"></span>
+                <div class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
+                    <template v-if="$page.props.app.setting.is_header_message">
+                        <MicrophoneIcon class="w-5 h-5 text-white"></MicrophoneIcon>
+                        <span v-if="$page.props.app.setting.header" v-html="$page.props.app.setting.header"
+                            class="text-slate-200"></span>
+                    </template>
                 </div>
 
                 <div class="col-span-3 md:col-span-1 flex justify-center md:justify-end px-2 border-t md:border-none">
                     <SwitchLocale v-if="$page.props.app.setting.is_language" />
                     <div class="flex text-slate-200  text-lg justify-center ">
-                        <a v-if="$page.props.app.setting.facebook" :href="$page.props.app.setting.facebook" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.facebook" :href="$page.props.app.setting.facebook" target="_blank"
+                            class="border-l py-2 px-2">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                             </svg>
                         </a>
 
-                        <a v-if="$page.props.app.setting.twitter" :href="$page.props.app.setting.twitter" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.twitter" :href="$page.props.app.setting.twitter" target="_blank"
+                            class="border-l py-2 px-2">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path
@@ -97,7 +101,8 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                             </svg>
                         </a>
 
-                        <a v-if="$page.props.app.setting.instagram" :href="$page.props.app.setting.instagram" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.instagram" :href="$page.props.app.setting.instagram"
+                            target="_blank" class="border-l py-2 px-2">
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -105,7 +110,8 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                             </svg>
                         </a>
 
-                        <a v-if="$page.props.app.setting.youtube" :href="$page.props.app.setting.youtube" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.youtube" :href="$page.props.app.setting.youtube" target="_blank"
+                            class="border-l py-2 px-2">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
                                 viewBox="0 0 48 48">
                                 <path fill="#f44336"
@@ -123,7 +129,9 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                             </svg>
                         </a>
 
-                        <a v-if="$page.props.app.setting.whatsapp" :href="'https://wa.me/' + $page.props.app.setting.whatsapp" target="_blank" class="border-l py-2 px-2">
+                        <a v-if="$page.props.app.setting.whatsapp"
+                            :href="'https://wa.me/' + $page.props.app.setting.whatsapp" target="_blank"
+                            class="border-l py-2 px-2">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path
@@ -133,7 +141,8 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                         </a>
                     </div>
 
-                    <button v-if="$page.props.menus.secondary" id="dropdownHoverButton1" data-dropdown-toggle="dropdownHover1" data-dropdown-trigger="hover"
+                    <button v-if="$page.props.menus.secondary" id="dropdownHoverButton1"
+                        data-dropdown-toggle="dropdownHover1" data-dropdown-trigger="hover"
                         class="text-white font-medium inline-flex items-center pl-2 hover:text-gray-200 border-l"
                         type="button">
                         Quick Links
@@ -159,8 +168,7 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                         </ul>
                     </div>
                 </div>
-            </div>
         </div>
-    </section>
-    <!-- /Topbar-->
-</template>
+    </div>
+</section>
+<!-- /Topbar--></template>

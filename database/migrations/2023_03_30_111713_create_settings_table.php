@@ -30,7 +30,7 @@ return new class extends Migration
             $table->boolean('is_header_message')->default(false);
             $table->boolean('is_footer_message')->default(false);
             $table->boolean('is_search')->default(true);
-            $table->boolean('is_language')->default(true);
+            $table->boolean('is_language')->default(false);
             $table->boolean('is_dark_mode')->default(true);
             $table->boolean('is_banner')->default(false);
             $table->boolean('is_logo')->default(true);
