@@ -40,7 +40,6 @@ return new class extends Migration
             $table->boolean('is_email')->default(true);
             $table->boolean('is_slider')->default(false);
             $table->boolean('is_hero')->default(false);
-            $table->boolean('is_fascility')->default(false);
             $table->boolean('is_homepage')->default(false);
             $table->boolean('is_news')->default(false);
             $table->boolean('is_event')->default(false);

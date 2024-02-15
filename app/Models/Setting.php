@@ -36,7 +36,6 @@ class Setting extends Model
         'is_email',
         'is_slider',
         'is_hero',
-        'is_fascility',
         'is_homepage',
         'is_news',
         'is_event',

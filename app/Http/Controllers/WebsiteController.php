@@ -70,7 +70,7 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_product_category) {
-                $data['product_categories'] = ProductCategory::where('status', true)->where('is_featured', true)->get();
+                $data['product_categories'] = ProductCategory::where('status', true)->where('is_featured', true)->with('media')->get();
             }
 
             if ($setting->is_blog) {

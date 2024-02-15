@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('url')->unique();
+            $table->text('url')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_featured')->default(false)->nullable();
             $table->boolean('status')->default(true)->nullable();

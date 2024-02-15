@@ -19,8 +19,8 @@ defineProps({
                 </h1>
             </div>
 
-            <div v-for="category in categories" :key="category.id" class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-                <div class="shadow-lg rounded-sm bg-white pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+                <div v-for="category in categories" :key="category.id" class="shadow-lg rounded-sm bg-white pb-6">
                     <img class="items-center mx-auto" :src="category.media[0].original_url" :alt="category.name">
                     <h4 class="text-center text-xl font-bold py-4 border-b-2 mb-4 text-gray-800">
                         {{ category.name }}

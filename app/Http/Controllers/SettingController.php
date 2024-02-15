@@ -121,7 +121,6 @@ class SettingController extends Controller
                 'is_email' => $request->is_email,
                 'is_slider' => $request->is_slider,
                 'is_hero' => $request->is_hero,
-                'is_fascility' => $request->is_fascility,
                 'is_homepage' => $request->is_homepage,
                 'is_news' => $request->is_news,
                 'is_event' => $request->is_event,
