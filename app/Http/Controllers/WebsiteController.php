@@ -136,7 +136,7 @@ class WebsiteController extends Controller
     {
         $categories = Category::where('status', true)->get();
         if (is_null($slug)) {
-            $posts = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->paginate(10);
+            $posts = Post::where('status', true)->with('author', 'categories',  'media')->orderBy('created_at', 'desc')->paginate(10);
 
             return Inertia::render('Website/Blog/Posts', [
                 'title' => 'Blog',

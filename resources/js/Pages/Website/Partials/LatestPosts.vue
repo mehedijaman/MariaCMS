@@ -18,7 +18,7 @@ const props = defineProps({
                         OUR LATEST<span class="text-red-700"> BLOGS</span>
                     </h1>
                 </div>
-                <div class="grid gap-8 lg:grid-cols-2">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <PostCard v-for="post in props.posts" :key="post.id" :post="post"></PostCard>
                 </div>
             </div>

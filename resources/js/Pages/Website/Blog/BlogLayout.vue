@@ -9,19 +9,23 @@ const props = defineProps({
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <section class="min-h-[calc(100vh)] bg-pattern grid bg-pattern" id="home">
-            <div data-aos="fade-up" data-aos-duration="1000"
-                class="py-8 max-w-7xl w-full bg-white dark:bg-slate-800 mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-                <h2 class="text-4xl mb-8 text-center tracking-tight font-extrabold text-gray-900 dark:text-white">{{
-                    props.title }}
-                </h2>
-                <div class="grid grid-cols-4 gap-4 relative">
-                    <div class="col-span-3">
+        <div class="bg-inherit">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <h1 class="text-center text-2xl md:text-3xl font-bold py-4 text-gray-900">
+                    OUR <span class="text-red-700">BLOG</span>
+                </h1>
+                <p class="md:w-96 h-0.5 bg-red-600 justify-center mx-auto"></p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
+                    <div class="col-span-1 md:col-span-2">
                         <slot />
                     </div>
-                    <Categories v-if="props.categories.length" :categories="props.categories"></Categories>
+
+                    <div class="col-span-1">
+                        <Categories v-if="props.categories.length" :categories="props.categories"></Categories>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     </WebsiteLayout>
 </template>

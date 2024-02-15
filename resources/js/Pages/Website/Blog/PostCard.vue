@@ -10,46 +10,43 @@ const props = defineProps({
 
 </script>
 <template>
-    <article class="p-6 mb-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex justify-between items-center mb-5 text-gray-500">
-           <div class="flex items-center space-x-2">
-            <span v-for="category in props.post.categories" :key="category.id" class="bg-blue-200 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                <Link :href="route('blog.category.posts', {slug: category.slug})">{{ category.name }}</Link>
-            </span>
-           </div>
+    <div class="bg-white pb-4 rounded-sm shadow-lg mb-2">
+        <!-- <img class="w-full" src="" :alt="props.post.name"> -->
+        <div class="px-4">
+            <div class="flex gap-2 py-3">
+                <span v-for="category in props.post.categories" :key="category.id"
+                    class="bg-blue-200 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
 
-            <span class="text-sm">{{ props.post.created_at }}</span>
-        </div>
-        <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <Link :href="route('blog.category.posts', { slug: category.slug })">{{ category.name }}
 
-            <Link :href="route('blog.posts', { slug: props.post.slug })">
-            {{ props.post.name }}
-
-            </Link>
-        </h2>
-        <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
-            {{ props.post.excerpt }}
-        </p>
-        <div class="flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <img class="w-7 h-7 rounded-full"
-                    :src="props.post.author.profile_photo_url"
-                    alt="Bonnie Green avatar" />
-                <span class="font-medium dark:text-white">
-                    {{ props.post.author.name }}
+                    </Link>
                 </span>
             </div>
+            <h2 class="text-base font-bold py-3">
+                {{ props.post.name }}
+            </h2>
+            <h6 class="flex justify-start items-center space-x-2 text-sm text-gray-500 pb-1"><svg
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                </svg>
+                <span>{{ props.post.created_at }}</span>
+            </h6>
+            <h6 class="flex justify-start items-center space-x-2 text-sm text-gray-500">
+                <img class="w-4 h-4" :src="props.post.author.profile_photo_url" :alt="props.post.author.name">
+                <span>{{ props.post.author.name }}</span>
+            </h6>
+            <p class="py-4 text-gray-600 text-justify text-sm">
+                {{ props.post.excerpt }}
+            </p>
 
             <Link :href="route('blog.posts', { slug: props.post.slug })"
-                class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
-            Read more
-            <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"></path>
-            </svg>
+            class="flex gap-2 py-1.5 px-3 border bg-yellow-400 rounded-md hover:bg-yellow-500 text-gray-200">
+            Read More
+            <ArrowRightIcon class="w-8 h-6"></ArrowRightIcon>
 
             </Link>
         </div>
-    </article>
+    </div>
 </template>
