@@ -117,28 +117,17 @@ const fileChange = (value) => {
 };
 
 function resetColors() {
-    form.topbar_background_color = '#F8F2F1';
-    form.topbar_text_color = '#191514';
-    form.banner_background_color = '#FFFFFF';
-    form.banner_text_color = '#191514';
+    form.topbar_background_color = '#49688E';
+    form.topbar_text_color = '#E2E8F0';
+    form.banner_background_color = '#294A70';
+    form.banner_text_color = '#E2E8F0';
     form.navbar_background_color = '#FFFFFF';
-    form.navbar_text_color = '#191514';
-    form.body_background_color = '#FFFFFF';
+    form.navbar_text_color = '#F3F4F6';
+    form.body_background_color = '#F3F4F6';
     form.body_text_color = '#191514';
-    form.footer_background_color = '#FFFFFF';
+    form.footer_background_color = '#294A70';
     form.footer_text_color = '#191514';
 }
-
-const status = [
-    {
-        label: "Enabled",
-        value: true,
-    },
-    {
-        label: "Disabled",
-        value: false,
-    }
-];
 </script>
 
 <template>
@@ -227,7 +216,7 @@ const status = [
                                     <InputLabel for="banner" value="Banner" />
                                     <ImageInput source="banner" v-model="form.banner"
                                         :image="props.setting.full_path_banner" tooltip="Click to select/change banner"
-                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-24"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-36"
                                         @fileChange="fileChange" />
                                     <InputError :message="form.errors.banner" class="mt-2" />
                                 </div>
@@ -732,7 +721,7 @@ const status = [
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="google_map" :value="lang().label.google_map" />
                                 <TextInput id="google_map" v-model="form.google_map" type="text"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.google_map" :error="form.errors.google_map" />
                                 <InputError :message="form.errors.google_map" class="mt-2" />
                             </div>
@@ -756,7 +745,7 @@ const status = [
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="facebook" :value="lang().label.facebook" />
                                 <TextInput id="facebook" v-model="form.facebook" type="text"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.facebook" :error="form.errors.facebook" />
                                 <InputError :message="form.errors.facebook" class="mt-2" />
                             </div>
@@ -764,7 +753,7 @@ const status = [
                             <div class="col-span-1 sm:col-span-1">
                                 <InputLabel for="twitter" :value="lang().label.twitter" />
                                 <TextInput id="twitter" v-model="form.twitter" type="text"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :placeholder="lang().placeholder.twitter" :error="form.errors.twitter" />
                                 <InputError :message="form.errors.twitter" class="mt-2" />
                             </div>
@@ -813,83 +802,76 @@ const status = [
                         </PrimaryButton>
 
                         <div class="col-span-3 grid grid-cols-2">
-                            <div class="">
-                                <InputLabel for="topbar_background_color" value="Topbar Background Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="topbar_background_color" v-model="form.topbar_background_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.topbar_background_color" />
+                                <InputLabel for="topbar_background_color" value="Topbar Background" />
+
                                 <InputError :message="form.errors.topbar_background_color" class="mt-2" />
                             </div>
 
-                            <div>
-                                <InputLabel for="topbar_text_color" value="Topbar Text Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="topbar_text_color" v-model="form.topbar_text_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.topbar_text_color" />
+                                <InputLabel for="topbar_text_color" value="Topbar Text" />
                                 <InputError :message="form.errors.topbar_text_color" class="mt-2" />
                             </div>
 
-                            <div class="">
-                                <InputLabel for="banner_background_color" value="Banner Background Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="banner_background_color" v-model="form.banner_background_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.banner_background_color" />
+                                <InputLabel for="banner_background_color" value="Banner Background" />
                                 <InputError :message="form.errors.banner_background_color" class="mt-2" />
                             </div>
 
-                            <div>
-                                <InputLabel for="banner_text_color" value="Banner Text Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="banner_text_color" v-model="form.banner_text_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.banner_text_color" />
+                                <InputLabel for="banner_text_color" value="Banner Text" />
                                 <InputError :message="form.errors.banner_text_color" class="mt-2" />
                             </div>
 
-                            <div class="">
-                                <InputLabel for="navbar_background_color" value="navbar Background Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="navbar_background_color" v-model="form.navbar_background_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.navbar_background_color" />
+                                <InputLabel for="navbar_background_color" value="Navbar Background" />
                                 <InputError :message="form.errors.navbar_background_color" class="mt-2" />
                             </div>
 
-                            <div>
-                                <InputLabel for="navbar_text_color" value="navbar Text Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="navbar_text_color" v-model="form.navbar_text_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.navbar_text_color" />
+                                <InputLabel for="navbar_text_color" value="Navbar Text" />
                                 <InputError :message="form.errors.navbar_text_color" class="mt-2" />
                             </div>
 
-                            <div class="">
-                                <InputLabel for="body_background_color" value="body Background Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="body_background_color" v-model="form.body_background_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.body_background_color" />
+                                <InputLabel for="body_background_color" value="Body Background" />
                                 <InputError :message="form.errors.body_background_color" class="mt-2" />
                             </div>
 
-                            <div>
-                                <InputLabel for="body_text_color" value="body Text Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="body_text_color" v-model="form.body_text_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.body_text_color" />
+                                <InputLabel for="body_text_color" value="Body Text" />
                                 <InputError :message="form.errors.body_text_color" class="mt-2" />
                             </div>
 
-                            <div class="">
-                                <InputLabel for="footer_background_color" value="footer Background Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="footer_background_color" v-model="form.footer_background_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.footer_background_color" />
+                                <InputLabel for="footer_background_color" value="Footer Background" />
+
                                 <InputError :message="form.errors.footer_background_color" class="mt-2" />
                             </div>
 
-                            <div>
-                                <InputLabel for="footer_text_color" value="footer Text Color" />
+                            <div class="flex gap-2 items-center">
                                 <TextInput id="footer_text_color" v-model="form.footer_text_color" type="color"
-                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     :error="form.errors.footer_text_color" />
+                                <InputLabel for="footer_text_color" value="Footer Text" />
+
                                 <InputError :message="form.errors.footer_text_color" class="mt-2" />
                             </div>
                         </div>

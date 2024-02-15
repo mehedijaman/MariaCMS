@@ -41,13 +41,13 @@ onMounted(() => {
 
     <Head :title="title" />
     <Toast :flash="$page.props.flash" />
-    <TopBar v-if="$page.props.app.setting.topbar_enabled"></TopBar>
+    <TopBar v-if="$page.props.app.setting.is_topbar"></TopBar>
     <Banner></Banner>
     <Navbar />
     <div class="bg-gray-100 min-h-screen w-full dark:bg-slate-900 dark:text-slate-200 overflow-x-hidden">
         <slot></slot>
     </div>
-    <ChatButton></ChatButton>
+    <ChatButton v-if="$page.props.app.setting.is_chat"></ChatButton>
     <BackToTop></BackToTop>
     <Footer></Footer>
 </template>

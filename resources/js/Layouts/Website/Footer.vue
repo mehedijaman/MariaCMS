@@ -6,8 +6,6 @@ import { usePage } from '@inertiajs/vue3';
 const backgroundColor = usePage().props.app.setting.footer_background_color ? usePage().props.app.setting.footer_background_color : 'grey';
 const textColor = usePage().props.app.setting.footer_text_color ? usePage().props.app.setting.footer_text_color : '#f9f9f9';
 
-// const footerMenus = usePage().props.menus.filter(menu => menu.position === 'footer');
-// const footerMenu = footerMenus.length > 0 ? footerMenus[0] : null;
 </script>
 <template>
     <!-- <footer :style="{ backgroundColor: backgroundColor, color: textColor }" class="p-4 border-t-[1px] border-slate-300/50 md:p-8 lg:p-10 dark:bg-gray-800">
@@ -311,7 +309,7 @@ const textColor = usePage().props.app.setting.footer_text_color ? usePage().prop
         </div> -->
 
         <!--start coppyright section-->
-        <div class="bg-[#15305B] py-8">
+        <div class="bg-[#294A70] py-8">
             <div class="max-w-7xl mx-auto text-center flex flex-col gap-4">
                 <ul class="flex flex-col md:flex-row gap-2 justify-center">
                     <li v-for="item in $page.props.menus.footer?.items" :key="item.id" class="px-4 py-2">
@@ -323,7 +321,7 @@ const textColor = usePage().props.app.setting.footer_text_color ? usePage().prop
                     </li>
                 </ul>
                 <!-- <hr class="border-gray-200 outline-none h-0"> -->
-                <span class="text-sm sm:text-center text-gray-300 dark:text-gray-400">
+                <span class="text-sm sm:text-center text-slate-200 dark:text-gray-400">
                     &copy; 2023-{{ new Date().getFullYear() }}. {{ $page.props.app.setting.name }}. All Rights Reserved.
                     Development & Maintenance by - <a class="text-primary font-semibold" target="_blank"
                         href="https://gtechservice.net">gTechService</a>

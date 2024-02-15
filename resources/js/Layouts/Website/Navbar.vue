@@ -130,8 +130,8 @@ onMounted(() => {
                 <div
                     class="flex items-center w-full md:w-auto justify-between md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
                     <div class="flex items-center gap-2">
-                        <SwitchDarkMode />
-                        <form>
+                        <SwitchDarkMode v-if="$page.props.app.setting.is_dark_mode" />
+                        <form v-if="$page.props.app.setting.is_search">
                             <div class="flex">
                                 <div class="relative w-full">
                                     <input type="search" id="location-search"

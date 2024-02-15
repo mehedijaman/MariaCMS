@@ -26,17 +26,15 @@ onMounted(() => {
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <Slider v-if="$page.props.app.setting.slider_enabled && props.data.slider" :slides="props.data.slider.items"></Slider>
-        <Hero v-if="$page.props.app.setting.hero_enabled" :hero="props.data.hero"></Hero>
-        <Home v-if="$page.props.app.setting.homepage_enabled" :homepage="props.data.homepage"></Home>
-        <CTA v-if="$page.props.app.setting.cta_enabled" :cta="props.data.cta"></CTA>
-        <FeaturedCategories v-if="$page.props.app.setting.featured_product_enabled" :products="props.data.featured_products"></FeaturedCategories>
-        <FAQ v-if="$page.props.app.setting.faq_enabled" :faqs="props.data.faqs"></FAQ>
-        <LatestPosts v-if="$page.props.app.setting.blog_enabled" :posts="props.data.latest_posts"></LatestPosts>
-        <News v-if="$page.props.app.setting.news_enabled" :news="props.data.news"></News>
-        <TestimonialSection v-if="$page.props.app.setting.testimonial_enabled" :testimonials="props.data.testimonials"></TestimonialSection>
-        <!-- <section class="min-h-[calc(100vh)] bg-pattern grid place-items-center bg-pattern" id="home">
-            <Feature v-if="$page.props.app.setting.feature_enabled" :features="props.data.features"></Feature>
-        </section> -->
+        <Slider v-if="$page.props.app.setting.is_slider && props.data.slider" :slides="props.data.slider.items"></Slider>
+        <Hero v-if="$page.props.app.setting.is_hero" :hero="props.data.hero"></Hero>
+        <Home v-if="$page.props.app.setting.is_hombepage" :homepage="props.data.homepage"></Home>
+        <CTA v-if="$page.props.app.setting.is_cta" :cta="props.data.cta"></CTA>
+        <FeaturedCategories v-if="$page.props.app.setting.is_featured_product" :products="props.data.featured_products"></FeaturedCategories>
+        <FAQ v-if="$page.props.app.setting.is_faq" :faqs="props.data.faqs"></FAQ>
+        <LatestPosts v-if="$page.props.app.setting.is_blog" :posts="props.data.latest_posts"></LatestPosts>
+        <News v-if="$page.props.app.setting.is_news" :news="props.data.news"></News>
+        <TestimonialSection v-if="$page.props.app.setting.is_testimonial" :testimonials="props.data.testimonials"></TestimonialSection>
+        <Feature v-if="$page.props.app.setting.is_feature" :features="props.data.features"></Feature>
     </WebsiteLayout>
 </template>

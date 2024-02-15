@@ -72,14 +72,14 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
     <section class="bg-[#49688E] min-h-8">
         <div class="mx-auto max-w-7xl px-4">
             <div class="grid grid-cols-1 md:grid-cols-3">
-                <div class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
+                <div v-if="$page.props.app.setting.is_header_message" class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
                     <MicrophoneIcon class="w-5 h-5 text-white"></MicrophoneIcon>
                     <span v-if="$page.props.app.setting.header" v-html="$page.props.app.setting.header"
                         class="text-slate-200"></span>
                 </div>
 
                 <div class="col-span-3 md:col-span-1 flex justify-center md:justify-end px-2 border-t md:border-none">
-                    <SwitchLocale v-if="$page.props.app.setting.switch_locale" />
+                    <SwitchLocale v-if="$page.props.app.setting.is_language" />
                     <div class="flex text-slate-200  text-lg justify-center ">
                         <a v-if="$page.props.app.setting.facebook" :href="$page.props.app.setting.facebook" target="_blank" class="border-l py-2 px-2">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -162,4 +162,5 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
             </div>
         </div>
     </section>
-    <!-- /Topbar--></template>
+    <!-- /Topbar-->
+</template>
