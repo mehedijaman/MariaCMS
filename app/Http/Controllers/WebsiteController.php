@@ -16,6 +16,7 @@ use App\Models\Message;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Category;
+use App\Models\OurClient;
 use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
 use App\Models\ProductCategory;
@@ -36,7 +37,7 @@ class WebsiteController extends Controller
 
         if (is_null($slug)) {
             if ($setting->is_slider) {
-                $data['slider'] = Slider::where('id', $setting->home_slider)->with('items.media')->first();
+                $data['slider'] = Slider::where('id', $setting->home_slider)->where('status', true)->with('items.media')->first();
             }
 
             if ($setting->is_hero) {
@@ -48,7 +49,7 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_homepage) {
-                $data['homepage'] = Page::with('media')->where('id', $setting->homepage)->first();
+                $data['homepage'] = Page::where('status', true)->with('media')->where('id', $setting->homepage)->first();
             }
 
             if ($setting->is_news) {
@@ -62,11 +63,11 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_faq) {
-                $data['faqs'] = Faq::all();
+                $data['faqs'] = Faq::where('status', true)->get();
             }
 
             if ($setting->is_product) {
-                $data['featured_products'] = Product::where('is_featured', true)->with('media')->limit(4)->get();
+                $data['featured_products'] = Product::where('status', true)->where('is_featured', true)->with('media')->limit(4)->get();
             }
 
             if ($setting->is_product_category) {
@@ -78,7 +79,11 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_testimonial) {
-                $data['testimonials'] = Testimonial::with('media')->limit(4)->get();
+                $data['testimonials'] = Testimonial::where('status', true)->with('media')->limit(4)->get();
+            }
+
+            if ($setting->is_clients) {
+                $data['clients'] = OurClient::where('status', true)->with('media')->get();
             }
 
             if ($setting->is_video) {
