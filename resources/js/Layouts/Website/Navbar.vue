@@ -124,7 +124,7 @@ onMounted(() => {
     </header> -->
 
     <!--Navbar-->
-    <nav class="bg-white border-b-4 border-[#ffab1f] z-50 sticky top-0">
+    <nav class="bg-white dark:bg-gray-900 border-b-4 border-[#ffab1f] z-50 sticky top-0">
         <div class="max-w-7xl mx-auto px-4 py-2 md:py-0">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div
@@ -135,7 +135,7 @@ onMounted(() => {
                             <div class="flex">
                                 <div class="relative w-full">
                                     <input type="search" id="location-search"
-                                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-full rounded-s-full border border-gray-3000"
+                                        class="block p-2.5 w-full z-20 text-sm text-gray-900 rounded-e-full rounded-s-full border border-gray-3000"
                                         placeholder="Search..." required>
                                     <button type="submit"
                                         class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-blue-700 rounded-e-full border border-blue-700 hover:bg-blue-800 ">
@@ -165,7 +165,7 @@ onMounted(() => {
 
                 <div class="items-center hidden w-full md:w-auto md:flex md:order-1" id="navbar-primary">
                     <ul
-                        class="flex flex-col gap-2 font-medium border border-gray-100 rounded-sm bg-gray-50  rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        class="flex flex-col gap-2 font-medium border border-gray-100 rounded-sm  rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 dark:text-gray-200 md:dark:bg-gray-900 dark:border-gray-700">
                         <template v-for="item in $page.props.menus.primary?.items" :key="item.id">
                             <template v-if="item.parent_id == null">
                                 <li v-if="item.children.length == 0">

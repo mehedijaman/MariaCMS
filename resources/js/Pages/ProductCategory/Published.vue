@@ -21,6 +21,7 @@ const headers = [
     { text: "Media", value: "media", sortable: true },
     { text: "Name", value: "name", sortable: true },
     { text: "Slug", value: "slug", sortable: true },
+    { text: "Featured", value: "is_featured", sortable: true },
     { text: "Parent", value: "parent.name", sortable: true },
     { text: "Action", value: "actions" },
 ];
@@ -49,6 +50,10 @@ const headers = [
 
         <template #item-media="item">
             <img v-if="item.media[0]" :src="item.media[0]?.original_url" alt="Product Category" class="w-10 h-10 rounded-sm">
+        </template>
+
+        <template #item-is_featured="item">
+            {{ item.is_featured ? 'Featured' : '' }}
         </template>
 
         <template #expand="item">

@@ -53,6 +53,7 @@ return new class extends Migration
             $table->boolean('is_product_category')->default(false);
             $table->boolean('is_clients')->default(false);
             $table->boolean('is_chat')->default(true);
+            $table->boolean('is_video')->default(false);
 
             $table->string('homepage')->nullable();
             $table->string('home_slider')->nullable();

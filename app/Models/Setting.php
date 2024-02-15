@@ -49,6 +49,7 @@ class Setting extends Model
         'is_product_category',
         'is_clients',
         'is_chat',
+        'is_video',
 
         'homepage',
         'home_slider',

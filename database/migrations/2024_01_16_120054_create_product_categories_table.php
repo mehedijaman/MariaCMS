@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->boolean('is_featured')->default(0)->nullable();
+            $table->boolean('is_featured')->default(false)->nullable();
             $table->boolean('status')->default(1)->nullable();
 
             $table->unsignedBigInteger('published_by')->references('id')->on('users')->nullable();

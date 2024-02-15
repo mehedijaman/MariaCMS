@@ -134,6 +134,7 @@ class SettingController extends Controller
                 'is_product_category' => $request->is_product_category,
                 'is_clients' => $request->is_clients,
                 'is_chat' => $request->is_chat,
+                'is_video' => $request->is_video,
 
                 'homepage' => $request->homepage,
                 'home_slider' => $request->home_slider,

@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Message\StoreMessageRequest;
-use App\Models\Category;
 use App\Models\CTA;
 use App\Models\Faq;
-use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Menu;
-use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\Setting;
-use App\Models\Slider;
-use App\Models\Testimonial;
 use Inertia\Inertia;
+use App\Models\Video;
+use App\Models\Slider;
+use App\Models\Gallery;
+use App\Models\Message;
+use App\Models\Product;
+use App\Models\Setting;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Spatie\Honeypot\Honeypot;
+use App\Models\ProductCategory;
+use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
@@ -34,46 +35,54 @@ class WebsiteController extends Controller
         $data = [];
 
         if (is_null($slug)) {
-            if ($setting->slider_enabled) {
+            if ($setting->is_slider) {
                 $data['slider'] = Slider::where('id', $setting->home_slider)->with('items.media')->first();
             }
 
-            if ($setting->hero_enabled) {
+            if ($setting->is_hero) {
                 $data['hero'] = Hero::first();
             }
 
-            if ($setting->cta_enabled) {
+            if ($setting->is_cta) {
                 $data['cta'] = CTA::first();
             }
 
-            if ($setting->homepage_enabled) {
+            if ($setting->is_homepage) {
                 $data['homepage'] = Page::with('media')->where('id', $setting->homepage)->first();
             }
 
-            if ($setting->news_enabled) {
+            if ($setting->is_news) {
                 //have to filter news_category
                 $data['news'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if ($setting->event_enabled) {
+            if ($setting->is_event) {
                 // need to filter events category
                 $data['events'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if ($setting->faq_enabled) {
+            if ($setting->is_faq) {
                 $data['faqs'] = Faq::all();
             }
 
-            if ($setting->featured_product_enabled) {
+            if ($setting->is_product) {
                 $data['featured_products'] = Product::where('is_featured', true)->with('media')->limit(4)->get();
             }
 
-            if ($setting->blog_enabled) {
+            if ($setting->is_product_category) {
+                $data['product_categories'] = ProductCategory::where('status', true)->where('is_featured', true)->get();
+            }
+
+            if ($setting->is_blog) {
                 $data['latest_posts'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
-            if ($setting->testimonial_enabled) {
+            if ($setting->is_testimonial) {
                 $data['testimonials'] = Testimonial::with('media')->limit(4)->get();
+            }
+
+            if ($setting->is_video) {
+                $data['videos'] = Video::where('status', true)->where('is_featured', true)->get();
             }
 
             return Inertia::render('Website/Index', [

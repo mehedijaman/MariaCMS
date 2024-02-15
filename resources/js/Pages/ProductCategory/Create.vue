@@ -91,7 +91,7 @@ const fileChange = (value) => {
                         <div class="col-span-1 md:col-span-2">
                             <div class="space-x-1">
                                 <InputLabel for="parent_id" :value="lang().label.parent" />
-                                <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="block w-full">
+                                <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option v-for="(category, index) in product_categories" :key="index"
                                         :value="category.id">
                                         {{ toTitleCase(category.name) }}
@@ -101,14 +101,14 @@ const fileChange = (value) => {
                             </div>
                             <div class="space-y-1">
                                 <InputLabel for="name" :value="lang().label.name" />
-                                <TextInput id="name" v-model="formData.name" type="text" class="block w-full"
+                                <TextInput id="name" v-model="formData.name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     autocomplete="name" :placeholder="lang().placeholder.name" :error="form.errors.name" />
                                 <InputError :message="form.errors.name" />
                             </div>
 
                             <div class="space-y-1">
                                 <InputLabel for="slug" :value="lang().label.slug" />
-                                <TextInput id="slug" v-model="formData.slug" type="text" class="block w-full"
+                                <TextInput id="slug" v-model="formData.slug" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     autocomplete="slug" :placeholder="lang().placeholder.slug" :error="form.errors.slug" />
                                 <InputError :message="form.errors.slug" />
                             </div>
@@ -117,19 +117,16 @@ const fileChange = (value) => {
                                 <div class="w-full">
                                     <InputLabel for="is_featured" :value="lang().label.featured" />
                                     <select v-model="formData.is_featured" id="is_featured" name="is_featured"
-                                        class="block w-full">
-                                        <option v-for="(category, index) in product_categories" :key="index"
-                                            :value="category.id">
-                                            {{ toTitleCase(category.name) }}
-                                        </option>
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="1">Featured</option>
+                                        <option value="0">Not Featured</option>
                                     </select>
                                     <InputError :message="form.errors.is_featured" />
                                 </div>
 
                                 <div class="w-full">
                                     <InputLabel for="status" :value="lang().label.status" />
-                                    <select v-model="formData.status" id="status" name="status" class="block w-full">
-                                        <!-- Iterate over statuss and create options -->
+                                    <select v-model="formData.status" id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="1">Published</option>
                                         <option value="0">Unpublished</option>
                                         <option :value="null">Draft</option>
@@ -142,7 +139,7 @@ const fileChange = (value) => {
 
                     <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
-                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
+                        <TextAreaInput id="slug" v-model="formData.description" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             autocomplete="description" :placeholder="lang().placeholder.description"
                             :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
