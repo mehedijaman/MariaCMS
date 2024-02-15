@@ -214,9 +214,9 @@ const props = defineProps({
                         <Pie :options="pieChartOptions" :data="pieChartData" />
                     </div> -->
                 </div>
-                <div class="rounded-md bg-slate-100 dark:bg-slate-700 dark:bg-opacity-50 p-4 dark:text-white h-96 mb-4">
+                <!-- <div class="rounded-md bg-slate-100 dark:bg-slate-700 dark:bg-opacity-50 p-4 dark:text-white h-96 mb-4">
                     <Bar :options="barChartOptions" :data="barChartData" />
-                </div>
+                </div> -->
                 <!-- <div class="grid grid-cols-2 gap-4 mb-4">
                     <div class="rounded-md bg-slate-100 dark:bg-slate-800 h-48 md:h-72"></div>
                     <div class="rounded-md bg-slate-100 dark:bg-slate-800 h-48 md:h-72"></div>
