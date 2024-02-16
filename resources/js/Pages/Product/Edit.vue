@@ -26,6 +26,9 @@ const formData = reactive({
     category_id: props.product.category_id,
     name: props.product.name,
     slug: props.product.slug,
+    price: props.product.price,
+    unit: props.product.unit,
+    min_order: props.product.min_order,
     description: props.product.description,
     is_featured: props.product.is_featured,
     status: props.product.status,
@@ -102,7 +105,8 @@ const fileChange = (value) => {
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-4 bg-white dark:bg-slate-800 overflow-hidden shadow rounded-lg">
                             <InputLabel for="status" :value="lang().label.description" />
-                            <ckeditor :editor="editor" id="description" v-model="formData.description" :config="editorConfig">
+                            <ckeditor :editor="editor" id="description" v-model="formData.description"
+                                :config="editorConfig">
                             </ckeditor>
                             <InputError :message="form.errors.description" />
                         </div>
@@ -155,6 +159,31 @@ const fileChange = (value) => {
                                             </select>
                                             <InputError :message="form.errors.is_featured" />
                                         </div>
+
+                                        <div class="space-y-1">
+                                            <InputLabel for="price" :value="lang().label.price" />
+                                            <TextInput id="price" v-model="formData.price" type="text"
+                                                class="block w-full h-8 py-0 text-sm" autocomplete="password"
+                                                :placeholder="lang().placeholder.price" :error="form.errors.price" />
+                                            <InputError :message="form.errors.price" />
+                                        </div>
+
+                                        <div class="space-y-1">
+                                            <InputLabel for="unit" :value="lang().label.unit" />
+                                            <TextInput id="unit" v-model="formData.unit" type="text"
+                                                class="block w-full h-8 py-0 text-sm" autocomplete="password"
+                                                :placeholder="lang().placeholder.unit" :error="form.errors.unit" />
+                                            <InputError :message="form.errors.unit" />
+                                        </div>
+
+                                        <div class="space-y-1">
+                                            <InputLabel for="min_order" :value="lang().label.min_order" />
+                                            <TextInput id="min_order" v-model="formData.min_order" type="text"
+                                                class="block w-full h-8 py-0 text-sm" autocomplete="password"
+                                                :placeholder="lang().placeholder.min_order"
+                                                :error="form.errors.min_order" />
+                                            <InputError :message="form.errors.min_order" />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -175,8 +204,8 @@ const fileChange = (value) => {
                                     <div class="p-2 border border-t-0 border-gray-200 dark:border-gray-700">
                                         <div class="space-y-1">
                                             <ImageInput source="featured_image" v-model="formData.featured_image"
-                                                :image="props.product.media[0]?.original_url"
-                                                class="mt-1 block w-44 h-44" @fileChange="fileChange" />
+                                                :image="props.product.media[0]?.original_url" class="mt-1 block w-44 h-44"
+                                                @fileChange="fileChange" />
                                             <InputError :message="form.errors.featured_image" class="mt-2" />
                                             <progress v-if="form.progress" :value="form.progress.percentage" max="100">
                                                 {{ form.progress.percentage }}%

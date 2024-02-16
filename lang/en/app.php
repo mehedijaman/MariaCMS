@@ -183,6 +183,9 @@ return [
         'featured' => 'Featured',
         'order' => 'Order',
         'orders' => 'Orders',
+        'unit' => 'Unit',
+        'min_order' => 'Minimum Order',
+        'price' => 'Price',
 
         'product' => 'Product',
         'products' => 'Products',

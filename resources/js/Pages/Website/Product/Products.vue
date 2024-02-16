@@ -2,6 +2,7 @@
 import ProductCard from '@/Pages/Website/Product/ProductCard.vue';
 import WebsiteLayout from '@/Layouts/WebsiteLayout.vue';
 import { Link } from '@inertiajs/vue3';
+import Categories from './Categories.vue';
 
 const props = defineProps({
     title: String,
@@ -11,30 +12,25 @@ const props = defineProps({
 </script>
 <template>
     <WebsiteLayout :title="props.title">
-        <section class="border-b container grid grid-cols-4 gap-4 lg:py-32 max-w-screen mx-auto py-5">
-            <div class="border-b pb-5 col-span-1">
-                <p class="font-medium mb-3">Categories</p>
-                <div v-for="category in props.categories" :key="category.id" class="flex justify-between w-full">
-                    <div class="flex items-center justify-center">
-                        <input type="checkbox">
-
-                        <Link :href="route('category.products', { slug: category.slug })" class="ml-4">
-                        {{ category.name }}
-
-                        </Link>
+        <div class="bg-inherit">
+            <div class="max-w-7xl mx-auto px-4 py-10">
+                <h1 class="text-center text-2xl md:text-3xl font-bold py-4 text-gray-900">
+                    OUR <span class="text-red-700">PRODUCTS</span>
+                </h1>
+                <p class="md:w-96 h-0.5 bg-red-600 justify-center mx-auto"></p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-8 ">
+                    <div class="col-span-1">
+                        <Categories :categories="props.categories"></Categories>
                     </div>
-                    <div>
-                        <p class="text-gray-500">({{ category.products_count }})</p>
+
+                    <div class="col-span-1 md:col-span-3">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <ProductCard v-for="product in props.products.data" key="product.id" :product="product">
+                            </ProductCard>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-span-3">
-                <p class="font-medium mb-3">Products</p>
-                <div class="flex gap-4">
-                    <ProductCard v-for="product in props.products.data" key="product.id" :product="product"></ProductCard>
-                </div>
-            </div>
-        </section>
+        </div>
     </WebsiteLayout>
 </template>

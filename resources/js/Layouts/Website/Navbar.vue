@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/vue3";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
+import ShoppingCartIcon from "../../Components/ShoppingCartIcon.vue";
 
 import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
 import { reactive, onMounted } from "vue";
@@ -123,7 +124,6 @@ onMounted(() => {
         </div>
     </header> -->
 
-    <!--Navbar-->
     <nav class="bg-white dark:bg-gray-900 border-b-4 border-[#ffab1f] z-50 sticky top-0">
         <div class="max-w-7xl mx-auto px-4 py-2 md:py-0">
             <div class="flex flex-col md:flex-row items-center justify-between">
@@ -131,6 +131,7 @@ onMounted(() => {
                     class="flex items-center w-full md:w-auto justify-between md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
                     <div class="flex items-center gap-2">
                         <SwitchDarkMode v-if="$page.props.app.setting.is_dark_mode" />
+                        <ShoppingCartIcon></ShoppingCartIcon>
                         <form v-if="$page.props.app.setting.is_search">
                             <div class="flex">
                                 <div class="relative w-full">
@@ -261,5 +262,4 @@ onMounted(() => {
             </div>
         </div>
     </nav>
-    <!-- /Navbar-->
 </template>

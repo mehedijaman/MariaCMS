@@ -75,7 +75,7 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
                 <div class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
                     <template v-if="$page.props.app.setting.is_header_message">
                         <MicrophoneIcon class="w-5 h-5 text-white"></MicrophoneIcon>
-                        <span v-if="$page.props.app.setting.header" v-html="$page.props.app.setting.header"
+                        <span v-if="$page.props.app.setting.is_header_message" v-html="$page.props.app.setting.header_message"
                             class="text-slate-200"></span>
                     </template>
                 </div>
