@@ -36,7 +36,7 @@ const formData = reactive({
     unit: null,
     min_order: null,
     slug: null,
-    description: null,
+    description: '',
     is_featured: null,
     status: 1,
     featured_image: null,

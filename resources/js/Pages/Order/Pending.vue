@@ -49,39 +49,43 @@ const headers = [
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
         <template #expand="item">
-            <div>
-                <strong>Address: </strong> {{ item.address }}
-            </div>
+            <div class="max-w-4xl mx-auto">
+                <div>
+                    <strong>Address: </strong> {{ item.address }}
+                </div>
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-sm py-4">
-                <table class="w-full text-sm text-left rtl:text-right dark:text-blue-100">
-                    <thead class="text-xs  uppercase border border-slate-400 dark:text-white">
-                        <tr>
-                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
-                                Product name
-                            </th>
-                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
-                                Quantity
-                            </th>
-                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
-                                Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, index) in item.order_products" :key="index" class="border border-slate-400 hover:bg-slate-300">
-                            <th scope="row" class="px-4 py-1 font-medium  whitespace-nowrap dark:text-blue-100 border-r border-slate-400">
-                                {{ item.product.name }}
-                            </th>
-                            <td class="px-4 py-1 border-r border-slate-400">
-                                {{ item.quantity }}
-                            </td>
-                            <td class="px-4 py-1 border-r border-slate-400">
-                                {{ item.price }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-sm py-4">
+                    <table class="w-full text-sm text-left rtl:text-right dark:text-blue-100">
+                        <thead class="text-xs  uppercase border border-slate-400 dark:text-white">
+                            <tr>
+                                <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                    Product name
+                                </th>
+                                <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                    Quantity
+                                </th>
+                                <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                    Price
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in item.order_products" :key="index"
+                                class="border border-slate-400 hover:bg-slate-300">
+                                <th scope="row"
+                                    class="px-4 py-1 font-medium  whitespace-nowrap dark:text-blue-100 border-r border-slate-400">
+                                    {{ item.product.name }}
+                                </th>
+                                <td class="px-4 py-1 border-r border-slate-400">
+                                    {{ item.quantity }}
+                                </td>
+                                <td class="px-4 py-1 border-r border-slate-400">
+                                    {{ item.price }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </template>
         <template #empty-message>

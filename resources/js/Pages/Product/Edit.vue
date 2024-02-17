@@ -29,7 +29,7 @@ const formData = reactive({
     price: props.product.price,
     unit: props.product.unit,
     min_order: props.product.min_order,
-    description: props.product.description,
+    description: props.product.description ? props.product.description : '',
     is_featured: props.product.is_featured,
     status: props.product.status,
     featured_image: null,
