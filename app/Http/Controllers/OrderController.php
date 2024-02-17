@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Requests\Order\IndexOrderRequest;
 use App\Http\Requests\Order\StoreOrderRequest;
+use App\Http\Requests\Order\UpdateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -92,10 +92,6 @@ class OrderController extends Controller
     {
         try {
             $order->update([
-                'name' => $request->name,
-                'slug' => $request->slug,
-                'parent_id' => $request->parent_id,
-                'description' => $request->description,
                 'status' => $request->status,
             ]);
 

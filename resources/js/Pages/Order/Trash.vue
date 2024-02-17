@@ -35,12 +35,14 @@ const searchValue = ref('');
 
 const headers = [
     { text: "Name", value: "name", sortable: true },
-    { text: "Created", value: "created_at", sortable: true, format: val => formatDate(new Date(val)) },
-    { text: "Updated", value: "updated_at", sortable: true, format: val => formatDate(new Date(val)) },
+    { text: "Email", value: "email", sortable: true },
+    { text: "Phone", value: "phone", sortable: true },
+    { text: "City", value: "city", sortable: true },
+    { text: "State", value: "state", sortable: true },
+    { text: "Country", value: "country", sortable: true },
     { text: "Action", value: "actions" },
 ];
 
-// Method to remove an item from the array based on its ID
 const removeItem = (itemId) => {
     // Find the index of the item in the items array
     const index = items.findIndex(item => item.id === itemId);
@@ -79,19 +81,21 @@ provide('removeAllItems', removeAllItems);
         <template #title>
             <span>{{ props.title }}</span>
         </template>
-        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
+        <Breadcrumb :breadcrumbs="props.breadcrumbs" />
 
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
                 <div class="bg-white dark:bg-slate-800 overflow-hidden shadow sm:rounded p-2">
                     <div class="flex justify-between">
                         <div class="flex shrink-0 rounded overflow-hidden">
+
                             <Link
                                 class="inline-flex gap-2 items-center px-3 py-1.5 bg-blue-500 dark:bg-blue-500 font-semibold text-xs text-white tracking-widest hover:bg-blue-600 dark:hover:bg-blue-400 focus:bg-blue-500 dark:focus:bg-blue-400 active:bg-blue-500/60 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 h-8"
                                 :href="route('orders.index')">
-                                <BackwardIcon class="w-5 h-5 ">
-                                </BackwardIcon>
-                                Back
+                            <BackwardIcon class="w-5 h-5 ">
+                            </BackwardIcon>
+                            Back
+
                             </Link>
                             <RestoreAll></RestoreAll>
                             <DeleteForceAll></DeleteForceAll>
@@ -119,9 +123,43 @@ provide('removeAllItems', removeAllItems);
 
                         <template #expand="item">
                             <div>
-                                <strong>Items: </strong> {{ item.items }}
+                                <strong>Address: </strong> {{ item.address }}
+                            </div>
+
+                            <div class="relative overflow-x-auto shadow-md sm:rounded-sm py-4">
+                                <table class="w-full text-sm text-left rtl:text-right dark:text-blue-100">
+                                    <thead class="text-xs  uppercase border border-slate-400 dark:text-white">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                                Product name
+                                            </th>
+                                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                                Quantity
+                                            </th>
+                                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
+                                                Price
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item, index) in item.order_products" :key="index"
+                                            class="border border-slate-400 hover:bg-slate-300">
+                                            <th scope="row"
+                                                class="px-4 py-1 font-medium  whitespace-nowrap dark:text-blue-100 border-r border-slate-400">
+                                                {{ item.product.name }}
+                                            </th>
+                                            <td class="px-4 py-1 border-r border-slate-400">
+                                                {{ item.quantity }}
+                                            </td>
+                                            <td class="px-4 py-1 border-r border-slate-400">
+                                                {{ item.price }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </template>
+
                         <template #empty-message>
                             <EmptyAnimation></EmptyAnimation>
                         </template>

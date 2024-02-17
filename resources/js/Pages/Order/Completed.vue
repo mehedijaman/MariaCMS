@@ -1,6 +1,6 @@
 <script setup>
 // import Create from "@/Pages/Order/Create.vue";
-// import Edit from "@/Pages/Order/Edit.vue";
+import Edit from "@/Pages/Order/Edit.vue";
 import Delete from "@/Pages/Order/Delete.vue";
 import DeleteBulk from "@/Pages/Order/DeleteBulk.vue";
 import { ref, inject } from "vue";
@@ -58,29 +58,31 @@ const headers = [
             </div>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-sm py-4">
-                <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-                    <thead class="text-xs text-white uppercase bg-slate-600 border-b border-blue-400 dark:text-white">
+                <table class="w-full text-sm text-left rtl:text-right dark:text-blue-100">
+                    <thead class="text-xs  uppercase border border-slate-400 dark:text-white">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
                                 Product name
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
                                 Quantity
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-4 py-2 border-r border-slate-400">
                                 Price
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in item.order_products" :key="index" class="bg-slate-600 border-b border-blue-400 hover:bg-slate-500">
-                            <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                        <tr v-for="(item, index) in item.order_products" :key="index"
+                            class="border border-slate-400 hover:bg-slate-300">
+                            <th scope="row"
+                                class="px-4 py-1 font-medium  whitespace-nowrap dark:text-blue-100 border-r border-slate-400">
                                 {{ item.product.name }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-1 border-r border-slate-400">
                                 {{ item.quantity }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-1 border-r border-slate-400">
                                 {{ item.price }}
                             </td>
                         </tr>
@@ -91,8 +93,7 @@ const headers = [
 
         <template #item-actions="item">
             <div class="flex w-fit rounded overflow-hidden">
-                <!-- <Edit v-show="can(['order update'])" :title="item.name" :item="item" @open="item = item" /> -->
-                <Delete v-show="can(['order delete'])" :title="item.name" :item="item" @open="item = item" />
+                <Edit v-show="can(['order update'])" :title="item.name" :item="item" @open="item = item" />
                 <Delete v-show="can(['order delete'])" :title="item.name" :item="item" @open="item = item" />
             </div>
         </template>

@@ -13,7 +13,6 @@ import { PencilIcon } from "@heroicons/vue/24/outline";
 import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
 
 const updateItems = inject('updateItems');
-const categories = inject('categories');
 const title = inject('title');
 
 const emit = defineEmits(["open"]);
@@ -36,11 +35,11 @@ watch(formData, (newValues) => {
 });
 
 const submit = () => {
-    form.put(route("categories.update", props.item?.id), {
+    form.put(route("orders.update", props.item?.id), {
         preserveScroll: true,
         onSuccess: (response) => {
             closeModal();
-            updateItems(response.props.categories);
+            updateItems(response.props.orders);
         },
         onError: () => null,
         onFinish: () => null,
@@ -68,7 +67,7 @@ const closeModal = () => {
             <template #content>
                 <form class="space-y-2" @submit.prevent="submit">
 
-                    <div class="flex flex-col md:flex-row gap-4">
+                    <!-- <div class="flex flex-col md:flex-row gap-4">
 
                         <div class="w-full">
                             <InputLabel for="name" :value="lang().label.name" />
@@ -85,18 +84,18 @@ const closeModal = () => {
                             <InputError :message="form.errors.slug" />
                         </div>
 
-                    </div>
+                    </div> -->
 
-                    <div class="space-y-1">
+                    <!-- <div class="space-y-1">
                         <InputLabel for="slug" :value="lang().label.description" />
                         <TextAreaInput id="slug" v-model="formData.description" type="text" class="block w-full"
                             autocomplete="description" :placeholder="lang().placeholder.description"
                             :error="form.errors.desctiption" />
                         <InputError :message="form.errors.description" />
-                    </div>
+                    </div> -->
 
                     <div class="flex flex-col md:flex-row gap-4">
-                        <div class="w-full">
+                        <!-- <div class="w-full">
                             <InputLabel for="parent_id" :value="lang().label.parent" />
                             <select v-model="formData.parent_id" id="parent_id" name="parent_id" class="block w-full">
                                 <option v-for="(category, index) in categories" :key="index" :value="category.id">
@@ -104,15 +103,14 @@ const closeModal = () => {
                                 </option>
                             </select>
                             <InputError :message="form.errors.parent_id" />
-                        </div>
+                        </div> -->
 
                         <div class="w-full">
                             <InputLabel for="status" :value="lang().label.status" />
                             <select v-model="formData.status" id="status" name="status" class="block w-full">
-                                <!-- Iterate over statuss and create options -->
-                                <option value="1">Published</option>
-                                <option value="0">Unpublished</option>
-                                <option :value="null">Draft</option>
+                                <option :value="null">Pending</option>
+                                <option value="0">Processing</option>
+                                <option value="1">Completed</option>
                             </select>
                             <InputError :message="form.errors.status" />
                         </div>
