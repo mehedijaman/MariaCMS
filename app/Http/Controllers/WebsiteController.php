@@ -255,6 +255,7 @@ class WebsiteController extends Controller
                 'city' => $request->city,
                 'state' => $request->state,
                 'country' => $request->country,
+                'status' => null,
             ]);
 
             foreach ($request->products as $product) {

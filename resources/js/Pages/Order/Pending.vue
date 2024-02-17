@@ -11,7 +11,7 @@ import {
     MagnifyingGlassIcon,
 } from "@heroicons/vue/24/outline";
 
-const items = inject('draft');
+const items = inject('pending');
 
 const itemsSelected = ref([]);
 const rowsPerPage = ref(10);
@@ -20,13 +20,17 @@ const searchValue = ref('');
 
 const headers = [
     { text: "Name", value: "name", sortable: true },
+    { text: "Email", value: "email", sortable: true },
+    { text: "Phone", value: "phone", sortable: true },
+    { text: "City", value: "city", sortable: true },
+    { text: "State", value: "state", sortable: true },
+    { text: "Country", value: "country", sortable: true },
     { text: "Action", value: "actions" },
 ];
 </script>
 <template>
     <div class="flex justify-between">
         <div class="flex shrink-0 rounded overflow-hidden">
-            <!-- <Create v-if="can(['order create'])" /> -->
             <DeleteBulk v-if="itemsSelected.length != 0 && can(['order delete'])" :itemsSelected="itemsSelected"
                 title="Items" />
         </div>
@@ -44,12 +48,42 @@ const headers = [
     <EasyDataTable class="mt-2" :rows-per-page="rowsPerPage" show-index alternating border-cell buttons-pagination
         :headers="headers" :items="items" :search-field="searchField" :search-value="searchValue"
         v-model:items-selected="itemsSelected">
-        <!--
         <template #expand="item">
             <div>
-                <strong>Items: </strong> {{ item.items }}
+                <strong>Address: </strong> {{ item.address }}
             </div>
-        </template> -->
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-sm py-4">
+                <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
+                    <thead class="text-xs text-white uppercase bg-slate-600 border-b border-blue-400 dark:text-white">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Product name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in item.order_products" :key="index" class="bg-slate-600 border-b border-blue-400 hover:bg-slate-500">
+                            <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                {{ item.product.name }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ item.quantity }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ item.price }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
         <template #empty-message>
             <EmptyAnimation></EmptyAnimation>
         </template>

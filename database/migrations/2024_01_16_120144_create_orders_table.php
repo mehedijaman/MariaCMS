@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('country');
-            $table->boolean('status')->default(true)->nullable();
+            $table->boolean('status')->default(null)->nullable();
 
             $table->unsignedBigInteger('deleted_by')->references('id')->on('users')->nullable();
             $table->timestamps();

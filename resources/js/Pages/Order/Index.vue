@@ -3,11 +3,11 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, reactive, watch, provide, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { formatDate } from "../../Helpers/dateHelper";
-import Published from "./Published.vue";
-import Unpublished from './Unpublished.vue';
-import Draft from './Draft.vue';
+import Completed from "./Completed.vue";
+import Processing from './Processing.vue';
+import Pending from './Pending.vue';
 // import Trash from "./Trash.vue";
-import { Link }  from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 import {
@@ -24,9 +24,9 @@ const props = defineProps({
 });
 
 const items = reactive(props.orders);
-const published = computed(() => items.filter(item => (item.status == true && item.deleted_at == null)));
-const unpublished = computed(() => items.filter(item => (item.status == false && item.deleted_at == null)));
-const draft = computed(() => items.filter(item => (item.status == null && item.deleted_at == null)));
+const completed = computed(() => items.filter(item => (item.status == true && item.deleted_at == null)));
+const processing = computed(() => items.filter(item => (item.status == false && item.deleted_at == null)));
+const pending = computed(() => items.filter(item => (item.status == null && item.deleted_at == null)));
 
 
 const updateItems = (updatedItems) => {
@@ -37,9 +37,9 @@ const updateItems = (updatedItems) => {
 provide('title', props.title);
 provide('orders', items);
 
-provide('published', published);
-provide('unpublished', unpublished);
-provide('draft', draft);
+provide('pending', pending);
+provide('processing', processing);
+provide('completed', completed);
 
 provide('updateItems', updateItems);
 </script>
@@ -49,7 +49,7 @@ provide('updateItems', updateItems);
         <template #title>
             <span>{{ props.title }}</span>
         </template>
-        <Breadcrumb :breadcrumbs="props.breadcrumbs"/>
+        <Breadcrumb :breadcrumbs="props.breadcrumbs" />
 
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-4 space-y-2">
@@ -58,66 +58,64 @@ provide('updateItems', updateItems);
                         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
                             data-tabs-toggle="#default-tab-content" role="tablist">
                             <li class="me-2" role="presentation">
-                                <button class="inline-flex gap-2 p-4 border-b-2 rounded-t-lg" id="published-tab"
-                                    data-tabs-target="#published" type="button" role="tab" aria-controls="published"
+                                <button class="inline-flex gap-2 p-4 border-b-2 rounded-t-lg" id="completed-tab"
+                                    data-tabs-target="#completed" type="button" role="tab" aria-controls="completed"
                                     aria-selected="false">
                                     <BookOpenIcon
                                         class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BookOpenIcon>
-                                    Published
+                                    Pending
                                 </button>
                             </li>
                             <li class="me-2" role="presentation">
                                 <button
                                     class="inline-flex gap-2 p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                    id="unpublished-tab" data-tabs-target="#unpublished" type="button" role="tab"
-                                    aria-controls="unpublished" aria-selected="false">
+                                    id="processing-tab" data-tabs-target="#processing" type="button" role="tab"
+                                    aria-controls="processing" aria-selected="false">
                                     <BookmarkSlashIcon
                                         class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BookmarkSlashIcon>
-                                    Unpublished
+                                    Processing
                                 </button>
                             </li>
                             <li class="me-2" role="presentation">
                                 <button
                                     class="inline-flex gap-2 p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                    id="draft-tab" data-tabs-target="#draft" type="button" role="tab" aria-controls="draft"
-                                    aria-selected="false">
+                                    id="pending-tab" data-tabs-target="#pending" type="button" role="tab"
+                                    aria-controls="pending" aria-selected="false">
                                     <BriefcaseIcon
                                         class="w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300">
                                     </BriefcaseIcon>
-                                    Draft
+                                    Completed
                                 </button>
                             </li>
                             <li class="me-2" role="presentation">
-                                <Link
-                                    :href="route('orders.trash')"
+
+                                <Link :href="route('orders.trash')"
                                     class="inline-flex gap-2 p-4 border-none rounded-t-lg text-gray-400 hover:text-gray-600 group-hover:text-gray-600  hover:border-gray-300 dark:hover:text-gray-300"
                                     type="button">
-                                    <TrashIcon
-                                        class="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300">
-                                    </TrashIcon>
-                                    Trash
+                                <TrashIcon
+                                    class="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300">
+                                </TrashIcon>
+                                Trash
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     <div id="default-tab-content">
-                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="published" role="tabpanel"
-                            aria-labelledby="published-tab">
-                            <Published></Published>
+                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="completed" role="tabpanel"
+                            aria-labelledby="completed-tab">
+                            <Pending></Pending>
                         </div>
-                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="unpublished" role="tabpanel"
-                            aria-labelledby="unpublished-tab">
-                            <Unpublished></Unpublished>
+                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="processing" role="tabpanel"
+                            aria-labelledby="processing-tab">
+                            <Processing></Processing>
                         </div>
-                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="draft" role="tabpanel"
-                            aria-labelledby="draft-tab">
-                            <Draft></Draft>
+                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="pending" role="tabpanel"
+                            aria-labelledby="pending-tab">
+                            <Completed></Completed>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

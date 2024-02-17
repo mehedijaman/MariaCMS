@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index(IndexOrderRequest $request)
     {
-        $orders = Order::with('products')->get();
+        $orders = Order::with('orderProducts.product')->get();
 
         return Inertia::render('Order/Index', [
             'title' => __('app.label.orders'),
@@ -57,7 +57,7 @@ class OrderController extends Controller
                 ->with('success', __('app.label.created_successfully', ['name' => $order->name]));
         } catch (\Throwable $th) {
 
-            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.order')]).$th->getMessage());
+            return back()->with('error', __('app.label.created_error', ['name' => __('app.label.order')]) . $th->getMessage());
         }
     }
 
@@ -103,7 +103,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return $th->getMessage();
 
-            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.order')]).$th->getMessage());
+            return back()->with('error', __('app.label.updated_error', ['name' => __('app.label.order')]) . $th->getMessage());
         }
     }
 
@@ -148,9 +148,9 @@ class OrderController extends Controller
             $orders = Order::whereIn('id', $request->id);
             $orders->delete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id).' '.__('app.label.orders')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => count($request->id) . ' ' . __('app.label.orders')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id).' '.__('app.label.orders')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => count($request->id) . ' ' . __('app.label.orders')]) . $th->getMessage());
         }
     }
 
@@ -160,9 +160,9 @@ class OrderController extends Controller
             $orders = Order::whereIn('id', $request->id)->onlyTrashed();
             $orders->forceDelete();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.order')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.order')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.order')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.order')]) . $th->getMessage());
         }
     }
 
@@ -173,9 +173,9 @@ class OrderController extends Controller
             $count = count($orders);
             $orders->each->forceDelete();
 
-            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count.' '.__('app.label.orders')]));
+            return back()->with('success', __('app.label.deleted_successfully', ['name' => $count . ' ' . __('app.label.orders')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.deleted_error', ['name' => $count.' '.__('app.label.orders')]).$th->getMessage());
+            return back()->with('error', __('app.label.deleted_error', ['name' => $count . ' ' . __('app.label.orders')]) . $th->getMessage());
         }
     }
 
@@ -196,9 +196,9 @@ class OrderController extends Controller
             $orders = Order::whereIn('id', $request->id)->onlyTrashed();
             $orders->restore();
 
-            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id).' '.__('app.label.order')]));
+            return back()->with('success', __('app.label.restored_successfully', ['name' => count($request->id) . ' ' . __('app.label.order')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id).' '.__('app.label.order')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', ['name' => count($request->id) . ' ' . __('app.label.order')]) . $th->getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ class OrderController extends Controller
 
             return back()->with('success', __('app.label.restored_successfully', [__('app.label.order')]));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.restore_error', [__('app.label.order')]).$th->getMessage());
+            return back()->with('error', __('app.label.restore_error', [__('app.label.order')]) . $th->getMessage());
         }
     }
 }
