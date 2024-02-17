@@ -1,9 +1,8 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { cart } from '@/data/cart';
 
 import {
-    ArrowRightIcon,
-    StarIcon,
     ShoppingCartIcon
 } from '@heroicons/vue/20/solid';
 
@@ -37,6 +36,7 @@ const props = defineProps({
                     ${{ props.product.price }} <span class="text-sm">/{{ props.product.unit }}</span>
                 </span>
                 <button
+                    @click="cart.add(product)"
                     class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-sm text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 ">
 
                     <ShoppingCartIcon class="w-6 h-6"></ShoppingCartIcon>

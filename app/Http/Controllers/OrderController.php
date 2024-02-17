@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index(IndexOrderRequest $request)
     {
-        $orders = Order::with('parent')->get();
+        $orders = Order::with('products')->get();
 
         return Inertia::render('Order/Index', [
             'title' => __('app.label.orders'),

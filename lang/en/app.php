@@ -186,6 +186,9 @@ return [
         'unit' => 'Unit',
         'min_order' => 'Minimum Order',
         'price' => 'Price',
+        'city' => 'City',
+        'state' => 'State',
+        'country' => 'Country',
 
         'product' => 'Product',
         'products' => 'Products',

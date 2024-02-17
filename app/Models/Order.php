@@ -33,7 +33,7 @@ class Order extends Model
         return Carbon::parse($this->attributes['updated_at'])->isoFormat('D MMMM Y HH:mm');
     }
 
-    public function products()
+    public function orderProducts()
     {
         return $this->hasMany(OrderProduct::class);
     }

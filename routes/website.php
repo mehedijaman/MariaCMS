@@ -6,27 +6,29 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
-| Website Routes
+| Routes
 |--------------------------------------------------------------------------
 */
 
-/** Website Contact Routes */
+/** Contact Routes */
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('contact', [WebsiteController::class, 'contactPost'])->name('contact.post')->middleware(ProtectAgainstSpam::class);
 
-/** Website Testimonial Routes */
+/** Testimonial Routes */
 Route::get('testimonials', [WebsiteController::class, 'testimonials'])->name('testimonials.view');
 
-/** Website Gallery Routes */
+/** Gallery Routes */
 Route::get('gallery/{slug?}', [WebsiteController::class, 'gallery'])->name('gallery');
 
-/** Website Blog Routes */
+/** Blog Routes */
 Route::get('blog/{slug?}', [WebsiteController::class, 'blogPosts'])->name('blog.posts');
 Route::get('blog/category/{slug?}', [WebsiteController::class, 'blogCategoryPosts'])->name('blog.category.posts');
 
-/** Website Product Routes */
+/** Product Routes */
 Route::get('products/{slug?}', [WebsiteController::class, 'products'])->name('products');
 Route::get('products/category/{slug?}', [WebsiteController::class, 'categoryProducts'])->name('category.products');
+Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
+Route::post('/checkout', [WebsiteController::class, 'checkout'])->name('checkout');
 
-/** Website Index Routes */
+/** Index Routes */
 Route::get('/{slug?}', [WebsiteController::class, 'index'])->name('index');

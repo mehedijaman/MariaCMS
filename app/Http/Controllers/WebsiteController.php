@@ -9,6 +9,7 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Order;
 use App\Models\Video;
 use App\Models\Slider;
 use App\Models\Gallery;
@@ -18,8 +19,10 @@ use App\Models\Setting;
 use App\Models\Category;
 use App\Models\OurClient;
 use App\Models\Testimonial;
+use App\Models\OrderProduct;
 use Spatie\Honeypot\Honeypot;
 use App\Models\ProductCategory;
+use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
@@ -124,11 +127,9 @@ class WebsiteController extends Controller
                 'ip' => $request->ip,
             ]);
 
-            return back()
-                ->with('message', $message)
-                ->with('success', __('app.label.sent_successfully'));
+            return back()->with('success', __('app.label.sent_successfully'));
         } catch (\Throwable $th) {
-            return back()->with('error', __('app.label.sent_error').$th->getMessage());
+            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
         }
     }
 
@@ -181,7 +182,7 @@ class WebsiteController extends Controller
 
     public function gallery($slug = null)
     {
-        if (! is_null($slug)) {
+        if (!is_null($slug)) {
             $gallery = Gallery::where('slug', $slug)->with('items.media')->firstOrFail();
 
             return Inertia::render('Website/Gallery', [
@@ -232,5 +233,41 @@ class WebsiteController extends Controller
             'categories' => $categories,
             'products' => $products,
         ]);
+    }
+
+    public function cart(Honeypot $honeypot)
+    {
+
+        return Inertia::render('Website/Product/Cart', [
+            'title' => 'Cart',
+            'honeypot' => $honeypot,
+        ]);
+    }
+
+    public function checkout(StoreOrderRequest $request)
+    {
+        try {
+            $order = Order::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+            ]);
+
+            foreach ($request->products as $product) {
+                $order->orderProducts()->create([
+                    'product_id' => $product['product']['id'],
+                    'quantity' => $product['quantity'],
+                    'price' => $product['product']['price'],
+                ]);
+            }
+
+            return back()->with('success', 'Order Placed Successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('error', __('app.label.sent_error') . $th->getMessage());
+        }
     }
 }
