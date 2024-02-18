@@ -133,7 +133,7 @@ const submit = () => {
                                 </div>
                             </div>
 
-                            <div class="col-span-3 md:col-span-1 bg-gray-50 p-4">
+                            <div v-if="cart.totalItems" class="col-span-3 md:col-span-1 bg-gray-50 p-4">
                                 <div class="py-2 border-b border-gray-200">
                                     <p class="font-normal text-lg leading-8 text-gray-400">Order Summary</p>
                                 </div>

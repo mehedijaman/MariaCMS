@@ -27,20 +27,26 @@ use App\Http\Requests\Message\StoreMessageRequest;
 
 class WebsiteController extends Controller
 {
-    // public $menu;
+    public $setting;
 
-    // public function __construct(){
-    //     $this->menu = Menu::where('status', true)->with('items')->get();
-    // }
+    public function __construct(){
+        $this->setting = Setting::first();
+    }
+
     public function index($slug = null)
     {
-        $setting = Setting::first();
+        $setting = $this->setting;
+        $news_id = $setting->news_category;
+        $event_id = $setting->event_category;
 
         $data = [];
 
         if (is_null($slug)) {
             if ($setting->is_slider) {
-                $data['slider'] = Slider::where('id', $setting->home_slider)->where('status', true)->with('items.media')->first();
+                $data['slider'] = Slider::where('id', $setting->home_slider)
+                ->where('status', true)
+                ->with('items.media')
+                ->first();
             }
 
             if ($setting->is_hero) {
@@ -56,13 +62,15 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_news) {
-                //have to filter news_category
-                $data['news'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+                $data['news'] = Post::whereHas('categories', function ($query) use ($news_id) {
+                    $query->where('category_id', $news_id);
+                })->with('media')->get();
             }
 
             if ($setting->is_event) {
-                // need to filter events category
-                $data['events'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+                $data['events'] = Post::whereHas('categories', function ($query) use ($event_id) {
+                    $query->where('category_id', $event_id);
+                })->with('media')->get();
             }
 
             if ($setting->is_faq) {
@@ -70,27 +78,49 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_product) {
-                $data['featured_products'] = Product::where('status', true)->where('is_featured', true)->with('media')->limit(4)->get();
+                $data['featured_products'] = Product::where('status', true)
+                ->where('is_featured', true)
+                ->with('media')
+                ->limit(4)
+                ->get();
             }
 
             if ($setting->is_product_category) {
-                $data['product_categories'] = ProductCategory::where('status', true)->where('is_featured', true)->with('media')->get();
+                $data['product_categories'] = ProductCategory::where('status', true)
+                ->where('is_featured', true)
+                ->with('media')
+                ->get();
             }
 
             if ($setting->is_blog) {
-                $data['latest_posts'] = Post::where('status', true)->with('author', 'categories','media')->orderBy('created_at', 'desc')->limit(4)->get();
+                $data['latest_posts'] = Post::where('status', true)
+                ->whereHas('categories', function ($query) use ($news_id, $event_id) {
+                    $query->where('category_id', '!=', $news_id);
+                    $query->where('category_id', '!=', $event_id);
+                })
+                ->with('author', 'categories','media')
+                ->orderBy('created_at', 'desc')
+                ->limit(4)
+                ->get();
             }
 
             if ($setting->is_testimonial) {
-                $data['testimonials'] = Testimonial::where('status', true)->with('media')->limit(4)->get();
+                $data['testimonials'] = Testimonial::where('status', true)
+                ->with('media')
+                ->limit(4)
+                ->get();
             }
 
             if ($setting->is_clients) {
-                $data['clients'] = OurClient::where('status', true)->with('media')->get();
+                $data['clients'] = OurClient::where('status', true)
+                ->with('media')
+                ->get();
             }
 
             if ($setting->is_video) {
-                $data['videos'] = Video::where('status', true)->where('is_featured', true)->get();
+                $data['videos'] = Video::where('status', true)
+                ->where('is_featured', true)
+                ->get();
             }
 
             return Inertia::render('Website/Index', [
@@ -99,7 +129,10 @@ class WebsiteController extends Controller
             ]);
         }
 
-        $data['page'] = Page::where('slug', $slug)->where('status', true)->with('media')->firstOrFail();
+        $data['page'] = Page::where('slug', $slug)
+        ->where('status', true)
+        ->with('media')
+        ->firstOrFail();
 
         return Inertia::render('Website/Page', [
             'data' => $data,
@@ -221,7 +254,7 @@ class WebsiteController extends Controller
 
     public function categoryProducts($slug)
     {
-        $categories = ProductCategory::where('status', true)->get();
+        $categories = ProductCategory::where('status', true)->withCount('products')->get();
         $category = ProductCategory::where('slug', $slug)
             ->where('status', true)
             ->firstOrFail();
