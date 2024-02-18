@@ -99,7 +99,7 @@ class WebsiteController extends Controller
             ]);
         }
 
-        $data['page'] = Page::where('slug', $slug)->where('status', true)->firstOrFail();
+        $data['page'] = Page::where('slug', $slug)->where('status', true)->with('media')->firstOrFail();
 
         return Inertia::render('Website/Page', [
             'data' => $data,

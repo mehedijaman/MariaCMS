@@ -19,13 +19,20 @@ const textColor = usePage().props.app.setting.topbar_text_color ? usePage().prop
 <template>
     <section class="bg-[#49688E] min-h-8">
         <div class="mx-auto max-w-7xl px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3">
-                <div class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-2">
-                    <template v-if="$page.props.app.setting.is_header_message">
-                        <MicrophoneIcon class="w-5 h-5 text-white"></MicrophoneIcon>
-                        <span v-if="$page.props.app.setting.is_header_message"
-                            v-html="$page.props.app.setting.header_message" class="text-slate-200"></span>
-                    </template>
+            <div class="grid grid-cols-1 md:grid-cols-3 text-slate-200">
+                <div class="col-span-1 md:col-span-2 flex overflow-hidden items-center gap-5">
+                    <div v-if="$page.props.app.setting.is_phone" class="flex justify-start items-center gap-2">
+                        <PhoneIcon class="w-4 h-4" />
+                        <div class="flex md:flex-col gap-2 md:gap-0 items-center md:items-start">
+                            <span class="text-sm">{{ $page.props.app.setting.contact_no }}</span>
+                        </div>
+                    </div>
+                    <div v-if="$page.props.app.setting.is_email" class="flex justify-start items-center gap-2">
+                        <EnvelopeIcon class="w-4 h-4" />
+                        <div class="flex md:flex-col gap-2 md:gap-0 items-center md:items-start">
+                            <span>{{ $page.props.app.setting.email }}</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-span-3 md:col-span-1 flex justify-center md:justify-end px-2 border-t md:border-none">

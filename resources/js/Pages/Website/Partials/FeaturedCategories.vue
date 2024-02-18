@@ -1,5 +1,6 @@
 <script setup>
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
     categories: Object
@@ -20,16 +21,20 @@ defineProps({
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-                <div v-for="category in categories" :key="category.id" class="shadow-lg rounded-sm bg-white pb-6">
-                    <img class="items-center mx-auto" :src="category.media[0].original_url" :alt="category.name">
-                    <h4 class="text-center text-xl font-bold py-4 border-b-2 mb-4 text-gray-800">
-                        {{ category.name }}
-                    </h4>
-                    <button
+                <div v-for="category in categories" :key="category.id" class="shadow-lg rounded-sm bg-white flex flex-col justify-between pb-6">
+                    <div class="border-b mb-4">
+                        <img class="items-center mx-auto h-40 w-full" :src="category.media[0].original_url" :alt="category.name">
+                        <h4 class="text-center text-xl font-bold py-4  mb-4 text-gray-800">
+                            {{ category.name }}
+                        </h4>
+                    </div>
+
+                    <Link :href="route('category.products', { slug: category.slug })"
                         class="flex gap-2 py-2 px-4 border justify-center mx-auto bg-yellow-400 rounded-sm hover:bg-yellow-500 text-gray-200">
-                        Read More
-                        <ArrowRightIcon class="w-6 h-6"></ArrowRightIcon>
-                    </button>
+                    Read More
+                    <ArrowRightIcon class="w-6 h-6"></ArrowRightIcon>
+
+                    </Link>
                 </div>
             </div>
         </div>
