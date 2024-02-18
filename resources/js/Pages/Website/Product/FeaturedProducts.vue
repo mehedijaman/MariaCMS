@@ -2,7 +2,6 @@
 import { ShoppingBagIcon } from '@heroicons/vue/24/outline';
 import ProductCard from './ProductCard.vue';
 import { Link } from '@inertiajs/vue3';
-import { ShoppingCartIcon } from '@heroicons/vue/20/solid';
 const props = defineProps({
     'products': Object
 })

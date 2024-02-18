@@ -1,6 +1,5 @@
 <script setup></script>
 <template>
-    <!-- Services -->
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 py-12">
             <h1 class="text-center text-2xl md:text-3xl font-bold py-4 text-gray-900">
@@ -117,5 +116,4 @@
             </div>
         </div>
     </div>
-    <!-- /Services -->
 </template>

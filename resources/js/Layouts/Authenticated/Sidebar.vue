@@ -10,7 +10,6 @@ import {
     ChevronDownIcon,
     CubeIcon,
     ClipboardDocumentListIcon,
-    DocumentIcon,
     PaperClipIcon,
     PhotoIcon,
     RocketLaunchIcon,

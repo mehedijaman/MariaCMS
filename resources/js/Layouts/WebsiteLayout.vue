@@ -21,25 +21,6 @@ onMounted(() => {
 </script>
 
 <template>
-    <!-- <div>
-        <Head :title="title" />
-        <Toast :flash="$page.props.flash" />
-        <div
-            class="flex relative w-full min-h-screen dark:bg-slate-900 text-slate-900 dark:text-slate-200 overflow-x-hidden"
-        >
-            <div class="w-full">
-                <TopBar ></TopBar>
-                <Banner></Banner>
-                <Navbar />
-                <main class="text-slate-600 dark:text-slate-200">
-                    <slot />
-                    <BackToTop />
-                </main>
-                <Footer />
-            </div>
-        </div>
-    </div> -->
-
     <Head :title="title" />
     <Toast :flash="$page.props.flash" />
     <Chips></Chips>

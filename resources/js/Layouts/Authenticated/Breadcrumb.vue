@@ -5,7 +5,6 @@ import { defineProps } from "vue";
 defineProps({
     breadcrumbs: {
         type: Object,
-        // default: () => [],
     },
 });
 </script>
