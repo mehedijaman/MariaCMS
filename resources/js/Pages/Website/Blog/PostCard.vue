@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 <template>
     <div class="bg-white pb-4 rounded-sm shadow-lg mb-2">
-        <!-- <img class="w-full" src="" :alt="props.post.name"> -->
+        <img class="w-full h-48" :src="props.post.media?props.post.media[0].original_url:''" :alt="props.post.name">
         <div class="px-4">
             <div class="flex gap-2 py-3">
                 <span v-for="category in props.post.categories" :key="category.id"

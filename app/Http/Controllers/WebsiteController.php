@@ -78,7 +78,7 @@ class WebsiteController extends Controller
             }
 
             if ($setting->is_blog) {
-                $data['latest_posts'] = Post::where('status', true)->with('author', 'categories')->orderBy('created_at', 'desc')->limit(4)->get();
+                $data['latest_posts'] = Post::where('status', true)->with('author', 'categories','media')->orderBy('created_at', 'desc')->limit(4)->get();
             }
 
             if ($setting->is_testimonial) {
