@@ -13,6 +13,7 @@ defineProps({
 
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
+import Chips from "./Website/Chips.vue";
 
 onMounted(() => {
     initFlowbite();
@@ -41,6 +42,7 @@ onMounted(() => {
 
     <Head :title="title" />
     <Toast :flash="$page.props.flash" />
+    <Chips></Chips>
     <TopBar v-if="$page.props.app.setting.is_topbar"></TopBar>
     <Banner></Banner>
     <Navbar />
