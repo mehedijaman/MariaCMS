@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Laravel\Scout\Searchable;
 
 class Post extends Model implements HasMedia
 {
@@ -16,6 +17,7 @@ class Post extends Model implements HasMedia
     use InteractsWithMedia;
     use SoftDeletes;
     use UserStamp;
+    use Searchable;
 
     protected $fillable = [
         'name',
