@@ -287,6 +287,8 @@ return [
         'search' => 'Search',
         'language' => 'Language',
         'logo' => 'Logo',
+        'important_links' => 'Important Links',
+        'important_link' => 'Important Link',
     ],
     'placeholder' => [
         'email' => 'email@email.com',

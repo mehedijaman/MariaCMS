@@ -1,34 +1,35 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CTAController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\GalleryItemController;
+use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\MenuItemController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProductCategoryController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\SliderItemController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VideoController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OurClientController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SliderItemController;
+use App\Http\Controllers\GalleryItemController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\ImportantLinkController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,8 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__.'/website.php';
+
+require __DIR__ . '/website.php';
 
 /** Locale Routes */
 Route::get('/set-locale/{locale}', function ($locale) {
@@ -151,6 +153,18 @@ Route::prefix('cp')->middleware([
     Route::post('faqs/restore/bulk', [FaqController::class, 'restoreBulk'])->name('faqs.restore.bulk');
     Route::post('faqs/restore/all', [FaqController::class, 'restoreAll'])->name('faqs.restore.all');
     Route::resource('faqs', FaqController::class);
+
+    /** Important Link Routes */
+    Route::get('important-links/trash', [ImportantLinkController::class, 'trash'])->name('important-links.trash');
+    Route::delete('important-links/destroy/bulk', [ImportantLinkController::class, 'destroyBulk'])->name('important-links.destroy.bulk');
+    Route::delete('important-links/{faq}/destroy/force', [ImportantLinkController::class, 'destroyForce'])->name('important-links.destroy.force');
+    Route::delete('important-links/destroy/force/bulk', [ImportantLinkController::class, 'destroyForceBulk'])->name('important-links.destroy.force.bulk');
+    Route::delete('important-links/destroy/force/all', [ImportantLinkController::class, 'destroyForceAll'])->name('important-links.destroy.force.all');
+    Route::post('important-links/{faq}/restore', [ImportantLinkController::class, 'restore'])->name('important-links.restore');
+    Route::post('important-links/restore/bulk', [ImportantLinkController::class, 'restoreBulk'])->name('important-links.restore.bulk');
+    Route::post('important-links/restore/all', [ImportantLinkController::class, 'restoreAll'])->name('important-links.restore.all');
+    Route::resource('important-links', ImportantLinkController::class);
+
 
     /** Slider Routes */
     Route::get('sliders/trash', [SliderController::class, 'trash'])->name('sliders.trash');

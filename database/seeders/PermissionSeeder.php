@@ -166,5 +166,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'video read', 'guard_name' => 'web']);
         Permission::create(['name' => 'video update', 'guard_name' => 'web']);
         Permission::create(['name' => 'video delete', 'guard_name' => 'web']);
+
+        Permission::create(['name' => 'important link create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'important link read', 'guard_name' => 'web']);
+        Permission::create(['name' => 'important link update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'important link delete', 'guard_name' => 'web']);
     }
 }

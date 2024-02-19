@@ -172,6 +172,11 @@ class RoleSeeder extends Seeder
             'video read',
             'video update',
             'video delete',
+
+            'important link create',
+            'important link read',
+            'important link update',
+            'important link delete',
         ]);
 
         $admin = Role::create([

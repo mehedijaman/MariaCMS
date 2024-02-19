@@ -21,6 +21,7 @@ import {
     WindowIcon,
     ShoppingBagIcon,
     UsersIcon,
+    LinkIcon,
 } from "@heroicons/vue/24/solid";
 import { Link } from "@inertiajs/vue3";
 
@@ -288,6 +289,20 @@ function userManagementActive() {
                     </Link>
                 </li>
 
+                <li v-bind:class="(route().current('important-links.index') || route().current('important-links.trash'))
+                    ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+                    : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
+                    ">
+
+                    <Link :href="route('important-links.index')"
+                        class="flex items-center p-2 font-sans font-semibold text-sm  text-gray-900 rounded-sm dark:text-white  group">
+                    <LinkIcon
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
+                    <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.important_links }}</span>
+
+                    </Link>
+                </li>
+
                 <li v-bind:class="(route().current('videos.index') || route().current('videos.trash'))
                     ? 'bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
                     : 'border-b-[1px] border-gray-200 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700'
@@ -312,6 +327,7 @@ function userManagementActive() {
                     <UsersIcon
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white shadow-md" />
                     <span class="flex-1 ml-3 whitespace-nowrap">{{ lang().label.clients }}</span>
+
                     </Link>
                 </li>
 
