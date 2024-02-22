@@ -16,7 +16,7 @@ const props = defineProps({
             <h1 class="text-center text-2xl md:text-3xl font-bold py-4 text-gray-900">
                 CLIENT <span class="text-red-700">TESTIMONIALS</span>
             </h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <TestimonialCard v-for="testimonial in props.testimonials" :key="testimonial.id" :testimonial="testimonial">
                 </TestimonialCard>
             </div>

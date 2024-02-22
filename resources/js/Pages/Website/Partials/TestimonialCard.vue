@@ -13,7 +13,7 @@ const props = defineProps({
             <StarIcon v-for="index in Array.from({ length: props.testimonial.rating })" :key="index"
                 class="w-8 h-8 text-yellow-300 ms-1"></StarIcon>
         </div>
-        <p class="text-justify text-gray-500 h-48">
+        <p class="text-justify text-gray-500 h-auto text-sm">
             {{ props.testimonial.description }}
         </p>
         <h6 class="pt-6 pb-2 text-gray-700 font-bold">{{ props.testimonial.name }}</h6>
