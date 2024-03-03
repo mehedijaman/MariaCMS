@@ -37,8 +37,8 @@ onMounted(() => {
             >
                 <Vue3Lottie
                     :animationData="ProfileAnimation"
-                    :height="250"
-                    :width="250"
+                    :height="500"
+                    :width="500"
                 />
             </div>
         </div>

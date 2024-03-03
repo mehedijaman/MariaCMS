@@ -14,6 +14,9 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('contact', [WebsiteController::class, 'contactPost'])->name('contact.post')->middleware(ProtectAgainstSpam::class);
 
+Route::get('news', [WebsiteController::class, 'news'])->name('news');
+Route::get('events', [WebsiteController::class, 'events'])->name('events');
+
 /** Testimonial Routes */
 Route::get('testimonials', [WebsiteController::class, 'testimonials'])->name('testimonials.view');
 

@@ -4,7 +4,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
 import { ref, watchEffect, inject } from "vue";
-import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
 
 const removeAllItems = inject('removeAllItems');
 

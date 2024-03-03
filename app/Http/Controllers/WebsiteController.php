@@ -166,6 +166,32 @@ class WebsiteController extends Controller
         }
     }
 
+    public function news()
+    {
+        $news_id = $this->setting->news_category;
+        $posts = Post::whereHas('categories', function ($query) use ($news_id) {
+            $query->where('category_id', $news_id);
+        })->with('media','author')->get();
+
+        return Inertia::render('Website/NewsAndEvents', [
+            'title' => 'News',
+            'posts' => $posts,
+        ]);
+    }
+
+    public function events()
+    {
+        $event_id = $this->setting->event_category;
+        $posts = Post::whereHas('categories', function ($query) use ($event_id) {
+            $query->where('category_id', $event_id);
+        })->with('media','author')->get();
+
+        return Inertia::render('Website/NewsAndEvents', [
+            'title' => 'Events',
+            'posts' => $posts,
+        ]);
+    }
+
     public function blogPosts($slug = null)
     {
         $categories = Category::where('status', true)->get();

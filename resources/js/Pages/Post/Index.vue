@@ -1,13 +1,11 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, reactive, watch, provide, computed } from "vue";
-import { router } from "@inertiajs/vue3";
-import { formatDate } from "../../Helpers/dateHelper";
 import Published from "./Published.vue";
 import Unpublished from './Unpublished.vue';
 import Draft from './Draft.vue';
 import { Link }  from "@inertiajs/vue3";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     TrashIcon,

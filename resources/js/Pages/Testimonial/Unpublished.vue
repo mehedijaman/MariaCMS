@@ -1,10 +1,10 @@
 <script setup>
-import Create from "@/Pages/Testimonial/Create.vue";
-import Edit from "@/Pages/Testimonial/Edit.vue";
-import Delete from "@/Pages/Testimonial/Delete.vue";
-import DeleteBulk from "@/Pages/Testimonial/DeleteBulk.vue";
+import Create from "./Create.vue";
+import Edit from "./Edit.vue";
+import Delete from "./Delete.vue";
+import DeleteBulk from "./DeleteBulk.vue";
 import { ref, inject } from "vue";
-import EmptyAnimation from "../../Components/Animations/Empty.vue";
+import EmptyAnimation from "@/Components/Animations/Empty.vue";
 
 import {
     MagnifyingGlassIcon,

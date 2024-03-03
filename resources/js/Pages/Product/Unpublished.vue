@@ -1,8 +1,8 @@
 <script setup>
-import Delete from "@/Pages/Product/Delete.vue";
-import DeleteBulk from "@/Pages/Product/DeleteBulk.vue";
+import Delete from "./Delete.vue";
+import DeleteBulk from "./DeleteBulk.vue";
 import { ref, inject } from "vue";
-import EmptyAnimation from "../../Components/Animations/Empty.vue";
+import EmptyAnimation from "@/Components/Animations/Empty.vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
 import { Link } from '@inertiajs/vue3';
 

@@ -5,7 +5,7 @@ import Published from "./Published.vue";
 import Unpublished from './Unpublished.vue';
 import Draft from './Draft.vue';
 import { Link }  from "@inertiajs/vue3";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     TrashIcon,

@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, onMounted, onUnmounted } from 'vue';
+import { defineProps, ref, onMounted } from 'vue';
 import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
 
 import Lightgallery from 'lightgallery/vue';

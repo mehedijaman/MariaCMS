@@ -3,8 +3,7 @@ import ConfirmationModal from "@/Components/ConfirmationModal.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
-import { ref, watchEffect, inject } from "vue";
-import { TrashIcon } from "@heroicons/vue/24/outline";
+import { ref, inject } from "vue";
 
 const removeAllItems = inject('removeAllItems');
 

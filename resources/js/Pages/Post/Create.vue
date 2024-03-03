@@ -1,38 +1,21 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { router } from "@inertiajs/vue3";
-import { formatDate } from "../../Helpers/dateHelper";
-import Published from "./Published.vue";
-import Unpublished from './Unpublished.vue';
-import Draft from './Draft.vue';
 import { Link } from "@inertiajs/vue3";
-import Checkbox from "@/Components/Checkbox.vue";
-import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
-import { PlusIcon } from "@heroicons/vue/24/outline";
-import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
+import { toTitleCase, generateSlug } from "@/Helpers/textHelper";
 
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 
 // CKEditor
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const editor = ref(ClassicEditor);
 const editorConfig = ref({});
-
-import {
-    TrashIcon,
-    BookmarkSlashIcon,
-    BookOpenIcon,
-    BriefcaseIcon,
-} from "@heroicons/vue/24/outline";
 
 const props = defineProps({
     title: String,

@@ -11,7 +11,7 @@ import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
-import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
+import { generateSlug } from "@/Helpers/textHelper";
 
 const updateItems = inject('updateItems');
 

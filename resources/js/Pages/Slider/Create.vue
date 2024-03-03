@@ -1,5 +1,4 @@
 <script setup>
-import Checkbox from "@/Components/Checkbox.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -10,7 +9,7 @@ import TextAreaInput from "@/Components/TextAreaInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
 import { PlusIcon } from "@heroicons/vue/24/outline";
-import { generateSlug } from "../../Helpers/textHelper";
+import { generateSlug } from "@/Helpers/textHelper";
 
 const title = inject('title');
 const updateItems = inject('updateItems');

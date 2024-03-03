@@ -1,6 +1,4 @@
 <script setup>
-import Create from "@/Pages/Post/Create.vue";
-import Edit from "@/Pages/Post/Edit.vue";
 import Delete from "@/Pages/Post/Delete.vue";
 import DeleteBulk from "@/Pages/Post/DeleteBulk.vue";
 import { ref, inject } from "vue";

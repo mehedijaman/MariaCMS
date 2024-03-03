@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 <template>
     <div class="bg-white pb-4 rounded-sm shadow-lg mb-2">
-        <img class="w-full h-48" :src="props.post.media[0]?props.post.media[0].original_url:''" :alt="props.post.name">
+        <img v-if="props.post.media" class="w-full h-48" :src="props.post.media[0]?props.post.media[0].original_url:''" :alt="props.post.name">
         <div class="px-4">
             <div class="flex gap-2 py-3">
                 <span v-for="category in props.post.categories" :key="category.id"
@@ -34,8 +34,8 @@ const props = defineProps({
                 <span>{{ props.post.created_at }}</span>
             </h6>
             <h6 class="flex justify-start items-center space-x-2 text-sm text-gray-500">
-                <img class="w-4 h-4" :src="props.post.author.profile_photo_url" :alt="props.post.author.name">
-                <span>{{ props.post.author.name }}</span>
+                <img class="w-4 h-4" :src="props.post.author?.profile_photo_url" :alt="props.post.author?.name">
+                <span>{{ props.post.author?.name }}</span>
             </h6>
             <p class="py-4 text-gray-600 text-justify text-sm">
                 {{ props.post.excerpt }}

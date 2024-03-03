@@ -1,16 +1,13 @@
 <script setup>
-import Create from "@/Pages/Page/Create.vue";
-import Edit from "@/Pages/Page/Edit.vue";
-import Delete from "@/Pages/Page/Delete.vue";
-import DeleteBulk from "@/Pages/Page/DeleteBulk.vue";
+import Delete from "./Delete.vue";
+import DeleteBulk from "./DeleteBulk.vue";
 import { ref, inject } from "vue";
-import EmptyAnimation from "../../Components/Animations/Empty.vue";
+import EmptyAnimation from "@/Components/Animations/Empty.vue";
 import { Link } from "@inertiajs/vue3";
 import {
     PlusIcon,
     PencilIcon,
 } from "@heroicons/vue/24/outline";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     MagnifyingGlassIcon,

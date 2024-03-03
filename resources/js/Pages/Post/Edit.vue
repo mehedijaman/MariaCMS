@@ -7,9 +7,9 @@ import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, defineEmits, watch } from "vue";
-import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
+import { toTitleCase, generateSlug } from "@/Helpers/textHelper";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 import { Link } from '@inertiajs/vue3';
 import { onMounted } from "vue";
 

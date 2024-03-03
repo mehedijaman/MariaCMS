@@ -17,11 +17,11 @@ const props = defineProps({
                 CLIENT <span class="text-red-700">TESTIMONIALS</span>
             </h1>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <TestimonialCard v-for="testimonial in props.testimonials" :key="testimonial.id" :testimonial="testimonial">
+                <TestimonialCard v-for="testimonial in props.testimonials" :key="testimonial.id"
+                    :testimonial="testimonial">
                 </TestimonialCard>
             </div>
             <div class="text-center pt-4">
-
                 <Link :href="route('testimonials.view')"
                     class="px-4 py-2 font-semibold bg-yellow-400 rounded-sm hover:bg-yellow-500 text-gray-200">
                 Show all Testimonials

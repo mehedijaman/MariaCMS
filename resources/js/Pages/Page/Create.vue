@@ -8,8 +8,8 @@ import TextAreaInput from "@/Components/TextAreaInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
-import { toTitleCase, generateSlug } from "../../Helpers/textHelper";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import { toTitleCase, generateSlug } from "@/Helpers/textHelper";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 
 // CKEditor
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';

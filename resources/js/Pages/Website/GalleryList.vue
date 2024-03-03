@@ -1,6 +1,6 @@
 <script setup>
 import WebsiteLayout from "@/Layouts/WebsiteLayout.vue";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/20/solid";
+import { ArrowRightIcon } from "@heroicons/vue/20/solid";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({

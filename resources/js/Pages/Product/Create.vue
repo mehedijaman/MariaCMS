@@ -7,8 +7,8 @@ import TextInput from "@/Components/TextInput.vue";
 import ImageInput from "@/Components/ImageInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref, inject, watch } from "vue";
-import { generateSlug } from "../../Helpers/textHelper";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import { generateSlug } from "@/Helpers/textHelper";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 import {
     TrashIcon,
     BookmarkSlashIcon,

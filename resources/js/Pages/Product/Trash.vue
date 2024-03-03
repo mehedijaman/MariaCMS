@@ -6,10 +6,10 @@ import Restore from "./Restore.vue";
 import RestoreBulk from "./RestoreBulk.vue";
 import RestoreAll from "./RestoreAll.vue";
 import { ref, reactive, defineProps, provide, computed } from "vue";
-import EmptyAnimation from "../../Components/Animations/Empty.vue";
+import EmptyAnimation from "@/Components/Animations/Empty.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
-import Breadcrumb from "../../Layouts/Authenticated/Breadcrumb.vue";
+import Breadcrumb from "@/Layouts/Authenticated/Breadcrumb.vue";
 
 import {
     MagnifyingGlassIcon,
