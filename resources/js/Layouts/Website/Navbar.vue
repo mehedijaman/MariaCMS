@@ -1,13 +1,9 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
-import ShoppingCartIcon from "../../Components/ShoppingCartIcon.vue";
+import ShoppingCartIcon from "@/Components/ShoppingCartIcon.vue";
 
-import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
 import { reactive, onMounted } from "vue";
-import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { initFlowbite } from 'flowbite';
 import { usePage } from "@inertiajs/vue3";
 

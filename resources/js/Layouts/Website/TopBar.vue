@@ -2,13 +2,9 @@
 import {
     PhoneIcon,
     EnvelopeIcon,
-    UserIcon,
-    CogIcon,
-    MicrophoneIcon,
 } from '@heroicons/vue/24/solid'
 import { usePage } from '@inertiajs/vue3';
 import SwitchLocale from "@/Components/SwitchLocale.vue";
-import NavbarLink from "@/Components/Website/NavbarLink.vue";
 import { Link } from "@inertiajs/vue3";
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 

@@ -3,7 +3,6 @@ import { Link } from '@inertiajs/vue3';
 
 import {
     TagIcon,
-    ShoppingBagIcon,
 } from '@heroicons/vue/24/solid';
 
 const props = defineProps({

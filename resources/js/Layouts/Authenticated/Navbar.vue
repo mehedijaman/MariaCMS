@@ -7,17 +7,12 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 import SwitchDarkMode from "@/Components/SwitchDarkMode.vue";
 import SwitchLocale from "@/Components/SwitchLocale.vue";
 import {
-    MagnifyingGlassIcon,
     BellIcon,
     Squares2X2Icon,
-} from "@heroicons/vue/24/solid";
-
-import {
     Bars3CenterLeftIcon,
     GlobeAltIcon,
     CheckBadgeIcon,
-} from "@heroicons/vue/24/outline";
-
+} from "@heroicons/vue/24/solid";
 
 const emit = defineEmits(["open"]);
 

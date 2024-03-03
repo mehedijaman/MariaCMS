@@ -1,7 +1,6 @@
 <script setup>
 import ProductCard from '@/Pages/Website/Product/ProductCard.vue';
 import WebsiteLayout from '@/Layouts/WebsiteLayout.vue';
-import { Link } from '@inertiajs/vue3';
 import Categories from './Categories.vue';
 
 const props = defineProps({

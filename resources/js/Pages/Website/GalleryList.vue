@@ -20,8 +20,8 @@ const props = defineProps({
 
                         <div class="container py-12 mx-auto sm:flex-nowrap flex-wrap grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div v-for="gallery in galleries" :key="gallery.id"
-                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <img class="rounded-t-lg h-44 w-full" :src="gallery.media[0].original_url" alt="" />
+                                class="max-w-sm bg-white border border-gray-200 rounded-md shadow dark:bg-gray-800 dark:border-gray-700">
+                                <img class="rounded-t-md h-44 w-full" :src="gallery.media[0].original_url" alt="" />
                                 <div class="p-5">
 
                                     <Link :href="route('gallery', { slug: gallery.slug })">

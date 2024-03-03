@@ -8,7 +8,6 @@ import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextAreaInput from "@/Components/TextAreaInput.vue";
 
 import {
     PaperAirplaneIcon,
