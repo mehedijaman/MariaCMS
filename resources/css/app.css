@@ -1,10 +1,32 @@
-:root {
-    --color-primary: 0 186 124;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.table {
+    width: 100%;
+}
+
+table{
+    /* width:100%; */
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid rgb(133, 125, 125);
+    padding: 5px 10px;
+    text-align: center; /* Aligns text in center */
+}
+
+th {
+    font-weight: bold;
+    background-color: rgb(196, 234, 235);
+}
+
+
+/* :root {
+    --color-primary: 0 186 124;
+}
 
 html {
     @apply text-slate-900 dark:text-white;
@@ -85,4 +107,4 @@ input[type="number"]::-webkit-calendar-picker-indicator {
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
     @apply dark:invert;
-}
+} */
