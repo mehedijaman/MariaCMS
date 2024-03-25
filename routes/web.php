@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CTAController;
@@ -310,10 +310,10 @@ Route::prefix('cp')->middleware([
     /** Products Routes */
     Route::get('products/trash', [ProductController::class, 'trash'])->name('products.trash');
     Route::delete('products/destroy/bulk', [ProductController::class, 'destroyBulk'])->name('products.destroy.bulk');
-    Route::delete('products/{category}/destroy/force', [ProductController::class, 'destroyForce'])->name('products.destroy.force');
+    Route::delete('products/{product}/destroy/force', [ProductController::class, 'destroyForce'])->name('products.destroy.force');
     Route::delete('products/destroy/force/bulk', [ProductController::class, 'destroyForceBulk'])->name('products.destroy.force.bulk');
     Route::delete('products/destroy/force/all', [ProductController::class, 'destroyForceAll'])->name('products.destroy.force.all');
-    Route::post('products/{category}/restore', [ProductController::class, 'restore'])->name('products.restore');
+    Route::post('products/{product}/restore', [ProductController::class, 'restore'])->name('products.restore');
     Route::post('products/restore/bulk', [ProductController::class, 'restoreBulk'])->name('products.restore.bulk');
     Route::post('products/restore/all', [ProductController::class, 'restoreAll'])->name('products.restore.all');
     Route::resource('products', ProductController::class);
