@@ -101,18 +101,18 @@ php artisan serve
 ## Login With
 ### Superadmin
 ``` bash
-email : mail4mjaman@gmail.com
-password : mehedi!@#
+email : superadmin@gmail.com
+password : superadmin123
 ```
 ### Admin
 ``` bash
 email : admin@admin.com
-password : admin
+password : admin123
 ```
 ### Operator
 ``` bash
 email : operator@operator.com
-password : operator
+password : operator123
 ```
 ## Maintainer
 - **[Mehedi Jaman](https://me.mehedipata.com/)**
